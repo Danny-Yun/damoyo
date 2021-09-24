@@ -23,13 +23,12 @@
 	
 	<context:component-scan base-package="ict.sjh.controller" />
 	
-	<beans:bean id="multipartResolver"
-	class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-	<beans:property name="maxUploadSize" value="52420000"></beans:property>
-	<beans:property name="maxInMemorySize" value="1000000"></beans:property>
-	<beans:property name="defaultEncoding" value="utf-8"></beans:property>
-	
-	</beans:bean>
+<!--  	<beans:bean id = "uploadPath" class="java.lang.String">
+	<beans:constructor-arg value="C:\eclipse\spring_workspace\SecondPrj\src\main\webapp\resources\profileImage">-->
+<!--  "C:\WorkSpace_Spring\login\src\main\webapp\resources\profileImage"-->
+<!--  	</beans:constructor-arg>-->
+
+<!--  </beans:bean>-->	
 	
 	
 </beans:beans>

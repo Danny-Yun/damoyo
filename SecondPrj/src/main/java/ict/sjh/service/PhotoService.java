@@ -7,7 +7,6 @@ import ict.sjh.domain.PhotocategoryVO;
 
 public interface PhotoService {
 	
-	
 	// 사진 등록
 	public void enrollment(PhotoVO vo);
 	
