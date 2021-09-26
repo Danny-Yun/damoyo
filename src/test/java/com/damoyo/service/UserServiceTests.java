@@ -42,5 +42,9 @@ public class UserServiceTests {
 		userService.userJoin(vo);
 	}
 	
+	//@Test
+	public void testShowInterestCate() {
+		userService.showInterestCate();
+	}
 	
 }

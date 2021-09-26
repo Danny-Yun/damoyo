@@ -30,5 +30,10 @@ public class UserMapperTests {
 		vo.setU_area("동탄");
 		userMapper.join(vo);
 	}
+	
+	//@Test
+	public void testGetInterestCate() {
+		userMapper.getInterestCate();
+	}
 
 }

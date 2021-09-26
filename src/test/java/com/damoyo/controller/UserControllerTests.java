@@ -46,5 +46,13 @@ public class UserControllerTests {
 			.andReturn().getModelAndView().getViewName();
 		log.info(resultPage);
 	}
+	
+	//@Test
+	public void testGetInterestCate() throws Exception {
+		String resultPage = mockMvc.perform(
+				MockMvcRequestBuilders.get("/user/join/interest"))
+				.andReturn().getModelAndView().getViewName();
+			log.info(resultPage);
+	}
 
 }
