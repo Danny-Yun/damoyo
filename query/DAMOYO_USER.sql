@@ -43,11 +43,8 @@ INSERT INTO interest_category(I_CATE_NUM, I_CATE_NAME)
     VALUES(INTEREST_CATEGORY_SEQ.nextval, '반려동물');
 INSERT INTO interest_category(I_CATE_NUM, I_CATE_NAME)
     VALUES(INTEREST_CATEGORY_SEQ.nextval, '가족/결혼');
-INSERT INTO interest_category(I_CATE_NUM, I_CATE_NAME)
-    VALUES(INTEREST_CATEGORY_SEQ.nextval, '자유주제');
 
 SELECT * FROM interest_category;
-
 
 -- 상세 관심사
 SELECT * FROM interest_detail;

@@ -1,5 +1,6 @@
 package com.damoyo.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.damoyo.domain.ICateVO;
+import com.damoyo.domain.IDetailVO;
 import com.damoyo.domain.UserVO;
 import com.damoyo.service.UserService;
 
@@ -50,6 +52,13 @@ public class UserController {
 		log.info("관심사 카테고리 리스트 - " + iCateList);
 		model.addAttribute("list", iCateList);
 		return "/user/interest";
+	}
+	@PostMapping("/join/interest")
+	public String getInterestDetail(ArrayList<IDetailVO> voList, RedirectAttributes rttr) {
+		log.info("사용자가 선택한 관심사 카테고리 번호 - " + voList);
+		List<IDetailVO> iDetailList = userService.showInterestDetail(voList);
+		rttr.addFlashAttribute("list", iDetailList);
+		return "redirect:/user/interest_detail";
 	}
 	
 	
