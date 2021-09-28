@@ -18,19 +18,19 @@ public class BoardMapperTests {
 	@Autowired
 	public BoardMapper mapper;
 	
-	//@Test
+//	@Test
 	public void getBoardsTest() {
 		log.info(mapper.getBoards());
 	}
 	
-	//@Test
+	@Test
 	public void insertTest() {
 		BoardVO vo = new BoardVO();
 		
 		vo.setB_cate_name("운동");
 		vo.setB_title("Delete 할 것");
 		vo.setB_content("이 글은 Delete 될 것입니다.");
-		vo.setU_id("홍길동");
+		vo.setU_id("wake");
 		
 		mapper.insert(vo);
 	}
@@ -47,7 +47,7 @@ public class BoardMapperTests {
 		
 	}
 	
-	@Test
+//	@Test
 	public void deleteTest() {
 		mapper.delete(6L);
 	}
