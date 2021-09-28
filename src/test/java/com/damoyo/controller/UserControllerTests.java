@@ -1,5 +1,7 @@
 package com.damoyo.controller;
 
+import java.util.Arrays;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -54,5 +56,14 @@ public class UserControllerTests {
 				.andReturn().getModelAndView().getViewName();
 			log.info(resultPage);
 	}
-
+	
+	//@Test
+	public void testGetInterestDetail() throws Exception {
+		int[] values = {1, 2, 3};
+		String resultPage = mockMvc.perform(
+				MockMvcRequestBuilders.post("/user/join/interest")
+				.param("i_cate_num", Arrays.toString(values)))
+				.andReturn().getModelAndView().getViewName();
+			log.info(resultPage);
+	}
 }

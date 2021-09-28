@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.damoyo.domain.ICateNumDTO;
 import com.damoyo.domain.UserVO;
 
 import lombok.extern.log4j.Log4j;
@@ -47,4 +48,17 @@ public class UserServiceTests {
 		userService.showInterestCate();
 	}
 	
+	//@Test
+	public void testShowInterestDetail() {
+		ICateNumDTO dto = new ICateNumDTO();
+		dto.setI_cate_num(new int[]{0, 3, 16});
+		userService.showInterestDetail(dto);
+	}
+	
+	@Test
+	public void testShowICateName() {
+		ICateNumDTO dto = new ICateNumDTO();
+		dto.setI_cate_num(new int[]{0, 3, 16});
+		userService.showICateName(dto);
+	}
 }

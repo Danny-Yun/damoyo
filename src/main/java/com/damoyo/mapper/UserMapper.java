@@ -3,6 +3,7 @@ package com.damoyo.mapper;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.damoyo.domain.ICateNumDTO;
 import com.damoyo.domain.ICateVO;
 import com.damoyo.domain.IDetailVO;
 import com.damoyo.domain.UserVO;
@@ -16,5 +17,8 @@ public interface UserMapper {
 	public List<ICateVO> getInterestCate();
 	
 	// 상세 관심사 조회
-	public List<IDetailVO> getInterestDetail(ArrayList<IDetailVO> voList);
-}
+	public List<IDetailVO> getInterestDetail(ICateNumDTO dto);
+	
+	// 상세 관심사 조회시 카테고리 이름 조회
+	public List<ICateVO> getICateName(ICateNumDTO dto);
+ }

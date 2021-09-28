@@ -13,6 +13,9 @@
 </head>
 <body>
 	<h3>상세 관심사 선택</h3><br>
-	${list }
+	
+	관심사 카테고리 : ${cateNameList }
+	<br><br/>
+	상세 관심사: ${detailList }
 </body>
 </html>

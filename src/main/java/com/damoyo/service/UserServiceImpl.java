@@ -1,11 +1,11 @@
 package com.damoyo.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.damoyo.domain.ICateNumDTO;
 import com.damoyo.domain.ICateVO;
 import com.damoyo.domain.IDetailVO;
 import com.damoyo.domain.UserVO;
@@ -37,11 +37,19 @@ public class UserServiceImpl implements UserService{
 		return iCateList;
 	}
 
+	// 상세 관심사 조회
 	@Override
-	public List<IDetailVO> showInterestDetail(ArrayList<IDetailVO> voList) {
-		log.info("상세 관심사 조회 서비스 실행 - " + voList);
-		List<IDetailVO> iDetailList = userMapper.getInterestDetail(voList);
+	public List<IDetailVO> showInterestDetail(ICateNumDTO dto) {
+		log.info("상세 관심사 조회 서비스 실행 - " + dto);
+		List<IDetailVO> iDetailList = userMapper.getInterestDetail(dto);
 		return iDetailList;
+	}
+	
+	// 상세 관심사 조회시 카테고리 이름 조회
+	@Override
+	public List<ICateVO> showICateName(ICateNumDTO dto) {
+		List<ICateVO> iCateNameList = userMapper.getICateName(dto);
+		return iCateNameList;
 	}
 	
 }
