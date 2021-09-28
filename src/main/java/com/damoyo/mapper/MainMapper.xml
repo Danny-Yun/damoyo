@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hgs.mapper.MainMapper">
+	<!-- 유저 정보 가져오기 -->
+	<select id="getUserInfo" resultType="com.hgs.domain.UserVO">
+		SELECT * FROM user_info WHERE u_id=#{u_id}
+	</select>
+	
+	<!-- 관심사 카테고리 가져오기 -->
+	<select id="getInterest" resultType="com.hgs.domain.InterestVO">
+		SELECT * FROM interest_category
+	</select>
+	
+	<!-- 모임 리스트 가져오기 -->
+	<select id="getListMeet" resultType="com.hgs.domain.MeetVO">
+		SELECT * FROM meet
+	</select>
+	
+	<!-- 모임 디테일 가져오기 -->
+	<select id="getDetailMeet" resultType="com.hgs.domain.MeetVO">
+		<!-- SELECT * FROM meet WHERE m_num=#{m_num} -->
+		SELECT meet.*, interest_category.i_cate_name FROM meet INNER JOIN interest_category 
+    	ON meet.i_cate_num=interest_category.i_cate_num WHERE m_num=#{m_num}
+	</select>
+	
+	<!-- 모임 생성 -->	
+	<insert id="insertMeet">
+		<selectKey keyProperty="m_num" order="BEFORE" resultType="long">
+			SELECT meet_seq.nextval FROM DUAL
+		</selectKey>
+		INSERT INTO 
+		meet(m_num, m_name, m_content, m_people_cnt, m_area, m_profile, i_cate_num, u_id)
+		VALUES(#{m_num}, #{m_name}, #{m_content}, #{m_people_cnt}, #{m_area}, #{m_profile}, #{i_cate_num}, #{u_id})
+	</insert>
+	
+	<!-- 모임 삭제 -->
+	<delete id="removeMeet">
+		DELETE FROM meet WHERE m_num=#{m_num}
+	</delete>
+	
+	<!-- 모임 수정 -->
+	<update id="updateMeet">
+		UPDATE meet SET m_name=#{m_name}, m_content=#{m_content}, m_people_cnt=#{m_people_cnt}, m_area=#{m_area}, i_cate_num=#{i_cate_num}, m_profile=#{m_profile}
+		WHERE m_num=#{m_num}
+	</update>
+	
+	<!-- 모임 가입  -->
+	<insert id="joinMeet">
+		INSERT INTO meet_member_list(member_list_num, m_num, u_id, member_list_position)
+		VALUES(meet_member_list_seq.nextval, #{m_num}, #{u_id}, #{member_list_position})
+	</insert>
+	
+	<!-- 모임 멤버 조회 -->
+	<select id="getMeetMemberList" resultType="com.hgs.domain.MeetMemberVO">
+		SELECT user_info.u_profile,user_info.u_name,user_info.u_intro, meet_member_list.* 
+		FROM meet_member_list INNER JOIN user_info 
+		ON meet_member_list.u_id=user_info.u_id WHERE m_num=#{m_num}
+		<!-- SELECT * FROM meet_member_list WHERE m_num=#{m_num} -->
+	</select>
+	
+	
+</mapper>
