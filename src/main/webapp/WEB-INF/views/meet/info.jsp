@@ -11,7 +11,7 @@
 	<h1>모임방</h1>
 	${userInfo }
 	<a href="/meet/info?num=${detail.m_num }"><button>정보</button></a>
-	<a href="#"><button>게시판</button></a>
+	<a href="/board/list"><button>게시판</button></a>
 	<a href="#"><button>갤러리</button></a>
 	<a href="#"><button>채팅</button></a>
 	<br>

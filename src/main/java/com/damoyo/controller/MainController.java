@@ -37,7 +37,10 @@ public class MainController {
 	}
 	
 	@GetMapping("/register")
-	public void register() {
+	public void register(Model model) {
+		// 관심사 카테고리
+		List<InterestVO> vo = service.get();
+		model.addAttribute("category", vo);
 	}
 	@PostMapping("/register")
 	public String register(RedirectAttributes rttr, MeetVO vo) {

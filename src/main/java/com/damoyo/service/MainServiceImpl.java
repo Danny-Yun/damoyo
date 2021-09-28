@@ -39,7 +39,7 @@ public class MainServiceImpl implements MainService {
 
 	@Override
 	public List<MeetVO> getListMeet() {
-		log.info("생성관 모임 리스트 조회");
+		log.info("생성된 모임 리스트 조회");
 		List<MeetVO> listMeet = mapper.getListMeet();
 		return listMeet;
 	}
@@ -59,11 +59,13 @@ public class MainServiceImpl implements MainService {
 	
 	@Override
 	public void removeMeet(Long m_num) {
+		log.info("모임 삭제");
 		mapper.removeMeet(m_num);
 	}
 	
 	@Override
 	public void updateMeet(MeetVO vo) {
+		log.info("모임 수정");
 		mapper.updateMeet(vo);
 	}
 	
@@ -74,6 +76,7 @@ public class MainServiceImpl implements MainService {
 	
 	@Override
 	public List<MeetMemberVO> getMeetMemberList(Long num) {
+		log.info("Mapper : 모임 가입한 멤버 조회");
 		List<MeetMemberVO> memberList = mapper.getMeetMemberList(num);
 		return memberList;
 	}
