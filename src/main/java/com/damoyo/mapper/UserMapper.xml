@@ -27,8 +27,8 @@
 			#{i_cate_num}
 		</foreach>
 			ORDER BY i_cate_num ASC
-	</select> 
-	-->
+	</select> -->
+	
 	<!-- 관심사 상세내용 조회  -->
 	<select id="getInterestDetail" resultType="com.damoyo.domain.IDetailVO">
 		SELECT * FROM interest_detail WHERE i_cate_num=#{i_cate_num}

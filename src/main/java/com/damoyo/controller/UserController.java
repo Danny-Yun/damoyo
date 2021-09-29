@@ -1,9 +1,7 @@
 package com.damoyo.controller;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -18,6 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.damoyo.domain.ICateNumDTO;
 import com.damoyo.domain.ICateVO;
 import com.damoyo.domain.IDetailVO;
+import com.damoyo.domain.ITotalDTO;
 import com.damoyo.domain.UserVO;
 import com.damoyo.service.UserService;
 
@@ -29,29 +28,29 @@ import lombok.extern.log4j.Log4j;
 @RequestMapping("/user/*")
 @AllArgsConstructor
 public class UserController {
-	
+
 	@Autowired
 	private UserService userService;
-	
+
 	// 회원가입 폼
 	@GetMapping("/join")
 	public String joinForm() {
 		return "/user/join";
 	}
-	
+
 	// 회원가입
 	@PostMapping("/join")
 	public String join(UserVO vo, RedirectAttributes rttr, HttpSession session) {
 		// 가장 먼저 방금 가입한 사용자의 아이디를 세션에 저장
 		session.setAttribute("u_id", vo.getU_id());
-		
+
 		log.info("join 로직 접속 - " + vo);
 		userService.userJoin(vo);
 		rttr.addFlashAttribute("joinUserId", vo.getU_id());
 		rttr.addFlashAttribute("success", "joinOk");
 		return "redirect:/user/join/interest";
 	}
-	
+
 	// 관심사 카테고리 조회
 	@GetMapping("/join/interest")
 	public String getInterestCate(Model model) {
@@ -61,27 +60,25 @@ public class UserController {
 		model.addAttribute("list", iCateList);
 		return "/user/interest";
 	}
-	
+
 	// 상세 관심사 조회
 	@PostMapping("/join/interest")
 	public String getInterestDetail(ICateNumDTO dto, Model model, HttpSession session) {
 		log.info("사용자가 선택한 관심사 카테고리 번호 - " + dto);
-//		List<IDetailVO> iDetailList = userService.showInterestDetail(dto);
 		List<ICateVO> iCateNameList = userService.showICateName(dto);
-		
-		List<List<IDetailVO>> doubleList = new ArrayList<List<IDetailVO>>();
-		for(int i = 0; (dto.getI_cate_num().length - 1) >= i; i++) {
-			List<IDetailVO> iDetailList = userService.showInterestDetail(dto.getI_cate_num()[i]);
-			doubleList.add(iDetailList);
+		List<ITotalDTO> iTotalList = new ArrayList<ITotalDTO>();
+
+		for (ICateVO iCateVO : iCateNameList) {
+			ITotalDTO totalDto = new ITotalDTO();
+			totalDto.setI_cate_name(iCateVO.getI_cate_name());
+			totalDto.setDetailList(userService.showInterestDetail(iCateVO.getI_cate_num()));
+			iTotalList.add(totalDto);
 		}
-		log.info("더블 - " + doubleList);
 		
-		model.addAttribute("list", doubleList);
+		model.addAttribute("list", iTotalList);
+		model.addAttribute("i_cate_num", dto);
 		model.addAttribute("sessionId", session.getAttribute("u_id"));
-//		model.addAttribute("list", iDetailList);
-		model.addAttribute("cateNameList", iCateNameList);
 		return "/user/interest_detail";
 	}
-	
-	
+
 }

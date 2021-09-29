@@ -19,35 +19,27 @@
 <body>
 	<h3>상세 관심사 선택</h3><br>
 	
-	<script>
-	
-	</script>
-	
-	
-	관심사 카테고리1 : ${cateNameList }
+	관심사 카테고리 : ${cateNameList }
 	
 	<br><br/>
 	
 	상세 관심사: ${list}
 	
-	
 	<form action="#" method="post">
 	
-	<c:forEach var="cateNameList" items="${cateNameList }">
-	  <h3>${cateNameList.i_cate_name }</h3>
-	  
-	  <c:forEach var="list" items="${list }">
-	  ${list.iDetailVO.i_detail_name }
-		<%-- <div class="form-check form-check-inline">
-	 	  <input type="checkbox" class="btn-check" name="i_detail_name" 
-	 	  		value="${list.i_detail_name }" id="${list.i_cate_num }" autocomplete="off">
-		  <label class="btn btn-outline-primary" for="${list.i_cate_num }">${list.i_detail_name }</label><br>
-		</div> --%>
+	<c:forEach var="list1" items="${list }">
+	  <h3>${list1.i_cate_name }</h3>
+	  <br><br/> 
+ 	  <c:forEach var="list2" items="${list1.detailList }">
+		  <div class="form-check form-check-inline">
+		 	<input type="checkbox" class="btn-check" name="i_detail_name" 
+		 	  		value="${list2.i_detail_name }" id="${list2.i_cate_num}" autocomplete="off">
+			<label class="btn btn-outline-primary" for="${list2.i_cate_num }">${list2.i_detail_name }</label><br>
+		  </div> 
 	  </c:forEach>
-	  <br><br/>
-	  
 	</c:forEach>	
 	  
+	  <input type="hidden" name="i_cate_num" value="${i_cate_num}" />
 	  <input type="hidden" name="u_id" value="${sessionId}" />
 	  <p><input class="btn btn-outline-primary" type="submit" value="저장" /><p>	  
 	</form>
