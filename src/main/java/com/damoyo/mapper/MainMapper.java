@@ -38,4 +38,7 @@ public interface MainMapper {
 	
 	// 모임 가입
 	public void joinMeet(MeetMemberVO vo);
+	
+	// 모임 탈퇴
+	public void withdrawMeet(MeetMemberVO vo);
 }

@@ -88,7 +88,11 @@ public class MainServiceImpl implements MainService {
 	
 	@Override
 	public MeetMemberVO checkMeetJoin(MeetMemberVO vo) {
-		log.info("Mapper : 모입 가입 여부");
 		return mapper.checkMeetJoin(vo);
+	}
+	
+	@Override
+	public void withdrawMeet(MeetMemberVO vo) {
+		mapper.withdrawMeet(vo);
 	}
 }

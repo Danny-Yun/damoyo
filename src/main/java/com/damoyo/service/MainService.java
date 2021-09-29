@@ -40,4 +40,7 @@ public interface MainService {
 	
 	// 모임 가입 여부
 	public MeetMemberVO checkMeetJoin(MeetMemberVO vo);
+	
+	// 모임 탈퇴
+	public void withdrawMeet(MeetMemberVO vo);
 }

@@ -9,7 +9,7 @@
 </head>
 <body>
 	<h1>모임방</h1>
-	유저벙보 : ${userInfo }<br>
+	유저정보 : ${userInfo }<br>
 	${userInfo eq null ? '정보 없음':'정보 있음' } <br>
 	가입여부 : ${checkJoin eq null ? '정보 없음':'정보 있음' } <br>
 	<a href="/meet/info?num=${detail.m_num }"><button>정보</button></a>
@@ -29,6 +29,11 @@
 		<input type="hidden" name="u_id" value="${userInfo.u_id }">
 		<input type="hidden" name="m_num" value="${detail.m_num}">
 		<input type="${checkJoin == null ? 'submit' : 'hidden' }" value="가입">
+	</form>
+		<form action="/meet/withdraw" method="post">
+		<input type="hidden" name="u_id" value="${checkJoin.u_id }">
+		<input type="hidden" name="m_num" value="${checkJoin.m_num}">
+		<input type="${checkJoin != null ? 'submit' : 'hidden' }" value="탈퇴">
 	</form>
 	
 	<h2>모임 정모</h2>

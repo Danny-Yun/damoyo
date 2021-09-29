@@ -107,13 +107,22 @@ public class MainMapperTest {
 		mainMapper.joinMeet(vo);
 	}
 	
-	@Test
+//	@Test
 	// 모임 가입 여부
 	public void testCheckMeetJoin() {
 		MeetMemberVO vo = new MeetMemberVO();
 		vo.setM_num(14L);
 		vo.setU_id("skdus");
 		mainMapper.checkMeetJoin(vo);
+	}
+	
+	@Test
+	// 모임 탈퇴
+	public void testWithdrawMeet() {
+		MeetMemberVO vo = new MeetMemberVO();
+		vo.setM_num(13L);
+		vo.setU_id("thffk");
+		mainMapper.withdrawMeet(vo);
 	}
 	
 }

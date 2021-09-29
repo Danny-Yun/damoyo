@@ -75,5 +75,10 @@
 		)tbl WHERE u_id=#{u_id}
 	</select>
 	
+	<!-- 모임 탈퇴 -->
+	<delete id="withdrawMeet">
+		DELETE meet_member_list WHERE (m_num=#{m_num} AND u_id=#{u_id})
+	</delete>
+	
 	
 </mapper>

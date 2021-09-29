@@ -94,11 +94,19 @@ public class MainServiceTests {
 		service.joinMeet(vo);
 	}
 	
-	@Test
+//	@Test
 	public void testCheckMeetJoin() {
 		MeetMemberVO vo = new MeetMemberVO();
 		vo.setM_num(14L);
 		vo.setU_id("ekgus");
 		service.checkMeetJoin(vo);
+	}
+	
+	@Test
+	public void testWithdrawMeet() {
+		MeetMemberVO vo = new MeetMemberVO();
+		vo.setM_num(13L);
+		vo.setU_id("thffk");
+		service.withdrawMeet(vo);
 	}
 }

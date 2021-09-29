@@ -80,6 +80,7 @@ public class MeetController {
 	}
 	
 	@PostMapping("/join")
+	// 모임 가입
 	public String joinMeet(MeetMemberVO vo, RedirectAttributes rttr) {
 		vo.setMember_list_position("");
 		log.info(vo);
@@ -87,5 +88,18 @@ public class MeetController {
 		
 		rttr.addAttribute("num", vo.getM_num());
 		return "redirect:/meet/info";
+	}
+	
+	@PostMapping("/withdraw")
+	// 모임 탈퇴
+	public String withdrawMeet(MeetMemberVO vo, HttpServletRequest request, RedirectAttributes rttr) {
+		HttpSession session = request.getSession();
+		UserVO userInfo = (UserVO)session.getAttribute("userInfo");
+		
+		log.info(vo);
+		service.withdrawMeet(vo);
+		rttr.addFlashAttribute(userInfo);
+		
+		return "redirect:/main/";
 	}
 }
