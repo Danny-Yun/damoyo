@@ -6,8 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.damoyo.domain.MeetMemberVO;
-import com.damoyo.domain.MeetVO;
+import com.damoyo.domain.*;
 
 import lombok.extern.log4j.Log4j;
 
@@ -26,7 +25,7 @@ public class MainMapperTest {
 		log.info(mainMapper.getUserInfo(u_id));
 	}
 	
-	@Test
+//	@Test
 	// 관심사 카테고리 가져오기
 	public void testGetInterestCategory() {
 		log.info("Oracle 조회중");
@@ -95,7 +94,7 @@ public class MainMapperTest {
 //	@Test
 	// 모임 멤버 리스트 조회
 	public void testGetMeetMemberList() {
-		mainMapper.getMeetMemberList(1L);
+		log.info(mainMapper.getMeetMemberList(1L));
 	}
 	
 //	@Test
@@ -106,6 +105,15 @@ public class MainMapperTest {
 		vo.setMember_list_position("");
 		vo.setU_id("wls");
 		mainMapper.joinMeet(vo);
+	}
+	
+	@Test
+	// 모임 가입 여부
+	public void testCheckMeetJoin() {
+		MeetMemberVO vo = new MeetMemberVO();
+		vo.setM_num(14L);
+		vo.setU_id("skdus");
+		mainMapper.checkMeetJoin(vo);
 	}
 	
 }

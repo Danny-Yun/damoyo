@@ -55,7 +55,6 @@ public class BoardServiceTests {
 	
 	@Test
 	public void deleteTest() {
-		
 		service.delete(5L);
 	}
 }

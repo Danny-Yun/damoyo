@@ -37,4 +37,7 @@ public interface MainService {
 	
 	// 모임 가입
 	public void joinMeet(MeetMemberVO vo);
+	
+	// 모임 가입 여부
+	public MeetMemberVO checkMeetJoin(MeetMemberVO vo);
 }

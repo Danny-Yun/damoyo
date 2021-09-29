@@ -9,7 +9,9 @@
 </head>
 <body>
 	<h1>모임방</h1>
-	${userInfo }
+	유저벙보 : ${userInfo }<br>
+	${userInfo eq null ? '정보 없음':'정보 있음' } <br>
+	가입여부 : ${checkJoin eq null ? '정보 없음':'정보 있음' } <br>
 	<a href="/meet/info?num=${detail.m_num }"><button>정보</button></a>
 	<a href="/board/list"><button>게시판</button></a>
 	<a href="#"><button>갤러리</button></a>
@@ -26,7 +28,7 @@
 	<form action="/meet/join" method="post">
 		<input type="hidden" name="u_id" value="${userInfo.u_id }">
 		<input type="hidden" name="m_num" value="${detail.m_num}">
-		<input type="submit" value="가입">
+		<input type="${checkJoin == null ? 'submit' : 'hidden' }" value="가입">
 	</form>
 	
 	<h2>모임 정모</h2>
@@ -49,7 +51,7 @@
 	</table>
 	
 	<br>
-	<a href="/main/main"><button>메인화면</button></a>
+	<a href="/main/"><button>메인화면</button></a>
 	<form action="/meet/update" method="post">
 		<input type="hidden" name="num" value="${detail.m_num }">
 		<input type="submit" value="수정">

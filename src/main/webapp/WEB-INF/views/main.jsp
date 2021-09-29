@@ -20,8 +20,9 @@
 	<table border="1">
 		<c:forEach var="m" items="${meet }">
 			<tr>
-				<input type="hidden" name="m_num" value="${m.m_num }">
-				<td rowspan="3"><a href="/meet/info?num=${m.m_num }">${m.m_profile }이미지${m.m_num }</a></td>
+			<td rowspan="3">
+				<a href="/meet/info?num=${m.m_num }">"${m.m_profile }이미지${m.m_num }"</a>
+			</td>
 				<td>${m.m_area }</td>
 			</tr>
 			<tr>
