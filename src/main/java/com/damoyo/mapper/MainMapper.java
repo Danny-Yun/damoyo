@@ -33,6 +33,12 @@ public interface MainMapper {
 	// 모임 회원 리스트
 	public List<MeetMemberVO> getMeetMemberList(Long m_num);
 	
+	// 모입 가입 여부
+	public MeetMemberVO checkMeetJoin(MeetMemberVO vo);
+	
 	// 모임 가입
 	public void joinMeet(MeetMemberVO vo);
+	
+	// 모임 탈퇴
+	public void withdrawMeet(MeetMemberVO vo);
 }

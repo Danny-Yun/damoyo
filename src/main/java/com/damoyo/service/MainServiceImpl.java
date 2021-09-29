@@ -85,4 +85,14 @@ public class MainServiceImpl implements MainService {
 	public void joinMeet(MeetMemberVO vo) {
 		mapper.joinMeet(vo);
 	}
+	
+	@Override
+	public MeetMemberVO checkMeetJoin(MeetMemberVO vo) {
+		return mapper.checkMeetJoin(vo);
+	}
+	
+	@Override
+	public void withdrawMeet(MeetMemberVO vo) {
+		mapper.withdrawMeet(vo);
+	}
 }

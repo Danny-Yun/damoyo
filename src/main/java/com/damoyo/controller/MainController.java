@@ -2,6 +2,9 @@ package com.damoyo.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.damoyo.domain.InterestVO;
 import com.damoyo.domain.MeetMemberVO;
 import com.damoyo.domain.MeetVO;
+import com.damoyo.domain.UserVO;
 import com.damoyo.service.MainService;
 
 import lombok.AllArgsConstructor;
@@ -27,13 +31,17 @@ public class MainController {
 	@Autowired
 	private MainService service;
 	
-	@GetMapping("/main")
-	public void list(Model model) {
+	@GetMapping("/")
+	public void list(Model model, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		UserVO userInfo = (UserVO)session.getAttribute("userInfo");
+		
 		log.info("카테고리 조회");
 		List<InterestVO> interestList = service.get();
 		List<MeetVO> meetList = service.getListMeet();
 		model.addAttribute("interest", interestList);
 		model.addAttribute("meet", meetList);
+		model.addAttribute("userInfo", userInfo);
 	}
 	
 	@GetMapping("/register")
@@ -52,7 +60,7 @@ public class MainController {
 		member.setU_id(vo.getU_id());
 		member.setMember_list_position("모임장");
 		service.joinMeet(member);		
-		return "redirect:/main/main";
+		return "redirect:/main/";
 	}
 		
 

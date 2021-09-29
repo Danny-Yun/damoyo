@@ -1,5 +1,6 @@
 package com.damoyo.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,13 +25,13 @@ public class LoginController {
 	private MainService service;
 	
 	@GetMapping("/process")
-	public String login(RedirectAttributes rttr, HttpSession session) {
-		UserVO user = service.get("skdus");
+	public String login(RedirectAttributes rttr, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		UserVO user = service.get("thffk");
 		log.info(user);
-		rttr.addFlashAttribute("userInfo", user);
 		session.setAttribute("userInfo", user);
 		
 //		return "";
-		return "redirect:/main/main";
+		return "redirect:/main/";
 	}
 }
