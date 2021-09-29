@@ -1,6 +1,11 @@
 package com.damoyo.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -36,7 +41,10 @@ public class UserController {
 	
 	// 회원가입
 	@PostMapping("/join")
-	public String join(UserVO vo, RedirectAttributes rttr) {
+	public String join(UserVO vo, RedirectAttributes rttr, HttpSession session) {
+		// 가장 먼저 방금 가입한 사용자의 아이디를 세션에 저장
+		session.setAttribute("u_id", vo.getU_id());
+		
 		log.info("join 로직 접속 - " + vo);
 		userService.userJoin(vo);
 		rttr.addFlashAttribute("joinUserId", vo.getU_id());
@@ -56,11 +64,21 @@ public class UserController {
 	
 	// 상세 관심사 조회
 	@PostMapping("/join/interest")
-	public String getInterestDetail(ICateNumDTO dto, Model model) {
+	public String getInterestDetail(ICateNumDTO dto, Model model, HttpSession session) {
 		log.info("사용자가 선택한 관심사 카테고리 번호 - " + dto);
-		List<IDetailVO> iDetailList = userService.showInterestDetail(dto);
+//		List<IDetailVO> iDetailList = userService.showInterestDetail(dto);
 		List<ICateVO> iCateNameList = userService.showICateName(dto);
-		model.addAttribute("detailList", iDetailList);
+		
+		List<List<IDetailVO>> doubleList = new ArrayList<List<IDetailVO>>();
+		for(int i = 0; (dto.getI_cate_num().length - 1) >= i; i++) {
+			List<IDetailVO> iDetailList = userService.showInterestDetail(dto.getI_cate_num()[i]);
+			doubleList.add(iDetailList);
+		}
+		log.info("더블 - " + doubleList);
+		
+		model.addAttribute("list", doubleList);
+		model.addAttribute("sessionId", session.getAttribute("u_id"));
+//		model.addAttribute("list", iDetailList);
 		model.addAttribute("cateNameList", iCateNameList);
 		return "/user/interest_detail";
 	}

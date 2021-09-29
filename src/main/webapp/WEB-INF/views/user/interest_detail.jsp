@@ -4,6 +4,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style>
+	p {
+		padding:20px 20px;
+	}
+</style>
 <meta charset="UTF-8">
 <title>DAMOYO - 상세 관심사</title>
 <!-- 부트스트랩 -->
@@ -14,8 +19,38 @@
 <body>
 	<h3>상세 관심사 선택</h3><br>
 	
-	관심사 카테고리 : ${cateNameList }
+	<script>
+	
+	</script>
+	
+	
+	관심사 카테고리1 : ${cateNameList }
+	
 	<br><br/>
-	상세 관심사: ${detailList }
+	
+	상세 관심사: ${list}
+	
+	
+	<form action="#" method="post">
+	
+	<c:forEach var="cateNameList" items="${cateNameList }">
+	  <h3>${cateNameList.i_cate_name }</h3>
+	  
+	  <c:forEach var="list" items="${list }">
+	  ${list.iDetailVO.i_detail_name }
+		<%-- <div class="form-check form-check-inline">
+	 	  <input type="checkbox" class="btn-check" name="i_detail_name" 
+	 	  		value="${list.i_detail_name }" id="${list.i_cate_num }" autocomplete="off">
+		  <label class="btn btn-outline-primary" for="${list.i_cate_num }">${list.i_detail_name }</label><br>
+		</div> --%>
+	  </c:forEach>
+	  <br><br/>
+	  
+	</c:forEach>	
+	  
+	  <input type="hidden" name="u_id" value="${sessionId}" />
+	  <p><input class="btn btn-outline-primary" type="submit" value="저장" /><p>	  
+	</form>
+	
 </body>
 </html>

@@ -39,9 +39,9 @@ public class UserServiceImpl implements UserService{
 
 	// 상세 관심사 조회
 	@Override
-	public List<IDetailVO> showInterestDetail(ICateNumDTO dto) {
-		log.info("상세 관심사 조회 서비스 실행 - " + dto);
-		List<IDetailVO> iDetailList = userMapper.getInterestDetail(dto);
+	public List<IDetailVO> showInterestDetail(int i_cate_num) {
+		log.info("상세 관심사 조회 서비스 실행 - " + i_cate_num);
+		List<IDetailVO> iDetailList = userMapper.getInterestDetail(i_cate_num);
 		return iDetailList;
 	}
 	

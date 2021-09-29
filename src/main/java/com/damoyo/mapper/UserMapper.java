@@ -17,7 +17,8 @@ public interface UserMapper {
 	public List<ICateVO> getInterestCate();
 	
 	// 상세 관심사 조회
-	public List<IDetailVO> getInterestDetail(ICateNumDTO dto);
+//	public List<IDetailVO> getInterestDetail(ICateNumDTO dto);
+	public List<IDetailVO> getInterestDetail(int i_cate_num);
 	
 	// 상세 관심사 조회시 카테고리 이름 조회
 	public List<ICateVO> getICateName(ICateNumDTO dto);

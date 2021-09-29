@@ -16,7 +16,7 @@ public interface UserService {
 	public List<ICateVO> showInterestCate();
 	
 	// 상세 관심사 조회
-	public List<IDetailVO> showInterestDetail(ICateNumDTO dto);
+	public List<IDetailVO> showInterestDetail(int i_cate_num);
 	
 	// 상세 관심사 조회시 카테고리 이름 조회
 	public List<ICateVO> showICateName(ICateNumDTO dto);

@@ -37,7 +37,7 @@ public class UserMapperTests {
 		userMapper.getInterestCate();
 	}
 	
-	//@Test
+	@Test
 	public void testGetInterestDetail() {
 		ICateNumDTO dto = new ICateNumDTO();
 		dto.setI_cate_num(new int[]{0, 1, 16});

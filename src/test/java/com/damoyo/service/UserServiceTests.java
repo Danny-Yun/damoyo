@@ -55,7 +55,7 @@ public class UserServiceTests {
 		userService.showInterestDetail(dto);
 	}
 	
-	@Test
+	//@Test
 	public void testShowICateName() {
 		ICateNumDTO dto = new ICateNumDTO();
 		dto.setI_cate_num(new int[]{0, 3, 16});
