@@ -25,17 +25,20 @@
 		</tr>
 		<tr><td colspan="2">${detail.m_content }</td></tr>
 	</table>
-	<form action="/meet/join" method="post">
-		<input type="hidden" name="u_id" value="${userInfo.u_id }">
-		<input type="hidden" name="m_num" value="${detail.m_num}">
-		<input type="${checkJoin == null ? 'submit' : 'hidden' }" value="가입">
-	</form>
+	<c:if test="${checkJoin == null}">
+		<form action="/meet/join" method="post">
+			<input type="hidden" name="u_id" value="${userInfo.u_id }">
+			<input type="hidden" name="m_num" value="${detail.m_num}">
+			<input type="submit" value="가입">
+		</form>
+	</c:if>
+	<c:if test="${checkJoin != null}">
 		<form action="/meet/withdraw" method="post">
-		<input type="hidden" name="u_id" value="${checkJoin.u_id }">
-		<input type="hidden" name="m_num" value="${checkJoin.m_num}">
-		<input type="${checkJoin != null ? 'submit' : 'hidden' }" value="탈퇴">
-	</form>
-	
+			<input type="hidden" name="u_id" value="${checkJoin.u_id }">
+			<input type="hidden" name="m_num" value="${checkJoin.m_num}">
+			<input type="submit" value="탈퇴">
+		</form>
+	</c:if>
 	<h2>모임 정모</h2>
 	
 	<h2>모임 멤버</h2>

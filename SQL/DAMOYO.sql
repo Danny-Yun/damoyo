@@ -65,6 +65,10 @@ CREATE TABLE meet_member_list(
     CONSTRAINT mml_m_mum_fk FOREIGN KEY (m_num) REFERENCES meet(m_num),
     CONSTRAINT mml_u_id_fk FOREIGN KEY (u_id) REFERENCES user_info(u_id)
 );
+-- FK 삭제
+ALTER TABLE meet_member_list DROP CONSTRAINT mml_m_mum_fk;
+-- FK 재설정__CASCADE설정
+ALTER TABLE meet_member_list ADD CONSTRAINT mml_m_mum_fk FOREIGN KEY (m_num) REFERENCES meet(m_num) ON DELETE CASCADE;
 
 -- 내가 가입한 모임
 CREATE SEQUENCE  "MYTEST"."MY_JOIN_MEET_SEQ"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 0 NOCACHE  NOORDER  NOCYCLE  NOKEEP  NOSCALE  GLOBAL ;
@@ -77,6 +81,11 @@ CREATE TABLE my_join_meet (
     CONSTRAINT mjm_m_mum_fk FOREIGN KEY (m_num) REFERENCES meet(m_num),
     CONSTRAINT mjm_m_star_ck CHECK(my_join_star IN ('0','1'))
 );
+-- FK 삭제
+ALTER TABLE my_join_meet DROP CONSTRAINT mjm_m_mum_fk;
+-- FK 재설정__CASCADE설정
+ALTER TABLE my_join_meet ADD CONSTRAINT mjm_m_mum_fk FOREIGN KEY (m_num) REFERENCES meet(m_num) ON DELETE CASCADE;
+
 
 
 -- 내가 관심있는 모임(가입x)
@@ -88,6 +97,11 @@ CREATE TABLE my_interest_meet(
     CONSTRAINT mim_u_id_fk FOREIGN KEY (u_id) REFERENCES user_info(u_id),
     CONSTRAINT mim_m_mum_fk FOREIGN KEY (m_num) REFERENCES meet(m_num)
 );
+-- FK 삭제
+ALTER TABLE my_interest_meet DROP CONSTRAINT mim_m_mum_fk;
+-- FK 재설정__CASCADE설정
+ALTER TABLE my_interest_meet ADD CONSTRAINT mim_m_mum_fk FOREIGN KEY (m_num) REFERENCES meet(m_num) ON DELETE CASCADE;
+
 
 -- 모임 내 게시판 카테고리
 CREATE SEQUENCE  "MYTEST"."BOARD_CATEGORY_SEQ"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 0 NOCACHE  NOORDER  NOCYCLE  NOKEEP  NOSCALE  GLOBAL ;
@@ -98,6 +112,11 @@ CREATE TABLE board_category(
     CONSTRAINT bc_m_mum_fk FOREIGN KEY (m_num) REFERENCES meet(m_num),
     CONSTRAINT uni_b_cate_name UNIQUE (b_cate_name)
 );
+-- FK 삭제
+ALTER TABLE board_category DROP CONSTRAINT bc_m_mum_fk;
+-- FK 재설정__CASCADE설정
+ALTER TABLE board_category ADD CONSTRAINT bc_m_mum_fk FOREIGN KEY (m_num) REFERENCES meet(m_num) ON DELETE CASCADE;
+
 
 -- 모임 내 게시판
 CREATE SEQUENCE  "MYTEST"."BOARD_SEQ"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 0 NOCACHE  NOORDER  NOCYCLE  NOKEEP  NOSCALE  GLOBAL ;
