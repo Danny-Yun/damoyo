@@ -18,12 +18,12 @@ public class BoardMapperTests {
 	@Autowired
 	public BoardMapper mapper;
 	
-//	@Test
+	@Test
 	public void getBoardsTest() {
 		log.info(mapper.getBoards());
 	}
 	
-	@Test
+//	@Test
 	public void insertTest() {
 		BoardVO vo = new BoardVO();
 		
@@ -50,5 +50,11 @@ public class BoardMapperTests {
 //	@Test
 	public void deleteTest() {
 		mapper.delete(6L);
+	}
+	
+//	@Test
+	// 게시판 카테고리 조회
+	public void testGetBoardCate() {
+		mapper.getBoardCate();
 	}
 }

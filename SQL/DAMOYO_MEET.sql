@@ -1,4 +1,4 @@
--- ¸ğÀÓ¹æ »ı¼º
+-- ëª¨ì„ë°© ìƒì„±
 /*
 CREATE TABLE meet (
     m_num NUMBER PRIMARY KEY NOT NULL,
@@ -16,11 +16,11 @@ CREATE TABLE meet (
 
 INSERT INTO 
 meet(m_num, m_name, m_content, m_people_cnt, m_area, m_profile, i_cate_num, u_id)
-VALUES(MEET_SEQ.nextval, 'ÇÑ°­ ·¯´×', '¾È³çÇÏ¼¼¿ä. ÇÑ°­¿¡¼­ ·¯´×ÇÒ »ç¶÷µéÀÇ ¸ğÀÓÀÔ´Ï´Ù.', 20, '¸¶Æ÷±¸', null, 1, 'wake');
+VALUES(MEET_SEQ.nextval, 'í•œê°• ëŸ¬ë‹', 'ì•ˆë…•í•˜ì„¸ìš”. í•œê°•ì—ì„œ ëŸ¬ë‹í•  ì‚¬ëŒë“¤ì˜ ëª¨ì„ì…ë‹ˆë‹¤.', 20, 'ë§ˆí¬êµ¬', null, 1, 'wake');
 
 INSERT INTO 
 meet(m_num, m_name, m_content, m_people_cnt, m_area, m_profile, i_cate_num, u_id)
-VALUES(MEET_SEQ.nextval, '»èÁ¦', '¾È³çÇÏ¼¼¿ä. ÇÑ°­¿¡¼­ ·¯´×ÇÒ »ç¶÷µéÀÇ ¸ğÀÓÀÔ´Ï´Ù.', 20, '¸¶Æ÷±¸', null, 1, 'wake');
+VALUES(MEET_SEQ.nextval, 'ì‚­ì œ', 'ì•ˆë…•í•˜ì„¸ìš”. í•œê°•ì—ì„œ ëŸ¬ë‹í•  ì‚¬ëŒë“¤ì˜ ëª¨ì„ì…ë‹ˆë‹¤.', 20, 'ë§ˆí¬êµ¬', null, 1, 'wake');
 
 SELECT * FROM meet;
 
@@ -29,18 +29,18 @@ SELECT meet.*, interest_category.i_cate_name FROM meet INNER JOIN interest_categ
 
 DELETE FROM meet WHERE m_num=4;
 
-UPDATE meet SET m_name='È«´ë½ÅÃÌ ´í½º', m_content='È«´ë¿Í ½ÅÃÌ¿¡ ÀÖ´Â ¹æ¼Û´í½º', m_people_cnt=40, m_area='¼­´ë¹®±¸',i_cate_num=7, m_profile=null
+UPDATE meet SET m_name='í™ëŒ€ì‹ ì´Œ ëŒ„ìŠ¤', m_content='í™ëŒ€ì™€ ì‹ ì´Œì— ìˆëŠ” ë°©ì†¡ëŒ„ìŠ¤', m_people_cnt=40, m_area='ì„œëŒ€ë¬¸êµ¬',i_cate_num=7, m_profile=null
 WHERE m_num=2;
 
 
--- ¸ğÀÓ¹æ °¡ÀÔ
+-- ëª¨ì„ë°© ê°€ì…
 SELECT * FROM meet_member_list WHERE m_num=2;
 
 SELECT user_info.u_profile,user_info.u_name,user_info.u_intro, meet_member_list.* 
 FROM meet_member_list INNER JOIN user_info 
 ON meet_member_list.u_id=user_info.u_id WHERE m_num=1;
 
--- ¸ğÀÓ¹æ Å»Åğ
+-- ëª¨ì„ë°© íƒˆí‡´
 DELETE meet_member_list WHERE member_list_num=4;
 
 

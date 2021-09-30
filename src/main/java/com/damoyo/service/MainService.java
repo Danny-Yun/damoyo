@@ -23,7 +23,7 @@ public interface MainService {
 	// 모임 디테일 가져오기
 	public MeetVO getDetailMeet(Long m_num);
 	
-	// 모임 생성
+	// 모임 삭제
 	public void removeMeet(Long m_num);
 	
 	// 모임 수정

@@ -59,10 +59,10 @@ public class MainMapperTest {
 		log.info(mainMapper.getDetailMeet(6L));
 	}
 	
-//	@Test
+	@Test
 	// 모임 삭제
 	public void testRemoveMeet() {
-		mainMapper.removeMeet(7L);
+		mainMapper.removeMeet(13L);
 	}
 	
 //	@Test
@@ -116,7 +116,7 @@ public class MainMapperTest {
 		mainMapper.checkMeetJoin(vo);
 	}
 	
-	@Test
+//	@Test
 	// 모임 탈퇴
 	public void testWithdrawMeet() {
 		MeetMemberVO vo = new MeetMemberVO();
