@@ -32,9 +32,10 @@ public class MainController {
 	private MainService service;
 	
 	@GetMapping("/")
-	public void list(Model model, HttpServletRequest request) {
-		HttpSession session = request.getSession();
+	public void list(Model model, HttpServletRequest request, HttpSession session) {
+//		HttpSession session = request.getSession();
 		UserVO userInfo = (UserVO)session.getAttribute("userInfo");
+		log.info("유저 정보 : " + userInfo);
 		
 		log.info("카테고리 조회");
 		List<InterestVO> interestList = service.get();

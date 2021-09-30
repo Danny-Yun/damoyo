@@ -43,7 +43,7 @@
 	
 	<!-- 모임 삭제 -->
 	<delete id="removeMeet">
-		DELETE FROM meet WHERE m_num=#{m_num}
+		DELETE meet WHERE m_num=#{m_num}
 	</delete>
 	
 	<!-- 모임 수정 -->

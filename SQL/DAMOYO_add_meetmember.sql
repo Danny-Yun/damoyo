@@ -1,4 +1,4 @@
--- ¸ğÀÓ¹æ °¡ÀÔÇÑ È¸¿ø
+-- ëª¨ì„ ë©¤ë²„ ìƒì„±
 INSERT INTO meet_member_list(member_list_num, m_num, u_id, member_list_position) VALUES(meet_member_list_seq.nextval, 1, 'wls', '');
 INSERT INTO meet_member_list(member_list_num, m_num, u_id, member_list_position) VALUES(meet_member_list_seq.nextval, 1, 'wls', '');
 INSERT INTO meet_member_list(member_list_num, m_num, u_id, member_list_position) VALUES(meet_member_list_seq.nextval, 1, 'tbrk', '');

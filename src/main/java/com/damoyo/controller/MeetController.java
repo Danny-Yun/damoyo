@@ -33,9 +33,8 @@ public class MeetController {
 	
 	@GetMapping("/info")
 	// 모임 상세 정보
-	public String detail(Long num, Model model, HttpServletRequest request) {
+	public String detail(Long num, Model model, HttpSession session) {
 		// 유저 정보 받기
-		HttpSession session = request.getSession();
 		UserVO userInfo = (UserVO)session.getAttribute("userInfo");
 		log.info("meet 유저 : " + userInfo);
 		
@@ -60,8 +59,10 @@ public class MeetController {
 	
 	@PostMapping("/remove")
 	// 모임 삭제
-	public String remove(Long num) {
+	public String remove(Long num, RedirectAttributes rttr, HttpSession session) {
+		UserVO userInfo = (UserVO) session.getAttribute("userInfo");
 		service.removeMeet(num);
+		rttr.addFlashAttribute("userInfo", userInfo);
 		return "redirect:/main/";
 	}
 	

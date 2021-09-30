@@ -1,110 +1,110 @@
--- »Ø∞·º≥¡§ø°º≠ ≥Ø¬• ∆˜∏À ∫Ø∞Ê »ƒ
--- ±‚∫ª ¿Ø¿˙ µÓ∑œ
+-- ÌôòÍ≤∞ÏÑ§Ï†ïÏóêÏÑú ÎÇ†Ïßú Ìè¨Îß∑ Î≥ÄÍ≤Ω ÌõÑ
+-- Í∏∞Î≥∏ Ïú†Ï†Ä Îì±Î°ù
 DESC user_info;
 INSERT INTO user_info(u_id, u_pw, u_name, u_sex, u_birth, u_area, u_intro, u_profile) 
-    VALUES('wake', '1111', '«¸±‚ªÛ', 0, TO_DATE('1993-01-19 00:00:00','YYYY-MM-DD HH24:MI:SS'),'¿∫∆Ú±∏', 'æ»≥Á«œººø‰', null);
+    VALUES('wake', '1111', 'ÌòïÍ∏∞ÏÉÅ', 0, TO_DATE('1993-01-19 00:00:00','YYYY-MM-DD HH24:MI:SS'),'ÏùÄÌèâÍµ¨', 'ÏïàÎÖïÌïòÏÑ∏Ïöî', null);
     
 SELECT * FROM user_info;
 
 
--- ∞¸Ω…ªÁ µÓ∑œ
+-- Í¥ÄÏã¨ÏÇ¨ Îì±Î°ù
 DESC interest_category;
 INSERT INTO interest_category(I_CATE_NUM, I_CATE_NAME)
-    VALUES(INTEREST_CATEGORY_SEQ.nextval, 'æ∆øÙµµæÓ/ø©«‡');
+    VALUES(INTEREST_CATEGORY_SEQ.nextval, 'ÏïÑÏõÉÎèÑÏñ¥/Ïó¨Ìñâ');
 INSERT INTO interest_category(I_CATE_NUM, I_CATE_NAME)
-    VALUES(INTEREST_CATEGORY_SEQ.nextval, 'øÓµø/Ω∫∆˜√˜');
+    VALUES(INTEREST_CATEGORY_SEQ.nextval, 'Ïö¥Îèô/Ïä§Ìè¨Ï∏†');
 INSERT INTO interest_category(I_CATE_NUM, I_CATE_NAME)
-    VALUES(INTEREST_CATEGORY_SEQ.nextval, '¿ŒπÆ«–/√•/±€');
+    VALUES(INTEREST_CATEGORY_SEQ.nextval, 'Ïù∏Î¨∏Ìïô/Ï±Ö/Í∏Ä');
 INSERT INTO interest_category(I_CATE_NUM, I_CATE_NAME)
-    VALUES(INTEREST_CATEGORY_SEQ.nextval, 'ø‹±π/ææÓ');
+    VALUES(INTEREST_CATEGORY_SEQ.nextval, 'Ïô∏Íµ≠/Ïñ∏Ïñ¥');
 INSERT INTO interest_category(I_CATE_NUM, I_CATE_NAME)
-    VALUES(INTEREST_CATEGORY_SEQ.nextval, 'πÆ»≠/∞¯ø¨/√‡¡¶');
+    VALUES(INTEREST_CATEGORY_SEQ.nextval, 'Î¨∏Ìôî/Í≥µÏó∞/Ï∂ïÏ†ú');
 INSERT INTO interest_category(I_CATE_NUM, I_CATE_NAME)
-    VALUES(INTEREST_CATEGORY_SEQ.nextval, '¿Ωæ«/æ«±‚');
+    VALUES(INTEREST_CATEGORY_SEQ.nextval, 'ÏùåÏïÖ/ÏïÖÍ∏∞');
 INSERT INTO interest_category(I_CATE_NUM, I_CATE_NAME)
-    VALUES(INTEREST_CATEGORY_SEQ.nextval, '∞¯øπ/∏∏µÈ±‚');
+    VALUES(INTEREST_CATEGORY_SEQ.nextval, 'Í≥µÏòà/ÎßåÎì§Í∏∞');
 INSERT INTO interest_category(I_CATE_NUM, I_CATE_NAME)
-    VALUES(INTEREST_CATEGORY_SEQ.nextval, '¥ÌΩ∫/π´øÎ');
+    VALUES(INTEREST_CATEGORY_SEQ.nextval, 'ÎåÑÏä§/Î¨¥Ïö©');
 INSERT INTO interest_category(I_CATE_NUM, I_CATE_NAME)
-    VALUES(INTEREST_CATEGORY_SEQ.nextval, '∫¿ªÁ»∞µø');
+    VALUES(INTEREST_CATEGORY_SEQ.nextval, 'Î¥âÏÇ¨ÌôúÎèô');
 INSERT INTO interest_category(I_CATE_NUM, I_CATE_NAME)
-    VALUES(INTEREST_CATEGORY_SEQ.nextval, 'ªÁ±≥/¿Œ∏∆');
+    VALUES(INTEREST_CATEGORY_SEQ.nextval, 'ÏÇ¨Íµê/Ïù∏Îß•');
 INSERT INTO interest_category(I_CATE_NUM, I_CATE_NAME)
-    VALUES(INTEREST_CATEGORY_SEQ.nextval, '¬˜/ø¿≈‰πŸ¿Ã');
+    VALUES(INTEREST_CATEGORY_SEQ.nextval, 'Ï∞®/Ïò§ÌÜ†Î∞îÏù¥');
 INSERT INTO interest_category(I_CATE_NUM, I_CATE_NAME)
-    VALUES(INTEREST_CATEGORY_SEQ.nextval, 'ªÁ¡¯/øµªÛ');
+    VALUES(INTEREST_CATEGORY_SEQ.nextval, 'ÏÇ¨ÏßÑ/ÏòÅÏÉÅ');
 INSERT INTO interest_category(I_CATE_NUM, I_CATE_NAME)
-    VALUES(INTEREST_CATEGORY_SEQ.nextval, 'æﬂ±∏∞¸∂˜');
+    VALUES(INTEREST_CATEGORY_SEQ.nextval, 'ÏïºÍµ¨Í¥ÄÎûå');
 INSERT INTO interest_category(I_CATE_NUM, I_CATE_NAME)
-    VALUES(INTEREST_CATEGORY_SEQ.nextval, '∞‘¿”/ø¿∂Ù');
+    VALUES(INTEREST_CATEGORY_SEQ.nextval, 'Í≤åÏûÑ/Ïò§ÎùΩ');
 INSERT INTO interest_category(I_CATE_NUM, I_CATE_NAME)
-    VALUES(INTEREST_CATEGORY_SEQ.nextval, 'ø‰∏Æ/¡¶¡∂');
+    VALUES(INTEREST_CATEGORY_SEQ.nextval, 'ÏöîÎ¶¨/Ï†úÏ°∞');
 INSERT INTO interest_category(I_CATE_NUM, I_CATE_NAME)
-    VALUES(INTEREST_CATEGORY_SEQ.nextval, 'π›∑¡µøπ∞');
+    VALUES(INTEREST_CATEGORY_SEQ.nextval, 'Î∞òÎ†§ÎèôÎ¨º');
 INSERT INTO interest_category(I_CATE_NUM, I_CATE_NAME)
-    VALUES(INTEREST_CATEGORY_SEQ.nextval, '∞°¡∑/∞·»•');
+    VALUES(INTEREST_CATEGORY_SEQ.nextval, 'Í∞ÄÏ°±/Í≤∞Ìòº');
 INSERT INTO interest_category(I_CATE_NUM, I_CATE_NAME)
-    VALUES(INTEREST_CATEGORY_SEQ.nextval, '¿⁄¿Ø¡÷¡¶');
+    VALUES(INTEREST_CATEGORY_SEQ.nextval, 'ÏûêÏú†Ï£ºÏ†ú');
 
 SELECT * FROM interest_category;
 
 
--- ªÛºº ∞¸Ω…ªÁ
+-- ÏÉÅÏÑ∏ Í¥ÄÏã¨ÏÇ¨
 SELECT * FROM interest_detail;
 INSERT INTO interest_detail(I_DETAIL_NUM, I_DETAIL_NAME, I_CATE_NUM) 
-    VALUES(INTEREST_DETAIL_SEQ.nextval, '¿⁄¿¸∞≈', 1);
+    VALUES(INTEREST_DETAIL_SEQ.nextval, 'ÏûêÏ†ÑÍ±∞', 1);
 INSERT INTO interest_detail(I_DETAIL_NUM, I_DETAIL_NAME, I_CATE_NUM) 
-    VALUES(INTEREST_DETAIL_SEQ.nextval, 'πËµÂπŒ≈œ', 1);
+    VALUES(INTEREST_DETAIL_SEQ.nextval, 'Î∞∞ÎìúÎØºÌÑ¥', 1);
 INSERT INTO interest_detail(I_DETAIL_NUM, I_DETAIL_NAME, I_CATE_NUM) 
-    VALUES(INTEREST_DETAIL_SEQ.nextval, '∫º∏µ', 1);
+    VALUES(INTEREST_DETAIL_SEQ.nextval, 'Î≥ºÎßÅ', 1);
 INSERT INTO interest_detail(I_DETAIL_NUM, I_DETAIL_NAME, I_CATE_NUM) 
-    VALUES(INTEREST_DETAIL_SEQ.nextval, '≈◊¥œΩ∫', 1);
+    VALUES(INTEREST_DETAIL_SEQ.nextval, 'ÌÖåÎãàÏä§', 1);
 INSERT INTO interest_detail(I_DETAIL_NUM, I_DETAIL_NAME, I_CATE_NUM) 
-    VALUES(INTEREST_DETAIL_SEQ.nextval, 'Ω∫≈∞/∫∏µÂ', 1);
+    VALUES(INTEREST_DETAIL_SEQ.nextval, 'Ïä§ÌÇ§/Î≥¥Îìú', 1);
 INSERT INTO interest_detail(I_DETAIL_NUM, I_DETAIL_NAME, I_CATE_NUM) 
-    VALUES(INTEREST_DETAIL_SEQ.nextval, '∞Ò«¡', 1);
+    VALUES(INTEREST_DETAIL_SEQ.nextval, 'Í≥®ÌîÑ', 1);
     
 INSERT INTO interest_detail(I_DETAIL_NUM, I_DETAIL_NAME, I_CATE_NUM) 
-    VALUES(INTEREST_DETAIL_SEQ.nextval, 'µÓªÍ', 0);
+    VALUES(INTEREST_DETAIL_SEQ.nextval, 'Îì±ÏÇ∞', 0);
 INSERT INTO interest_detail(I_DETAIL_NUM, I_DETAIL_NAME, I_CATE_NUM) 
-    VALUES(INTEREST_DETAIL_SEQ.nextval, 'ªÍ√•/∆Æ∑°≈∑', 0);
+    VALUES(INTEREST_DETAIL_SEQ.nextval, 'ÏÇ∞Ï±Ö/Ìä∏ÎûòÌÇπ', 0);
 INSERT INTO interest_detail(I_DETAIL_NUM, I_DETAIL_NAME, I_CATE_NUM) 
-    VALUES(INTEREST_DETAIL_SEQ.nextval, 'ƒ∑«Œ/πÈ∆–≈∑', 0);
+    VALUES(INTEREST_DETAIL_SEQ.nextval, 'Ï∫†Ìïë/Î∞±Ìå®ÌÇπ', 0);
 INSERT INTO interest_detail(I_DETAIL_NUM, I_DETAIL_NAME, I_CATE_NUM) 
-    VALUES(INTEREST_DETAIL_SEQ.nextval, '±π≥ªø©«‡', 0);
+    VALUES(INTEREST_DETAIL_SEQ.nextval, 'Íµ≠ÎÇ¥Ïó¨Ìñâ', 0);
 INSERT INTO interest_detail(I_DETAIL_NUM, I_DETAIL_NAME, I_CATE_NUM) 
-    VALUES(INTEREST_DETAIL_SEQ.nextval, '«ÿø‹ø©«‡', 0);
+    VALUES(INTEREST_DETAIL_SEQ.nextval, 'Ìï¥Ïô∏Ïó¨Ìñâ', 0);
 INSERT INTO interest_detail(I_DETAIL_NUM, I_DETAIL_NAME, I_CATE_NUM) 
-    VALUES(INTEREST_DETAIL_SEQ.nextval, '≥¨Ω√', 0);
+    VALUES(INTEREST_DETAIL_SEQ.nextval, 'ÎÇöÏãú', 0);
 
 INSERT INTO interest_detail(I_DETAIL_NUM, I_DETAIL_NAME, I_CATE_NUM) 
-    VALUES(INTEREST_DETAIL_SEQ.nextval, '∞·»•/ø˛µ˘', 16);
+    VALUES(INTEREST_DETAIL_SEQ.nextval, 'Í≤∞Ìòº/Ïõ®Îî©', 16);
 INSERT INTO interest_detail(I_DETAIL_NUM, I_DETAIL_NAME, I_CATE_NUM) 
-    VALUES(INTEREST_DETAIL_SEQ.nextval, '¿∞æ∆/∏æ', 16);
+    VALUES(INTEREST_DETAIL_SEQ.nextval, 'Ïú°ÏïÑ/Îßò', 16);
 INSERT INTO interest_detail(I_DETAIL_NUM, I_DETAIL_NAME, I_CATE_NUM) 
-    VALUES(INTEREST_DETAIL_SEQ.nextval, 'æ∆∫¸/¥Îµ', 16);
+    VALUES(INTEREST_DETAIL_SEQ.nextval, 'ÏïÑÎπ†/ÎåÄÎîî', 16);
 
 INSERT INTO interest_detail(I_DETAIL_NUM, I_DETAIL_NAME, I_CATE_NUM) 
     VALUES(INTEREST_DETAIL_SEQ.nextval, 'DSLR', 11);
 INSERT INTO interest_detail(I_DETAIL_NUM, I_DETAIL_NAME, I_CATE_NUM) 
-    VALUES(INTEREST_DETAIL_SEQ.nextval, '« ∏ßƒ´∏ﬁ∂Û', 11);
+    VALUES(INTEREST_DETAIL_SEQ.nextval, 'ÌïÑÎ¶ÑÏπ¥Î©îÎùº', 11);
 INSERT INTO interest_detail(I_DETAIL_NUM, I_DETAIL_NAME, I_CATE_NUM) 
-    VALUES(INTEREST_DETAIL_SEQ.nextval, 'øµªÛ¡¶¿€', 11);
+    VALUES(INTEREST_DETAIL_SEQ.nextval, 'ÏòÅÏÉÅÏ†úÏûë', 11);
 INSERT INTO interest_detail(I_DETAIL_NUM, I_DETAIL_NAME, I_CATE_NUM) 
-    VALUES(INTEREST_DETAIL_SEQ.nextval, 'µ¡ˆ≈–ƒ´∏ﬁ∂Û', 11);
+    VALUES(INTEREST_DETAIL_SEQ.nextval, 'ÎîîÏßÄÌÑ∏Ïπ¥Î©îÎùº', 11);
 
 INSERT INTO interest_detail(I_DETAIL_NUM, I_DETAIL_NAME, I_CATE_NUM) 
-    VALUES(INTEREST_DETAIL_SEQ.nextval, 'øµæÓ', 3);
+    VALUES(INTEREST_DETAIL_SEQ.nextval, 'ÏòÅÏñ¥', 3);
 INSERT INTO interest_detail(I_DETAIL_NUM, I_DETAIL_NAME, I_CATE_NUM) 
-    VALUES(INTEREST_DETAIL_SEQ.nextval, '¿œ∫ªæÓ', 3);
+    VALUES(INTEREST_DETAIL_SEQ.nextval, 'ÏùºÎ≥∏Ïñ¥', 3);
 INSERT INTO interest_detail(I_DETAIL_NUM, I_DETAIL_NAME, I_CATE_NUM) 
-    VALUES(INTEREST_DETAIL_SEQ.nextval, '¡ﬂ±πæÓ', 3);
+    VALUES(INTEREST_DETAIL_SEQ.nextval, 'Ï§ëÍµ≠Ïñ¥', 3);
 INSERT INTO interest_detail(I_DETAIL_NUM, I_DETAIL_NAME, I_CATE_NUM) 
-    VALUES(INTEREST_DETAIL_SEQ.nextval, '«¡∂˚Ω∫æÓ', 3);
+    VALUES(INTEREST_DETAIL_SEQ.nextval, 'ÌîÑÎûëÏä§Ïñ¥', 3);
 INSERT INTO interest_detail(I_DETAIL_NUM, I_DETAIL_NAME, I_CATE_NUM) 
-    VALUES(INTEREST_DETAIL_SEQ.nextval, 'Ω∫∆‰¿ŒæÓ', 3);
+    VALUES(INTEREST_DETAIL_SEQ.nextval, 'Ïä§ÌéòÏù∏Ïñ¥', 3);
 INSERT INTO interest_detail(I_DETAIL_NUM, I_DETAIL_NAME, I_CATE_NUM) 
-    VALUES(INTEREST_DETAIL_SEQ.nextval, '∑ØΩ√æ∆æÓ', 3);
+    VALUES(INTEREST_DETAIL_SEQ.nextval, 'Îü¨ÏãúÏïÑÏñ¥', 3);
 
 SELECT * FROM interest_detail ORDER BY i_cate_num;
 

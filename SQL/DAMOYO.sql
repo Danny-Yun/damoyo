@@ -1,4 +1,4 @@
--- ¿Ø¿˙ ¡§∫∏
+-- Ïú†Ï†Ä Ï†ïÎ≥¥
 CREATE SEQUENCE  "MYTEST"."USER_INFO_SEQ"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 1 NOCACHE  NOORDER  NOCYCLE  NOKEEP  NOSCALE  GLOBAL ;
 CREATE TABLE user_info (
     u_id varchar2(100) PRIMARY KEY NOT NULL,
@@ -11,14 +11,14 @@ CREATE TABLE user_info (
     u_profile varchar2(1000)
 );
 
--- ¿Ø¿˙ ∞¸Ω…ªÁ ƒ´≈◊∞Ì∏Æ
+-- Ïú†Ï†Ä Í¥ÄÏã¨ÏÇ¨ Ïπ¥ÌÖåÍ≥†Î¶¨
 CREATE SEQUENCE  "MYTEST"."INTEREST_CATEGORY_SEQ"  MINVALUE 0 MAXVALUE 99 INCREMENT BY 1 START WITH 0 NOCACHE  NOORDER  NOCYCLE  NOKEEP  NOSCALE  GLOBAL ;
 CREATE TABLE interest_category (
     i_cate_num NUMBER(3) PRIMARY KEY NOT NULL,
     i_cate_name VARCHAR2(100) NOT NULL
 );
 
--- ¿Ø¿˙ ∞¸Ω…ªÁ ªÛºº≥ªøÎ
+-- Ïú†Ï†Ä Í¥ÄÏã¨ÏÇ¨ ÏÉÅÏÑ∏ÎÇ¥Ïö©
 CREATE SEQUENCE  "MYTEST"."INTEREST_DETAIL_SEQ"  MINVALUE 0 MAXVALUE 999999 INCREMENT BY 1 START WITH 0 NOCACHE  NOORDER  NOCYCLE  NOKEEP  NOSCALE  GLOBAL ;
 CREATE TABLE interest_detail (
     i_detail_num NUMBER(3) PRIMARY KEY NOT NULL,
@@ -28,7 +28,7 @@ CREATE TABLE interest_detail (
     CONSTRAINT uni_detail_name UNIQUE (i_detail_name)
 );
 
--- ¿Ø¿˙ ∞¸Ω…ªÁ ≥ªøÎ
+-- Ïú†Ï†Ä Í¥ÄÏã¨ÏÇ¨ ÎÇ¥Ïö©
 CREATE SEQUENCE  "MYTEST"."MY_FAVORIT_INTEREST_SEQ"  MINVALUE 0 MAXVALUE 9999999999999999999 INCREMENT BY 1 START WITH 0 NOCACHE  NOORDER  NOCYCLE  NOKEEP  NOSCALE  GLOBAL ;
 CREATE TABLE my_favorit_interest (
     f_interest_num NUMBER(3) PRIMARY KEY NOT NULL,
@@ -40,7 +40,7 @@ CREATE TABLE my_favorit_interest (
     CONSTRAINT mfi_i_detail_fk FOREIGN KEY (i_detail_name) REFERENCES interest_detail(i_detail_name)
 );
 
--- ∏¿”
+-- Î™®ÏûÑ
 CREATE SEQUENCE  "MYTEST"."MEET_SEQ"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 0 NOCACHE  NOORDER  NOCYCLE  NOKEEP  NOSCALE  GLOBAL ;
 CREATE TABLE meet (
     m_num NUMBER PRIMARY KEY NOT NULL,
@@ -55,7 +55,7 @@ CREATE TABLE meet (
     CONSTRAINT meet_u_id_fk FOREIGN KEY (u_id) REFERENCES user_info(u_id)
 );
 
--- ∏¿” ∏‚πˆºˆ
+-- Î™®ÏûÑ Î©§Î≤ÑÏàò
 CREATE SEQUENCE  "MYTEST"."MEET_MEMBER_LIST_SEQ"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 0 NOCACHE  NOORDER  NOCYCLE  NOKEEP  NOSCALE  GLOBAL ;
 CREATE TABLE meet_member_list(
     member_list_num NUMBER PRIMARY KEY NOT NULL,
@@ -65,12 +65,12 @@ CREATE TABLE meet_member_list(
     CONSTRAINT mml_m_mum_fk FOREIGN KEY (m_num) REFERENCES meet(m_num),
     CONSTRAINT mml_u_id_fk FOREIGN KEY (u_id) REFERENCES user_info(u_id)
 );
--- FK ªË¡¶
+-- FK ÏÇ≠Ï†ú
 ALTER TABLE meet_member_list DROP CONSTRAINT mml_m_mum_fk;
--- FK ¿Áº≥¡§__CASCADEº≥¡§
+-- FK Ïû¨ÏÑ§Ï†ï__CASCADEÏÑ§Ï†ï
 ALTER TABLE meet_member_list ADD CONSTRAINT mml_m_mum_fk FOREIGN KEY (m_num) REFERENCES meet(m_num) ON DELETE CASCADE;
 
--- ≥ª∞° ∞°¿‘«— ∏¿”
+-- ÎÇ¥Í∞Ä Í∞ÄÏûÖÌïú Î™®ÏûÑ
 CREATE SEQUENCE  "MYTEST"."MY_JOIN_MEET_SEQ"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 0 NOCACHE  NOORDER  NOCYCLE  NOKEEP  NOSCALE  GLOBAL ;
 CREATE TABLE my_join_meet (
     my_join_num NUMBER PRIMARY KEY NOT NULL,
@@ -81,14 +81,14 @@ CREATE TABLE my_join_meet (
     CONSTRAINT mjm_m_mum_fk FOREIGN KEY (m_num) REFERENCES meet(m_num),
     CONSTRAINT mjm_m_star_ck CHECK(my_join_star IN ('0','1'))
 );
--- FK ªË¡¶
+-- FK ÏÇ≠Ï†ú
 ALTER TABLE my_join_meet DROP CONSTRAINT mjm_m_mum_fk;
--- FK ¿Áº≥¡§__CASCADEº≥¡§
+-- FK Ïû¨ÏÑ§Ï†ï__CASCADEÏÑ§Ï†ï
 ALTER TABLE my_join_meet ADD CONSTRAINT mjm_m_mum_fk FOREIGN KEY (m_num) REFERENCES meet(m_num) ON DELETE CASCADE;
 
 
 
--- ≥ª∞° ∞¸Ω…¿÷¥¬ ∏¿”(∞°¿‘x)
+-- ÎÇ¥Í∞Ä Í¥ÄÏã¨ÏûàÎäî Î™®ÏûÑ(Í∞ÄÏûÖx)
 CREATE SEQUENCE  "MYTEST"."MY_INTEREST_MEET_SEQ"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 0 NOCACHE  NOORDER  NOCYCLE  NOKEEP  NOSCALE  GLOBAL ;
 CREATE TABLE my_interest_meet(
     my_interest_num NUMBER PRIMARY KEY NOT NULL,
@@ -97,13 +97,13 @@ CREATE TABLE my_interest_meet(
     CONSTRAINT mim_u_id_fk FOREIGN KEY (u_id) REFERENCES user_info(u_id),
     CONSTRAINT mim_m_mum_fk FOREIGN KEY (m_num) REFERENCES meet(m_num)
 );
--- FK ªË¡¶
+-- FK ÏÇ≠Ï†ú
 ALTER TABLE my_interest_meet DROP CONSTRAINT mim_m_mum_fk;
--- FK ¿Áº≥¡§__CASCADEº≥¡§
+-- FK Ïû¨ÏÑ§Ï†ï__CASCADEÏÑ§Ï†ï
 ALTER TABLE my_interest_meet ADD CONSTRAINT mim_m_mum_fk FOREIGN KEY (m_num) REFERENCES meet(m_num) ON DELETE CASCADE;
 
 
--- ∏¿” ≥ª ∞‘Ω√∆« ƒ´≈◊∞Ì∏Æ
+-- Î™®ÏûÑ ÎÇ¥ Í≤åÏãúÌåê Ïπ¥ÌÖåÍ≥†Î¶¨
 CREATE SEQUENCE  "MYTEST"."BOARD_CATEGORY_SEQ"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 0 NOCACHE  NOORDER  NOCYCLE  NOKEEP  NOSCALE  GLOBAL ;
 CREATE TABLE board_category(
     b_cate_num NUMBER(3) PRIMARY KEY NOT NULL,
@@ -112,13 +112,13 @@ CREATE TABLE board_category(
     CONSTRAINT bc_m_mum_fk FOREIGN KEY (m_num) REFERENCES meet(m_num),
     CONSTRAINT uni_b_cate_name UNIQUE (b_cate_name)
 );
--- FK ªË¡¶
+-- FK ÏÇ≠Ï†ú
 ALTER TABLE board_category DROP CONSTRAINT bc_m_mum_fk;
--- FK ¿Áº≥¡§__CASCADEº≥¡§
+-- FK Ïû¨ÏÑ§Ï†ï__CASCADEÏÑ§Ï†ï
 ALTER TABLE board_category ADD CONSTRAINT bc_m_mum_fk FOREIGN KEY (m_num) REFERENCES meet(m_num) ON DELETE CASCADE;
 
 
--- ∏¿” ≥ª ∞‘Ω√∆«
+-- Î™®ÏûÑ ÎÇ¥ Í≤åÏãúÌåê
 CREATE SEQUENCE  "MYTEST"."BOARD_SEQ"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 0 NOCACHE  NOORDER  NOCYCLE  NOKEEP  NOSCALE  GLOBAL ;
 CREATE TABLE board(
     b_num NUMBER PRIMARY KEY NOT NULL,
@@ -137,8 +137,14 @@ CREATE TABLE board(
     CONSTRAINT b_u_id_fk FOREIGN KEY (u_id) REFERENCES user_info(u_id),
     CONSTRAINT b_m_num_fk FOREIGN KEY (m_num) REFERENCES meet(m_num)
 );
+-- FK ÏÇ≠Ï†ú
+ALTER TABLE board DROP CONSTRAINT b_m_num_fk;
+-- FK Ïû¨ÏÑ§Ï†ï__CASCADEÏÑ§Ï†ï
+ALTER TABLE board ADD CONSTRAINT b_m_num_fk FOREIGN KEY (m_num) REFERENCES meet(m_num) ON DELETE CASCADE;
 
--- ∏¿” ≥ª ∞‘Ω√∆« ¥Ò±€
+
+
+-- Î™®ÏûÑ ÎÇ¥ Í≤åÏãúÌåê ÎåìÍ∏Ä
 CREATE SEQUENCE  "MYTEST"."BOARD_COMMENTS_SEQ"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 0 NOCACHE  NOORDER  NOCYCLE  NOKEEP  NOSCALE  GLOBAL ;
 CREATE TABLE board_comments(
     b_comment_num NUMBER PRIMARY KEY NOT NULL,
@@ -150,8 +156,14 @@ CREATE TABLE board_comments(
     CONSTRAINT bc_b_num_fk FOREIGN KEY (b_num) REFERENCES board(b_num),
     CONSTRAINT bc_u_id_fk FOREIGN KEY (u_id) REFERENCES user_info(u_id)
 );
+-- FK ÏÇ≠Ï†ú
+ALTER TABLE board_comments DROP CONSTRAINT bc_m_num_fk;
+-- FK Ïû¨ÏÑ§Ï†ï__CASCADEÏÑ§Ï†ï
+ALTER TABLE board_comments ADD CONSTRAINT bc_m_num_fk FOREIGN KEY (m_num) REFERENCES meet(m_num) ON DELETE CASCADE;
 
--- ∏¿” ≥ª ∞‘Ω√∆« ¡¡æ∆ø‰
+
+
+-- Î™®ÏûÑ ÎÇ¥ Í≤åÏãúÌåê Ï¢ãÏïÑÏöî
 CREATE SEQUENCE  "MYTEST"."BOARD_LIKE_SEQ"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 0 NOCACHE  NOORDER  NOCYCLE  NOKEEP  NOSCALE  GLOBAL ;
 CREATE TABLE board_like(
     b_like_num NUMBER PRIMARY KEY NOT NULL,
@@ -162,8 +174,14 @@ CREATE TABLE board_like(
     CONSTRAINT bl_b_mum_fk FOREIGN KEY (b_num) REFERENCES board(b_num),
     CONSTRAINT bl_u_id_fk FOREIGN KEY (u_id) REFERENCES user_info(u_id)
 );
+-- FK ÏÇ≠Ï†ú
+ALTER TABLE board_like DROP CONSTRAINT bl_m_num_fk;
+-- FK Ïû¨ÏÑ§Ï†ï__CASCADEÏÑ§Ï†ï
+ALTER TABLE board_like ADD CONSTRAINT bl_m_num_fk FOREIGN KEY (m_num) REFERENCES meet(m_num) ON DELETE CASCADE;
 
--- ∏¿” ≥ª ∞∂∑Ø∏Æ ƒ´≈◊∞Ì∏Æ
+
+
+-- Î™®ÏûÑ ÎÇ¥ Í∞§Îü¨Î¶¨ Ïπ¥ÌÖåÍ≥†Î¶¨
 CREATE SEQUENCE  "MYTEST"."PHOTO_CATEGORY_SEQ"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 0 NOCACHE  NOORDER  NOCYCLE  NOKEEP  NOSCALE  GLOBAL ;
 CREATE TABLE photo_category(
     p_cate_num NUMBER(3) PRIMARY KEY NOT NULL,
@@ -172,8 +190,13 @@ CREATE TABLE photo_category(
     CONSTRAINT pc_m_mum_fk FOREIGN KEY (m_num) REFERENCES meet(m_num),
     CONSTRAINT pc_p_cate_name UNIQUE (p_cate_name)
 );
+-- FK ÏÇ≠Ï†ú
+ALTER TABLE photo_category DROP CONSTRAINT pc_m_mum_fk;
+-- FK Ïû¨ÏÑ§Ï†ï__CASCADEÏÑ§Ï†ï
+ALTER TABLE photo_category ADD CONSTRAINT pc_m_mum_fk FOREIGN KEY (m_num) REFERENCES meet(m_num) ON DELETE CASCADE;
 
--- ∏¿” ≥ª ∞∂∑Ø∏Æ
+
+-- Î™®ÏûÑ ÎÇ¥ Í∞§Îü¨Î¶¨
 CREATE SEQUENCE  "MYTEST"."PHOTO_SEQ"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 0 NOCACHE  NOORDER  NOCYCLE  NOKEEP  NOSCALE  GLOBAL ;
 CREATE TABLE photo(
     p_num NUMBER PRIMARY KEY NOT NULL,
@@ -190,8 +213,14 @@ CREATE TABLE photo(
     CONSTRAINT p_u_id_fk FOREIGN KEY (u_id) REFERENCES user_info(u_id),
     CONSTRAINT p_m_num_fk FOREIGN KEY (m_num) REFERENCES meet(m_num)
 );
+-- FK ÏÇ≠Ï†ú
+ALTER TABLE photo DROP CONSTRAINT p_m_num_fk;
+-- FK Ïû¨ÏÑ§Ï†ï__CASCADEÏÑ§Ï†ï
+ALTER TABLE photo ADD CONSTRAINT p_m_num_fk FOREIGN KEY (m_num) REFERENCES meet(m_num) ON DELETE CASCADE;
 
--- ∏¿” ≥ª ∞∂∑Ø∏Æ ¥Ò±€
+
+
+-- Î™®ÏûÑ ÎÇ¥ Í∞§Îü¨Î¶¨ ÎåìÍ∏Ä
 CREATE SEQUENCE  "MYTEST"."PHOTO_COMMENTS_SEQ"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 0 NOCACHE  NOORDER  NOCYCLE  NOKEEP  NOSCALE  GLOBAL ;
 CREATE TABLE photo_comments(
     p_comment_num NUMBER PRIMARY KEY NOT NULL,
@@ -203,8 +232,15 @@ CREATE TABLE photo_comments(
     CONSTRAINT pc_p_num_fk FOREIGN KEY (p_num) REFERENCES photo(p_num),
     CONSTRAINT pc_u_id_fk FOREIGN KEY (u_id) REFERENCES user_info(u_id)
 );
+-- FK ÏÇ≠Ï†ú
+ALTER TABLE photo_comments DROP CONSTRAINT pc_m_num_fk;
+-- FK Ïû¨ÏÑ§Ï†ï__CASCADEÏÑ§Ï†ï
+ALTER TABLE photo_comments ADD CONSTRAINT pc_m_num_fk FOREIGN KEY (m_num) REFERENCES meet(m_num) ON DELETE CASCADE;
 
--- ∏¿” ≥ª ∞∂∑Ø∏Æ ¡¡æ∆ø‰
+
+
+
+-- Î™®ÏûÑ ÎÇ¥ Í∞§Îü¨Î¶¨ Ï¢ãÏïÑÏöî
 CREATE SEQUENCE  "MYTEST"."PHOTO_LIKE_SEQ"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 0 NOCACHE  NOORDER  NOCYCLE  NOKEEP  NOSCALE  GLOBAL ;
 CREATE TABLE photo_like(
     p_like_num NUMBER PRIMARY KEY NOT NULL,
@@ -215,9 +251,16 @@ CREATE TABLE photo_like(
     CONSTRAINT pl_b_mum_fk FOREIGN KEY (p_num) REFERENCES photo(p_num),
     CONSTRAINT pl_u_id_fk FOREIGN KEY (u_id) REFERENCES user_info(u_id)
 );
+-- FK ÏÇ≠Ï†ú
+ALTER TABLE photo_like DROP CONSTRAINT pl_m_num_fk;
+-- FK Ïû¨ÏÑ§Ï†ï__CASCADEÏÑ§Ï†ï
+ALTER TABLE photo_like ADD CONSTRAINT pl_m_num_fk FOREIGN KEY (m_num) REFERENCES meet(m_num) ON DELETE CASCADE;
 
 
--- ∏¿” ≥ª π¯∞≥
+
+
+
+-- Î™®ÏûÑ ÎÇ¥ Î≤àÍ∞ú
 CREATE SEQUENCE  "MYTEST"."MEET_PLAN_SEQ"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 0 NOCACHE  NOORDER  NOCYCLE  NOKEEP  NOSCALE  GLOBAL ;
 CREATE TABLE meet_plan(
     m_plan_num NUMBER PRIMARY KEY NOT NULL,
@@ -230,21 +273,12 @@ CREATE TABLE meet_plan(
     CONSTRAINT ml_m_num_fk FOREIGN KEY (m_num) REFERENCES meet(m_num)
 );
 
+-- FK ÏÇ≠Ï†ú
+ALTER TABLE meet_plan DROP CONSTRAINT ml_m_num_fk;
+-- FK Ïû¨ÏÑ§Ï†ï__CASCADEÏÑ§Ï†ï
+ALTER TABLE meet_plan ADD CONSTRAINT ml_m_num_fk FOREIGN KEY (m_num) REFERENCES meet(m_num) ON DELETE CASCADE;
+
 COMMIT;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
