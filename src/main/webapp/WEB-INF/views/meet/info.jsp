@@ -10,25 +10,26 @@
 <body>
 	<h1>모임방</h1>
 	유저정보 : ${userInfo }<br>
+	모임정보 : ${meetInfo }<br>
 	${userInfo eq null ? '정보 없음':'정보 있음' } <br>
 	가입여부 : ${checkJoin eq null ? '정보 없음':'정보 있음' } <br>
-	<a href="/meet/info?num=${detail.m_num }"><button>정보</button></a>
-	<a href="/board/list"><button>게시판</button></a>
+	<a href="/meet/info?num=${meetInfo.m_num }"><button>정보</button></a>
+	<a href="/meet/board/list"><button>게시판</button></a>
 	<a href="#"><button>갤러리</button></a>
 	<a href="#"><button>채팅</button></a>
 	<br>
 	<table border="1">
-		<tr><td colspan="2">${detail.m_profile }</td></tr>
+		<tr><td colspan="2">${meetInfo.m_profile }</td></tr>
 		<tr>
-			<td>${detail.i_cate_name }</td>
-			<td>${detail.m_name }</td>
+			<td>${meetInfo.i_cate_name }</td>
+			<td>${meetInfo.m_name }</td>
 		</tr>
-		<tr><td colspan="2">${detail.m_content }</td></tr>
+		<tr><td colspan="2">${meetInfo.m_content }</td></tr>
 	</table>
 	<c:if test="${checkJoin == null}">
 		<form action="/meet/join" method="post">
 			<input type="hidden" name="u_id" value="${userInfo.u_id }">
-			<input type="hidden" name="m_num" value="${detail.m_num}">
+			<input type="hidden" name="m_num" value="${meetInfo.m_num}">
 			<input type="submit" value="가입">
 		</form>
 	</c:if>
@@ -61,11 +62,11 @@
 	<br>
 	<a href="/main/"><button>메인화면</button></a>
 	<form action="/meet/update" method="post">
-		<input type="hidden" name="num" value="${detail.m_num }">
+		<input type="hidden" name="num" value="${meetInfo.m_num }">
 		<input type="submit" value="수정">
 	</form>
 	<form action="/meet/remove" method="post">
-		<input type="hidden" name="num" value="${detail.m_num }">
+		<input type="hidden" name="num" value="${meetInfo.m_num }">
 		<input type="submit" value="삭제">
 	</form>
 </body>

@@ -18,7 +18,7 @@
 	</c:forEach>
 	
 	<table border="1">
-		<c:forEach var="m" items="${meet }">
+		<c:forEach var="m" items="${meetList }">
 			<tr>
 			<td rowspan="3">
 				<a href="/meet/info?num=${m.m_num }">"${m.m_profile }이미지${m.m_num }"</a>

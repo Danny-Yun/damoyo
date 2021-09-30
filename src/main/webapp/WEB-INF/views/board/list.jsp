@@ -73,6 +73,21 @@
 </style>
 </head>
 <body>
+	<h1>모임방_게시판</h1>
+	유저정보 : ${infos.user }<br>
+	모임정보 : ${infos.meet }<br>
+	<a href="/meet/info?num=${meetInfo.m_num }"><button>정보</button></a>
+	<a href="/meet/board/list"><button>게시판</button></a>
+	<a href="#"><button>갤러리</button></a>
+	<a href="#"><button>채팅</button></a>
+	<br>
+	<select>
+		<c:forEach var="c" items="${category }">
+			<option>
+				 ${c.b_cate_name }
+			</option>
+		</c:forEach>	
+	</select>
 	<c:forEach var="list" items="${list}">
 		<div class="left_side">
 			<div class="box_left">

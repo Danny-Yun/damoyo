@@ -33,15 +33,15 @@ public class MainController {
 	
 	@GetMapping("/")
 	public void list(Model model, HttpServletRequest request, HttpSession session) {
-//		HttpSession session = request.getSession();
+		// 유저 정보
 		UserVO userInfo = (UserVO)session.getAttribute("userInfo");
-		log.info("유저 정보 : " + userInfo);
 		
-		log.info("카테고리 조회");
+		// 카테고리 및 모임 리스트 조회
 		List<InterestVO> interestList = service.get();
 		List<MeetVO> meetList = service.getListMeet();
+		
 		model.addAttribute("interest", interestList);
-		model.addAttribute("meet", meetList);
+		model.addAttribute("meetList", meetList);
 		model.addAttribute("userInfo", userInfo);
 	}
 	
@@ -63,6 +63,5 @@ public class MainController {
 		service.joinMeet(member);		
 		return "redirect:/main/";
 	}
-		
-
+	
 }

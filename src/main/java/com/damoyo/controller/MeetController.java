@@ -1,9 +1,7 @@
 package com.damoyo.controller;
 
-import java.net.http.HttpRequest;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,22 +34,23 @@ public class MeetController {
 	public String detail(Long num, Model model, HttpSession session) {
 		// 유저 정보 받기
 		UserVO userInfo = (UserVO)session.getAttribute("userInfo");
-		log.info("meet 유저 : " + userInfo);
+		// 모임 정보 받기
+		MeetVO meetInfo = service.getDetailMeet(num);
+		session.setAttribute("meetInfo", meetInfo);
 		
-		// 모임 정보
-		MeetVO detail = service.getDetailMeet(num);
 		
 		// 내 가입 여부
 		MeetMemberVO checkMeetJoin = new MeetMemberVO();
 		checkMeetJoin.setM_num(num);
 		checkMeetJoin.setU_id(userInfo.getU_id());
 		checkMeetJoin = service.checkMeetJoin(checkMeetJoin);
-		log.info("/info : " + checkMeetJoin);
 		
-		// 모임 회원
+		// 모임 멤버 리스트
 		List<MeetMemberVO> memberList = service.getMeetMemberList(num);
+		
+		// 화면에 전송
 		model.addAttribute("userInfo", userInfo);
-		model.addAttribute("detail", detail);
+		model.addAttribute("meetInfo", meetInfo);
 		model.addAttribute("memberList", memberList);
 		model.addAttribute("checkJoin", checkMeetJoin);
 		return "/meet/info";
@@ -93,8 +92,7 @@ public class MeetController {
 	
 	@PostMapping("/withdraw")
 	// 모임 탈퇴
-	public String withdrawMeet(MeetMemberVO vo, HttpServletRequest request, RedirectAttributes rttr) {
-		HttpSession session = request.getSession();
+	public String withdrawMeet(MeetMemberVO vo, HttpSession session, RedirectAttributes rttr) {
 		UserVO userInfo = (UserVO)session.getAttribute("userInfo");
 		
 		log.info(vo);
@@ -102,5 +100,10 @@ public class MeetController {
 		rttr.addFlashAttribute(userInfo);
 		
 		return "redirect:/main/";
+	}
+	
+	@RequestMapping("/board/*")
+	public String sendBoard(RedirectAttributes rttr, HttpSession session) {
+		return "redirect:/board/list";
 	}
 }

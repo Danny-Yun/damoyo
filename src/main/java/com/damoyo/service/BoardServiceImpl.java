@@ -5,14 +5,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.damoyo.domain.BoardCateVO;
 import com.damoyo.domain.BoardVO;
 import com.damoyo.mapper.BoardMapper;
 
 import lombok.AllArgsConstructor;
-import lombok.extern.log4j.Log4j;
 
 
-@Log4j
 @Service
 @AllArgsConstructor
 public class BoardServiceImpl implements BoardService {
@@ -31,6 +30,11 @@ public class BoardServiceImpl implements BoardService {
 		
 		return mapper.getBoards();
 	}
+	
+	@Override
+	public List<BoardCateVO> getBoardCate() {
+		return mapper.getBoardCate();
+	}
 
 	@Override
 	public void insert(BoardVO vo) {
@@ -41,16 +45,16 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public void update(BoardVO vo) {
-		
 		mapper.update(vo);
 		
 	}
 
 	@Override
 	public void delete(Long b_num) {
-		
 		mapper.delete(b_num);
 	}
+
+
 
 	
 }
