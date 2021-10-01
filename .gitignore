@@ -15,6 +15,7 @@ local.properties
 .recommenders
 Servers/
 target/
+.DS_Store
 
 # External tool builders
 .externalToolBuilders/
