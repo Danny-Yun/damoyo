@@ -20,7 +20,7 @@ public class BoardMapperTests {
 	
 	@Test
 	public void getBoardsTest() {
-		log.info(mapper.getBoards());
+		log.info(mapper.getBoards(14L));
 	}
 	
 //	@Test

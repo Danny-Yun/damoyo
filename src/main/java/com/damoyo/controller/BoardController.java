@@ -45,9 +45,8 @@ public class BoardController {
 		// 게시판 카테고리
 		List<BoardCateVO> category = service.getBoardCate();
 		
-		
-		// 게시판
-		List<BoardVO> boards = service.getBoards();
+		// 게시판_모임에 해당하는 것만 출력
+		List<BoardVO> boards = service.getBoards(meetInfo.getM_num());
 		
 		model.addAttribute("infos", infos);
 		model.addAttribute("category", category);
@@ -55,26 +54,47 @@ public class BoardController {
 	}
 	
 	@GetMapping("/detail")
-	public void detail(Model model, Long b_num) {
+	public void detail(Model model, Long b_num, HttpSession session) {
+		UserVO userInfo = (UserVO) session.getAttribute("userInfo");
+		MeetVO meetInfo = (MeetVO) session.getAttribute("meetInfo");
+		BoardVO boardInfo = service.getBoard(b_num);
+		Map<String, Object> infos = new HashMap<String, Object>();
+		infos.put("user", userInfo);
+		infos.put("meet", meetInfo);
+		infos.put("board", boardInfo);
 		
-		BoardVO vo = service.getBoard(b_num);
-		
-		model.addAttribute("vo", vo);
+		model.addAttribute("infos", infos);
 	}
 	
 	@PostMapping("/delete")
 	public String delete(Long b_num, RedirectAttributes rttr) {
+		log.info(b_num);
 		
 		service.delete(b_num);
+//		service.delete(6L);
 		
-		rttr.addFlashAttribute("delete", "success");
+//		rttr.addFlashAttribute("delete", "success");
 		
 		return "redirect:/board/list";
 	}
 	
 	@GetMapping("/write")
-	public void write() {
+	public void write(HttpSession session, Model model) {
+		UserVO userInfo = (UserVO) session.getAttribute("userInfo");
+		MeetVO meetInfo = (MeetVO) session.getAttribute("meetInfo");
+		List<BoardCateVO> category = service.getBoardCate();
+		Map<String, Object> infos = new HashMap<String, Object>();
+		infos.put("user", userInfo);
+		infos.put("meet", meetInfo);
+		infos.put("category", category);
 		
+		model.addAttribute("infos", infos);
+	}
+	
+	@PostMapping("/register")
+	public String register(BoardVO vo, RedirectAttributes rttr) {
+		service.insert(vo);
+		return "redirect:/board/list";
 	}
 	
 	

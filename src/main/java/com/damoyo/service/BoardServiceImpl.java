@@ -26,9 +26,14 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public List<BoardVO> getBoards() {
+	public List<BoardVO> getBoards(Long m_num) {
 		
-		return mapper.getBoards();
+		return mapper.getBoards(m_num);
+	}
+	
+	@Override
+	public void insertCate(BoardCateVO vo) {
+		mapper.insertCate(vo);
 	}
 	
 	@Override

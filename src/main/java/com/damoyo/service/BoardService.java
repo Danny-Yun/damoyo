@@ -10,7 +10,9 @@ public interface BoardService {
 	
 	public BoardVO getBoard(Long b_num);
 	
-	public List<BoardVO> getBoards();
+	public List<BoardVO> getBoards(Long m_num);
+	
+	public void insertCate(BoardCateVO vo);
 	
 	public List<BoardCateVO> getBoardCate();
 	

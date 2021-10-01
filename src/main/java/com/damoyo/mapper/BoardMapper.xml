@@ -7,23 +7,29 @@
 <mapper namespace="com.damoyo.mapper.BoardMapper">
 	
 	<select id="getBoards" resultType="com.damoyo.domain.BoardVO">
-		SELECT * FROM board ORDER BY b_num DESC
+		SELECT * FROM board WHERE m_num=#{m_num} ORDER BY b_num DESC
 	</select>
 	
 	<select id="getBoard" resultType="com.damoyo.domain.BoardVO">
 		SELECT * FROM board WHERE b_num = #{b_num}
 	</select>
 	
+	<insert id="insertCate">
+		INSERT INTO board_category(b_cate_num, b_cate_name, m_num)
+		VALUES(BOARD_CATEGORY_SEQ.nextval, #{b_cate_name}, #{m_num})
+	</insert>
+	
 	<select id="getBoardCate" resultType="com.damoyo.domain.BoardCateVO">
 		SELECT * FROM board_category WHERE m_num=1 
 	</select>
 
 	<insert id="insert">
-		INSERT INTO board (b_num, b_cate_name, b_title, b_content, u_id) VALUES ( BOARD_SEQ.nextval, #{b_cate_name}, #{b_title}, #{b_content}, #{u_id})
+		INSERT INTO board (b_num, b_cate_name, b_title, b_content, u_id, b_image1, b_image2, b_image3, m_num) 
+		VALUES (BOARD_SEQ.nextval, #{b_cate_name}, #{b_title}, #{b_content}, #{u_id}, #{b_image1}, #{b_image2}, #{b_image3}, #{m_num})
 	</insert>
 	
 	<delete id="delete">
-		DELETE FROM board WHERE b_num = #{b_num}
+		DELETE board WHERE b_num = #{b_num}
 	</delete>
 	
 	<update id="update">

@@ -80,6 +80,7 @@
 	<a href="/meet/board/list"><button>게시판</button></a>
 	<a href="#"><button>갤러리</button></a>
 	<a href="#"><button>채팅</button></a>
+	<a href="/main/"><button>메인화면</button></a>
 	<br>
 	<select>
 		<c:forEach var="c" items="${category }">
@@ -90,25 +91,25 @@
 	</select>
 	<c:forEach var="list" items="${list}">
 		<div class="left_side">
-			<div class="box_left">
-			</div>
+			<div class="box_left"/></div>
 			<div class="box" onclick="location.href='/board/detail?b_num=${list.b_num}';" style="cursor:pointer;">
 				<div class="u_id">${list.u_id}</div> <div class="b_date">${list.b_date}</div><br><br>
 				<div class="titlecontent">
-				<strong>${list.b_title}</strong><br>
-				<script>
-					var b_content = "${list.b_content}";
-					if(b_content.length > 10) {
-						document.write(b_content.substring(0, 11) + "...");
-					} else {
-						document.write(b_content);
-					}
-				</script>
-				<br>
-				</div> <div class="b_image1"></div><br>
+					<strong>${list.b_title}</strong><br>
+					<script>
+						var b_content = "${list.b_content}";
+						if(b_content.length > 10) {
+							document.write(b_content.substring(0, 11) + "...");
+						} else {
+							document.write(b_content);
+						}
+					</script>
+					<br>
+				</div>
+				<div class="b_image1"></div><br>
 				<hr>
 				<div class="b_like">좋아요 ${list.b_like}</div> <div class="b_cate_name">${list.b_cate_name}</div>
-				<hr>
+					<hr>
 			</div>
 		</div>
 		<div class="right_side">

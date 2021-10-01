@@ -37,6 +37,7 @@ public class MeetController {
 		// 모임 정보 받기
 		MeetVO meetInfo = service.getDetailMeet(num);
 		session.setAttribute("meetInfo", meetInfo);
+		log.info("meet 정보 : "+meetInfo);
 		
 		
 		// 내 가입 여부
