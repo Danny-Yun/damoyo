@@ -33,10 +33,8 @@ CREATE SEQUENCE  "MYTEST"."MY_FAVORIT_INTEREST_SEQ"  MINVALUE 0 MAXVALUE 9999999
 CREATE TABLE my_favorit_interest (
     f_interest_num NUMBER(3) PRIMARY KEY NOT NULL,
     u_id varchar2(100) NOT NULL,
-    i_cate_num NUMBER(3) NOT NULL,
     i_detail_name VARCHAR2(100) NOT NULL,
     CONSTRAINT mfi_u_id_fk FOREIGN KEY (u_id) REFERENCES user_info(u_id),
-    CONSTRAINT mfi_i_cate_fk FOREIGN KEY (i_cate_num) REFERENCES interest_category(i_cate_num),
     CONSTRAINT mfi_i_detail_fk FOREIGN KEY (i_detail_name) REFERENCES interest_detail(i_detail_name)
 );
 
@@ -65,6 +63,11 @@ CREATE TABLE meet_member_list(
     CONSTRAINT mml_m_mum_fk FOREIGN KEY (m_num) REFERENCES meet(m_num),
     CONSTRAINT mml_u_id_fk FOREIGN KEY (u_id) REFERENCES user_info(u_id)
 );
+-- FK 삭제
+ALTER TABLE meet_member_list DROP CONSTRAINT mml_m_mum_fk;
+-- FK 재설정__CASCADE설정
+ALTER TABLE meet_member_list ADD CONSTRAINT mml_m_mum_fk FOREIGN KEY (m_num) REFERENCES meet(m_num) ON DELETE CASCADE;
+
 
 -- 내가 가입한 모임
 CREATE SEQUENCE  "MYTEST"."MY_JOIN_MEET_SEQ"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 0 NOCACHE  NOORDER  NOCYCLE  NOKEEP  NOSCALE  GLOBAL ;
@@ -77,6 +80,10 @@ CREATE TABLE my_join_meet (
     CONSTRAINT mjm_m_mum_fk FOREIGN KEY (m_num) REFERENCES meet(m_num),
     CONSTRAINT mjm_m_star_ck CHECK(my_join_star IN ('0','1'))
 );
+-- FK 삭제
+ALTER TABLE my_join_meet DROP CONSTRAINT mjm_m_mum_fk;
+-- FK 재설정__CASCADE설정
+ALTER TABLE my_join_meet ADD CONSTRAINT mjm_m_mum_fk FOREIGN KEY (m_num) REFERENCES meet(m_num) ON DELETE CASCADE;
 
 
 -- 내가 관심있는 모임(가입x)
@@ -88,16 +95,26 @@ CREATE TABLE my_interest_meet(
     CONSTRAINT mim_u_id_fk FOREIGN KEY (u_id) REFERENCES user_info(u_id),
     CONSTRAINT mim_m_mum_fk FOREIGN KEY (m_num) REFERENCES meet(m_num)
 );
+-- FK 삭제
+ALTER TABLE my_interest_meet DROP CONSTRAINT mim_m_mum_fk;
+-- FK 재설정__CASCADE설정
+ALTER TABLE my_interest_meet ADD CONSTRAINT mim_m_mum_fk FOREIGN KEY (m_num) REFERENCES meet(m_num) ON DELETE CASCADE;
+
 
 -- 모임 내 게시판 카테고리
 CREATE SEQUENCE  "MYTEST"."BOARD_CATEGORY_SEQ"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 0 NOCACHE  NOORDER  NOCYCLE  NOKEEP  NOSCALE  GLOBAL ;
 CREATE TABLE board_category(
     b_cate_num NUMBER(3) PRIMARY KEY NOT NULL,
-    b_cate_name VARCHAR2(10) NOT NULL,
+    b_cate_name VARCHAR2(40) NOT NULL,
     m_num NUMBER NOT NULL,
     CONSTRAINT bc_m_mum_fk FOREIGN KEY (m_num) REFERENCES meet(m_num),
     CONSTRAINT uni_b_cate_name UNIQUE (b_cate_name)
 );
+-- FK 삭제
+ALTER TABLE board_category DROP CONSTRAINT bc_m_mum_fk;
+-- FK 재설정__CASCADE설정
+ALTER TABLE board_category ADD CONSTRAINT bc_m_mum_fk FOREIGN KEY (m_num) REFERENCES meet(m_num) ON DELETE CASCADE;
+
 
 -- 모임 내 게시판
 CREATE SEQUENCE  "MYTEST"."BOARD_SEQ"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 0 NOCACHE  NOORDER  NOCYCLE  NOKEEP  NOSCALE  GLOBAL ;
@@ -118,6 +135,11 @@ CREATE TABLE board(
     CONSTRAINT b_u_id_fk FOREIGN KEY (u_id) REFERENCES user_info(u_id),
     CONSTRAINT b_m_num_fk FOREIGN KEY (m_num) REFERENCES meet(m_num)
 );
+-- FK 삭제
+ALTER TABLE board DROP CONSTRAINT b_m_num_fk;
+-- FK 재설정__CASCADE설정
+ALTER TABLE board ADD CONSTRAINT b_m_num_fk FOREIGN KEY (m_num) REFERENCES meet(m_num) ON DELETE CASCADE;
+
 
 -- 모임 내 게시판 댓글
 CREATE SEQUENCE  "MYTEST"."BOARD_COMMENTS_SEQ"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 0 NOCACHE  NOORDER  NOCYCLE  NOKEEP  NOSCALE  GLOBAL ;
@@ -131,6 +153,11 @@ CREATE TABLE board_comments(
     CONSTRAINT bc_b_num_fk FOREIGN KEY (b_num) REFERENCES board(b_num),
     CONSTRAINT bc_u_id_fk FOREIGN KEY (u_id) REFERENCES user_info(u_id)
 );
+-- FK 삭제
+ALTER TABLE board_comments DROP CONSTRAINT bc_m_num_fk;
+-- FK 재설정__CASCADE설정
+ALTER TABLE board_comments ADD CONSTRAINT bc_m_num_fk FOREIGN KEY (m_num) REFERENCES meet(m_num) ON DELETE CASCADE;
+
 
 -- 모임 내 게시판 좋아요
 CREATE SEQUENCE  "MYTEST"."BOARD_LIKE_SEQ"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 0 NOCACHE  NOORDER  NOCYCLE  NOKEEP  NOSCALE  GLOBAL ;
@@ -143,6 +170,11 @@ CREATE TABLE board_like(
     CONSTRAINT bl_b_mum_fk FOREIGN KEY (b_num) REFERENCES board(b_num),
     CONSTRAINT bl_u_id_fk FOREIGN KEY (u_id) REFERENCES user_info(u_id)
 );
+-- FK 삭제
+ALTER TABLE board_like DROP CONSTRAINT bl_m_num_fk;
+-- FK 재설정__CASCADE설정
+ALTER TABLE board_like ADD CONSTRAINT bl_m_num_fk FOREIGN KEY (m_num) REFERENCES meet(m_num) ON DELETE CASCADE;
+
 
 -- 모임 내 갤러리 카테고리
 CREATE SEQUENCE  "MYTEST"."PHOTO_CATEGORY_SEQ"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 0 NOCACHE  NOORDER  NOCYCLE  NOKEEP  NOSCALE  GLOBAL ;
@@ -153,6 +185,11 @@ CREATE TABLE photo_category(
     CONSTRAINT pc_m_mum_fk FOREIGN KEY (m_num) REFERENCES meet(m_num),
     CONSTRAINT pc_p_cate_name UNIQUE (p_cate_name)
 );
+-- FK 삭제
+ALTER TABLE photo_category DROP CONSTRAINT pc_m_mum_fk;
+-- FK 재설정__CASCADE설정
+ALTER TABLE photo_category ADD CONSTRAINT pc_m_mum_fk FOREIGN KEY (m_num) REFERENCES meet(m_num) ON DELETE CASCADE;
+
 
 -- 모임 내 갤러리
 CREATE SEQUENCE  "MYTEST"."PHOTO_SEQ"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 0 NOCACHE  NOORDER  NOCYCLE  NOKEEP  NOSCALE  GLOBAL ;
@@ -171,6 +208,11 @@ CREATE TABLE photo(
     CONSTRAINT p_u_id_fk FOREIGN KEY (u_id) REFERENCES user_info(u_id),
     CONSTRAINT p_m_num_fk FOREIGN KEY (m_num) REFERENCES meet(m_num)
 );
+-- FK 삭제
+ALTER TABLE photo DROP CONSTRAINT p_m_num_fk;
+-- FK 재설정__CASCADE설정
+ALTER TABLE photo ADD CONSTRAINT p_m_num_fk FOREIGN KEY (m_num) REFERENCES meet(m_num) ON DELETE CASCADE;
+
 
 -- 모임 내 갤러리 댓글
 CREATE SEQUENCE  "MYTEST"."PHOTO_COMMENTS_SEQ"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 0 NOCACHE  NOORDER  NOCYCLE  NOKEEP  NOSCALE  GLOBAL ;
@@ -184,6 +226,11 @@ CREATE TABLE photo_comments(
     CONSTRAINT pc_p_num_fk FOREIGN KEY (p_num) REFERENCES photo(p_num),
     CONSTRAINT pc_u_id_fk FOREIGN KEY (u_id) REFERENCES user_info(u_id)
 );
+-- FK 삭제
+ALTER TABLE photo_comments DROP CONSTRAINT pc_m_num_fk;
+-- FK 재설정__CASCADE설정
+ALTER TABLE photo_comments ADD CONSTRAINT pc_m_num_fk FOREIGN KEY (m_num) REFERENCES meet(m_num) ON DELETE CASCADE;
+
 
 -- 모임 내 갤러리 좋아요
 CREATE SEQUENCE  "MYTEST"."PHOTO_LIKE_SEQ"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 0 NOCACHE  NOORDER  NOCYCLE  NOKEEP  NOSCALE  GLOBAL ;
@@ -196,6 +243,10 @@ CREATE TABLE photo_like(
     CONSTRAINT pl_b_mum_fk FOREIGN KEY (p_num) REFERENCES photo(p_num),
     CONSTRAINT pl_u_id_fk FOREIGN KEY (u_id) REFERENCES user_info(u_id)
 );
+-- FK 삭제
+ALTER TABLE photo_like DROP CONSTRAINT pl_m_num_fk;
+-- FK 재설정__CASCADE설정
+ALTER TABLE photo_like ADD CONSTRAINT pl_m_num_fk FOREIGN KEY (m_num) REFERENCES meet(m_num) ON DELETE CASCADE;
 
 
 -- 모임 내 번개
@@ -210,38 +261,11 @@ CREATE TABLE meet_plan(
     m_num NUMBER NOT NULL,
     CONSTRAINT ml_m_num_fk FOREIGN KEY (m_num) REFERENCES meet(m_num)
 );
+-- FK 삭제
+ALTER TABLE meet_plan DROP CONSTRAINT ml_m_num_fk;
+-- FK 재설정__CASCADE설정
+ALTER TABLE meet_plan ADD CONSTRAINT ml_m_num_fk FOREIGN KEY (m_num) REFERENCES meet(m_num) ON DELETE CASCADE;
+
 
 COMMIT;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
