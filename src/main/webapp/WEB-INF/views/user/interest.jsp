@@ -26,7 +26,7 @@
 	<h3>관심사 선택</h3><br>
 	
 	<div class="list-group">
-		<form action="/user/join/interest" method="post">
+		<form action="/user/interest" method="post">
 			<c:forEach var="list" items="${list }">	
 			  <label class="list-group-item">
 			    <input class="form-check-input me-1" type="checkbox" name="i_cate_num" value="${list.i_cate_num }">

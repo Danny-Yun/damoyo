@@ -11,6 +11,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.damoyo.domain.ICateNumDTO;
+import com.damoyo.domain.MyInterestDTO;
+import com.damoyo.domain.MyInterestVO;
 import com.damoyo.domain.UserVO;
 
 import lombok.extern.log4j.Log4j;
@@ -50,9 +52,8 @@ public class UserServiceTests {
 	
 	//@Test
 	public void testShowInterestDetail() {
-		ICateNumDTO dto = new ICateNumDTO();
-		dto.setI_cate_num(new int[]{0, 3, 16});
-		userService.showInterestDetail(dto);
+		int i_cate_num = 16;
+		userService.showInterestDetail(i_cate_num);
 	}
 	
 	//@Test
@@ -60,5 +61,20 @@ public class UserServiceTests {
 		ICateNumDTO dto = new ICateNumDTO();
 		dto.setI_cate_num(new int[]{0, 3, 16});
 		userService.showICateName(dto);
+	}
+	
+	//@Test
+	public void testSaveUserInterest() {
+		MyInterestVO vo = new MyInterestVO();
+		vo.setU_id("danny");
+		vo.setI_detail_name("국내여행");
+		userService.saveUserInterest(vo);
+	}
+	
+	//@Test
+	public void testUserLogin() {
+		UserVO vo = new UserVO();
+		vo.setU_id("danny");
+		userService.userLogin(vo);
 	}
 }

@@ -9,6 +9,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.damoyo.domain.ICateNumDTO;
+import com.damoyo.domain.MyInterestDTO;
+import com.damoyo.domain.MyInterestVO;
 import com.damoyo.domain.UserVO;
 
 import lombok.extern.log4j.Log4j;
@@ -37,11 +39,10 @@ public class UserMapperTests {
 		userMapper.getInterestCate();
 	}
 	
-	@Test
+	//@Test
 	public void testGetInterestDetail() {
-		ICateNumDTO dto = new ICateNumDTO();
-		dto.setI_cate_num(new int[]{0, 1, 16});
-		userMapper.getInterestDetail(dto);
+		int i_cate_num = 0;
+		userMapper.getInterestDetail(i_cate_num);
 	}
 
 	//@Test
@@ -49,6 +50,21 @@ public class UserMapperTests {
 		ICateNumDTO dto = new ICateNumDTO();
 		dto.setI_cate_num(new int[]{0, 1, 16});
 		userMapper.getICateName(dto);
+	}
+	
+	//@Test
+	public void testSaveUserInterest() {
+		MyInterestVO vo = new MyInterestVO();
+		vo.setU_id("riudiu");
+		vo.setI_detail_name("영어");
+		userMapper.saveUserInterest(vo);
+	}
+	
+	//@Test
+	public void testLogin() {
+		UserVO vo = new UserVO();
+		vo.setU_id("riudiu");
+		userMapper.login(vo);
 	}
 
 }

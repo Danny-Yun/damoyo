@@ -15,8 +15,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.damoyo.domain.ICateNumDTO;
 import com.damoyo.domain.ICateVO;
-import com.damoyo.domain.IDetailVO;
 import com.damoyo.domain.ITotalDTO;
+import com.damoyo.domain.MyInterestDTO;
+import com.damoyo.domain.MyInterestVO;
 import com.damoyo.domain.UserVO;
 import com.damoyo.service.UserService;
 
@@ -34,8 +35,7 @@ public class UserController {
 
 	// 회원가입 폼
 	@GetMapping("/join")
-	public String joinForm() {
-		return "/user/join";
+	public void joinForm() {
 	}
 
 	// 회원가입
@@ -48,24 +48,24 @@ public class UserController {
 		userService.userJoin(vo);
 		rttr.addFlashAttribute("joinUserId", vo.getU_id());
 		rttr.addFlashAttribute("success", "joinOk");
-		return "redirect:/user/join/interest";
+		return "redirect:/user/interest";
 	}
 
 	// 관심사 카테고리 조회
-	@GetMapping("/join/interest")
-	public String getInterestCate(Model model) {
+	@GetMapping("/interest")
+	public void getInterestCate(Model model) {
 		log.info("interest 카테고리 조회 로직 접속");
 		List<ICateVO> iCateList = userService.showInterestCate();
 		log.info("관심사 카테고리 리스트 - " + iCateList);
 		model.addAttribute("list", iCateList);
-		return "/user/interest";
 	}
 
 	// 상세 관심사 조회
-	@PostMapping("/join/interest")
+	@PostMapping("/interest")
 	public String getInterestDetail(ICateNumDTO dto, Model model, HttpSession session) {
 		log.info("사용자가 선택한 관심사 카테고리 번호 - " + dto);
 		List<ICateVO> iCateNameList = userService.showICateName(dto);
+		// 상세 관심사 조회를 도와주는 DTO
 		List<ITotalDTO> iTotalList = new ArrayList<ITotalDTO>();
 
 		for (ICateVO iCateVO : iCateNameList) {
@@ -76,9 +76,59 @@ public class UserController {
 		}
 		
 		model.addAttribute("list", iTotalList);
-		model.addAttribute("i_cate_num", dto);
 		model.addAttribute("sessionId", session.getAttribute("u_id"));
 		return "/user/interest_detail";
 	}
 
+	// 유저가 선택한 (상세)관심사 저장
+	@PostMapping("/interest/detail")
+	public String saveInterestDetail(MyInterestDTO dto, RedirectAttributes rttr) {
+		log.info("사용자가 선택한 상세 관심사 및 유저아이디 - " + dto);
+		for(int i = 0; i < dto.getI_detail_name().length; i++) {
+			MyInterestVO vo = new MyInterestVO();		
+			vo.setU_id(dto.getU_id());
+			vo.setI_detail_name(dto.getI_detail_name()[i]);
+			userService.saveUserInterest(vo);
+		}
+		return "redirect:/user/mypage";
+	}
+	
+	// 메인페이지 
+	@GetMapping("/mypage")
+	public void mypage(Model model) {
+		log.info("메인 페이지(마이페이지)로 접속");
+	}
+	
+	// 로그인 폼
+	@GetMapping("/login")
+	public void loginForm() {
+	}
+	
+	// 로그인
+	@PostMapping("/login")
+	public String login(UserVO vo ,RedirectAttributes rttr, HttpSession session) {
+		log.info("사용자가 입력한 로그인 정보 - " + vo);
+		UserVO user = userService.userLogin(vo);
+		log.info("유저 정보 - " + user);
+		
+		if(user == null) {
+			rttr.addFlashAttribute("result","fail");
+			return "redirect:/user/login";
+		}
+		
+		if(user.getU_id().equals(vo.getU_id()) 
+				&& user.getU_pw().equals(vo.getU_pw()) ) {
+			session.setAttribute("u_id", user.getU_id());
+			session.setAttribute("u_pw", user.getU_pw());
+			rttr.addFlashAttribute("id_session", session.getAttribute("u_id"));
+			rttr.addFlashAttribute("pw_session", session.getAttribute("u_pw"));
+			rttr.addFlashAttribute("result","loginOK");
+			return "redirect:/user/mypage";
+		} else {
+			rttr.addFlashAttribute("result","fail");
+			return "redirect:/user/login";
+		}
+	}
+	
+	
 }

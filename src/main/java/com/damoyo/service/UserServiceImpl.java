@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.damoyo.domain.ICateNumDTO;
 import com.damoyo.domain.ICateVO;
 import com.damoyo.domain.IDetailVO;
+import com.damoyo.domain.MyInterestVO;
 import com.damoyo.domain.UserVO;
 import com.damoyo.mapper.UserMapper;
 
@@ -21,6 +22,14 @@ public class UserServiceImpl implements UserService{
 
 	@Autowired
 	private UserMapper userMapper;
+	
+	// 로그인
+	@Override
+	public UserVO userLogin(UserVO vo) {
+		log.info("사용자 로그인 서비스 실행 - " + vo);
+		UserVO user = userMapper.login(vo);
+		return user;
+	}
 
 	// 회원가입
 	@Override
@@ -50,6 +59,13 @@ public class UserServiceImpl implements UserService{
 	public List<ICateVO> showICateName(ICateNumDTO dto) {
 		List<ICateVO> iCateNameList = userMapper.getICateName(dto);
 		return iCateNameList;
+	}
+
+	// 유저가 선택한 (상세)관심사 저장
+	@Override
+	public void saveUserInterest(MyInterestVO vo) {
+		log.info("관심사 저장 서비스 실행 - " + vo);
+		userMapper.saveUserInterest(vo);
 	}
 	
 }

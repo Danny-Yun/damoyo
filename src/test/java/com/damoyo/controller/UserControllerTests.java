@@ -52,7 +52,7 @@ public class UserControllerTests {
 	//@Test
 	public void testGetInterestCate() throws Exception {
 		String resultPage = mockMvc.perform(
-				MockMvcRequestBuilders.get("/user/join/interest"))
+				MockMvcRequestBuilders.get("/user/interest"))
 				.andReturn().getModelAndView().getViewName();
 			log.info(resultPage);
 	}
@@ -61,9 +61,28 @@ public class UserControllerTests {
 	public void testGetInterestDetail() throws Exception {
 		int[] values = {1, 2, 3};
 		String resultPage = mockMvc.perform(
-				MockMvcRequestBuilders.post("/user/join/interest")
+				MockMvcRequestBuilders.post("/user/interest")
 				.param("i_cate_num", Arrays.toString(values)))
 				.andReturn().getModelAndView().getViewName();
 			log.info(resultPage);
+	}
+	
+	//@Test
+	public void testSaveInterestDetail() throws Exception {
+		String resultPage = mockMvc.perform(
+				MockMvcRequestBuilders.post("/user/interest/detail")
+				.param("u_id", "lacvert")
+				.param("i_detail_name", "해외여행"))
+				.andReturn().getModelAndView().getViewName();
+		log.info(resultPage);
+	}
+	
+	//@Test
+	public void testLogin() throws Exception {
+		String resultPage = mockMvc.perform(
+				MockMvcRequestBuilders.post("/user/login")
+				.param("u_id", "lacvert"))
+				.andReturn().getModelAndView().getViewName();
+		log.info(resultPage);
 	}
 }
