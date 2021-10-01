@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.damoyo.mapper.UserMapper">
+	
+	<!-- 로그인 -->
+	<select id="login" resultType="com.damoyo.domain.UserVO">
+		SELECT * FROM user_info WHERE u_id = #{u_id}
+	</select>
+	
+	<!-- 회원가입 -->
+	<insert id="join">
+		INSERT INTO user_info 
+			(u_id, u_pw, u_name, u_sex, u_birth, u_area, u_intro, u_profile)
+		VALUES
+ 			(#{u_id}, #{u_pw}, #{u_name}, #{u_sex}, #{u_birth}, #{u_area},
+				'간략한 자기소개를 작성해주세요', null)
+	</insert>
+	
+	<!-- 관심사 카테고리 조회 -->
+	<select id="getInterestCate" resultType="com.damoyo.domain.ICateVO">
+		SELECT * FROM interest_category ORDER BY i_cate_num ASC
+	</select>
+	
+	<!-- 관심사 상세내용 조회  -->
+	<select id="getInterestDetail" resultType="com.damoyo.domain.IDetailVO">
+		SELECT * FROM interest_detail WHERE i_cate_num=#{i_cate_num}
+			ORDER BY i_cate_num ASC
+	</select> 
+	
+	<!-- 관심사 상세내용 조회시 카테고리 이름 조회 -->
+	<select id="getICateName" resultType="com.damoyo.domain.ICateVO">
+		SELECT * FROM interest_category WHERE i_cate_num 
+			IN 
+		<foreach item="i_cate_num" index="index" collection="i_cate_num"
+      		open="(" separator="," close=")">
+			#{i_cate_num}
+		</foreach>
+			ORDER BY i_cate_num ASC
+	</select>
+	
+	<!-- 유저가 선택한 (상세)관심사 저장 -->
+	<insert id="saveUserInterest">
+		INSERT INTO my_favorit_interest
+			(f_interest_num, u_id, i_detail_name)
+		VALUES 
+			(MY_FAVORIT_INTEREST_SEQ.nextval, 
+			#{u_id}, 
+			#{i_detail_name}
+			)
+	</insert>
+	
+</mapper>

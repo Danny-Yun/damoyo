@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.damoyo.mapper.BoardMapper">
+	
+	<select id="getBoards" resultType="com.damoyo.domain.BoardVO">
+		SELECT * FROM board ORDER BY b_num DESC
+	</select>
+	
+	<select id="getBoard" resultType="com.damoyo.domain.BoardVO">
+		SELECT * FROM board WHERE b_num = #{b_num}
+	</select>
+	
+	<select id="getBoardCate" resultType="com.damoyo.domain.BoardCateVO">
+		SELECT * FROM board_category WHERE m_num=1 
+	</select>
+
+	<insert id="insert">
+		INSERT INTO board (b_num, b_cate_name, b_title, b_content, u_id) VALUES ( BOARD_SEQ.nextval, #{b_cate_name}, #{b_title}, #{b_content}, #{u_id})
+	</insert>
+	
+	<delete id="delete">
+		DELETE FROM board WHERE b_num = #{b_num}
+	</delete>
+	
+	<update id="update">
+		UPDATE board SET b_title = #{b_title}, b_content = #{b_content} WHERE b_num = #{b_num}
+	</update>
+	
+</mapper>
