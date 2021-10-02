@@ -11,7 +11,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.damoyo.domain.ICateNumDTO;
-import com.damoyo.domain.MyInterestDTO;
 import com.damoyo.domain.MyInterestVO;
 import com.damoyo.domain.UserVO;
 
@@ -76,5 +75,24 @@ public class UserServiceTests {
 		UserVO vo = new UserVO();
 		vo.setU_id("danny");
 		userService.userLogin(vo);
+	}
+	
+	//@Test 
+	public void testGetProfile() {
+		String u_id = "danny";
+		userService.showProfile(u_id);
+	}
+	
+	//@Test
+	public void testModifyProfile() {
+		UserVO vo = new UserVO();
+		vo.setU_profile("null");
+		vo.setU_name("윤지우");
+		vo.setU_sex(0);
+		vo.setU_birth(Date.valueOf("2001-05-10"));
+		vo.setU_area("청담동");
+		vo.setU_intro("코로나 빨리 끝났으면..");
+		vo.setU_id("danny");
+		userService.modifyProfile(vo);
 	}
 }

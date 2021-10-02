@@ -85,4 +85,19 @@ public class UserControllerTests {
 				.andReturn().getModelAndView().getViewName();
 		log.info(resultPage);
 	}
+	
+	//@Test
+	public void testUpdateProfile() throws Exception {
+		String resultPage = mockMvc.perform(
+			MockMvcRequestBuilders.post("/user/modify")
+			.param("u_profile", "null")
+			.param("u_name", "이지우")
+			.param("u_sex", "1")
+			.param("u_birth", "2000-04-20")
+			.param("u_area", "송도")
+			.param("u_intro", "관심사 공유하실 분을 찾습니다.")
+			.param("u_id", "lacvert"))
+			.andReturn().getModelAndView().getViewName();
+		log.info(resultPage);
+	}
 }

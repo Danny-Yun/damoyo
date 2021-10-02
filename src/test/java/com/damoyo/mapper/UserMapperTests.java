@@ -9,7 +9,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.damoyo.domain.ICateNumDTO;
-import com.damoyo.domain.MyInterestDTO;
 import com.damoyo.domain.MyInterestVO;
 import com.damoyo.domain.UserVO;
 
@@ -67,4 +66,22 @@ public class UserMapperTests {
 		userMapper.login(vo);
 	}
 
+	//@Test
+	public void testGetProfile() {
+		String u_id = "riudiu";
+		userMapper.getProfile(u_id);
+	}
+	
+	//@Test
+	public void testModifyProfile() {
+		UserVO vo = new UserVO();
+		vo.setU_profile("null");
+		vo.setU_name("윤지우");
+		vo.setU_sex(1);
+		vo.setU_birth(Date.valueOf("2001-05-14"));
+		vo.setU_area("동탄2신도시");
+		vo.setU_intro("21살 청년입니다.");
+		vo.setU_id("riudiu");
+		userMapper.modifyProfile(vo);
+	}
 }

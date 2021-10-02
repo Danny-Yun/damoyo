@@ -67,5 +67,20 @@ public class UserServiceImpl implements UserService{
 		log.info("관심사 저장 서비스 실행 - " + vo);
 		userMapper.saveUserInterest(vo);
 	}
+
+	// 사용자 프로필 정보 조회
+	@Override
+	public UserVO showProfile(String u_id) {
+		log.info("마이페이지 프로필 조회 서비스 실행 - " + u_id);
+		UserVO profile = userMapper.getProfile(u_id);
+		return profile;
+	}
+
+	// 사용자 프로필 정보 수정
+	@Override
+	public void modifyProfile(UserVO vo) {
+		log.info("사용자 프로필 수정 서비스 실행 - " + vo);
+		userMapper.modifyProfile(vo);
+	}
 	
 }

@@ -53,11 +53,18 @@ public class UserController {
 
 	// 관심사 카테고리 조회
 	@GetMapping("/interest")
-	public void getInterestCate(Model model) {
+	public String getInterestCate(Model model, HttpSession session) {
 		log.info("interest 카테고리 조회 로직 접속");
+		String u_id = (String) session.getAttribute("u_id");
+		// 세션이 비었을 땐 로그인 페이지로
+		if(u_id == null) {
+			return "/user/login";
+		}
+		
 		List<ICateVO> iCateList = userService.showInterestCate();
 		log.info("관심사 카테고리 리스트 - " + iCateList);
 		model.addAttribute("list", iCateList);
+		return "/user/interest";
 	}
 
 	// 상세 관심사 조회
@@ -93,10 +100,18 @@ public class UserController {
 		return "redirect:/user/mypage";
 	}
 	
-	// 메인페이지 
+	// 마이페이지 
 	@GetMapping("/mypage")
-	public void mypage(Model model) {
+	public String mypage(Model model, HttpSession session) {
 		log.info("메인 페이지(마이페이지)로 접속");
+		String u_id = (String) session.getAttribute("u_id");
+		// 세션이 비었을 땐 로그인 페이지로
+		if(u_id == null) {
+			return "/user/login";
+		}
+		UserVO profile = userService.showProfile(u_id);
+		model.addAttribute("profile", profile);
+		return "/user/mypage";
 	}
 	
 	// 로그인 폼
@@ -130,5 +145,33 @@ public class UserController {
 		}
 	}
 	
+	// 로그아웃
+	@PostMapping("/logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "/user/login";
+	}
+	
+	// 내 정보 수정
+	@GetMapping("/modify")
+	public String userProfile(Model model, HttpSession session) {
+		log.info("사용자 프로필 수정 접속");
+		String u_id = (String) session.getAttribute("u_id");
+		// 세션이 비었을 땐 로그인 페이지로
+		if(u_id == null) {
+			return "/user/login";
+		}
+		UserVO profile = userService.showProfile(u_id);
+		model.addAttribute("profile", profile);
+		return "/user/profile";
+	}
+	
+	// 내 정보 수정 후 저장
+	@PostMapping("/modify")
+	public String updateProfile(UserVO vo, RedirectAttributes rttr) {
+		log.info("유저가 수정한 내용" + vo);
+		userService.modifyProfile(vo);
+		return "redirect:/user/mypage";
+	}
 	
 }

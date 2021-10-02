@@ -27,4 +27,11 @@ public interface UserMapper {
 	
 	// 유저가 선택한 (상세)관심사 저장
 	public void saveUserInterest(MyInterestVO vo);
+	
+	// 사용자 프로필 정보 조회
+	public UserVO getProfile(String u_id);
+	
+	// 사용자 프로필 정보 수정
+	public void modifyProfile(UserVO vo);
  }
+

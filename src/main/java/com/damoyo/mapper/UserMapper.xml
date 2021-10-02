@@ -50,4 +50,19 @@
 			)
 	</insert>
 	
+	<!-- 사용자 프로필 정보 조회 -->
+	<select id="getProfile" resultType="com.damoyo.domain.UserVO">
+		SELECT * FROM user_info WHERE u_id = #{u_id}
+	</select>
+	
+	<!-- 사용자 프로필 정보 수정 -->
+	<update id="modifyProfile">
+		UPDATE user_info 
+			SET 
+		u_profile = #{u_profile}, u_name = #{u_name}, u_sex = #{u_sex}, 
+		u_birth = #{u_birth}, u_area = #{u_area}, u_intro = #{u_intro} 
+			WHERE 
+		u_id = #{u_id}
+	</update>
+	
 </mapper>
