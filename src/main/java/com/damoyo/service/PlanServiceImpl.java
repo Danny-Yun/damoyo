@@ -1,5 +1,7 @@
 package com.damoyo.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,11 @@ public class PlanServiceImpl implements PlanService {
 	@Override
 	public void insertPlan(PlanVO vo) {
 		mapper.insertPlan(vo);
+	}
+	
+	@Override
+	public List<PlanVO> getPlans(Long m_num) {
+		return mapper.getPlans(m_num);
 	}
 
 }

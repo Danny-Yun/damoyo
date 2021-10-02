@@ -11,35 +11,34 @@
 </head>
 <body>
 	<h1>모임방</h1>
-	유저정보 : ${userInfo }<br>
-	모임정보 : ${meetInfo }<br>
-	${userInfo eq null ? '정보 없음':'정보 있음' } <br>
-	가입여부 : ${checkJoin eq null ? '정보 없음':'정보 있음' } <br>
-	<a href="/meet/info?num=${meetInfo.m_num }"><button>정보</button></a>
+	유저정보 : ${infos.user }<br>
+	모임정보 : ${infos.meet}<br>
+	가입여부 : ${infos.checkJoin eq null ? '정보 없음':'정보 있음' } <br>
+	<a href="/meet/info?num=${infos.meet.m_num }"><button>정보</button></a>
 	<a href="/meet/board/list"><button>게시판</button></a>
 	<a href="#"><button>갤러리</button></a>
 	<a href="#"><button>채팅</button></a>
 	<a href="/main/"><button>메인화면</button></a>
 	<br>
 	<table border="1">
-		<tr><td colspan="2">${meetInfo.m_profile }</td></tr>
+		<tr><td colspan="2">${infos.meet.m_profile }</td></tr>
 		<tr>
-			<td>${meetInfo.i_cate_name }</td>
-			<td>${meetInfo.m_name }</td>
+			<td>${infos.meet.i_cate_name }</td>
+			<td>${infos.meet.m_name }</td>
 		</tr>
-		<tr><td colspan="2">${meetInfo.m_content }</td></tr>
+		<tr><td colspan="2">${infos.meet.m_content }</td></tr>
 	</table>
-	<c:if test="${checkJoin == null}">
+	<c:if test="${infos.checkJoin == null}">
 		<form action="/meet/join" method="post">
-			<input type="hidden" name="u_id" value="${userInfo.u_id }">
-			<input type="hidden" name="m_num" value="${meetInfo.m_num}">
+			<input type="hidden" name="u_id" value="${infos.user.u_id }">
+			<input type="hidden" name="m_num" value="${infos.meet.m_num}">
 			<input type="submit" value="가입">
 		</form>
 	</c:if>
-	<c:if test="${checkJoin != null}">
+	<c:if test="${infos.checkJoin != null}">
 		<form action="/meet/withdraw" method="post">
-			<input type="hidden" name="u_id" value="${checkJoin.u_id }">
-			<input type="hidden" name="m_num" value="${checkJoin.m_num}">
+			<input type="hidden" name="u_id" value="${infos.checkJoin.u_id }">
+			<input type="hidden" name="m_num" value="${infos.checkJoin.m_num}">
 			<input type="submit" value="탈퇴">
 		</form>
 	</c:if>
@@ -47,11 +46,19 @@
 	<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
 	  정모 생성
 	</button>
+	<br>
+	<table>
+		<tr><td>${infos.plan[0].m_plan_name }[${infos.plan[0].m_plan_people_cnt }]</td></tr>
+		<tr><td>${infos.plan[0].m_plan_startdate }</td></tr>
+		<tr><td>${infos.plan[0].m_plan_area }</td></tr>
+		<tr><td>&#8361; ${infos.plan[0].m_plan_money }원</td></tr>
+		
+	</table>
 	
 	<h2>모임 멤버</h2>
 	<%-- ${memberList } --%>
 	<table border="1">
-		<c:forEach var="member" items="${memberList }">
+		<c:forEach var="member" items="${infos.memberList }">
 			<tr>
 				<td rowspan="2">${member.u_profile }</td>
 				<td>${member.u_name }</td>
@@ -65,11 +72,11 @@
 	
 	<br>
 	<form action="/meet/update" method="post">
-		<input type="hidden" name="num" value="${meetInfo.m_num }">
+		<input type="hidden" name="num" value="${infos.meet.m_num }">
 		<input type="submit" value="수정">
 	</form>
 	<form action="/meet/remove" method="post">
-		<input type="hidden" name="num" value="${meetInfo.m_num }">
+		<input type="hidden" name="num" value="${infos.meet.m_num }">
 		<input type="submit" value="삭제">
 	</form>
 
@@ -94,7 +101,7 @@
 					날짜 : <input type="text" name="m_plan_startdate"><br>
 					금액 : <input type="text" name="m_plan_money"><br>
 					지역 : <input type="text" name="m_plan_area"><br>
-					<input type="hidden" name="m_num" value="${meetInfo.m_num }"><br>
+					<input type="hidden" name="m_num" value="${infos.meet.m_num }"><br>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
