@@ -13,10 +13,20 @@
 	
 	<a href="#"><button>DAMOYO LIST</button></a>
 	<a href="#"><button>My Page</button></a><br>
-	<c:forEach var="interest" items="${interest }">
-		<a href="#"><button>${interest.i_cate_name }</button></a>
-	</c:forEach>
-	
+	<form action="#" method="get">
+		<select name="b_cate_name">
+			<option selected="selected">
+				전체보기
+			</option>
+			<c:forEach var="interest" items="${interest }">
+				<option>
+					${interest.i_cate_name }
+				</option>
+			</c:forEach>
+		</select>
+		<input type="text" name="keyword">
+		<input type="submit">
+	</form>
 	<table border="1">
 		<c:forEach var="m" items="${meetList }">
 			<tr>

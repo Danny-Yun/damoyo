@@ -107,4 +107,5 @@ public class MeetController {
 	public String sendBoard(RedirectAttributes rttr, HttpSession session) {
 		return "redirect:/board/list";
 	}
+	
 }

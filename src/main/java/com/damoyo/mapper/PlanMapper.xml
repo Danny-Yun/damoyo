@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.damoyo.mapper.PlanMapper">
+	<insert id="insertPlan">
+		INSERT INTO meet_plan(m_plan_num, m_plan_name, m_plan_people_cnt, m_plan_startdate, m_plan_money, m_plan_area, m_num)
+		VALUES (MEET_PLAN_SEQ.nextval, #{m_plan_name}, #{m_plan_people_cnt}, #{m_plan_startdate}, #{m_plan_money}, #{m_plan_area}, #{m_num})
+	</insert>
+
+</mapper>
