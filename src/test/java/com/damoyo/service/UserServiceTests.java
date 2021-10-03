@@ -78,7 +78,7 @@ public class UserServiceTests {
 	}
 	
 	//@Test 
-	public void testGetProfile() {
+	public void testShowProfile() {
 		String u_id = "danny";
 		userService.showProfile(u_id);
 	}
@@ -94,5 +94,17 @@ public class UserServiceTests {
 		vo.setU_intro("코로나 빨리 끝났으면..");
 		vo.setU_id("danny");
 		userService.modifyProfile(vo);
+	}
+	
+	//@Test
+	public void testshowUserInterest() {
+		String u_id = "danny";
+		userService.showUserInterest(u_id);
+	}
+	
+	//@Test
+	public void testDeleteInterest() {
+		int f_interest_num = 4;
+		userService.deleteInterest(f_interest_num);
 	}
 }

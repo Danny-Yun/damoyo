@@ -82,5 +82,20 @@ public class UserServiceImpl implements UserService{
 		log.info("사용자 프로필 수정 서비스 실행 - " + vo);
 		userMapper.modifyProfile(vo);
 	}
+
+	// 마이페이지에서 내 관심사 조회
+	@Override
+	public List<MyInterestVO> showUserInterest(String u_id) {
+		log.info("마이페이지 관심사 조회 서비스 실행 - " + u_id);
+		List<MyInterestVO> myInterest = userMapper.getUserInterest(u_id);
+		return myInterest;
+	}
+
+	// 내 관심사 삭제
+	@Override
+	public void deleteInterest(int f_interest_num) {
+		log.info("관심사 삭제 서비스 실행 - " + f_interest_num);
+		userMapper.deleteInterest(f_interest_num);
+	}
 	
 }

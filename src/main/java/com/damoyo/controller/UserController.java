@@ -174,4 +174,26 @@ public class UserController {
 		return "redirect:/user/mypage";
 	}
 	
+	// 마이페이지에서 내 관심사 조회
+	@GetMapping("/myinterest")
+	public String myInterest(Model model, HttpSession session) {
+		String u_id = (String) session.getAttribute("u_id");
+		// 세션이 비었을 땐 로그인 페이지로
+		if(u_id == null) {
+			return "/user/login";
+		}
+		List<MyInterestVO> myInterest = userService.showUserInterest(u_id);
+		System.out.println(myInterest);
+		model.addAttribute("myInterest", myInterest);
+		return "/user/myinterest";
+	}
+	
+	// 내 관심사 삭제 
+	@PostMapping("/myinterest/remove")
+	public String removeInterest(int f_interest_num, RedirectAttributes rttr) {
+		log.info("유저가 삭제한 요청한 고유관심사 번호" + f_interest_num);
+		userService.deleteInterest(f_interest_num);
+		return "redirect:/user/myinterest";
+	}
+	
 }

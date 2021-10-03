@@ -84,4 +84,16 @@ public class UserMapperTests {
 		vo.setU_id("riudiu");
 		userMapper.modifyProfile(vo);
 	}
+	
+	//@Test
+	public void testGetUserInterest() {
+		String u_id = "riudiu";
+		userMapper.getUserInterest(u_id);
+	}
+	
+	//@Test
+	public void testDeleteInterest() {
+		int f_interest_num = 3;
+		userMapper.deleteInterest(f_interest_num);
+	}
 }

@@ -65,4 +65,15 @@
 		u_id = #{u_id}
 	</update>
 	
+	<!-- 마이페이지에서 내 관심사 조회 -->
+	<select id="getUserInterest" resultType="com.damoyo.domain.MyInterestVO">
+		SELECT * FROM my_favorit_interest WHERE u_id = #{u_id}
+	</select>
+	
+	<!-- 내 관심사 삭제 -->
+	<delete id="deleteInterest">
+		DELETE FROM my_favorit_interest 
+			WHERE f_interest_num = #{f_interest_num}
+	</delete>
+	
 </mapper>

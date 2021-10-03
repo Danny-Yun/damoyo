@@ -33,4 +33,10 @@ public interface UserService {
 	
 	// 사용자 프로필 정보 수정
 	public void modifyProfile(UserVO vo);
+	
+	// 마이페이지에서 내 관심사 조회
+	public List<MyInterestVO> showUserInterest(String u_id);
+	
+	// 내 관심사 삭제
+	public void deleteInterest(int f_interest_num);
 }

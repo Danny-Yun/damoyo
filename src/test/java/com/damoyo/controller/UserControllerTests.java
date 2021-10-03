@@ -100,4 +100,14 @@ public class UserControllerTests {
 			.andReturn().getModelAndView().getViewName();
 		log.info(resultPage);
 	}
+	
+	//@Test 
+	public void testRemoveInterest() throws Exception {
+		String resultPage = mockMvc.perform(
+				MockMvcRequestBuilders.post("/user/myinterest/remove")
+				.param("f_interest_num", "5"))
+				.andReturn().getModelAndView().getViewName();
+			log.info(resultPage);
+	}
+	
 }
