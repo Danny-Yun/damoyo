@@ -96,4 +96,13 @@ public class UserMapperTests {
 		int f_interest_num = 3;
 		userMapper.deleteInterest(f_interest_num);
 	}
+	
+	//@Test
+	public void testUpdatePassword() {
+		UserVO vo = new UserVO();
+		vo.setU_id("riudiu");
+		vo.setU_pw("jiu123123");
+		userMapper.updatePassword(vo);
+	}
+	
 }

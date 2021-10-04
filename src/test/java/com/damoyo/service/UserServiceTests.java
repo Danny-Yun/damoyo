@@ -107,4 +107,12 @@ public class UserServiceTests {
 		int f_interest_num = 4;
 		userService.deleteInterest(f_interest_num);
 	}
+	
+	//@Test
+	public void testModifyPassword() {
+		UserVO vo = new UserVO();
+		vo.setU_id("danny");
+		vo.setU_pw("danny123");
+		userService.modifyPassword(vo);
+	}
 }

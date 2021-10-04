@@ -76,4 +76,11 @@
 			WHERE f_interest_num = #{f_interest_num}
 	</delete>
 	
+	<!-- 비밀번호 변경 -->
+	<update id="updatePassword">
+		UPDATE user_info
+			SET u_pw = #{u_pw}
+				WHERE u_id = #{u_id}
+	</update>
+	
 </mapper>

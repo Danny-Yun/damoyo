@@ -97,5 +97,12 @@ public class UserServiceImpl implements UserService{
 		log.info("관심사 삭제 서비스 실행 - " + f_interest_num);
 		userMapper.deleteInterest(f_interest_num);
 	}
+
+	// 비밀번호 변경
+	@Override
+	public void modifyPassword(UserVO vo) {
+		log.info("비밀번호 변경 서비스 실행 - " + vo);
+		userMapper.updatePassword(vo);
+	}
 	
 }

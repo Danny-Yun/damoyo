@@ -39,5 +39,8 @@ public interface UserMapper {
 	
 	// 내 관심사 삭제
 	public void deleteInterest(int f_interest_num);
+	
+	// 비밀번호 변경
+	public void updatePassword(UserVO vo);
  }
 

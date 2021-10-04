@@ -196,4 +196,57 @@ public class UserController {
 		return "redirect:/user/myinterest";
 	}
 	
+	// 유저 비밀번호 변경시 기존 비밀번호 입력 폼
+	@GetMapping("/password")
+	public String passwordForm(HttpSession session) {
+		String u_id = (String) session.getAttribute("u_id");
+		// 세션이 비었을 땐 로그인 페이지로
+		if(u_id == null) {
+			return "/user/login";
+		}
+		return "/user/password";
+	}
+	
+	// 유저 비밀번호 변경시 기존 비밀번호 일치여부 검사
+	@PostMapping("/password")
+	public String checkPassword(String u_pw, RedirectAttributes rttr, HttpSession session) {
+		log.info("유저가 입력한 비밀번호" + u_pw);
+		String u_id = (String) session.getAttribute("u_id");
+		UserVO user = userService.showProfile(u_id);
+		if(u_pw.equals(user.getU_pw())) {
+			return "redirect:/user/password/change";
+		} else {
+			rttr.addFlashAttribute("result", "fail");
+			return "redirect:/user/password";
+		}
+	}
+	
+	// 비밀번호 변경 폼
+	@GetMapping("/password/change")
+	public String changePasswordForm(HttpSession session) {
+		String u_id = (String) session.getAttribute("u_id");
+		// 세션이 비었을 땐 로그인 페이지로
+		if(u_id == null) {
+			return "/user/login";
+		}
+		return "/user/change_password";
+	}
+	
+	// 비밀번호 변경
+	@PostMapping("/password/change")
+	public String changePassword(String u_pw, String re_pw, RedirectAttributes rttr, HttpSession session) {
+		if(!u_pw.equals(re_pw)) {
+			rttr.addFlashAttribute("result", "fail");
+			return "redirect:/user/password/change";
+		}
+		
+		UserVO vo = new UserVO();
+		String u_id = (String) session.getAttribute("u_id");
+		vo.setU_id(u_id);
+		vo.setU_pw(u_pw);
+		userService.modifyPassword(vo);
+		rttr.addFlashAttribute("result", "changePwOK");
+		return "redirect:/user/mypage";
+	}
+	
 }
