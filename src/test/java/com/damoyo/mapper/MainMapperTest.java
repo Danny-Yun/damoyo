@@ -17,7 +17,7 @@ public class MainMapperTest {
 	@Autowired
 	private MainMapper mainMapper;
 	
-//	@Test
+	@Test
 	// 유저 정보 가져오기
 	public void testGetUserInfo() {
 		log.info("Oracle 조회중...");

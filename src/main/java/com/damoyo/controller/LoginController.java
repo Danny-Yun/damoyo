@@ -27,7 +27,7 @@ public class LoginController {
 	@GetMapping("/process")
 	public String login(RedirectAttributes rttr, HttpServletRequest request) {
 		HttpSession session = request.getSession();
-		UserVO user = service.get("wpsl");
+		UserVO user = service.get("wake");
 		log.info(user);
 		session.setAttribute("userInfo", user);
 		
