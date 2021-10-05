@@ -10,4 +10,6 @@ public interface PhotoLikeMapper {
 	public void update(Long p_like_num);
 	
 	public void read(PhotolikeVO vo);
+	
+	public void update_cancel(Long p_like_num);
 }

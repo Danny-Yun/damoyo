@@ -6,7 +6,7 @@ import java.util.List;
 
 import com.damoyo.domain.PhotocommentsVO;
 
-public interface Photocomments {
+public interface PCommentsService {
 
 	public void addcomments(PhotocommentsVO vo);
 	

@@ -6,14 +6,14 @@ import com.damoyo.domain.PhotoVO;
 import com.damoyo.domain.PhotocategoryVO;
 import com.damoyo.domain.PhotocommentsVO;
 import com.damoyo.domain.PhotolikeVO;
-import com.damoyo.service.Photocomments;
+import com.damoyo.service.PCommentsService;
 
 
 
 public interface PhotoMapper {
 	
 	// 사진 리스트
-	public List<PhotocommentsVO> getList();
+	public List<PhotocategoryVO> getList();
 	
 	// 사진 등록
 	public void insert(PhotoVO vo);
