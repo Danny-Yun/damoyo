@@ -44,6 +44,8 @@
 		
 		if(result === "fail") {
 			alert("아이디와 비밀번호가 일치하지 않습니다.");
+		} else if (result === "leaveOK") {
+			alert("정상적으로 탈퇴 처리되었습니다.");
 		}
 	</script>
 </body>

@@ -42,5 +42,8 @@ public interface UserMapper {
 	
 	// 비밀번호 변경
 	public void updatePassword(UserVO vo);
+	
+	// 회원 탈퇴
+	public void deleteAccount(String u_id);
  }
 

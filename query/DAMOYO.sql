@@ -37,6 +37,11 @@ CREATE TABLE my_favorit_interest (
     CONSTRAINT mfi_u_id_fk FOREIGN KEY (u_id) REFERENCES user_info(u_id),
     CONSTRAINT mfi_i_detail_fk FOREIGN KEY (i_detail_name) REFERENCES interest_detail(i_detail_name)
 );
+-- FK 삭제
+ALTER TABLE my_favorit_interest DROP CONSTRAINT mfi_u_id_fk;
+-- FK 재설정__CASCADE설정
+ALTER TABLE my_favorit_interest ADD CONSTRAINT mfi_u_id_fk FOREIGN KEY (u_id) REFERENCES user_info(u_id) ON DELETE CASCADE;
+
 
 -- 모임
 CREATE SEQUENCE  "MYTEST"."MEET_SEQ"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 0 NOCACHE  NOORDER  NOCYCLE  NOKEEP  NOSCALE  GLOBAL ;

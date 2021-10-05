@@ -104,5 +104,12 @@ public class UserServiceImpl implements UserService{
 		log.info("비밀번호 변경 서비스 실행 - " + vo);
 		userMapper.updatePassword(vo);
 	}
+
+	// 회원 탈퇴
+	@Override
+	public void removeAccount(String u_id) {
+		log.info("회원 탈퇴 서비스 실행 - " + u_id);
+		userMapper.deleteAccount(u_id);
+	}
 	
 }

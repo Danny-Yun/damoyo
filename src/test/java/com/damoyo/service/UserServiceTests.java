@@ -115,4 +115,10 @@ public class UserServiceTests {
 		vo.setU_pw("danny123");
 		userService.modifyPassword(vo);
 	}
+	
+	//@Test
+	public void testRemoveAccount() {
+		String u_id = "danny";
+		userService.removeAccount(u_id);
+	}
 }

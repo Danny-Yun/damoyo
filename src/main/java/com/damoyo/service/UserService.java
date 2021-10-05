@@ -42,4 +42,7 @@ public interface UserService {
 	
 	// 비밀번호 변경
 	public void modifyPassword(UserVO vo);
+	
+	// 회원 탈퇴
+	public void removeAccount(String u_id);
 }

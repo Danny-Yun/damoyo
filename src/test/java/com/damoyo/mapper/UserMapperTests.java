@@ -105,4 +105,10 @@ public class UserMapperTests {
 		userMapper.updatePassword(vo);
 	}
 	
+	//@Test
+	public void testDeleteAccount() {
+		String u_id = "riudiu";
+		userMapper.deleteAccount(u_id);
+	}
+	
 }

@@ -169,7 +169,7 @@ public class UserController {
 	// 내 정보 수정 후 저장
 	@PostMapping("/modify")
 	public String updateProfile(UserVO vo, RedirectAttributes rttr) {
-		log.info("유저가 수정한 내용" + vo);
+		log.info("유저가 수정한 내용 - " + vo);
 		userService.modifyProfile(vo);
 		return "redirect:/user/mypage";
 	}
@@ -191,7 +191,7 @@ public class UserController {
 	// 내 관심사 삭제 
 	@PostMapping("/myinterest/remove")
 	public String removeInterest(int f_interest_num, RedirectAttributes rttr) {
-		log.info("유저가 삭제한 요청한 고유관심사 번호" + f_interest_num);
+		log.info("유저가 삭제한 요청한 고유관심사 번호 - " + f_interest_num);
 		userService.deleteInterest(f_interest_num);
 		return "redirect:/user/myinterest";
 	}
@@ -210,7 +210,7 @@ public class UserController {
 	// 유저 비밀번호 변경시 기존 비밀번호 일치여부 검사
 	@PostMapping("/password")
 	public String checkPassword(String u_pw, RedirectAttributes rttr, HttpSession session) {
-		log.info("유저가 입력한 비밀번호" + u_pw);
+		log.info("유저가 입력한 비밀번호 - " + u_pw);
 		String u_id = (String) session.getAttribute("u_id");
 		UserVO user = userService.showProfile(u_id);
 		if(u_pw.equals(user.getU_pw())) {
@@ -247,6 +247,34 @@ public class UserController {
 		userService.modifyPassword(vo);
 		rttr.addFlashAttribute("result", "changePwOK");
 		return "redirect:/user/mypage";
+	}
+	
+	// 회원 탈퇴 폼
+	@GetMapping("/leave")
+	public String userLeaveForm(HttpSession session) {
+		String u_id = (String) session.getAttribute("u_id");
+		// 세션이 비었을 땐 로그인 페이지로
+		if(u_id == null) {
+			return "/user/login";
+		}
+		return "/user/leave";
+	}
+	
+	// 회원 탈퇴
+	@PostMapping("/leave")
+	public String userLeave(String u_pw, RedirectAttributes rttr, HttpSession session) {
+		log.info("유저가 입력한 비밀번호 - " + u_pw);
+		String u_id = (String) session.getAttribute("u_id");
+		UserVO user = userService.showProfile(u_id);
+		if(u_pw.equals(user.getU_pw())) {
+			userService.removeAccount(u_id);
+			session.invalidate();
+			rttr.addFlashAttribute("result", "leaveOK");
+			return "redirect:/user/login";
+		} else {
+			rttr.addFlashAttribute("result", "fail");
+			return "redirect:/user/leave";
+		}
 	}
 	
 }
