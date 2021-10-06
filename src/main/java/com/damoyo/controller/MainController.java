@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.damoyo.domain.InterestVO;
-import com.damoyo.domain.MainCriteria;
 import com.damoyo.domain.MainPageDTO;
+import com.damoyo.domain.MainSearchCriteria;
 import com.damoyo.domain.MeetMemberVO;
 import com.damoyo.domain.MeetVO;
 import com.damoyo.domain.UserVO;
@@ -33,7 +33,7 @@ public class MainController {
 	private MainService service;
 	
 	@GetMapping("/")
-	public void list(Model model, HttpSession session, MainCriteria cri) {
+	public void list(Model model, HttpSession session, MainSearchCriteria cri) {
 		// 유저 정보
 		UserVO userInfo = (UserVO)session.getAttribute("userInfo");
 		log.info(userInfo);
@@ -41,6 +41,8 @@ public class MainController {
 		// 카테고리 및 모임 리스트 조회
 		log.info("list의 cri.pageNum : " + cri.getPageNum());
 		log.info("list의 cri.pageAmount : " + cri.getAmount());
+		log.info("list의 cri.searchType : " + cri.getSearchType());
+		log.info("list의 cri.keyword : " + cri.getKeyword());
 		List<InterestVO> interestList = service.get();
 		List<MeetVO> meetList = service.getListMeet(cri);
 		int total = service.getTotalMeet();

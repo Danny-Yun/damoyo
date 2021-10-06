@@ -6,6 +6,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.damoyo.domain.MainCriteria;
+import com.damoyo.domain.MainSearchCriteria;
 import com.damoyo.domain.MeetMemberVO;
 import com.damoyo.domain.MeetVO;
 
@@ -22,8 +23,11 @@ public class MainServiceTests {
 	@Test
 	// 생성된 모임 리스트 조회
 	public void testGetListMeet() {
-		MainCriteria cri = new MainCriteria(10, 10);
-		log.info(service.getListMeet(cri));
+		MainSearchCriteria cri = new MainSearchCriteria();
+		log.info(cri.getPageNum());
+		log.info(cri.getAmount());
+		log.info(cri.getSearchType());
+		log.info(cri.getKeyword());
 	}
 	
 	// 모임 생성

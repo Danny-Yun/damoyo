@@ -13,9 +13,9 @@
 	
 	<a href="#"><button>DAMOYO LIST</button></a>
 	<a href="#"><button>My Page</button></a><br>
-	<form action="#" method="get">
-		<select name="i_cate_num" name="b_cate_name">
-			<option selected="selected" value="">
+	<form action="/main/" method="get">
+		<select name="searchType">
+ 			<option selected="${meetPages.cri.searchType eq null ? 'selected' : ''}" value="null">
 				전체보기
 			</option>
 			<c:forEach var="interest" items="${interest }">
@@ -27,13 +27,14 @@
 		<input type="text" name="keyword">
 		<input type="submit">
 	</form>
+	${meetPages.cri.searchType eq null ? '정보없음' : '정보있음'}
 	<table border="1">
 		<c:forEach var="m" items="${meetList }">
 			<tr>
 			<td rowspan="3">
 				<a href="/meet/info?num=${m.m_num }">"${m.m_profile }이미지${m.m_num }"</a>
 			</td>
-				<td>${m.m_area }</td>
+				<td>${m.m_area }${m.m_num }</td>
 			</tr>
 			<tr>
 				<td>${m.m_name }</td>
