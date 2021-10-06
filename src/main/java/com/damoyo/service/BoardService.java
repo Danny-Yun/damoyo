@@ -21,4 +21,5 @@ public interface BoardService {
 	public void update(BoardVO vo);
 	
 	public void delete(Long b_num);
+	
 }

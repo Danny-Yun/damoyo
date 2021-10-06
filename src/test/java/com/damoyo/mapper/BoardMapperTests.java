@@ -18,7 +18,7 @@ public class BoardMapperTests {
 	@Autowired
 	public BoardMapper mapper;
 	
-	@Test
+//	@Test
 	public void getBoardsTest() {
 		log.info(mapper.getBoards(14L));
 	}
@@ -57,4 +57,5 @@ public class BoardMapperTests {
 	public void testGetBoardCate() {
 		mapper.getBoardCate();
 	}
+	
 }

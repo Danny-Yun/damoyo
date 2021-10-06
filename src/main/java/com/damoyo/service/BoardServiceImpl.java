@@ -59,7 +59,7 @@ public class BoardServiceImpl implements BoardService {
 		mapper.delete(b_num);
 	}
 
-
+	
 
 	
 }

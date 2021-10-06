@@ -17,7 +17,7 @@ public class MainMapperTest {
 	@Autowired
 	private MainMapper mainMapper;
 	
-	@Test
+//	@Test
 	// 유저 정보 가져오기
 	public void testGetUserInfo() {
 		log.info("Oracle 조회중...");
@@ -32,9 +32,13 @@ public class MainMapperTest {
 		log.info(mainMapper.getInterest());
 	}
 	
-//	@Test
+	@Test
 	public void testGetListMeet() {
-		log.info(mainMapper.getListMeet());
+		MainCriteria cri = new MainCriteria();
+		log.info("cri pagnum : "+cri.getPageNum());
+		log.info("cri amount : "+cri.getAmount());
+		log.info(mainMapper.getListMeet(cri));
+		
 	}
 	
 //	@Test
@@ -59,7 +63,7 @@ public class MainMapperTest {
 		log.info(mainMapper.getDetailMeet(6L));
 	}
 	
-	@Test
+//	@Test
 	// 모임 삭제
 	public void testRemoveMeet() {
 		mainMapper.removeMeet(13L);

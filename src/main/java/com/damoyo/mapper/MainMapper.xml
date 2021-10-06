@@ -21,7 +21,16 @@
 	
 	<!-- 모임 리스트 가져오기 -->
 	<select id="getListMeet" resultType="com.damoyo.domain.MeetVO">
-		SELECT * FROM meet ORDER BY m_num DESC 
+		<![CDATA[
+			SELECT tbl.m_num, tbl.m_name, tbl.m_content, tbl.m_people_cnt, tbl.m_area, tbl.m_profile, tbl.i_cate_num, tbl.u_id 
+			FROM (SELECT /*+ INDEX_DESC(board_tbl pk_board)*/
+			ROWNUM rn, meet.* FROM 
+			(SELECT * FROM meet ORDER BY m_num DESC)meet
+			WHERE ROWNUM <= #{pageNum} * #{amount})tbl
+			WHERE rn > (#{pageNum} -1 * #{amount})
+		]]>	
+	
+		<!-- SELECT * FROM meet ORDER BY m_num DESC --> 
 	</select>
 	
 	<!-- 모임 디테일 가져오기 -->
@@ -80,5 +89,8 @@
 		DELETE meet_member_list WHERE (m_num=#{m_num} AND u_id=#{u_id})
 	</delete>
 	
-	
+	<!-- 모임 총 개수 -->
+	<select id="getTotalMeet" resultType="int">
+		SELECT COUNT(*) FROM meet
+	</select>
 </mapper>

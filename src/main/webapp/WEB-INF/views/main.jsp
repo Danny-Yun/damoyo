@@ -14,12 +14,12 @@
 	<a href="#"><button>DAMOYO LIST</button></a>
 	<a href="#"><button>My Page</button></a><br>
 	<form action="#" method="get">
-		<select name="b_cate_name">
-			<option selected="selected">
+		<select name="i_cate_num" name="b_cate_name">
+			<option selected="selected" value="">
 				전체보기
 			</option>
 			<c:forEach var="interest" items="${interest }">
-				<option>
+				<option value="${interest.i_cate_num }">
 					${interest.i_cate_name }
 				</option>
 			</c:forEach>
@@ -43,6 +43,7 @@
 			</tr>
 		</c:forEach>
 	</table>
+
 	<a href="/main/register"><button>개설</button></a><br>
 </body>
 </html>

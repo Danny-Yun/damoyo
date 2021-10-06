@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.damoyo.domain.MainCriteria;
 import com.damoyo.domain.MeetMemberVO;
 import com.damoyo.domain.MeetVO;
 
@@ -21,7 +22,8 @@ public class MainServiceTests {
 //	@Test
 	// 생성된 모임 리스트 조회
 	public void testGetListMeet() {
-		log.info(service.getListMeet());
+		MainCriteria cri = new MainCriteria();
+		log.info(service.getListMeet(cri));
 	}
 	
 	// 모임 생성
@@ -102,7 +104,7 @@ public class MainServiceTests {
 		service.checkMeetJoin(vo);
 	}
 	
-	@Test
+//	@Test
 	public void testWithdrawMeet() {
 		MeetMemberVO vo = new MeetMemberVO();
 		vo.setM_num(13L);
