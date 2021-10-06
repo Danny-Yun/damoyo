@@ -19,10 +19,15 @@ public class PhotoMapperTests {
 	@Autowired
 	private PhotoMapper mapper;
 	
-	@Test
+	//@Test
 	public void testExits() {
 		log.info(mapper);
 		
 		assertNotNull(mapper);
 	}
+	@Test
+		public void testGetList() {
+			// mapper 내부의 getList 메서드를 호출하려면?
+			log.info(mapper.getList());
+		}
 }

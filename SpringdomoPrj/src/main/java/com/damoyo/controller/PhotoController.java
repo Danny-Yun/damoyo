@@ -1,14 +1,20 @@
 package com.damoyo.controller;
 
+import com.damoyo.domain.MeetVO;
 import com.damoyo.domain.PhotoVO;
+import com.damoyo.domain.PhotocategoryVO;
 import com.damoyo.domain.PhotolikeVO;
+import com.damoyo.domain.UserVO;
 import com.damoyo.mapper.PhotoMapper;
 import com.damoyo.service.PhotoService;
+
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,15 +34,24 @@ public class PhotoController {
 	private PhotoService service;
 	
 	
-	@GetMapping("/lists")
-	public void list() {
+	@GetMapping("/list")
+	public void list(Model model, HttpSession session) {
+		log.info("사진 리스트");
+		service.getlist();
+		//UserVO userInfo = (UserVO) session.getAttribute("userInfo");
+		//MeetVO meetInfo = (MeetVO) session.getAttribute("meetInfo");
 		
+		//List<PhotocategoryVO> category = service.getlist();
+		
+		
+		//model.addAttribute("category", category);
+		//model.addAttribute("list", "list");
 	}
 	
 	@PostMapping("/create")
-	public void create() {
+	public void create(PhotoVO vo) {
 		log.info("사진 등록");
-		
+		service.enrollment(vo);
 	}
 	
 	@PostMapping("/update")

@@ -33,13 +33,14 @@ public class PhotoServiceImpl implements PhotoService{
 
 	@Override
 	public PhotoVO get(Long p_num) {
-		// TODO Auto-generated method stub
+		PhotoVO photo = mapper.select(p_num);
+		log.info(p_num + "번 사진 조회");
 		return mapper.get(p_num);
 	}
 
 	@Override
 	public void revise(PhotoVO vo) {
-		// TODO Auto-generated method stub
+		
 		log.info("사진 수정");
 		mapper.update(vo);
 	}
@@ -52,8 +53,8 @@ public class PhotoServiceImpl implements PhotoService{
 
 	@Override
 	public List<PhotocategoryVO> getlist() {
-		// TODO Auto-generated method stub
-		return null;
+		List<PhotocategoryVO> photolist = mapper.getList();
+		return photolist;
 	}
 
 	@Override

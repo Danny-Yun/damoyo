@@ -2,6 +2,8 @@ package com.damoyo.service;
 
 
 import com.damoyo.domain.PhotoVO;
+import com.damoyo.domain.PhotocategoryVO;
+import com.damoyo.domain.UserVO;
 import com.damoyo.service.PhotoServiceTests;
 
 import static org.junit.Assert.assertNotNull;
@@ -29,16 +31,27 @@ public class PhotoServiceTests {
 	}
 	
 	//@Test
-//	public void testregister() {
-//		PhotoVO vo = new PhotoVO();
-//		
-//		vo.setP_cate_name("사진");
-//		vo.setU_id("wa");
-//		vo.setP_image1("첫번째 사진");
-//		
-//		service.enrollment(vo);
-//	}
-//	
+		public void testGetList() {
+			service.getlist();
+		}
+		
+	//@Test
+	public void testGet() {
+			service.get(7L);
+		}
+	//@Test
+		public void testModify() {
+			PhotoVO vo = new PhotoVO();
+			UserVO vo1 = new UserVO();
+			PhotocategoryVO vo2 = new PhotocategoryVO();
+			
+			vo.setP_num(2L);
+			vo2.setP_cate_name("수정");
+			vo.setP_image1("수정이다");
+			vo1.setU_id("wa");
+			
+			service.revise(vo);
+		}
 	@Test
 	public void testRemove() {
 		service.delete(1L);
