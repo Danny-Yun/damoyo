@@ -35,6 +35,7 @@ public class MainController {
 	public void list(Model model, HttpServletRequest request, HttpSession session) {
 		// 유저 정보
 		UserVO userInfo = (UserVO)session.getAttribute("userInfo");
+		log.info(userInfo);
 		
 		// 카테고리 및 모임 리스트 조회
 		List<InterestVO> interestList = service.get();
