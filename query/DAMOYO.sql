@@ -58,9 +58,9 @@ CREATE TABLE meet (
     CONSTRAINT meet_u_id_fk FOREIGN KEY (u_id) REFERENCES user_info(u_id)
 );
 -- FK 삭제
-ALTER TABLE meet_member_list DROP CONSTRAINT mml_u_id_fk;
--- FK 재설정__CASCADE설정
-ALTER TABLE meet_member_list ADD CONSTRAINT mml_u_id_fk FOREIGN KEY (u_id) REFERENCES user_info(u_id) ON DELETE CASCADE;
+ALTER TABLE meet DROP CONSTRAINT meet_u_id_fk;
+-- FK 재설정__NO ACTION설정
+ALTER TABLE meet ADD CONSTRAINT meet_u_id_fk FOREIGN KEY (u_id) REFERENCES user_info(u_id);
 
 
 -- 모임 멤버수
