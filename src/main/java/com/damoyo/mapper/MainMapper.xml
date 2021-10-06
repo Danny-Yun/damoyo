@@ -27,7 +27,7 @@
 			ROWNUM rn, meet.* FROM 
 			(SELECT * FROM meet ORDER BY m_num DESC)meet
 			WHERE ROWNUM <= #{pageNum} * #{amount})tbl
-			WHERE rn > (#{pageNum} -1 * #{amount})
+			WHERE rn > ((#{pageNum} -1) * #{amount})
 		]]>	
 	
 		<!-- SELECT * FROM meet ORDER BY m_num DESC --> 

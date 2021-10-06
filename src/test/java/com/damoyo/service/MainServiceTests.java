@@ -19,10 +19,10 @@ public class MainServiceTests {
 	@Autowired
 	private MainService service;
 
-//	@Test
+	@Test
 	// 생성된 모임 리스트 조회
 	public void testGetListMeet() {
-		MainCriteria cri = new MainCriteria();
+		MainCriteria cri = new MainCriteria(10, 10);
 		log.info(service.getListMeet(cri));
 	}
 	

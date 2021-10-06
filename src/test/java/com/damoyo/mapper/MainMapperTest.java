@@ -34,7 +34,7 @@ public class MainMapperTest {
 	
 	@Test
 	public void testGetListMeet() {
-		MainCriteria cri = new MainCriteria();
+		MainCriteria cri = new MainCriteria(5,10);
 		log.info("cri pagnum : "+cri.getPageNum());
 		log.info("cri amount : "+cri.getAmount());
 		log.info(mainMapper.getListMeet(cri));
