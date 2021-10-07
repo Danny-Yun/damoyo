@@ -39,6 +39,8 @@ public class MainController {
 		log.info(userInfo);
 		
 		// 카테고리 및 모임 리스트 조회
+		if(cri.getKeyword()==null)
+			cri.setKeyword("");
 		log.info("list의 cri.pageNum : " + cri.getPageNum());
 		log.info("list의 cri.pageAmount : " + cri.getAmount());
 		log.info("list의 cri.searchType : " + cri.getSearchType());

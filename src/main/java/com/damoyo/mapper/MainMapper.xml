@@ -7,10 +7,15 @@
 			SELECT * FROM meet ORDER BY m_num DESC
 		</if>
 		<if test="searchType != null">
-			SELECT * FROM meet WHERE (
-			i_cate_num=#{searchType} AND m_name LIKE '%'||#{keyword}||'%' OR
-			i_cate_num=#{searchType} AND m_content LIKE '%'||#{keyword}||'%') 
-			ORDER BY m_num DESC
+			<if test="searchType == ''.toString()">
+				SELECT * FROM meet ORDER BY m_num DESC
+			</if>
+			<if test="searchType != ''.toString()">
+				SELECT * FROM meet WHERE (
+				i_cate_num=#{searchType} AND m_name LIKE '%'||#{keyword}||'%' OR
+				i_cate_num=#{searchType} AND m_content LIKE '%'||#{keyword}||'%') 
+				ORDER BY m_num DESC
+			</if>
 		</if>
 	</sql>
 	
