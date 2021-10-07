@@ -5,6 +5,11 @@
 
 
 <mapper namespace="com.damoyo.mapper.BoardMapper">
+	<sql id="search">
+		<if test="searchType != null">
+		
+		</if>
+	</sql>
 	
 	<select id="getBoards" resultType="com.damoyo.domain.BoardVO">
 		<![CDATA[

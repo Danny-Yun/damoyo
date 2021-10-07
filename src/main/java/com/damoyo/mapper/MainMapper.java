@@ -3,7 +3,7 @@ package com.damoyo.mapper;
 import java.util.List;
 
 import com.damoyo.domain.InterestVO;
-import com.damoyo.domain.MainCriteria;
+import com.damoyo.domain.MainSearchCriteria;
 import com.damoyo.domain.MeetMemberVO;
 import com.damoyo.domain.MeetVO;
 import com.damoyo.domain.UserVO;
@@ -17,7 +17,7 @@ public interface MainMapper {
 	public List<InterestVO> getInterest();
 	
 	// 모임 출력
-	public List<MeetVO> getListMeet(MainCriteria cri);
+	public List<MeetVO> getListMeet(MainSearchCriteria cri);
 	
 	// 모임 1개 디테일 출력
 	public MeetVO getDetailMeet(Long m_num);

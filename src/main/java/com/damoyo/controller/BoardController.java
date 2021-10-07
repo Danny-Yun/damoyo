@@ -17,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.damoyo.domain.BoardCateVO;
 import com.damoyo.domain.BoardCriteria;
 import com.damoyo.domain.BoardPageDTO;
+import com.damoyo.domain.BoardSearchCriteria;
 import com.damoyo.domain.BoardVO;
 import com.damoyo.domain.MeetVO;
 import com.damoyo.domain.UserVO;
@@ -35,7 +36,7 @@ public class BoardController {
 	private BoardService service;
 	
 	@GetMapping("/list")
-	public void list(Model model, HttpSession session, BoardCriteria cri) {
+	public void list(Model model, HttpSession session, BoardSearchCriteria cri) {
 		// user, meet 정보
 		UserVO userInfo = (UserVO) session.getAttribute("userInfo");
 		MeetVO meetInfo = (MeetVO) session.getAttribute("meetInfo");
@@ -47,10 +48,11 @@ public class BoardController {
 		List<BoardCateVO> category = service.getBoardCate();
 		
 		// 게시판_Meet에 해당하는 것만 출력
-		log.info("list 내의 cri 값 : "+cri);
+		if(cri.getKeyword() == null)
+			cri.setKeyword("");
+		List<BoardVO> boardList = service.getBoards(cri, meetInfo.getM_num());
 		int total = service.getTotalBoard(meetInfo.getM_num());
 		BoardPageDTO boardPages = new BoardPageDTO(total, cri);
-		List<BoardVO> boardList = service.getBoards(cri, meetInfo.getM_num());
 		
 		model.addAttribute("infos", infos);
 		model.addAttribute("category", category);

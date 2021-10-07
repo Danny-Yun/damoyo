@@ -23,7 +23,7 @@ public class BoardMapperTests {
 	public void getBoardsTest() {
 		BoardCriteria cri = new BoardCriteria(5, 10);
 
-		log.info(mapper.getBoards(cri, 2L));
+//		log.info(mapper.getBoards(cri, 2L));
 	}
 	
 //	@Test

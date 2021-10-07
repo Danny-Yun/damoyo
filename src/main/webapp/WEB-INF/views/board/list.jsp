@@ -83,6 +83,9 @@
 	<a href="/main/"><button>메인화면</button></a>
 	<br>
 	<select>
+		<option selected="<%-- ${meetPages.cri.searchType eq null ? 'selected' : ''}" value=" --%>">
+				전체보기
+		</option>
 		<c:forEach var="c" items="${category }">
 			<option>
 				 ${c.b_cate_name }
