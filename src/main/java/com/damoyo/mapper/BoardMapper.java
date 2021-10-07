@@ -2,14 +2,18 @@ package com.damoyo.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.damoyo.domain.BoardCateVO;
+import com.damoyo.domain.BoardCriteria;
 import com.damoyo.domain.BoardVO;
 
 public interface BoardMapper {
 
-	public BoardVO getBoard(Long b_num);
+//	public BoardVO getBoard(Long b_num);
 	
-	public List<BoardVO> getBoards(Long m_num);
+	public List<BoardVO> getBoards(@Param("cri")BoardCriteria cri, 
+								@Param("m_num")Long m_num);
 	
 	public void insertCate(BoardCateVO vo);
 	
@@ -21,4 +25,5 @@ public interface BoardMapper {
 	
 	public void delete(Long b_num);
 	
+	public int getTotalBoard(Long m_num);
 }

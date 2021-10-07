@@ -7,11 +7,16 @@
 <mapper namespace="com.damoyo.mapper.BoardMapper">
 	
 	<select id="getBoards" resultType="com.damoyo.domain.BoardVO">
-		SELECT * FROM board WHERE m_num=#{m_num} ORDER BY b_num DESC
-	</select>
-	
-	<select id="getBoard" resultType="com.damoyo.domain.BoardVO">
-		SELECT * FROM board WHERE b_num = #{b_num}
+		<![CDATA[
+			SELECT tbl.b_num, tbl.b_cate_name, tbl.b_title, tbl.b_content, tbl.b_date, tbl.b_like, tbl.b_image1, tbl.b_image2, tbl.b_image3, tbl.b_view, tbl.m_num, tbl.u_id
+			FROM(SELECT ROWNUM rn, board.* FROM(
+			
+			SELECT * FROM board WHERE m_num=#{m_num} ORDER BY b_num DESC
+		
+		)board
+			WHERE ROWNUM <= (#{cri.pageNum} * #{cri.amount}))tbl
+			WHERE rn > (#{cri.pageNum} -1) * #{cri.amount}
+		]]>			
 	</select>
 	
 	<insert id="insertCate">
@@ -20,7 +25,7 @@
 	</insert>
 	
 	<select id="getBoardCate" resultType="com.damoyo.domain.BoardCateVO">
-		SELECT * FROM board_category WHERE m_num=1 
+		SELECT * FROM board_category
 	</select>
 
 	<insert id="insert">
@@ -35,5 +40,9 @@
 	<update id="update">
 		UPDATE board SET b_title = #{b_title}, b_content = #{b_content} WHERE b_num = #{b_num}
 	</update>
+	
+	<select id="getTotalBoard" resultType="int">
+		SELECT COUNT(*) FROM board WHERE m_num=#{m_num}
+	</select>
 	
 </mapper>

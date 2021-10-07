@@ -119,5 +119,11 @@
 	<form action="/board/write" method="get">
 		<input type="submit" value="글쓰기">
 	</form>
+	${boardPages }
+	<a><button>${boardPages.prev }</button></a>
+	<c:forEach var="page" begin="${boardPages.startPage }" end="${boardPages.endPage }">
+		<a href="/board/list?pageNum=${page }"><button>${page}</button></a>
+	</c:forEach>
+	<a><button>${boardPages.next }</button></a>
 </body>
 </html>

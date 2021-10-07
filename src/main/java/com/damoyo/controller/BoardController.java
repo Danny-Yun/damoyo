@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.damoyo.domain.BoardCateVO;
+import com.damoyo.domain.BoardCriteria;
+import com.damoyo.domain.BoardPageDTO;
 import com.damoyo.domain.BoardVO;
 import com.damoyo.domain.MeetVO;
 import com.damoyo.domain.UserVO;
@@ -33,8 +35,7 @@ public class BoardController {
 	private BoardService service;
 	
 	@GetMapping("/list")
-	public void list(Model model, HttpSession session) {
-		log.info("");
+	public void list(Model model, HttpSession session, BoardCriteria cri) {
 		// user, meet 정보
 		UserVO userInfo = (UserVO) session.getAttribute("userInfo");
 		MeetVO meetInfo = (MeetVO) session.getAttribute("meetInfo");
@@ -45,23 +46,27 @@ public class BoardController {
 		// 게시판 카테고리
 		List<BoardCateVO> category = service.getBoardCate();
 		
-		// 게시판_모임에 해당하는 것만 출력
-		List<BoardVO> boards = service.getBoards(meetInfo.getM_num());
+		// 게시판_Meet에 해당하는 것만 출력
+		log.info("list 내의 cri 값 : "+cri);
+		int total = service.getTotalBoard(meetInfo.getM_num());
+		BoardPageDTO boardPages = new BoardPageDTO(total, cri);
+		List<BoardVO> boardList = service.getBoards(cri, meetInfo.getM_num());
 		
 		model.addAttribute("infos", infos);
 		model.addAttribute("category", category);
-		model.addAttribute("list", boards);
+		model.addAttribute("list", boardList);
+		model.addAttribute("boardPages", boardPages);
 	}
 	
 	@GetMapping("/detail")
 	public void detail(Model model, Long b_num, HttpSession session) {
 		UserVO userInfo = (UserVO) session.getAttribute("userInfo");
 		MeetVO meetInfo = (MeetVO) session.getAttribute("meetInfo");
-		BoardVO boardInfo = service.getBoard(b_num);
+		//BoardVO boardInfo = service.getBoard(b_num);
 		Map<String, Object> infos = new HashMap<String, Object>();
 		infos.put("user", userInfo);
 		infos.put("meet", meetInfo);
-		infos.put("board", boardInfo);
+		//infos.put("board", boardInfo);
 		
 		model.addAttribute("infos", infos);
 	}
