@@ -13,7 +13,6 @@ CREATE TABLE meet (
     CONSTRAINT meet_u_id_fk FOREIGN KEY (u_id) REFERENCES user_info(u_id)
 );
 */
-SELECT * FROM meet;
 
 INSERT INTO 
 meet(m_num, m_name, m_content, m_people_cnt, m_area, m_profile, i_cate_num, u_id)
@@ -22,7 +21,7 @@ VALUES(MEET_SEQ.nextval, '한강 러닝', '안녕하세요. 한강에서 러닝�
 INSERT INTO 
 meet(m_num, m_name, m_content, m_people_cnt, m_area, m_profile, i_cate_num, u_id)
 VALUES(MEET_SEQ.nextval, '삭제', '안녕하세요. 한강에서 러닝할 사람들의 모임입니다.', 20, '마포구', null, 1, 'wake');
-COMMIT;
+
 SELECT * FROM meet;
 
 SELECT meet.*, interest_category.i_cate_name FROM meet INNER JOIN interest_category 

@@ -32,9 +32,13 @@ public class MainMapperTest {
 		log.info(mainMapper.getInterest());
 	}
 	
-//	@Test
+	@Test
 	public void testGetListMeet() {
-		log.info(mainMapper.getListMeet());
+		MainCriteria cri = new MainCriteria(5,10);
+		log.info("cri pagnum : "+cri.getPageNum());
+		log.info("cri amount : "+cri.getAmount());
+		log.info(mainMapper.getListMeet(cri));
+		
 	}
 	
 //	@Test
@@ -59,7 +63,7 @@ public class MainMapperTest {
 		log.info(mainMapper.getDetailMeet(6L));
 	}
 	
-	@Test
+//	@Test
 	// 모임 삭제
 	public void testRemoveMeet() {
 		mainMapper.removeMeet(13L);

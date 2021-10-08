@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.damoyo.domain.BoardCriteria;
 import com.damoyo.domain.BoardVO;
 
 import lombok.extern.log4j.Log4j;
@@ -20,7 +21,9 @@ public class BoardMapperTests {
 	
 	@Test
 	public void getBoardsTest() {
-		log.info(mapper.getBoards());
+		BoardCriteria cri = new BoardCriteria(5, 10);
+
+//		log.info(mapper.getBoards(cri, 2L));
 	}
 	
 //	@Test
@@ -57,4 +60,10 @@ public class BoardMapperTests {
 	public void testGetBoardCate() {
 		mapper.getBoardCate();
 	}
+	
+//	@Test
+	public void testGetTotalBoard() {
+		mapper.getTotalBoard(2L);
+	}
+	
 }

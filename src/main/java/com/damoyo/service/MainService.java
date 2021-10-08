@@ -3,6 +3,7 @@ package com.damoyo.service;
 import java.util.List;
 
 import com.damoyo.domain.InterestVO;
+import com.damoyo.domain.MainSearchCriteria;
 import com.damoyo.domain.MeetMemberVO;
 import com.damoyo.domain.MeetVO;
 import com.damoyo.domain.UserVO;
@@ -15,7 +16,7 @@ public interface MainService {
 	public List<InterestVO> get();
 	
 	// 생성된 모임 리스트 가져오기
-	public List<MeetVO> getListMeet();
+	public List<MeetVO> getListMeet(MainSearchCriteria cri);
 	
 	// 모임 생성
 	public void registerMeet(MeetVO vo);
@@ -43,4 +44,7 @@ public interface MainService {
 	
 	// 모임 탈퇴
 	public void withdrawMeet(MeetMemberVO vo);
+	
+	// 모임 총 개수
+	public int getTotalMeet();
 }
