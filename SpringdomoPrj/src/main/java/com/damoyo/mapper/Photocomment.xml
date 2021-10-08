@@ -26,5 +26,8 @@
 		DELETE FROM photocomments
 		WHERE p_num = #{p_num}
 	</delete>
+	
+
+	
 
 </mapper>

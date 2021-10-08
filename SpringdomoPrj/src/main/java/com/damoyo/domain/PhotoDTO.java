@@ -23,9 +23,9 @@ public class PhotoDTO {
 	private int total;
 	
 	// 사진 전체 개수
-	private Criteria cri;
+	private PhotoCriteria cri;
 	
-	public PhotoDTO(Criteria cri, int total, int btnNum) {
+	public PhotoDTO(PhotoCriteria cri, int total, int btnNum) {
 		this.cri = cri;
 		this.total = total;
 		this.btnNum = btnNum;

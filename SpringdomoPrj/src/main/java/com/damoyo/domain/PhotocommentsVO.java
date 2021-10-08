@@ -9,4 +9,6 @@ public class PhotocommentsVO {
 	private Long m_num;
 	private Long p_num;
 	private String u_id;
+	
+	private PhotoVO photovo;
 }

@@ -12,7 +12,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class Criteria {
+public class PhotoCriteria {
 	
 	// 페이지 번호, 페이지당 몇 개의 글을 보여줄지에 대해
 	// 먼저 저장하고, 이를 이용해 나머지 정보를 계산합니다.
@@ -21,12 +21,12 @@ public class Criteria {
 	
 	// 생성자 오버로딩, 만약 페이지 정보가 들어온게 없다면
 	// 1페이지, 10개 게시물 게시를 기본값으로
-	public Criteria() {
+	public PhotoCriteria() {
 		this(1, 10);
 	}
 	
 	// 페이지 정보가 들어온다면 들어온 정보로 수치를 정함
-	public Criteria(int pageNum, int amount) {
+	public PhotoCriteria(int pageNum, int amount) {
 		this.pageNum = pageNum;
 		this.amount = amount;
 	}

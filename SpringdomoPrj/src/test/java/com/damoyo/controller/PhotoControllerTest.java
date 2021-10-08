@@ -37,7 +37,7 @@ public class PhotoControllerTest {
 		this.mockMvc = MockMvcBuilders.webAppContextSetup(ctx).build();
 	}
 	
-	@Test
+	//@Test
 	// 사진 정보
 	public void photoInfo() throws Exception{
 		log.info(
@@ -54,5 +54,21 @@ public class PhotoControllerTest {
 					.getModelAndView()
 					.getModelMap()
 					);
+		
 	}
+	@Test
+		public void testRegister() throws Exception {
+			
+			// 아래 코드는 post방식으로 파라미터 3개를 주소에 전달해주는 코드입니다.
+			// 결과 메세지는 문자열 resultPage에 저장해두고
+			String resultPage = mockMvc.perform(
+				MockMvcRequestBuilders.post("/photo/create")
+				.param("p_view", "1")
+				.param("p_cate_name", "테스트")
+				.param("u_id", "테스트다")
+				).andReturn().getModelAndView().getViewName();
+			 
+			//변수에 저장된 값을 다시 로깅을 해서 출력합니다.
+			log.info(resultPage);
+		}
 }
