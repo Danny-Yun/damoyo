@@ -11,7 +11,7 @@ import com.damoyo.mapper.PhotoMapper;
 import com.damoyo.mapper.PhotocommentMapper;
 
 @Service
-public class PhotocommentImpl implements Photocomments {
+public class PhotocommentImpl implements PCommentsService {
 
 	@Autowired
 	private PhotocommentMapper mapper;

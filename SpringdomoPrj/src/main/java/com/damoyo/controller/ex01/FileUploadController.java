@@ -22,7 +22,7 @@ public class FileUploadController {
 	private static final String CURR_IMAGE_REPO_PATH = "c:\\spring\\image_repo";
 	@RequestMapping(value="/form")
 	public String form() {
-		return "uploadForm";
+		return "loadForm";
 	}
 	
 	@RequestMapping(value="/upload",method=RequestMethod.POST)

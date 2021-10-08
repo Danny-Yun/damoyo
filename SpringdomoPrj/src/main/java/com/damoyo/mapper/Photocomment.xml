@@ -3,7 +3,7 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.rg/dtd/mybatis-3-mapper.dtd">
 	
-<mapper namespace="org.ict.mapper.PhotocommentMapper">
+<mapper namespace="com.damoyo.mapper.PhotocommentMapper">
 	<select id="getList" resultType="com.damoyo.domain.PhotocommentsVO">
 	SELECT * FROM photocomments
 	WHERE p_comment_num = #{p_comment_num}
@@ -26,5 +26,8 @@
 		DELETE FROM photocomments
 		WHERE p_num = #{p_num}
 	</delete>
+	
+
+	
 
 </mapper>

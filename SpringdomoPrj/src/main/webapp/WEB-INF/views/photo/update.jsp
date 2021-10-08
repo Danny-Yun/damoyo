@@ -10,7 +10,7 @@
 <body>
 	<h1>사진 수정창</h1>
 	${vo }
-	<form action="/update" method="post">
+	<form action="/photo/update" method="post">
 	<input type="hidden" name="p_num" value="${vo.p_num }">
 	사진 이름: <input type="text" name="p_cate_name" value="${vo.p_cate_name}">
 	사진 수정: <input type="file" name="p_image1" value="${vo.p_image1 }">
