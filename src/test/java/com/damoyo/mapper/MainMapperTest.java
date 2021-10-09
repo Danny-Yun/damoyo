@@ -32,10 +32,10 @@ public class MainMapperTest {
 		log.info(mainMapper.getInterest());
 	}
 	
-//	@Test
-	public void testGetListMeet() {
+	@Test
+	public void testGetListMeeXt() {
 		MainSearchCriteria cri = new MainSearchCriteria();
-		cri.setSearchType("");
+		cri.setSearchType("4");
 		cri.setKeyword("");
 		log.info(mainMapper.getListMeet(cri));
 	}
@@ -128,11 +128,11 @@ public class MainMapperTest {
 		mainMapper.withdrawMeet(vo);
 	}
 	
-	@Test
+//	@Test
 	public void testGetTotalMeet() {
 		MainSearchCriteria cri = new MainSearchCriteria();
 		cri.setSearchType("");
-		cri.setKeyword("");
+		cri.setKeyword("쿠키");
 		log.info("매퍼 num : " + cri.getSearchType());
 		log.info("매퍼 keyword : " + cri.getKeyword());
 		log.info(mainMapper.getTotalMeet(cri));
