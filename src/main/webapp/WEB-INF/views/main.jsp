@@ -28,8 +28,6 @@
 		<input type="text" name="keyword" placeholder="검색어" value="${meetPages.cri.keyword }">
 		<input type="submit">
 	</form>
-	${meetPages.cri.searchType eq null ? '정보없음' : '정보있음'}
-	${meetList }
 	<table border="1">
 		<c:forEach var="m" items="${meetList }">
 			<tr>
@@ -37,6 +35,7 @@
 					<a href="/meet/info?num=${m.m_num }">"${m.m_profile }이미지${m.m_num }"</a>
 				</td>
 				<td>${m.m_area } ${m.m_num }</td>
+				<td rowspan="3">${m.i_cate_name }</td>
 			</tr>
 			<tr>
 				<td>${m.m_name }</td>
@@ -56,7 +55,6 @@
 		<a href="/main/?pageNum=${meetPages.endPage + 1 }&searchType=${meetPages.cri.searchType}&keyword=${meetPages.cri.keyword}"><button>next</button></a>
 	</c:if>
 	<br>
-	${meetPages }
 	<br>
 	<a href="/main/register"><button>개설</button></a><br>
 </body>

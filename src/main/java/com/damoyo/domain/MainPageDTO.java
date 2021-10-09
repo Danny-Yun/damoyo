@@ -15,7 +15,7 @@ public class MainPageDTO {
 	private boolean prev, next;
 	private MainCriteria cri;
 	
-	public MainPageDTO(int total, MainCriteria cri) {
+	public MainPageDTO(int total, MainSearchCriteria cri) {
 		this.total = total;
 		this.cri = cri;
 		this.btnNum = 10;
