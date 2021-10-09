@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.damoyo.domain.InterestVO;
 import com.damoyo.domain.MeetMemberVO;
 import com.damoyo.domain.MeetVO;
 import com.damoyo.domain.PlanVO;
@@ -80,6 +81,7 @@ public class MeetController {
 	@PostMapping("/update/process")
 	// 모임 수정
 	public String updateMeet(MeetVO vo) {
+		log.info("업데이트 : " + vo);
 		service.updateMeet(vo);
 		return "redirect:/meet/info?num=" + vo.getM_num();
 	}
@@ -87,8 +89,10 @@ public class MeetController {
 	@PostMapping("/update")
 	// 모임 수정
 	public void updateMeet(Long num, Model model) {
-		MeetVO vo = service.getDetailMeet(num);
-		model.addAttribute("vo", vo);
+		MeetVO meetInfo = service.getDetailMeet(num);
+		List<InterestVO> interestList = service.get();
+		model.addAttribute("category",interestList);
+		model.addAttribute("meetInfo", meetInfo);
 	}
 	
 	@PostMapping("/join")
