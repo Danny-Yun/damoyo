@@ -3,7 +3,7 @@ package com.damoyo.service;
 import java.util.List;
 
 import com.damoyo.domain.BoardCateVO;
-import com.damoyo.domain.BoardCriteria;
+import com.damoyo.domain.BoardSearchCriteria;
 import com.damoyo.domain.BoardVO;
 
 public interface BoardService {
@@ -11,7 +11,7 @@ public interface BoardService {
 	
 //	public BoardVO getBoard(Long b_num);
 	
-	public List<BoardVO> getBoards(BoardCriteria cri, Long m_num);
+	public List<BoardVO> getBoards(BoardSearchCriteria cri, Long m_num);
 	
 	public void insertCate(BoardCateVO vo);
 	
@@ -23,5 +23,5 @@ public interface BoardService {
 	
 	public void delete(Long b_num);
 	
-	public int getTotalBoard(Long m_num);
+	public int getTotalBoard(BoardSearchCriteria cri ,Long m_num);
 }

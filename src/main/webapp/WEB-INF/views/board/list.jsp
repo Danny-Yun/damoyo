@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
 <!DOCTYPE html>
 <html>
 <head>
@@ -82,16 +83,24 @@
 	<a href="#"><button>채팅</button></a>
 	<a href="/main/"><button>메인화면</button></a>
 	<br>
-	<select>
-		<option selected="<%-- ${meetPages.cri.searchType eq null ? 'selected' : ''}" value=" --%>">
-				전체보기
-		</option>
-		<c:forEach var="c" items="${category }">
-			<option>
-				 ${c.b_cate_name }
+	
+	<form action="/board/list">
+		<select name="searchType">
+			<option selected="${boardPages.cri.searchType eq null ? 'selected' : ''}" value="">
+					전체보기
 			</option>
-		</c:forEach>	
-	</select>
+			<c:forEach var="c" items="${category }">
+				<option value="${c.b_cate_name}"
+					<c:out value="${boardPages.cri.searchType eq c.b_cate_name ? 'selected' : ''}"  />>
+					 ${c.b_cate_name }
+				</option>
+			</c:forEach>	
+		</select>
+		<input type="text" name="keyword" placeholder="검색어" value="${boardPages.cri.keyword }">
+		<input type="submit" value="검색">
+	</form>
+	<br>
+	<hr>
 	<c:forEach var="list" items="${list}">
 		<div class="left_side">
 			<div class="box_left"/></div>
@@ -115,18 +124,26 @@
 					<hr>
 			</div>
 		</div>
-		<div class="right_side">
+			<div class="right_side">
 		</div>
 	</c:forEach>
+	<div>
+		<form action="/board/write" method="get">
+			<input type="submit" value="글쓰기">
+		</form>
+		${boardPages }
+	</div>
+	<ul class="pagination">
+		<c:if test="${boardPages.prev }">
+			<a class="page-link" href="/board/list?pageNum=${boardPages.startPage - 1 }&searchType=${boardPages.cri.searchType}&keyword=${boardPages.cri.keyword}">Prev</a>
+		</c:if>
+		<c:forEach var="page" begin="${boardPages.startPage }" end="${boardPages.endPage }">
+			<li class="page-item ${boardPages.cri.pageNum eq page ? 'active' : '' }"><a class="page-link" href="/board/list?pageNum=${page }&searchType=${boardPages.cri.searchType}&keyword=${boardPages.cri.keyword}">${page}</a></li>
+		</c:forEach>
+		<c:if test="${boardPages.next }">
+			<a class="page-link" href="/board/list?pageNum=${boardPages.endPage + 1 }&searchType=${boardPages.cri.searchType}&keyword=${boardPages.cri.keyword}">Next</a>
+		</c:if>
+	</ul>
 	
-	<form action="/board/write" method="get">
-		<input type="submit" value="글쓰기">
-	</form>
-	${boardPages }
-	<a><button>${boardPages.prev }</button></a>
-	<c:forEach var="page" begin="${boardPages.startPage }" end="${boardPages.endPage }">
-		<a href="/board/list?pageNum=${page }"><button>${page}</button></a>
-	</c:forEach>
-	<a><button>${boardPages.next }</button></a>
 </body>
 </html>

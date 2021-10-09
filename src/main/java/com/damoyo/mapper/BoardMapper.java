@@ -25,5 +25,6 @@ public interface BoardMapper {
 	
 	public void delete(Long b_num);
 	
-	public int getTotalBoard(Long m_num);
+	public int getTotalBoard(@Param("cri")BoardSearchCriteria cri, 
+							@Param("m_num")Long m_num);
 }

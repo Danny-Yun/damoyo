@@ -29,13 +29,14 @@
 		<input type="submit">
 	</form>
 	${meetPages.cri.searchType eq null ? '정보없음' : '정보있음'}
+	${meetList }
 	<table border="1">
 		<c:forEach var="m" items="${meetList }">
 			<tr>
-			<td rowspan="3">
-				<a href="/meet/info?num=${m.m_num }">"${m.m_profile }이미지${m.m_num }"</a>
-			</td>
-				<td>${m.m_area }${m.m_num }</td>
+				<td rowspan="3">
+					<a href="/meet/info?num=${m.m_num }">"${m.m_profile }이미지${m.m_num }"</a>
+				</td>
+				<td>${m.m_area } ${m.m_num }</td>
 			</tr>
 			<tr>
 				<td>${m.m_name }</td>

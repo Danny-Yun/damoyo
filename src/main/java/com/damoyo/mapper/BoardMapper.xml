@@ -6,19 +6,38 @@
 
 <mapper namespace="com.damoyo.mapper.BoardMapper">
 	<sql id="search">
-		<if test="searchType != null">
-		
+		<if test="cri.searchType == null">
+			SELECT * FROM board WHERE m_num=#{m_num} ORDER BY b_num DESC
+		</if>
+		<if test="cri.searchType != null">
+			<if test="cri.searchType == ''.toString()">
+				SELECT * FROM board WHERE m_num=#{m_num} ORDER BY b_num DESC
+			</if>
+			<if test="cri.searchType != ''.toString()">
+				SELECT * FROM board WHERE m_num=#{m_num} AND b_cate_name=#{cri.searchType} AND
+				(b_title LIKE '%'||#{cri.keyword}||'%' OR b_content LIKE '%'||#{cri.keyword}||'%')
+			</if>
+		</if>
+	</sql>
+	<sql id="searchTotal">
+		<if test="cri.searchType != null">
+			<if test="cri.searchType == ''.toString()">
+				AND (b_title LIKE '%'||#{cri.keyword}||'%' OR b_content LIKE '%'||#{cri.keyword}||'%')
+			</if>
+			<if test="cri.searchType != ''.toString()">
+				AND b_cate_name=#{cri.searchType} 
+				AND (b_title LIKE '%'||#{cri.keyword}||'%' OR b_content LIKE '%'||#{cri.keyword}||'%')
+			</if>
 		</if>
 	</sql>
 	
 	<select id="getBoards" resultType="com.damoyo.domain.BoardVO">
 		<![CDATA[
 			SELECT tbl.b_num, tbl.b_cate_name, tbl.b_title, tbl.b_content, tbl.b_date, tbl.b_like, tbl.b_image1, tbl.b_image2, tbl.b_image3, tbl.b_view, tbl.m_num, tbl.u_id
-			FROM(SELECT ROWNUM rn, board.* FROM(
-			
-			SELECT * FROM board WHERE m_num=#{m_num} ORDER BY b_num DESC
-		
-		)board
+			FROM(SELECT ROWNUM rn, board.* FROM(]]>
+		<include refid="search"/>
+		<![CDATA[
+			)board
 			WHERE ROWNUM <= (#{cri.pageNum} * #{cri.amount}))tbl
 			WHERE rn > (#{cri.pageNum} -1) * #{cri.amount}
 		]]>			
@@ -47,7 +66,8 @@
 	</update>
 	
 	<select id="getTotalBoard" resultType="int">
-		SELECT COUNT(*) FROM board WHERE m_num=#{m_num}
+		SELECT COUNT(*) FROM board WHERE m_num=#{m_num}		
+		<include refid="searchTotal"/>
 	</select>
 	
 </mapper>

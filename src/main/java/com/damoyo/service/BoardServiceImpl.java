@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.damoyo.domain.BoardCateVO;
-import com.damoyo.domain.BoardCriteria;
+import com.damoyo.domain.BoardSearchCriteria;
 import com.damoyo.domain.BoardVO;
 import com.damoyo.mapper.BoardMapper;
 
@@ -27,7 +27,7 @@ public class BoardServiceImpl implements BoardService {
 	}*/
 
 	@Override
-	public List<BoardVO> getBoards(BoardCriteria cri, Long m_num) {
+	public List<BoardVO> getBoards(BoardSearchCriteria cri, Long m_num) {
 		
 		return mapper.getBoards(cri, m_num);
 	}
@@ -61,8 +61,8 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public int getTotalBoard(Long m_num) {
-		return mapper.getTotalBoard(m_num);
+	public int getTotalBoard(BoardSearchCriteria cri ,Long m_num) {
+		return mapper.getTotalBoard(cri, m_num);
 	}
 
 	

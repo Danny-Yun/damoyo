@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.damoyo.domain.BoardCateVO;
-import com.damoyo.domain.BoardCriteria;
 import com.damoyo.domain.BoardPageDTO;
 import com.damoyo.domain.BoardSearchCriteria;
 import com.damoyo.domain.BoardVO;
@@ -51,7 +50,7 @@ public class BoardController {
 		if(cri.getKeyword() == null)
 			cri.setKeyword("");
 		List<BoardVO> boardList = service.getBoards(cri, meetInfo.getM_num());
-		int total = service.getTotalBoard(meetInfo.getM_num());
+		int total = service.getTotalBoard(cri, meetInfo.getM_num());
 		BoardPageDTO boardPages = new BoardPageDTO(total, cri);
 		
 		model.addAttribute("infos", infos);

@@ -33,6 +33,6 @@
 		<textarea name="m_content"></textarea><br>
 		<input type="submit" value="생성">
 	</form>
-	<a href="/main/main"><button>메인화면</button></a>
+	<a href="/main/"><button>메인화면</button></a>
 </body>
 </html>

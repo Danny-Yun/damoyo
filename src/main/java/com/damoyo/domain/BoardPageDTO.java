@@ -15,7 +15,7 @@ public class BoardPageDTO {
 	private boolean prev, next;
 	private BoardCriteria cri;
 	
-	public BoardPageDTO(int total, BoardCriteria cri) {
+	public BoardPageDTO(int total, BoardSearchCriteria cri) {
 		this.total = total;
 		this.cri = cri;
 		this.btnNum = 10;
