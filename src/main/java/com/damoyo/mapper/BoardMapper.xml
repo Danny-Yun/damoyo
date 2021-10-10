@@ -43,6 +43,10 @@
 		]]>			
 	</select>
 	
+	<select id="getBoard" resultType="com.damoyo.domain.BoardVO">
+		SELECT * FROM board WHERE b_num=#{b_num}
+	</select>
+	
 	<insert id="insertCate">
 		INSERT INTO board_category(b_cate_num, b_cate_name, m_num)
 		VALUES(BOARD_CATEGORY_SEQ.nextval, #{b_cate_name}, #{m_num})

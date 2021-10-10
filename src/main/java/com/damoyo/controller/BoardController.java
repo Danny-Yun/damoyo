@@ -21,6 +21,9 @@ import com.damoyo.domain.BoardVO;
 import com.damoyo.domain.MeetVO;
 import com.damoyo.domain.UserVO;
 import com.damoyo.service.BoardService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.util.JSONPObject;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -60,14 +63,21 @@ public class BoardController {
 	}
 	
 	@GetMapping("/detail")
-	public void detail(Model model, Long b_num, HttpSession session) {
+	public void detail(Model model, Long b_num, HttpSession session) throws JsonProcessingException {
 		UserVO userInfo = (UserVO) session.getAttribute("userInfo");
 		MeetVO meetInfo = (MeetVO) session.getAttribute("meetInfo");
-		//BoardVO boardInfo = service.getBoard(b_num);
+		BoardVO boardInfo = service.getBoard(b_num);
+		log.info("board 정보 : "+boardInfo);
 		Map<String, Object> infos = new HashMap<String, Object>();
 		infos.put("user", userInfo);
 		infos.put("meet", meetInfo);
-		//infos.put("board", boardInfo);
+		infos.put("board", boardInfo);
+		
+		ObjectMapper mapper = new ObjectMapper();
+		String board = mapper.writeValueAsString(boardInfo);
+		String user = mapper.writeValueAsString(userInfo);
+		model.addAttribute("board", board);
+		model.addAttribute("user", user);
 		
 		model.addAttribute("infos", infos);
 	}

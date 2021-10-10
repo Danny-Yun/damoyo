@@ -1,18 +1,35 @@
 $(()=>{
-	let b_num = 2311;
+	// let b_num =2311;
 	let m_num = 2305;
+	// let b_num = JSON.parse("${board.b_num}");
+	// let infos = JSON.parse("${board.u_id}");
+	// console.log(infos);
 	// 댓글 불러오기
+
+	let board = $("#board").text();
+	let user = $("#user").text();
+	let b_num = JSON.parse(board).b_num;
 	function getAllList(){
 
+		let u_id = JSON.parse(user).u_id;
+		console.log(u_id);
 		$.getJSON("/replies/all/" + b_num, function(data){
-			console.log(data.length);
-			console.log(data);
+			// console.log(data.length);
+			// console.log(data);
 			
 			let str = "";
 			$(data).each(function(){
-				str += "<li data-rno='" + this.b_comment_num + "' class='replyLi'>" 
-				+ this.u_id + " - <span>" + this.b_comment_content 
-				+ "</span><button>수정/삭제</button></li>";
+				if(u_id != this.u_id){
+					str += "<li data-rno='" + this.b_comment_num + "' class='replyLi'>" 
+					+ this.u_id + " - <span>" + this.b_comment_content 
+					+ "</span>";
+				}else{
+					str += "<li data-rno='" + this.b_comment_num + "' class='replyLi'>" 
+					+ this.u_id + " - <span>" + this.b_comment_content 
+					+ "</span><button>수정/삭제</button></li>";
+
+				}
+
 			});
 			$("#replies").html(str);
 		});

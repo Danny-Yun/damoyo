@@ -10,7 +10,7 @@ import com.damoyo.domain.BoardVO;
 
 public interface BoardMapper {
 
-//	public BoardVO getBoard(Long b_num);
+	public BoardVO getBoard(Long b_num);
 	
 	public List<BoardVO> getBoards(@Param("cri")BoardSearchCriteria cri, 
 								@Param("m_num")Long m_num);

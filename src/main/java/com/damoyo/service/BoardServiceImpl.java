@@ -25,6 +25,10 @@ public class BoardServiceImpl implements BoardService {
 		
 		return mapper.getBoard(b_num);
 	}*/
+	@Override
+	public BoardVO getBoard(Long b_num) {
+		return mapper.getBoard(b_num);
+	}
 
 	@Override
 	public List<BoardVO> getBoards(BoardSearchCriteria cri, Long m_num) {

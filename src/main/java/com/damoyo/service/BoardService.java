@@ -9,7 +9,7 @@ import com.damoyo.domain.BoardVO;
 public interface BoardService {
 
 	
-//	public BoardVO getBoard(Long b_num);
+	public BoardVO getBoard(Long b_num);
 	
 	public List<BoardVO> getBoards(BoardSearchCriteria cri, Long m_num);
 	
