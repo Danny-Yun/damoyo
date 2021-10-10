@@ -22,12 +22,12 @@ public class BoardServiceTests {
 	//@Test
 	public void getBoardTest() {
 		
-		service.getBoard(5L);
+//		service.getBoard(5L);
 	}
 	
 	//@Test
 	public void getBoardsTest() {
-		service.getBoards(13L);
+//		service.getBoards(13L);
 	}
 	
 	//@Test

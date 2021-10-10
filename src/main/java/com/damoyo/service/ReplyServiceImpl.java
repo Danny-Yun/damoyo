@@ -8,7 +8,11 @@ import org.springframework.stereotype.Service;
 import com.damoyo.domain.ReplyVO;
 import com.damoyo.mapper.ReplyMapper;
 
+import lombok.AllArgsConstructor;
+
 @Service
+@AllArgsConstructor
+
 public class ReplyServiceImpl implements ReplyService {
 
 	@Autowired

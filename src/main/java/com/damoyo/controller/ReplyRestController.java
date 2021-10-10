@@ -2,6 +2,8 @@ package com.damoyo.controller;
 
 import java.util.List;
 
+import com.damoyo.domain.ReplyVO;
+import com.damoyo.service.ReplyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -15,16 +17,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.damoyo.domain.ReplyVO;
-import com.damoyo.service.ReplyService;
-
-
-
 @RestController
 @RequestMapping("/replies")
 public class ReplyRestController {
 	
-	@Autowired ReplyService service;
+	@Autowired 
+	private ReplyService service;
 	
 	// 댓글 생성
 	@PostMapping(value = "", consumes = "application/json", produces = {MediaType.TEXT_PLAIN_VALUE})
@@ -41,14 +39,14 @@ public class ReplyRestController {
 	}
 	
 	// 댓글 불러오기
-	@GetMapping(value = "/all/{b_num}", produces = {MediaType.APPLICATION_ATOM_XML_VALUE})
-	public ResponseEntity<List<ReplyVO>> getList(@PathVariable("b_num") Long b_num){
+	@GetMapping(value = "/all/{b_num}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
+	public ResponseEntity<List<ReplyVO>> list(@PathVariable("b_num") Long b_num){
 		ResponseEntity<List<ReplyVO>> entity = null;
 		try {
-			entity = new ResponseEntity<List<ReplyVO>>(service.getList(b_num), HttpStatus.OK);
+			entity = new ResponseEntity<>(service.getList(b_num), HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
-			entity = new ResponseEntity<List<ReplyVO>>(HttpStatus.BAD_REQUEST);
+			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		return entity;
 	}
