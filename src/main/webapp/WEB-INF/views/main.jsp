@@ -30,8 +30,8 @@
 		<input type="submit">
 	<br>
 	<br>
-	<a href="/main/register"><button>개설</button></a><br>
 	</form>
+
 	<table border="1">
 		<c:forEach var="m" items="${meetList }">
 			<tr>
