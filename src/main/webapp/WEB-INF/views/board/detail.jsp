@@ -43,7 +43,7 @@
 		</tr>
 		<%-- <tr><td>${infos.board.b_date}</td></tr> --%>
 		<tr>
-			<td>조회 : ${infos.board.b_view }</td><td>댓글 : ${infos.replyCnt }</td><td>추천 : ${infos.likeCnt }</td>
+			<td>조회 : ${infos.board.b_view }</td><td>추천 : ${infos.likeCnt }</td>
 		</tr>
 		<tr><td colspan="3">${infos.board.b_title }</td></tr>
 		<tr><td colspan="3">${infos.board.b_content }</td></tr>

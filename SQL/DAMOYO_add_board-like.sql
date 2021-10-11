@@ -10,9 +10,53 @@
 --);
 
 -- Sample
-INSERT INTO board_like(b_like_num, m_num, b_num, u_id)
-VALUES(BOARD_LIKE_SEQ.nextval, 2305, 2311, 'wls');
+INSERT INTO board_like(b_like_num, m_num, b_num, u_id) VALUES(BOARD_LIKE_SEQ.nextval, 2305, 2311, 'wls');
+INSERT INTO board_like(b_like_num, m_num, b_num, u_id) VALUES(BOARD_LIKE_SEQ.nextval, 2305,2311, 'tbrk');
+INSERT INTO board_like(b_like_num, m_num, b_num, u_id) VALUES(BOARD_LIKE_SEQ.nextval, 2305,2311, 'wpdlghq');
+INSERT INTO board_like(b_like_num, m_num, b_num, u_id) VALUES(BOARD_LIKE_SEQ.nextval, 2305,2311, 'rm');
+INSERT INTO board_like(b_like_num, m_num, b_num, u_id) VALUES(BOARD_LIKE_SEQ.nextval, 2305,2311, 'wlals');
+INSERT INTO board_like(b_like_num, m_num, b_num, u_id) VALUES(BOARD_LIKE_SEQ.nextval, 2305,2311, 'qnl');
+INSERT INTO board_like(b_like_num, m_num, b_num, u_id) VALUES(BOARD_LIKE_SEQ.nextval, 2305,2311, 'wjdrnr');
 
+INSERT INTO board_like(b_like_num, m_num, b_num, u_id) VALUES(BOARD_LIKE_SEQ.nextval, 2305,2311, 'skdus');
+INSERT INTO board_like(b_like_num, m_num, b_num, u_id) VALUES(BOARD_LIKE_SEQ.nextval, 2305,2311, 'wjddus');
+INSERT INTO board_like(b_like_num, m_num, b_num, u_id) VALUES(BOARD_LIKE_SEQ.nextval, 2305,2311, 'ahah');
+INSERT INTO board_like(b_like_num, m_num, b_num, u_id) VALUES(BOARD_LIKE_SEQ.nextval, 2305,2311, 'tksk');
+INSERT INTO board_like(b_like_num, m_num, b_num, u_id) VALUES(BOARD_LIKE_SEQ.nextval, 2305,2311, 'wlgy');
+INSERT INTO board_like(b_like_num, m_num, b_num, u_id) VALUES(BOARD_LIKE_SEQ.nextval, 2305,2311, 'alsk');
+INSERT INTO board_like(b_like_num, m_num, b_num, u_id) VALUES(BOARD_LIKE_SEQ.nextval, 2305,2311, 'ekgus');
+INSERT INTO board_like(b_like_num, m_num, b_num, u_id) VALUES(BOARD_LIKE_SEQ.nextval, 2305,2311, 'codud');
+INSERT INTO board_like(b_like_num, m_num, b_num, u_id) VALUES(BOARD_LIKE_SEQ.nextval, 2305,2311, 'Wmdnl');
+
+INSERT INTO board_like(b_like_num, m_num, b_num, u_id) VALUES(BOARD_LIKE_SEQ.nextval, 2305,2312, 'wls');
+INSERT INTO board_like(b_like_num, m_num, b_num, u_id) VALUES(BOARD_LIKE_SEQ.nextval, 2305,2312, 'wls');
+INSERT INTO board_like(b_like_num, m_num, b_num, u_id) VALUES(BOARD_LIKE_SEQ.nextval, 2305,2312, 'tbrk');
+INSERT INTO board_like(b_like_num, m_num, b_num, u_id) VALUES(BOARD_LIKE_SEQ.nextval, 2305,2312, 'wpdlghq');
+INSERT INTO board_like(b_like_num, m_num, b_num, u_id) VALUES(BOARD_LIKE_SEQ.nextval, 2305,2312, 'rm');
+INSERT INTO board_like(b_like_num, m_num, b_num, u_id) VALUES(BOARD_LIKE_SEQ.nextval, 2305,2312, 'wlals');
+INSERT INTO board_like(b_like_num, m_num, b_num, u_id) VALUES(BOARD_LIKE_SEQ.nextval, 2305,2312, 'qnl');
+INSERT INTO board_like(b_like_num, m_num, b_num, u_id) VALUES(BOARD_LIKE_SEQ.nextval, 2305,2312, 'wjdrnr');
+
+INSERT INTO board_like(b_like_num, m_num, b_num, u_id) VALUES(BOARD_LIKE_SEQ.nextval, 2305,2312, 'skdus');
+INSERT INTO board_like(b_like_num, m_num, b_num, u_id) VALUES(BOARD_LIKE_SEQ.nextval, 2305,2312, 'wjddus');
+INSERT INTO board_like(b_like_num, m_num, b_num, u_id) VALUES(BOARD_LIKE_SEQ.nextval, 2305,2312, 'ahah');
+INSERT INTO board_like(b_like_num, m_num, b_num, u_id) VALUES(BOARD_LIKE_SEQ.nextval, 2305,2312, 'tksk');
+INSERT INTO board_like(b_like_num, m_num, b_num, u_id) VALUES(BOARD_LIKE_SEQ.nextval, 2305,2312, 'wlgy');
+INSERT INTO board_like(b_like_num, m_num, b_num, u_id) VALUES(BOARD_LIKE_SEQ.nextval, 2305,2312, 'alsk');
+INSERT INTO board_like(b_like_num, m_num, b_num, u_id) VALUES(BOARD_LIKE_SEQ.nextval, 2305,2312, 'ekgus');
+INSERT INTO board_like(b_like_num, m_num, b_num, u_id) VALUES(BOARD_LIKE_SEQ.nextval, 2305,2312, 'codud');
+INSERT INTO board_like(b_like_num, m_num, b_num, u_id) VALUES(BOARD_LIKE_SEQ.nextval, 2305,2312, 'Wmdnl');
+
+-- Like 누른 리스트
+SELECT * FROM board_like WHERE b_num=2312 AND u_id='ansquf';
+SELECT * FROM board_like WHERE b_num=2312 ORDER BY b_like_num DESC;
+DELETE FROM board_like WHERE b_like_num=36;
+
+
+
+
+
+commit;
 
 
 
