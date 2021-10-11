@@ -25,4 +25,7 @@ WHERE b_comment_num=0;
 -- delete
 DELETE FROM board_comments WHERE b_comment_num=1;
 
+-- 댓글 수 파악
+SELECT COUNT(*) FROM board_comments WHERE b_num=2311;
+
 COMMIT;

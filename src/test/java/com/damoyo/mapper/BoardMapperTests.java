@@ -67,12 +67,19 @@ public class BoardMapperTests {
 		mapper.getBoardCate();
 	}
 	
-	@Test
+//	@Test
 	public void testGetTotalBoard() {
 		BoardSearchCriteria cri = new BoardSearchCriteria();
 		cri.setSearchType("");
 		cri.setKeyword("인사");
 		log.info(mapper.getTotalBoard(cri, 2L));
+	}
+	
+	@Test
+	public void testCheckLike() {
+		log.info("테스트");
+		
+		log.info("결과 : "+mapper.checkLike(2311L, "wlss"));
 	}
 	
 }

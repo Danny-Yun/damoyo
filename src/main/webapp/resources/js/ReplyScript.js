@@ -130,6 +130,26 @@ $(()=>{
 		});
 	});
 
+	// 좋아요 버튼
+	$("#likeBtn").on("click",function(){
+		let form = $("#likeForm");
+		form[0][0].setAttribute("value", m_num);
+		form[0][1].setAttribute("value", b_num);
+		form[0][2].setAttribute("value", u_id);
+		form.submit();
+	})
+
+	// 좋아요 취소 버튼
+	$("#likeCancelBtn").on("click",function(){
+		console.log("좋아요 클릭");
+		let form = $("#likeCancelForm");
+		form[0][0].setAttribute("value", m_num);
+		form[0][1].setAttribute("value", b_num);
+		form[0][2].setAttribute("value", u_id);
+		console.log(form);
+		form.submit();
+	})
+
 
 
 

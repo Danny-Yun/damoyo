@@ -25,7 +25,7 @@
 	<h1>${infos.meet.m_name }의 게시판</h1>
 	유저 정보 : ${infos.user}<br>
 	${infos.user.u_id}<br>
-	모임 정보 : ${board}<br>
+	모임 정보 : ${infos.meet}<br>
 	게시판 정보 : ${infos.board }<br>
 	<a href="/board/list">게시판 목록</a>
 	<form action="/board/delete" method="post">
@@ -42,15 +42,33 @@
 			<td>${infos.board.b_date}</td>
 		</tr>
 		<%-- <tr><td>${infos.board.b_date}</td></tr> --%>
+		<tr>
+			<td>조회 : ${infos.board.b_view }</td><td>댓글 : ${infos.replyCnt }</td><td>추천 : ${infos.likeCnt }</td>
+		</tr>
 		<tr><td colspan="3">${infos.board.b_title }</td></tr>
 		<tr><td colspan="3">${infos.board.b_content }</td></tr>
 		<tr><td colspan="3">${infos.board.b_image1 }</td></tr>
 		<tr><td colspan="3">${infos.board.b_image2 }</td></tr>
 		<tr><td colspan="3">${infos.board.b_image3 }</td></tr>
-		<tr>
-			<td colspan="3">${infos.board.b_like }좋아요</td>
-		</tr>
 	</table>
+	<c:choose>
+		<c:when test="${infos.likeInfo eq null }">
+			<button id="likeBtn">좋아요</button>
+		</c:when>
+		<c:otherwise>
+			<button id="likeCancelBtn">좋아요 취소</button>
+		</c:otherwise>
+	</c:choose>
+	<form style='display:inline' action="/board/like" method="post" id="likeForm">
+		<input type="hidden" value="" name="m_num" />
+		<input type="hidden" value="" name="b_num" />
+		<input type="hidden" value="" name="u_id" />
+	</form> 
+	<form style='display:inline' action="/board/likeCancel" method="post" id="likeCancelForm">
+		<input type="hidden" value="" name="m_num" />
+		<input type="hidden" value="" name="b_num" />
+		<input type="hidden" value="" name="u_id" />
+	</form> 
 	<hr>
 	<h2>댓글창</h2>
 	<input type="text" id="b_comment_content" placeholder="댓글을 달아주세요">

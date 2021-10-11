@@ -4,8 +4,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.damoyo.domain.BoardCateVO;
+import com.damoyo.domain.BoardLikeVO;
 import com.damoyo.domain.BoardSearchCriteria;
 import com.damoyo.domain.BoardVO;
 import com.damoyo.mapper.BoardMapper;
@@ -25,8 +27,10 @@ public class BoardServiceImpl implements BoardService {
 		
 		return mapper.getBoard(b_num);
 	}*/
+	@Transactional
 	@Override
 	public BoardVO getBoard(Long b_num) {
+		mapper.upView(b_num);
 		return mapper.getBoard(b_num);
 	}
 
@@ -68,6 +72,30 @@ public class BoardServiceImpl implements BoardService {
 	public int getTotalBoard(BoardSearchCriteria cri ,Long m_num) {
 		return mapper.getTotalBoard(cri, m_num);
 	}
-
 	
+	@Override
+	public int replyCnt(Long b_num) {
+		return mapper.replyCnt(b_num);
+	}
+	
+	@Override
+	public int likeCnt(Long b_num) {
+		return mapper.likeCnt(b_num);
+	}
+	
+	@Override
+	public BoardLikeVO checkLike(Long b_num, String u_id) {
+		return mapper.checkLike(b_num, u_id);
+	}
+	
+	@Override
+	public void clickLike(BoardLikeVO vo) {
+		mapper.clickLike(vo);
+	}
+	
+	@Override
+	public void clickLikeCancel(BoardLikeVO vo) {
+		mapper.clickLikeCancel(vo);
+	}
+
 }

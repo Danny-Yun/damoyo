@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.damoyo.domain.BoardCateVO;
+import com.damoyo.domain.BoardLikeVO;
 import com.damoyo.domain.BoardPageDTO;
 import com.damoyo.domain.BoardSearchCriteria;
 import com.damoyo.domain.BoardVO;
@@ -67,11 +68,17 @@ public class BoardController {
 		UserVO userInfo = (UserVO) session.getAttribute("userInfo");
 		MeetVO meetInfo = (MeetVO) session.getAttribute("meetInfo");
 		BoardVO boardInfo = service.getBoard(b_num);
-		log.info("board 정보 : "+boardInfo);
+		BoardLikeVO likeInfo = service.checkLike(b_num, userInfo.getU_id());
+		int replyCnt = service.replyCnt(b_num);
+		int likeCnt = service.likeCnt(b_num);
+		
 		Map<String, Object> infos = new HashMap<String, Object>();
 		infos.put("user", userInfo);
 		infos.put("meet", meetInfo);
 		infos.put("board", boardInfo);
+		infos.put("replyCnt", replyCnt);
+		infos.put("likeCnt", likeCnt);
+		infos.put("likeInfo", likeInfo);
 		
 		// JSON형태로 객체 전송_.js에서 읽기 위해
 		ObjectMapper mapper = new ObjectMapper();
@@ -114,5 +121,17 @@ public class BoardController {
 		return "redirect:/board/list";
 	}
 	
+	@PostMapping("/like")
+	public String clikLike(BoardLikeVO vo, RedirectAttributes rttr) {
+		service.clickLike(vo);
+		rttr.addAttribute("b_num", vo.getB_num());
+		return "redirect:/board/detail";
+	}
 	
+	@PostMapping("/likeCancel")
+	public String clickLikeCancel(BoardLikeVO vo, RedirectAttributes rttr) {
+		rttr.addAttribute("b_num", vo.getB_num());
+		service.clickLikeCancel(vo);
+		return "redirect:/board/detail";
+	}
 }
