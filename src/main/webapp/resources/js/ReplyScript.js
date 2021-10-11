@@ -5,7 +5,6 @@ $(()=>{
 	// let infos = JSON.parse("${board.u_id}");
 	// console.log(infos);
 	// 댓글 불러오기
-
 	let board = $("#board").text();
 	let user = $("#user").text();
 	let b_num = JSON.parse(board).b_num;
