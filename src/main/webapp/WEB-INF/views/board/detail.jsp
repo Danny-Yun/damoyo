@@ -7,6 +7,19 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<style>
+	#modiDiv {
+		width:	300px;
+		height: 100px;
+		background-color: green;
+		position:	absolute;
+		top:	50%;
+		left:	50%;
+		margin-top: -50px;
+		margin-right: -150px;
+		z-index: 1;
+	}
+</style>
 </head>
 <body>
 	<h1>${infos.meet.m_name }의 게시판</h1>
@@ -39,10 +52,9 @@
 		</tr>
 	</table>
 	<hr>
-	<form action="#">
-		<input type="text" placeholder="댓글을 달아주세요">
-		<input type="submit" value="전송">
-	</form>
+	<h2>댓글창</h2>
+	<input type="text" id="b_comment_content" placeholder="댓글을 달아주세요">
+	<button  id="replyAddBtn">등록</button>
 	<hr>
 	<ul id="replies"></ul>
 	<ul id="testinfo"></ul>

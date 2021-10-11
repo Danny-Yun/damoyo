@@ -73,6 +73,7 @@ public class BoardController {
 		infos.put("meet", meetInfo);
 		infos.put("board", boardInfo);
 		
+		// JSON형태로 객체 전송_.js에서 읽기 위해
 		ObjectMapper mapper = new ObjectMapper();
 		String board = mapper.writeValueAsString(boardInfo);
 		String user = mapper.writeValueAsString(userInfo);
