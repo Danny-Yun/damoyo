@@ -34,6 +34,14 @@ public class UserMapperTests {
 	}
 	
 	//@Test
+	public void testGetIdCount() {
+		String u_id = "asdasdddd";
+//		String u_id = "riudiu";
+		
+		userMapper.getIdCount(u_id);
+	}
+	
+	//@Test
 	public void testGetInterestCate() {
 		userMapper.getInterestCate();
 	}

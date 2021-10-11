@@ -17,6 +17,11 @@
 				'간략한 자기소개를 작성해주세요', null)
 	</insert>
 	
+	<!-- 아이디 중복확인 -->
+	<select id="getIdCount" resultType="int">
+		SELECT COUNT(*) FROM user_info WHERE u_id=#{u_id}
+	</select>
+	
 	<!-- 관심사 카테고리 조회 -->
 	<select id="getInterestCate" resultType="com.damoyo.domain.ICateVO">
 		SELECT * FROM interest_category ORDER BY i_cate_num ASC

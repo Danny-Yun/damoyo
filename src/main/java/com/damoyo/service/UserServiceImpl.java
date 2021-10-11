@@ -37,6 +37,14 @@ public class UserServiceImpl implements UserService{
 		log.info("사용자 회원가입 서비스 실행 - " + vo);
 		userMapper.join(vo);
 	}
+	
+	// 아이디 중복확인
+	@Override
+	public int showIdCount(String u_id) {
+		log.info("회원가입시 아이디 중복확인 서비스 실행 - " + u_id);
+		int result = userMapper.getIdCount(u_id);
+		return result;
+	}
 
 	// 관심사 카테고리 조회
 	@Override
@@ -111,5 +119,6 @@ public class UserServiceImpl implements UserService{
 		log.info("회원 탈퇴 서비스 실행 - " + u_id);
 		userMapper.deleteAccount(u_id);
 	}
+
 	
 }

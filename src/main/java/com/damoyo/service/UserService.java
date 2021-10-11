@@ -16,6 +16,9 @@ public interface UserService {
 	// 회원가입
 	public void userJoin(UserVO vo);
 	
+	// 아이디 중복확인 
+	public int showIdCount(String u_id);
+	
 	// 관심사 카테고리 조회
 	public List<ICateVO> showInterestCate();
 	

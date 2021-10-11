@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.damoyo.domain.ICateNumDTO;
@@ -41,7 +42,8 @@ public class UserController {
 	// 회원가입
 	@PostMapping("/join")
 	public String join(UserVO vo, RedirectAttributes rttr, HttpSession session) {
-		// 가장 먼저 방금 가입한 사용자의 아이디를 세션에 저장
+		
+		// 방금 가입한 사용자의 아이디를 세션에 저장
 		session.setAttribute("u_id", vo.getU_id());
 
 		log.info("join 로직 접속 - " + vo);
@@ -49,6 +51,14 @@ public class UserController {
 		rttr.addFlashAttribute("joinUserId", vo.getU_id());
 		rttr.addFlashAttribute("success", "joinOk");
 		return "redirect:/user/interest";
+	}
+	
+	// 아이디 중복체크 
+	@ResponseBody
+	@PostMapping("/join/idCheck")
+	public int checkIdDuplication(String u_id) {
+		int result = userService.showIdCount(u_id);
+		return result;
 	}
 
 	// 관심사 카테고리 조회

@@ -45,6 +45,14 @@ public class UserServiceTests {
 	}
 	
 	//@Test
+		public void testGetIdCount() {
+			String u_id = "asdasdddd";
+//			String u_id = "danny";
+			
+			userService.showIdCount(u_id);
+		}
+	
+	//@Test
 	public void testShowInterestCate() {
 		userService.showInterestCate();
 	}

@@ -16,23 +16,33 @@
 </style>
 <meta charset="UTF-8">
 <title>DAMOYO - 회원가입</title>
-
+<!-- 제이쿼리 -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
 	<h3>회원가입</h3>
 	
-	<form action="/user/join" method="post">
+	<form action="/user/join" method="post" id="joinForm">
 		<fieldset>
 			<legend>아이디로 가입하기</legend>
 			
 			<div>
 				아이디 <br>
-				<input type="text" name="u_id" placeholder="ID" required />
+				<input type="text" name="u_id" id="u_id" placeholder="ID" required  />
+				<button type="button" id="idCheck" onclick="fn_idCheck();" value="N">중복확인</button>
 			</div>
 
 			<div>
 				비밀번호 <br> 
-				<input type="password" name="u_pw" minlength="8" placeholder="8자 이상 입력하세요" required />
+				<input type="password" name="u_pw" id="u_pw" minlength="8" 
+					onchange="check_pw()" placeholder="8자 이상 입력하세요" required />
+			</div>
+			
+			<div>
+				새 비밀번호 확인 <br>
+				<input type="password" name="re_pw" id="re_pw"
+			 		minlength="8" onchange="check_pw()" required />
+		 		<span id="check"></span>
 			</div>
 			
 			<div>
@@ -61,8 +71,54 @@
 				<input type="text" name="u_area" placeholder="AREA" required />
 			</div>
 		</fieldset>
-		<p><input type="submit" value="가입하기" /><p>
+		<p><input type="submit" id="submit" value="가입하기" /><p>
 	</form>
+	
+	<script>
+		function fn_idCheck() {
+
+			let u_id = $("#u_id").val();
+			console.log(u_id);
+			$.ajax({
+				url : "/user/join/idCheck",
+				type : "post",
+				dataType : "json",
+				data : { "u_id" : u_id },
+				success : function(data) {
+					if(data == 0) {
+						alert("사용 가능한 아이디입니다.");
+						$("#idCheck").attr("value", "OK");  // 아이디 중복 확인되었음으로 속성값 변경 
+					} else {
+						alert("중복된 아이디입니다.");
+						$("#u_id").val("");  // 아이디 입력칸 초기화
+					}
+				}
+			})
+		}
+		
+		function check_pw() {
+			if(document.getElementById('u_pw').value!='' && document.getElementById('re_pw').value!=''){
+		        if(document.getElementById('u_pw').value === document.getElementById('re_pw').value ){
+		            document.getElementById('check').innerHTML='OK'
+		            document.getElementById('check').style.color='blue';
+		        }
+		        else{
+		            document.getElementById('check').innerHTML='비밀번호가 일치하지 않습니다.';
+		            document.getElementById('check').style.color='red';
+		        }
+		    }
+		}
+		
+		$("#submit").on("click", function() {
+			
+			let idCheckVal = $("#idCheck").val();
+			if(idCheckVal == "N") {
+				alert("중복확인 버튼을 눌러주세요.");
+			} else {
+				$("joinForm").submit();
+			}
+		});
+	</script>
 	
 </body>
 </html>

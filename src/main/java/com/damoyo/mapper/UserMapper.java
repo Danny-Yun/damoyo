@@ -16,6 +16,9 @@ public interface UserMapper {
 	// 회원가입
 	public void join(UserVO vo);
 	
+	// 아이디 중복확인 
+	public int getIdCount(String u_id);
+	
 	// 관심사 카테고리 조회
 	public List<ICateVO> getInterestCate();
 	
