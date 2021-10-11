@@ -16,6 +16,7 @@
 	사진 번호 : <input type="number" name="p_num"><br>
 	<input type='file' name='uploadFile' multiple>
 	<input type="submit" value="등록">
+	<a href="javascript:void(0);" class="like " id="likeBtn" data-chuserid="claeotls" data-prgid="62543630"><i></i>0</a>
 	</form>
 	<a href="/main"><button>메인 페이지로</button></a>
 </body>

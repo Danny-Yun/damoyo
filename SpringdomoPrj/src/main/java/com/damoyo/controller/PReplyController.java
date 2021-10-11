@@ -21,7 +21,7 @@ import com.damoyo.service.PCommentsService;
 
 
 @RestController
-@RequestMapping("/replie")
+@RequestMapping("/replie/")
 public class PReplyController {
 	
 	@Autowired

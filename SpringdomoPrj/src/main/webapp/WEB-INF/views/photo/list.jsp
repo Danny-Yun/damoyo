@@ -10,7 +10,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1 class="text text-primary">게시물 목록</h1>
+<h1 class="text text-primary">사진 목록</h1>
 
 	<table class="table table-hover">
 		<tr>

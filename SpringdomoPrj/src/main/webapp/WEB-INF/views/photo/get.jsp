@@ -80,6 +80,7 @@
 			<input type="text" id="replytext">		
 		</div>
 		<div>
+			<button type="button" id="likeBtn">좋아요</button>
 			<button type="button" id="replyModBtn">수정</button>
 			<button type="button" id="replyDelBtn">삭제</button>
 			<button type="button" id="closeBtn">닫기</button>
@@ -149,9 +150,9 @@
 				},
 				dataType : 'text',
 				data : JSON.stringify({
-					bno:bno,
-					replyer:replyer,
-					reply:reply
+					p_comment_num:p_comment_num,
+					p_comment_content:p_comment_content,
+					u_id:u_id
 				}),
 				success : function(result){
 					if(result == 'SUCCESS'){
@@ -174,7 +175,7 @@
 			
 			$.ajax({
 				type : 'delete',
-				url : '/replies/' + rno,
+				url : '/replies/' + p_num,
 				// 삭제로직은 rno만 전달함
 				// 호출타입 delete, url정보 이외엔 처리할게 없음
 				success : function(result){
@@ -197,7 +198,7 @@
 			
 			$.ajax({
 				type : 'put',
-				url : '/replies/' + rno,
+				url : '/replie/' + p_num,
 				headers : {
 					"Content-Type" : "application/json",
 					"X-HTTP-Method-Override" : "PUT"
@@ -252,7 +253,9 @@
 		$("#closeBtn").on("click", function(){
 			$("#modDiv").hide("slow");
 		});
-		
+		$("#likeBtn").on("click", function(){
+			$("#modDiv").hide("slow");
+		})
 		
 	</script>
 	

@@ -68,12 +68,12 @@ public class PhotoServiceImpl implements PhotoService{
 
 	@Override
 	public List<PhotoVO> getListPaging(PhotoSearchCriteria cri) {
-		List<PhotoVO> photoss = mapper.getListPaging(cri);
-		return photoss;
+		List<PhotoVO> photos = mapper.getListPaging(cri);
+		return photos;
 	}
 	@Override
 	public int gettotalPhoto(PhotoSearchCriteria cri) {
-		return mapper.gettotalPhoto(cri);
+		return mapper.gettotalPhoto();
 	}
 
 
