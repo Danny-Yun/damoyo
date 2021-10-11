@@ -124,6 +124,12 @@ public class UserServiceTests {
 		userService.modifyPassword(vo);
 	}
 	
+	//@Test 
+	public void testShowDetailCount() {
+		String u_id = "danny";
+		userService.showDetailCount(u_id);
+	}
+	
 	//@Test
 	public void testRemoveAccount() {
 		String u_id = "danny";

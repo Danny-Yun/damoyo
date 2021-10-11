@@ -48,4 +48,7 @@ public interface UserService {
 	
 	// 회원 탈퇴
 	public void removeAccount(String u_id);
+	
+	// 관심사 최대 개수를 제한하기 위해 유저의 관심사 개수 조회 
+	public int showDetailCount(String u_id);
 }

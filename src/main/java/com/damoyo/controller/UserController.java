@@ -101,6 +101,14 @@ public class UserController {
 	@PostMapping("/interest/detail")
 	public String saveInterestDetail(MyInterestDTO dto, RedirectAttributes rttr) {
 		log.info("사용자가 선택한 상세 관심사 및 유저아이디 - " + dto);
+		// 만약 사용자가 이미 선택한 관심사의 개수와 새로 추가한 관심사의 개수를 합친 값이 
+		// 우리가 정한 최대 개수인 30개를 초과하면 저장하지 않고 돌려보낸다. 
+		int i_num = userService.showDetailCount(dto.getU_id());
+		if(i_num + dto.getI_detail_name().length > 30) {
+			rttr.addFlashAttribute("result", "fail");
+			return "redirect:/user/myinterest";
+		}
+		
 		for(int i = 0; i < dto.getI_detail_name().length; i++) {
 			MyInterestVO vo = new MyInterestVO();		
 			vo.setU_id(dto.getU_id());
@@ -193,7 +201,11 @@ public class UserController {
 			return "/user/login";
 		}
 		List<MyInterestVO> myInterest = userService.showUserInterest(u_id);
-		System.out.println(myInterest);
+		System.out.println("사용자 관심사 리스트 : " + myInterest);
+		int i_num = userService.showDetailCount(u_id);
+		System.out.println("사용자 관심사 개수 : " + i_num);
+		
+		model.addAttribute("i_num", i_num);
 		model.addAttribute("myInterest", myInterest);
 		return "/user/myinterest";
 	}

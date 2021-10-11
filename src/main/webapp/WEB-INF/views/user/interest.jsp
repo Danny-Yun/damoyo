@@ -21,6 +21,8 @@
 	console.log(id);
 	console.log(result);
 </script>
+<!-- 제이쿼리 -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
 	<h3>관심사 선택</h3><br>
@@ -38,5 +40,14 @@
   		</form>
 	</div>
 	
+	<script>
+		$("input[type='checkbox']").on("click", function() {
+			let count = $("input:checked[type='checkbox']").length;
+			if(count > 7) {
+				$(this).prop("checked", false);  // 7개 넘을 경우 선택 취소시키기
+				alert("최대 7개의 관심사만 선택할 수 있습니다.");
+			} 
+		});
+	</script>
 </body>
 </html>

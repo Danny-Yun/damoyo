@@ -120,5 +120,13 @@ public class UserServiceImpl implements UserService{
 		userMapper.deleteAccount(u_id);
 	}
 
+	// 관심사 최대 개수를 제한하기 위해 유저의 관심사 개수 조회 
+	@Override
+	public int showDetailCount(String u_id) {
+		log.info("사용자의 관심사 갯수 조회 서비스 실행 - " + u_id);
+		int i_num = userMapper.getDetailCount(u_id);
+		return i_num;
+	}
+
 	
 }

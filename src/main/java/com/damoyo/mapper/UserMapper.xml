@@ -93,4 +93,9 @@
 		DELETE FROM user_info WHERE u_id = #{u_id}
 	</delete>
 	
+	<!-- 유저의 관심사 개수 조회 --> 
+	<select id="getDetailCount" resultType="int">
+		SELECT COUNT(*) FROM my_favorit_interest WHERE u_id=#{u_id}
+	</select>
+	
 </mapper>

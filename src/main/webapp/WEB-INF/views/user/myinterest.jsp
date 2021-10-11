@@ -35,6 +35,11 @@
 		<input type="hidden" value="" name="f_interest_num" />
 	</form> 
 	
+	<p>총 개수 : ${i_num }</p>
+	
+	<p><button type="button" class="btn btn-warning"
+			onclick="location.href='/user/mypage'">마이페이지</button></p>
+	
 	<script>
 		function removeInterest(data) {
 			let remove = document.getElementById("remove");
@@ -42,6 +47,12 @@
 			console.log(remove.childNodes[1]);
 			remove.submit(); 
 		}
+		
+		let result = "${result}";
+		console.log(result);
+		if(result === "fail") {
+			alert("선택한 관심사가 최대 개수인 30개를 초과하였습니다.");
+		} 
 	</script>
 </body>
 </html>

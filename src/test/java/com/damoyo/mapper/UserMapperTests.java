@@ -112,11 +112,16 @@ public class UserMapperTests {
 		vo.setU_pw("jiu123123");
 		userMapper.updatePassword(vo);
 	}
+
+	//@Test 
+	public void testGetDetailCount() {
+		String u_id = "riudiu";
+		userMapper.getDetailCount(u_id);
+	}
 	
 	//@Test
 	public void testDeleteAccount() {
 		String u_id = "riudiu";
 		userMapper.deleteAccount(u_id);
 	}
-	
 }
