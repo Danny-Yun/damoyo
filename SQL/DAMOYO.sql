@@ -33,12 +33,14 @@ CREATE SEQUENCE  "MYTEST"."MY_FAVORIT_INTEREST_SEQ"  MINVALUE 0 MAXVALUE 9999999
 CREATE TABLE my_favorit_interest (
     f_interest_num NUMBER(3) PRIMARY KEY NOT NULL,
     u_id varchar2(100) NOT NULL,
-    i_cate_num NUMBER(3) NOT NULL,
     i_detail_name VARCHAR2(100) NOT NULL,
     CONSTRAINT mfi_u_id_fk FOREIGN KEY (u_id) REFERENCES user_info(u_id),
     CONSTRAINT mfi_i_cate_fk FOREIGN KEY (i_cate_num) REFERENCES interest_category(i_cate_num),
     CONSTRAINT mfi_i_detail_fk FOREIGN KEY (i_detail_name) REFERENCES interest_detail(i_detail_name)
 );
+-- FK 삭제
+ALTER TABLE my_favorit_interest DROP CONSTRAINT mfi_i_cate_fk;
+commit;
 
 -- 모임
 CREATE SEQUENCE  "MYTEST"."MEET_SEQ"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 0 NOCACHE  NOORDER  NOCYCLE  NOKEEP  NOSCALE  GLOBAL ;
