@@ -64,5 +64,5 @@ public interface PhotoMapper {
 	public List<PhotoVO> getListPaging(PhotoSearchCriteria cri);
 	
 	// 사진 전체갯수
-	public int gettotalPhoto();
+	public int gettotalPhoto(PhotoSearchCriteria cri);
 }
