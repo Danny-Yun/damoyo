@@ -2,10 +2,12 @@ package com.damoyo.service;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.damoyo.domain.InterestVO;
+import com.damoyo.domain.MainSearchCriteria;
 import com.damoyo.domain.MeetMemberVO;
 import com.damoyo.domain.MeetVO;
 import com.damoyo.domain.UserVO;
@@ -38,9 +40,9 @@ public class MainServiceImpl implements MainService {
 	}
 
 	@Override
-	public List<MeetVO> getListMeet() {
+	public List<MeetVO> getListMeet(MainSearchCriteria cri) {
 		log.info("생성된 모임 리스트 조회");
-		List<MeetVO> listMeet = mapper.getListMeet();
+		List<MeetVO> listMeet = mapper.getListMeet(cri);
 		return listMeet;
 	}
 
@@ -94,5 +96,10 @@ public class MainServiceImpl implements MainService {
 	@Override
 	public void withdrawMeet(MeetMemberVO vo) {
 		mapper.withdrawMeet(vo);
+	}
+	
+	@Override
+	public int getTotalMeet(@Param("cri")MainSearchCriteria cri) {
+		return mapper.getTotalMeet(cri);
 	}
 }

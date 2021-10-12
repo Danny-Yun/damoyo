@@ -2,7 +2,10 @@ package com.damoyo.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.damoyo.domain.InterestVO;
+import com.damoyo.domain.MainSearchCriteria;
 import com.damoyo.domain.MeetMemberVO;
 import com.damoyo.domain.MeetVO;
 import com.damoyo.domain.UserVO;
@@ -16,7 +19,7 @@ public interface MainMapper {
 	public List<InterestVO> getInterest();
 	
 	// 모임 출력
-	public List<MeetVO> getListMeet();
+	public List<MeetVO> getListMeet(@Param("cri") MainSearchCriteria cri);
 	
 	// 모임 1개 디테일 출력
 	public MeetVO getDetailMeet(Long m_num);
@@ -41,4 +44,7 @@ public interface MainMapper {
 	
 	// 모임 탈퇴
 	public void withdrawMeet(MeetMemberVO vo);
+	
+	// 모임 총 개수
+	public int getTotalMeet(@Param("cri")MainSearchCriteria cri);
 }

@@ -2,7 +2,6 @@ package com.damoyo.controller;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.damoyo.domain.InterestVO;
+import com.damoyo.domain.MainPageDTO;
+import com.damoyo.domain.MainSearchCriteria;
 import com.damoyo.domain.MeetMemberVO;
 import com.damoyo.domain.MeetVO;
 import com.damoyo.domain.UserVO;
@@ -32,17 +33,29 @@ public class MainController {
 	private MainService service;
 	
 	@GetMapping("/")
-	public void list(Model model, HttpServletRequest request, HttpSession session) {
+	public void list(Model model, HttpSession session, MainSearchCriteria cri) {
 		// 유저 정보
 		UserVO userInfo = (UserVO)session.getAttribute("userInfo");
+		log.info(userInfo);
 		
 		// 카테고리 및 모임 리스트 조회
+		if(cri.getKeyword()==null)
+			cri.setKeyword("");
+		if(cri.getSearchType() == null)
+			cri.setSearchType("");
+		int total = service.getTotalMeet(cri);
+		log.info("컨트롤러");
+		log.info(cri.getSearchType());
+		log.info(total);
 		List<InterestVO> interestList = service.get();
-		List<MeetVO> meetList = service.getListMeet();
+		List<MeetVO> meetList = service.getListMeet(cri);
+		MainPageDTO meetPages = new MainPageDTO(total, cri);
+		
 		
 		model.addAttribute("interest", interestList);
 		model.addAttribute("meetList", meetList);
 		model.addAttribute("userInfo", userInfo);
+		model.addAttribute("meetPages", meetPages);
 	}
 	
 	@GetMapping("/register")

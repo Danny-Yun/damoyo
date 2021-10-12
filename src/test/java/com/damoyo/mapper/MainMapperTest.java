@@ -32,9 +32,12 @@ public class MainMapperTest {
 		log.info(mainMapper.getInterest());
 	}
 	
-//	@Test
-	public void testGetListMeet() {
-		log.info(mainMapper.getListMeet());
+	@Test
+	public void testGetListMeeXt() {
+		MainSearchCriteria cri = new MainSearchCriteria();
+		cri.setSearchType("4");
+		cri.setKeyword("");
+		log.info(mainMapper.getListMeet(cri));
 	}
 	
 //	@Test
@@ -59,7 +62,7 @@ public class MainMapperTest {
 		log.info(mainMapper.getDetailMeet(6L));
 	}
 	
-	@Test
+//	@Test
 	// 모임 삭제
 	public void testRemoveMeet() {
 		mainMapper.removeMeet(13L);
@@ -125,4 +128,13 @@ public class MainMapperTest {
 		mainMapper.withdrawMeet(vo);
 	}
 	
+//	@Test
+	public void testGetTotalMeet() {
+		MainSearchCriteria cri = new MainSearchCriteria();
+		cri.setSearchType("");
+		cri.setKeyword("쿠키");
+		log.info("매퍼 num : " + cri.getSearchType());
+		log.info("매퍼 keyword : " + cri.getKeyword());
+		log.info(mainMapper.getTotalMeet(cri));
+	}
 }
