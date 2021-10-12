@@ -115,7 +115,7 @@ public class UserController {
 			vo.setI_detail_name(dto.getI_detail_name()[i]);
 			userService.saveUserInterest(vo);
 		}
-		return "redirect:/user/mypage";
+		return "redirect:/main/";
 	}
 	
 	// 마이페이지 
@@ -153,10 +153,11 @@ public class UserController {
 				&& user.getU_pw().equals(vo.getU_pw()) ) {
 			session.setAttribute("u_id", user.getU_id());
 			session.setAttribute("u_pw", user.getU_pw());
+			session.setAttribute("userInfo", user);
 			rttr.addFlashAttribute("id_session", session.getAttribute("u_id"));
 			rttr.addFlashAttribute("pw_session", session.getAttribute("u_pw"));
 			rttr.addFlashAttribute("result","loginOK");
-			return "redirect:/user/mypage";
+			return "redirect:/main/";
 		} else {
 			rttr.addFlashAttribute("result","fail");
 			return "redirect:/user/login";

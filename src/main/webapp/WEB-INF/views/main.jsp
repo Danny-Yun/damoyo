@@ -13,7 +13,7 @@
 	${userInfo }<br>
 	
 	<a href="/main/"><button>DAMOYO LIST</button></a>
-	<a href="#"><button>My Page</button></a><br>
+	<a href="/user/mypage"><button>My Page</button></a><br>
 	<form action="/main/" method="get">
 		<select name="searchType">
  			<option selected="${meetPages.cri.searchType eq null ? 'selected' : ''}" value="">
@@ -31,7 +31,10 @@
 	<br>
 	<br>
 	</form>
-
+	<a href="/main/register"><button>생성</button></a>
+	<form action="/user/logout" method="post">
+		<input type="submit" value="로그아웃" />
+	</form>
 	<table border="1">
 		<c:forEach var="m" items="${meetList }">
 			<tr>
