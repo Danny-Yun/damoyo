@@ -41,13 +41,14 @@ public class MainController {
 		// 카테고리 및 모임 리스트 조회
 		if(cri.getKeyword()==null)
 			cri.setKeyword("");
-		log.info("list의 cri.pageNum : " + cri.getPageNum());
-		log.info("list의 cri.pageAmount : " + cri.getAmount());
-		log.info("list의 cri.searchType : " + cri.getSearchType());
-		log.info("list의 cri.keyword : " + cri.getKeyword());
+		if(cri.getSearchType() == null)
+			cri.setSearchType("");
+		int total = service.getTotalMeet(cri);
+		log.info("컨트롤러");
+		log.info(cri.getSearchType());
+		log.info(total);
 		List<InterestVO> interestList = service.get();
 		List<MeetVO> meetList = service.getListMeet(cri);
-		int total = service.getTotalMeet();
 		MainPageDTO meetPages = new MainPageDTO(total, cri);
 		
 		

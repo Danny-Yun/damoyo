@@ -7,6 +7,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.damoyo.domain.BoardCateVO;
+import com.damoyo.domain.BoardLikeVO;
 import com.damoyo.domain.BoardVO;
 
 import lombok.extern.log4j.Log4j;
@@ -22,12 +23,12 @@ public class BoardServiceTests {
 	//@Test
 	public void getBoardTest() {
 		
-		service.getBoard(5L);
+//		service.getBoard(5L);
 	}
 	
 	//@Test
 	public void getBoardsTest() {
-		service.getBoards(13L);
+//		service.getBoards(13L);
 	}
 	
 	//@Test
@@ -54,7 +55,7 @@ public class BoardServiceTests {
 		service.update(vo);
 	}
 	
-	@Test
+//	@Test
 	public void deleteTest() {
 		service.delete(6L);
 	}
@@ -69,5 +70,11 @@ public class BoardServiceTests {
 			log.info(vo);
 			service.insertCate(vo);
 		}
+	}
+	
+	@Test
+	public void testcheckLike() {
+		log.info("테스트");
+		log.info(service.checkLike(2312L, "wls"));
 	}
 }

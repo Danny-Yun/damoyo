@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.damoyo.domain.BoardCriteria;
+import com.damoyo.domain.BoardSearchCriteria;
 import com.damoyo.domain.BoardVO;
 
 import lombok.extern.log4j.Log4j;
@@ -19,11 +19,17 @@ public class BoardMapperTests {
 	@Autowired
 	public BoardMapper mapper;
 	
-	@Test
+//	@Test
 	public void getBoardsTest() {
-		BoardCriteria cri = new BoardCriteria(5, 10);
-
-//		log.info(mapper.getBoards(cri, 2L));
+		BoardSearchCriteria cri = new BoardSearchCriteria();
+		cri.setSearchType("가입인사");
+		cri.setKeyword("인사");
+//		log.info(cri);
+		log.info("pageNum : " + cri.getPageNum());
+		log.info("amount : " + cri.getAmount());
+		log.info("searchtype : " + cri.getSearchType());
+		log.info("keyword : " + cri.getKeyword());
+		log.info(mapper.getBoards(cri, 2L));
 	}
 	
 //	@Test
@@ -63,7 +69,17 @@ public class BoardMapperTests {
 	
 //	@Test
 	public void testGetTotalBoard() {
-		mapper.getTotalBoard(2L);
+		BoardSearchCriteria cri = new BoardSearchCriteria();
+		cri.setSearchType("");
+		cri.setKeyword("인사");
+		log.info(mapper.getTotalBoard(cri, 2L));
+	}
+	
+	@Test
+	public void testCheckLike() {
+		log.info("테스트");
+		
+		log.info("결과 : "+mapper.checkLike(2311L, "wlss"));
 	}
 	
 }

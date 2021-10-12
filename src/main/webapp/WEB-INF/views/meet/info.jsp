@@ -15,11 +15,12 @@
 	모임정보 : ${infos.meet}<br>
 	가입여부 : ${infos.checkJoin eq null ? '정보 없음':'정보 있음' } <br>
 	<a href="/meet/info?num=${infos.meet.m_num }"><button>정보</button></a>
-	<a href="/meet/board/list"><button>게시판</button></a>
+	<a href="${infos.checkJoin eq null ? '#':'/meet/board/list'}"><button>게시판</button></a>
 	<a href="#"><button>갤러리</button></a>
 	<a href="#"><button>채팅</button></a>
 	<a href="/main/"><button>메인화면</button></a>
 	<br>
+	<script type="text/javascript"></script>
 	<table border="1">
 		<tr><td colspan="2">${infos.meet.m_profile }</td></tr>
 		<tr>

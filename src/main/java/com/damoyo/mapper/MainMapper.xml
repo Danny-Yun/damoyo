@@ -3,24 +3,30 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.damoyo.mapper.MainMapper">
 	<sql id="search">
-		<if test="searchType == null">
-			SELECT * FROM meet ORDER BY m_num DESC
-		</if>
-		<if test="searchType != null">
-			<if test="searchType == ''.toString()">
-				SELECT * FROM meet ORDER BY m_num DESC
+		<if test="cri.searchType != null">
+			<if test="cri.searchType == ''.toString()">
+				(m.m_name LIKE '%'||#{cri.keyword}||'%' OR m.m_content LIKE '%'||#{cri.keyword}||'%') 
 			</if>
-			<if test="searchType != ''.toString()">
-				SELECT * FROM meet WHERE (
-				i_cate_num=#{searchType} AND m_name LIKE '%'||#{keyword}||'%' OR
-				i_cate_num=#{searchType} AND m_content LIKE '%'||#{keyword}||'%') 
-				ORDER BY m_num DESC
+			<if test="cri.searchType != ''.toString()">
+				(m.i_cate_num=#{cri.searchType} AND m.m_name LIKE '%'||#{cri.keyword}||'%' OR
+				m.i_cate_num=#{cri.searchType} AND m.m_content LIKE '%'||#{cri.keyword}||'%') 
 			</if>
 		</if>
 	</sql>
+	<sql id="searchTotal">
+		<if test="cri.searchType != null">
+			<if test="cri.searchType == ''.toString()">
+				WHERE (m_name LIKE '%'||#{cri.keyword}||'%' OR m_content LIKE '%'||#{cri.keyword}||'%')
+			</if>
+			<if test="cri.searchType != ''.toString()">
+				WHERE i_cate_num=#{cri.searchType} 
+				AND (m_name LIKE '%'||#{cri.keyword}||'%' OR m_content LIKE '%'||#{cri.keyword}||'%')
+			</if>
+		</if>	
+	</sql>
 	
 	<sql id="getMemberList">
-		SELECT user_info.u_profile,user_info.u_name,user_info.u_intro, meet_member_list.* 
+		SELECT user_info.u_profile, user_info.u_name, user_info.u_intro, meet_member_list.* 
 		FROM meet_member_list INNER JOIN user_info 
 		ON meet_member_list.u_id=user_info.u_id WHERE m_num=#{m_num} ORDER BY member_list_position, u_name
 	</sql>
@@ -38,16 +44,21 @@
 	<!-- 모임 리스트 가져오기 -->
 	<select id="getListMeet" resultType="com.damoyo.domain.MeetVO">
 		<![CDATA[
-			SELECT tbl.m_num, tbl.m_name, tbl.m_content, tbl.m_people_cnt, tbl.m_area, tbl.m_profile, tbl.i_cate_num, tbl.u_id 
+			SELECT tbl.* 
 			FROM (SELECT /*+ INDEX_DESC(board_tbl pk_board)*/
-			ROWNUM rn, meet.* FROM 
-			(]]>
+			ROWNUM rn, meet.* FROM (
+			SELECT m.*, i.i_cate_name 
+			FROM meet m LEFT OUTER JOIN interest_category i
+			ON m.i_cate_num=i.i_cate_num
+			WHERE 
+			]]>
 			
 		<include refid="search"/>
 		
-		<![CDATA[)meet
-			WHERE ROWNUM <= #{pageNum} * #{amount})tbl
-			WHERE rn > ((#{pageNum} -1) * #{amount})
+		<![CDATA[
+			ORDER BY m_num DESC)meet
+			WHERE ROWNUM <= #{cri.pageNum} * #{cri.amount})tbl
+			WHERE rn > ((#{cri.pageNum} -1) * #{cri.amount})
 		]]>	
 	
 		<!-- SELECT * FROM meet ORDER BY m_num DESC --> 
@@ -112,5 +123,6 @@
 	<!-- 모임 총 개수 -->
 	<select id="getTotalMeet" resultType="int">
 		SELECT COUNT(*) FROM meet
+		<include refid="searchTotal"/>
 	</select>
 </mapper>

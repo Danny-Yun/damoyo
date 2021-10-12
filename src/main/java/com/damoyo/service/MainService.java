@@ -2,6 +2,8 @@ package com.damoyo.service;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.damoyo.domain.InterestVO;
 import com.damoyo.domain.MainSearchCriteria;
 import com.damoyo.domain.MeetMemberVO;
@@ -46,5 +48,5 @@ public interface MainService {
 	public void withdrawMeet(MeetMemberVO vo);
 	
 	// 모임 총 개수
-	public int getTotalMeet();
+	public int getTotalMeet(@Param("cri")MainSearchCriteria cri);
 }
