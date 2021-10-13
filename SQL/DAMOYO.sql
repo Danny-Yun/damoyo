@@ -110,7 +110,6 @@ CREATE SEQUENCE  "MYTEST"."BOARD_CATEGORY_SEQ"  MINVALUE 0 MAXVALUE 999999999999
 CREATE TABLE board_category(
     b_cate_num NUMBER(3) PRIMARY KEY NOT NULL,
     b_cate_name VARCHAR2(40) NOT NULL,
-    m_num NUMBER NOT NULL,
     CONSTRAINT bc_m_mum_fk FOREIGN KEY (m_num) REFERENCES meet(m_num),
     CONSTRAINT uni_b_cate_name UNIQUE (b_cate_name)
 );
