@@ -2,11 +2,8 @@
 -- 전체보기, 자유게시판, 관심사 공유, 정모후기, 가입인사, 공지사항
 
 SELECT * FROM board_category;
--- 카테고리 이름 타입 변경
-ALTER TABLE board_category MODIFY b_cate_name VARCHAR2(40);
 
-INSERT INTO board_category(b_cate_num, b_cate_name)
-VALUES(BOARD_CATEGORY_SEQ.nextval, '전체보기');
+
 INSERT INTO board_category(b_cate_num, b_cate_name)
 VALUES(BOARD_CATEGORY_SEQ.nextval, '자유게시판');
 INSERT INTO board_category(b_cate_num, b_cate_name)

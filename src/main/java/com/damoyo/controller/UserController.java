@@ -34,6 +34,45 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
+	// 로그인 폼
+	@GetMapping("/login")
+	public void loginForm() {
+	}
+	
+	// 로그인
+	@PostMapping("/login")
+	public String login(UserVO vo ,RedirectAttributes rttr, HttpSession session) {
+		log.info("사용자가 입력한 로그인 정보 - " + vo);
+		UserVO user = userService.userLogin(vo);
+		log.info("유저 정보 - " + user);
+		
+		if(user == null) {
+			rttr.addFlashAttribute("result","fail");
+			return "redirect:/user/login";
+		}
+		
+		if(user.getU_id().equals(vo.getU_id()) 
+				&& user.getU_pw().equals(vo.getU_pw()) ) {
+			session.setAttribute("u_id", user.getU_id());
+			session.setAttribute("u_pw", user.getU_pw());
+			session.setAttribute("userInfo", user);
+			rttr.addFlashAttribute("id_session", session.getAttribute("u_id"));
+			rttr.addFlashAttribute("pw_session", session.getAttribute("u_pw"));
+			rttr.addFlashAttribute("result","loginOK");
+			return "redirect:/main/";
+		} else {
+			rttr.addFlashAttribute("result","fail");
+			return "redirect:/user/login";
+		}
+	}
+	
+	// 로그아웃
+	@PostMapping("/logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "/user/login";
+	}
+		
 	// 회원가입 폼
 	@GetMapping("/join")
 	public void joinForm() {
@@ -130,45 +169,6 @@ public class UserController {
 		UserVO profile = userService.showProfile(u_id);
 		model.addAttribute("profile", profile);
 		return "/user/mypage";
-	}
-	
-	// 로그인 폼
-	@GetMapping("/login")
-	public void loginForm() {
-	}
-	
-	// 로그인
-	@PostMapping("/login")
-	public String login(UserVO vo ,RedirectAttributes rttr, HttpSession session) {
-		log.info("사용자가 입력한 로그인 정보 - " + vo);
-		UserVO user = userService.userLogin(vo);
-		log.info("유저 정보 - " + user);
-		
-		if(user == null) {
-			rttr.addFlashAttribute("result","fail");
-			return "redirect:/user/login";
-		}
-		
-		if(user.getU_id().equals(vo.getU_id()) 
-				&& user.getU_pw().equals(vo.getU_pw()) ) {
-			session.setAttribute("u_id", user.getU_id());
-			session.setAttribute("u_pw", user.getU_pw());
-			session.setAttribute("userInfo", user);
-			rttr.addFlashAttribute("id_session", session.getAttribute("u_id"));
-			rttr.addFlashAttribute("pw_session", session.getAttribute("u_pw"));
-			rttr.addFlashAttribute("result","loginOK");
-			return "redirect:/main/";
-		} else {
-			rttr.addFlashAttribute("result","fail");
-			return "redirect:/user/login";
-		}
-	}
-	
-	// 로그아웃
-	@PostMapping("/logout")
-	public String logout(HttpSession session) {
-		session.invalidate();
-		return "/user/login";
 	}
 	
 	// 내 정보 수정

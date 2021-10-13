@@ -33,7 +33,12 @@ public class MainController {
 	private MainService service;
 	
 	@GetMapping("/")
-	public void list(Model model, HttpSession session, MainSearchCriteria cri) {
+	public String list(Model model, HttpSession session, MainSearchCriteria cri) {
+		String u_id = (String) session.getAttribute("u_id");
+		// 세션이 비었을 땐 로그인 페이지로
+		if(u_id == null) {
+			return "/user/login";
+		}
 		// 유저 정보
 		UserVO userInfo = (UserVO)session.getAttribute("userInfo");
 		log.info(userInfo);
@@ -56,13 +61,20 @@ public class MainController {
 		model.addAttribute("meetList", meetList);
 		model.addAttribute("userInfo", userInfo);
 		model.addAttribute("meetPages", meetPages);
+		return "/main";
 	}
 	
 	@GetMapping("/register")
-	public void register(Model model) {
+	public String register(Model model, HttpSession session) {
+		String u_id = (String) session.getAttribute("u_id");
+		// 세션이 비었을 땐 로그인 페이지로
+		if(u_id == null) {
+			return "/user/login";
+		}
 		// 관심사 카테고리
 		List<InterestVO> vo = service.get();
 		model.addAttribute("category", vo);
+		return "/main/register";
 	}
 	@PostMapping("/register")
 	public String register(RedirectAttributes rttr, MeetVO vo) {

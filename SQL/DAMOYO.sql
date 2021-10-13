@@ -39,8 +39,9 @@ CREATE TABLE my_favorit_interest (
     CONSTRAINT mfi_i_detail_fk FOREIGN KEY (i_detail_name) REFERENCES interest_detail(i_detail_name)
 );
 -- FK 삭제
-ALTER TABLE my_favorit_interest DROP CONSTRAINT mfi_i_cate_fk;
-commit;
+ALTER TABLE my_favorit_interest DROP CONSTRAINT mfi_u_id_fk;
+-- FK 재설정__CASCADE설정
+ALTER TABLE my_favorit_interest ADD CONSTRAINT mfi_u_id_fk FOREIGN KEY (u_id) REFERENCES user_info(u_id) ON DELETE CASCADE;
 
 -- 모임
 CREATE SEQUENCE  "MYTEST"."MEET_SEQ"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 0 NOCACHE  NOORDER  NOCYCLE  NOKEEP  NOSCALE  GLOBAL ;
@@ -56,6 +57,11 @@ CREATE TABLE meet (
     CONSTRAINT meet_i_cate_fk FOREIGN KEY (i_cate_num) REFERENCES interest_category(i_cate_num),
     CONSTRAINT meet_u_id_fk FOREIGN KEY (u_id) REFERENCES user_info(u_id)
 );
+-- FK 삭제
+ALTER TABLE meet DROP CONSTRAINT meet_u_id_fk;
+-- FK 재설정__NO ACTION설정
+ALTER TABLE meet ADD CONSTRAINT meet_u_id_fk FOREIGN KEY (u_id) REFERENCES user_info(u_id);
+
 
 -- 모임 멤버수
 CREATE SEQUENCE  "MYTEST"."MEET_MEMBER_LIST_SEQ"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 0 NOCACHE  NOORDER  NOCYCLE  NOKEEP  NOSCALE  GLOBAL ;
@@ -71,6 +77,11 @@ CREATE TABLE meet_member_list(
 ALTER TABLE meet_member_list DROP CONSTRAINT mml_m_mum_fk;
 -- FK 재설정__CASCADE설정
 ALTER TABLE meet_member_list ADD CONSTRAINT mml_m_mum_fk FOREIGN KEY (m_num) REFERENCES meet(m_num) ON DELETE CASCADE;
+-- FK 삭제
+ALTER TABLE meet_member_list DROP CONSTRAINT mml_u_id_fk;
+-- FK 재설정__CASCADE설정
+ALTER TABLE meet_member_list ADD CONSTRAINT mml_u_id_fk FOREIGN KEY (u_id) REFERENCES user_info(u_id) ON DELETE CASCADE;
+
 
 -- 내가 가입한 모임
 CREATE SEQUENCE  "MYTEST"."MY_JOIN_MEET_SEQ"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 0 NOCACHE  NOORDER  NOCYCLE  NOKEEP  NOSCALE  GLOBAL ;
@@ -87,7 +98,10 @@ CREATE TABLE my_join_meet (
 ALTER TABLE my_join_meet DROP CONSTRAINT mjm_m_mum_fk;
 -- FK 재설정__CASCADE설정
 ALTER TABLE my_join_meet ADD CONSTRAINT mjm_m_mum_fk FOREIGN KEY (m_num) REFERENCES meet(m_num) ON DELETE CASCADE;
-
+-- FK 삭제
+ALTER TABLE my_join_meet DROP CONSTRAINT mjm_u_id_fk;
+-- FK 재설정__CASCADE설정
+ALTER TABLE my_join_meet ADD CONSTRAINT mjm_u_id_fk FOREIGN KEY (u_id) REFERENCES user_info(u_id) ON DELETE CASCADE;
 
 
 -- 내가 관심있는 모임(가입x)
@@ -103,6 +117,10 @@ CREATE TABLE my_interest_meet(
 ALTER TABLE my_interest_meet DROP CONSTRAINT mim_m_mum_fk;
 -- FK 재설정__CASCADE설정
 ALTER TABLE my_interest_meet ADD CONSTRAINT mim_m_mum_fk FOREIGN KEY (m_num) REFERENCES meet(m_num) ON DELETE CASCADE;
+-- FK 삭제
+ALTER TABLE my_interest_meet DROP CONSTRAINT mim_u_id_fk;
+-- FK 재설정__CASCADE설정
+ALTER TABLE my_interest_meet ADD CONSTRAINT mim_u_id_fk FOREIGN KEY (u_id) REFERENCES user_info(u_id) ON DELETE CASCADE;
 
 
 -- 모임 내 게시판 카테고리
@@ -110,7 +128,6 @@ CREATE SEQUENCE  "MYTEST"."BOARD_CATEGORY_SEQ"  MINVALUE 0 MAXVALUE 999999999999
 CREATE TABLE board_category(
     b_cate_num NUMBER(3) PRIMARY KEY NOT NULL,
     b_cate_name VARCHAR2(40) NOT NULL,
-    m_num NUMBER NOT NULL,
     CONSTRAINT bc_m_mum_fk FOREIGN KEY (m_num) REFERENCES meet(m_num),
     CONSTRAINT uni_b_cate_name UNIQUE (b_cate_name)
 );
@@ -143,7 +160,10 @@ CREATE TABLE board(
 ALTER TABLE board DROP CONSTRAINT b_m_num_fk;
 -- FK 재설정__CASCADE설정
 ALTER TABLE board ADD CONSTRAINT b_m_num_fk FOREIGN KEY (m_num) REFERENCES meet(m_num) ON DELETE CASCADE;
-
+-- FK 삭제
+ALTER TABLE board DROP CONSTRAINT b_u_id_fk;
+-- FK 재설정__CASCADE설정
+ALTER TABLE board ADD CONSTRAINT b_u_id_fk FOREIGN KEY (u_id) REFERENCES user_info(u_id) ON DELETE CASCADE;
 
 
 -- 모임 내 게시판 댓글
@@ -162,7 +182,10 @@ CREATE TABLE board_comments(
 ALTER TABLE board_comments DROP CONSTRAINT bc_m_num_fk;
 -- FK 재설정__CASCADE설정
 ALTER TABLE board_comments ADD CONSTRAINT bc_m_num_fk FOREIGN KEY (m_num) REFERENCES meet(m_num) ON DELETE CASCADE;
-
+-- FK 삭제
+ALTER TABLE board_comments DROP CONSTRAINT bc_u_id_fk;
+-- FK 재설정__CASCADE설정
+ALTER TABLE board_comments ADD CONSTRAINT bc_u_id_fk FOREIGN KEY (u_id) REFERENCES user_info(u_id) ON DELETE CASCADE;
 
 
 -- 모임 내 게시판 좋아요
@@ -180,7 +203,10 @@ CREATE TABLE board_like(
 ALTER TABLE board_like DROP CONSTRAINT bl_m_num_fk;
 -- FK 재설정__CASCADE설정
 ALTER TABLE board_like ADD CONSTRAINT bl_m_num_fk FOREIGN KEY (m_num) REFERENCES meet(m_num) ON DELETE CASCADE;
-
+-- FK 삭제
+ALTER TABLE board_like DROP CONSTRAINT bl_u_id_fk;
+-- FK 재설정__CASCADE설정
+ALTER TABLE board_like ADD CONSTRAINT bl_u_id_fk FOREIGN KEY (u_id) REFERENCES user_info(u_id) ON DELETE CASCADE;
 
 
 -- 모임 내 갤러리 카테고리
@@ -219,7 +245,10 @@ CREATE TABLE photo(
 ALTER TABLE photo DROP CONSTRAINT p_m_num_fk;
 -- FK 재설정__CASCADE설정
 ALTER TABLE photo ADD CONSTRAINT p_m_num_fk FOREIGN KEY (m_num) REFERENCES meet(m_num) ON DELETE CASCADE;
-
+-- FK 삭제
+ALTER TABLE photo DROP CONSTRAINT p_u_id_fk;
+-- FK 재설정__CASCADE설정
+ALTER TABLE photo ADD CONSTRAINT p_u_id_fk FOREIGN KEY (u_id) REFERENCES user_info(u_id) ON DELETE CASCADE;
 
 
 -- 모임 내 갤러리 댓글
@@ -238,8 +267,10 @@ CREATE TABLE photo_comments(
 ALTER TABLE photo_comments DROP CONSTRAINT pc_m_num_fk;
 -- FK 재설정__CASCADE설정
 ALTER TABLE photo_comments ADD CONSTRAINT pc_m_num_fk FOREIGN KEY (m_num) REFERENCES meet(m_num) ON DELETE CASCADE;
-
-
+-- FK 삭제
+ALTER TABLE photo_comments DROP CONSTRAINT pc_u_id_fk;
+-- FK 재설정__CASCADE설정
+ALTER TABLE photo_comments ADD CONSTRAINT pc_u_id_fk FOREIGN KEY (u_id) REFERENCES user_info(u_id) ON DELETE CASCADE;
 
 
 -- 모임 내 갤러리 좋아요
@@ -257,9 +288,10 @@ CREATE TABLE photo_like(
 ALTER TABLE photo_like DROP CONSTRAINT pl_m_num_fk;
 -- FK 재설정__CASCADE설정
 ALTER TABLE photo_like ADD CONSTRAINT pl_m_num_fk FOREIGN KEY (m_num) REFERENCES meet(m_num) ON DELETE CASCADE;
-
-
-
+-- FK 삭제
+ALTER TABLE photo_like DROP CONSTRAINT pl_u_id_fk;
+-- FK 재설정__CASCADE설정
+ALTER TABLE photo_like ADD CONSTRAINT pl_u_id_fk FOREIGN KEY (u_id) REFERENCES user_info(u_id) ON DELETE CASCADE;
 
 
 -- 모임 내 번개
@@ -274,29 +306,11 @@ CREATE TABLE meet_plan(
     m_num NUMBER NOT NULL,
     CONSTRAINT ml_m_num_fk FOREIGN KEY (m_num) REFERENCES meet(m_num)
 );
-
 -- FK 삭제
 ALTER TABLE meet_plan DROP CONSTRAINT ml_m_num_fk;
 -- FK 재설정__CASCADE설정
 ALTER TABLE meet_plan ADD CONSTRAINT ml_m_num_fk FOREIGN KEY (m_num) REFERENCES meet(m_num) ON DELETE CASCADE;
 
+
 COMMIT;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
