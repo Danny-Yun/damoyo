@@ -36,9 +36,16 @@ public class MeetController {
 	@Autowired
 	private PlanService pService;
 	
-	@GetMapping("/info")
 	// 모임 상세 정보
+	@GetMapping("/info")
 	public String detail(Long num, Model model, HttpSession session) {
+		
+		String u_id = (String) session.getAttribute("u_id");
+		// 세션이 비었을 땐 로그인 페이지로
+		if(u_id == null) {
+			return "/user/login";
+		}
+		
 		// 유저 정보 받기
 		UserVO userInfo = (UserVO)session.getAttribute("userInfo");
 		// 모임 정보 받기
