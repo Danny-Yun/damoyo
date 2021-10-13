@@ -75,27 +75,42 @@
 	</form>
 	
 	<script>
+		// 아이디 중복검사
 		function fn_idCheck() {
 
 			let u_id = $("#u_id").val();
-			console.log(u_id);
+			if(u_id === "") {
+				alert("아이디를 입력하세요.");
+				return;
+			}
 			$.ajax({
 				url : "/user/join/idCheck",
 				type : "post",
 				dataType : "json",
 				data : { "u_id" : u_id },
 				success : function(data) {
+					console.log(data);
 					if(data == 0) {
 						alert("사용 가능한 아이디입니다.");
 						$("#idCheck").attr("value", "OK");  // 아이디 중복 확인되었음으로 속성값 변경 
 					} else {
 						alert("중복된 아이디입니다.");
 						$("#u_id").val("");  // 아이디 입력칸 초기화
-					}
+					} 
 				}
 			})
 		}
+		$("#submit").on("click", function() {
+			
+			let idCheckVal = $("#idCheck").val();
+			if(idCheckVal == "N") {
+				alert("중복확인 버튼을 눌러주세요.");
+			} else {
+				$("joinForm").submit();
+			}
+		});
 		
+		// 비밀번호 일치여부 검사
 		function check_pw() {
 			if(document.getElementById('u_pw').value!='' && document.getElementById('re_pw').value!=''){
 		        if(document.getElementById('u_pw').value === document.getElementById('re_pw').value ){
@@ -109,16 +124,6 @@
 		    }
 		}
 		
-		$("#submit").on("click", function() {
-			
-			let idCheckVal = $("#idCheck").val();
-			if(idCheckVal == "N") {
-				alert("중복확인 버튼을 눌러주세요.");
-			} else {
-				$("joinForm").submit();
-			}
-		});
 	</script>
-	
 </body>
 </html>
