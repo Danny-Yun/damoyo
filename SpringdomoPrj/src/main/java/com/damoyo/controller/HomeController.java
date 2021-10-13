@@ -37,8 +37,28 @@ public class HomeController {
 		return "home";
 	}
 	
-	@GetMapping("/ex02")
+	@GetMapping("/test")
 	public void Test() {
+		
+	}
+	
+	@GetMapping("/photoContent")
+	public void test1() {
+		
+	}
+	
+	@GetMapping("/form")
+	public void test2() {
+		
+	}
+	
+	@GetMapping("/loadForm")
+	public void test3() {
+		
+	}
+	
+	@GetMapping("/index")
+	public void test4() {
 		
 	}
 	

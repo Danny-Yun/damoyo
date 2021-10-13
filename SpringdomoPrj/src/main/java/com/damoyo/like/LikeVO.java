@@ -10,4 +10,5 @@ public class LikeVO {
 	private Long m_num;
 	
 	private String u_id;
+	
 }

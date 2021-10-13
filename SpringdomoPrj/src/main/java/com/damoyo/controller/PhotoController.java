@@ -48,7 +48,7 @@ public class PhotoController {
 		
 		//UserVO userInfo = (UserVO) session.getAttribute("userInfo");
 		//MeetVO meetInfo = (MeetVO) session.getAttribute("meetInfo");
-		int total = service.gettotalPhoto(cri);
+		int total = service.gettotal(cri);
 		//List<PhotocategoryVO> category = service.getlist();
 		PhotoDTO btnMaker = new PhotoDTO(cri, total, 10);
 		
