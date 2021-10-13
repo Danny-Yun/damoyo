@@ -125,4 +125,37 @@
 		SELECT COUNT(*) FROM meet
 		<include refid="searchTotal"/>
 	</select>
+	
+	<!-- 모임 가입시 내가 가입한 모임에 저장 -->
+	<insert id="saveMyJoinMeet">
+		INSERT INTO my_join_meet
+			(my_join_num, u_id, m_num)
+		VALUES
+			(MY_JOIN_MEET_SEQ.nextval, #{u_id}, #{m_num}) 
+	</insert>
+	
+	<!-- 모임 탈퇴시 내가 가입한 모임에서 삭제 -->
+	<delete id="removeMyJoinMeet">
+		DELETE FROM my_join_meet 
+			WHERE u_id=#{u_id} AND m_num=#{m_num}
+	</delete>
+	
+	<!-- 관심모임 추가 여부 -->
+	<select id="checkAddIMeet" resultType="com.damoyo.domain.MyIMeetVO">
+		SELECT * FROM my_interest_meet 
+			WHERE u_id=#{u_id} AND m_num=#{m_num}
+	</select>
+	
+	<!-- 내 관심모임에 추가 -->
+	<insert id="addIMeet">
+		INSERT INTO my_interest_meet
+			(my_interest_num, u_id, m_num)
+		VALUES
+			(MY_INTEREST_MEET_SEQ.nextval, #{u_id}, #{m_num}) 
+	</insert>
+	
+	<delete id="deleteIMeet">
+		DELETE FROM my_interest_meet
+			WHERE u_id=#{u_id} AND m_num=#{m_num}
+	</delete>
 </mapper>

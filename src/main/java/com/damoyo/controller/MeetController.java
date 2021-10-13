@@ -17,6 +17,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.damoyo.domain.InterestVO;
 import com.damoyo.domain.MeetMemberVO;
 import com.damoyo.domain.MeetVO;
+import com.damoyo.domain.MyIMeetVO;
+import com.damoyo.domain.MyJoinMeetVO;
 import com.damoyo.domain.PlanVO;
 import com.damoyo.domain.UserVO;
 import com.damoyo.service.MainService;
@@ -62,6 +64,12 @@ public class MeetController {
 		checkMeetJoin.setU_id(userInfo.getU_id());
 		checkMeetJoin = service.checkMeetJoin(checkMeetJoin);
 		
+		// 내 관심모임 추가 여부
+		MyIMeetVO checkAddIMeet = new MyIMeetVO();
+		checkAddIMeet.setM_num(num);
+		checkAddIMeet.setU_id(userInfo.getU_id());
+		checkAddIMeet = service.checkAddIMeet(checkAddIMeet);
+		
 		// 모임 멤버 리스트
 		List<MeetMemberVO> memberList = service.getMeetMemberList(num);
 		
@@ -71,6 +79,7 @@ public class MeetController {
 		infos.put("meet", meetInfo);
 		infos.put("plan", planInfo);
 		infos.put("checkJoin", checkMeetJoin);
+		infos.put("checkAdd", checkAddIMeet);
 		infos.put("memberList", memberList);
 		model.addAttribute("infos", infos);
 		return "/meet/info";
@@ -104,10 +113,11 @@ public class MeetController {
 	
 	@PostMapping("/join")
 	// 모임 가입
-	public String joinMeet(MeetMemberVO vo, RedirectAttributes rttr) {
+	public String joinMeet(MeetMemberVO vo, MyJoinMeetVO vo2, RedirectAttributes rttr) {
 		vo.setMember_list_position("");
 		log.info(vo);
 		service.joinMeet(vo);
+		service.saveMyJoinMeet(vo2);
 		
 		rttr.addAttribute("num", vo.getM_num());
 		return "redirect:/meet/info";
@@ -115,11 +125,12 @@ public class MeetController {
 	
 	@PostMapping("/withdraw")
 	// 모임 탈퇴
-	public String withdrawMeet(MeetMemberVO vo, HttpSession session, RedirectAttributes rttr) {
+	public String withdrawMeet(MeetMemberVO vo, MyJoinMeetVO vo2, HttpSession session, RedirectAttributes rttr) {
 		UserVO userInfo = (UserVO)session.getAttribute("userInfo");
 		
 		log.info(vo);
 		service.withdrawMeet(vo);
+		service.removeMyJoinMeet(vo2);
 		rttr.addFlashAttribute(userInfo);
 		
 		return "redirect:/main/";
@@ -128,6 +139,22 @@ public class MeetController {
 	@RequestMapping("/board/*")
 	public String sendBoard(RedirectAttributes rttr, HttpSession session) {
 		return "redirect:/board/list";
+	}
+	
+	// 내 관심모임에 추가
+	@PostMapping("/add")
+	public String addIMeet(MyIMeetVO vo, RedirectAttributes rttr) {
+		service.addIMeet(vo);
+		rttr.addAttribute("num", vo.getM_num());
+		return "redirect:/meet/info";
+	}
+	
+	// 내 관심모임에서 삭제
+	@PostMapping("/anymore")
+	public String deleteIMeet(MyIMeetVO vo, RedirectAttributes rttr) {
+		service.deleteIMeet(vo);
+		rttr.addAttribute("num", vo.getM_num());
+		return "redirect:/meet/info";
 	}
 	
 }
