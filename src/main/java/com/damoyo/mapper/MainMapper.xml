@@ -154,6 +154,7 @@
 			(MY_INTEREST_MEET_SEQ.nextval, #{u_id}, #{m_num}) 
 	</insert>
 	
+	<!-- 내 관심모임에서 삭제 -->
 	<delete id="deleteIMeet">
 		DELETE FROM my_interest_meet
 			WHERE u_id=#{u_id} AND m_num=#{m_num}

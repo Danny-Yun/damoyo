@@ -124,4 +124,16 @@ public class UserMapperTests {
 		String u_id = "riudiu";
 		userMapper.deleteAccount(u_id);
 	}
+	
+	//@Test 
+	public void testGetMyMeet() {
+		String u_id = "riudiu";
+		userMapper.getMyMeet(u_id);
+	}
+	
+	//@Test 
+	public void testGetInterestMeet() {
+		String u_id = "riudiu";
+		userMapper.getInterestMeet(u_id);
+	}
 }
