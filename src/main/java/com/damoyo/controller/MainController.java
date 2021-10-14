@@ -17,6 +17,7 @@ import com.damoyo.domain.MainPageDTO;
 import com.damoyo.domain.MainSearchCriteria;
 import com.damoyo.domain.MeetMemberVO;
 import com.damoyo.domain.MeetVO;
+import com.damoyo.domain.MyJoinMeetVO;
 import com.damoyo.domain.UserVO;
 import com.damoyo.service.MainService;
 
@@ -85,7 +86,12 @@ public class MainController {
 		member.setM_num(vo.getM_num());
 		member.setU_id(vo.getU_id());
 		member.setMember_list_position("모임장");
-		service.joinMeet(member);		
+		service.joinMeet(member);
+		// 내가 가입한 모임에도 추가
+		MyJoinMeetVO myMeet = new MyJoinMeetVO();
+		myMeet.setU_id(vo.getU_id());
+		myMeet.setM_num(vo.getM_num());
+		service.saveMyJoinMeet(myMeet);
 		return "redirect:/main/";
 	}
 	

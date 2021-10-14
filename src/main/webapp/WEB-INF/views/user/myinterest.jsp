@@ -35,7 +35,7 @@
 		<input type="hidden" value="" name="f_interest_num" />
 	</form> 
 	
-	<p>총 개수 : ${i_num }</p>
+	<p>현재 개수 : ${i_num }</p>
 	
 	<p><button type="button" class="btn btn-warning"
 			onclick="location.href='/user/mypage'">마이페이지</button></p>

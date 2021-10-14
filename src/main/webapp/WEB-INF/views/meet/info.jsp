@@ -43,6 +43,20 @@
 			<input type="submit" value="탈퇴">
 		</form>
 	</c:if>
+	<c:if test="${infos.checkAdd == null}">
+		<form action="/meet/add" method="post">
+			<input type="hidden" name="u_id" value="${infos.user.u_id }">
+			<input type="hidden" name="m_num" value="${infos.meet.m_num}">
+			<input type="submit" value="관심모임에 추가">
+		</form>
+	</c:if>
+	<c:if test="${infos.checkAdd != null}">
+		<form action="/meet/anymore" method="post">
+			<input type="hidden" name="u_id" value="${infos.checkAdd.u_id }">
+			<input type="hidden" name="m_num" value="${infos.checkAdd.m_num}">
+			<input type="submit" value="관심모임 해제">
+		</form>
+	</c:if>
 	<h2>모임 정모</h2>
 	<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
 	  정모 생성
