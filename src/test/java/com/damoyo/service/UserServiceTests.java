@@ -135,4 +135,16 @@ public class UserServiceTests {
 		String u_id = "danny";
 		userService.removeAccount(u_id);
 	}
+	
+	//@Test 
+	public void testShowMyMeet() {
+		String u_id = "danny";
+		userService.showMyMeet(u_id);
+	}
+	
+	//@Test 
+	public void testShowInterestMeet() {
+		String u_id = "danny";
+		userService.showInterestMeet(u_id);
+	}
 }

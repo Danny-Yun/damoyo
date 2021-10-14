@@ -9,6 +9,9 @@ SELECT * FROM my_favorit_interest;
 
 SELECT * FROM my_join_meet;
 SELECT * FROM my_interest_meet;
+SELECT * FROM meet;
+SELECT m.m_profile, m.m_area, m.m_name, m.m_people_cnt, j.my_join_star FROM my_join_meet j JOIN meet m ON j.m_num = m.m_num 
+    WHERE j.u_id='wake' ORDER BY j.my_join_star DESC;
 
 -- 관심사 등록
 DESC interest_category;

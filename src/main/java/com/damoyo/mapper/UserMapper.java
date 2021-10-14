@@ -5,7 +5,9 @@ import java.util.List;
 import com.damoyo.domain.ICateNumDTO;
 import com.damoyo.domain.ICateVO;
 import com.damoyo.domain.IDetailVO;
+import com.damoyo.domain.MyIMeetDTO;
 import com.damoyo.domain.MyInterestVO;
+import com.damoyo.domain.MyJoinMeetDTO;
 import com.damoyo.domain.UserVO;
 
 public interface UserMapper {
@@ -51,5 +53,10 @@ public interface UserMapper {
 	
 	// 관심사 최대 개수를 제한하기 위해 유저의 관심사 개수 조회 
 	public int getDetailCount(String u_id);
+	
+	// 내 모임 조회
+	public List<MyJoinMeetDTO> getMyMeet(String u_id);
+	
+	// 내 관심 모임 조회
+	public List<MyIMeetDTO> getInterestMeet(String u_id);
  }
-

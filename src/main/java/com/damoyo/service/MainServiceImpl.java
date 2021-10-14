@@ -10,6 +10,8 @@ import com.damoyo.domain.InterestVO;
 import com.damoyo.domain.MainSearchCriteria;
 import com.damoyo.domain.MeetMemberVO;
 import com.damoyo.domain.MeetVO;
+import com.damoyo.domain.MyIMeetVO;
+import com.damoyo.domain.MyJoinMeetVO;
 import com.damoyo.domain.UserVO;
 import com.damoyo.mapper.MainMapper;
 
@@ -101,5 +103,31 @@ public class MainServiceImpl implements MainService {
 	@Override
 	public int getTotalMeet(@Param("cri")MainSearchCriteria cri) {
 		return mapper.getTotalMeet(cri);
+	}
+
+	@Override
+	public void saveMyJoinMeet(MyJoinMeetVO vo) {
+		mapper.saveMyJoinMeet(vo);
+	}
+
+	@Override
+	public void removeMyJoinMeet(MyJoinMeetVO vo) {
+		mapper.removeMyJoinMeet(vo);
+	}
+
+	@Override
+	public MyIMeetVO checkAddIMeet(MyIMeetVO vo) {
+		return mapper.checkAddIMeet(vo);
+	}
+
+	@Override
+	public void addIMeet(MyIMeetVO vo) {
+		mapper.addIMeet(vo);
+	}
+
+	@Override
+	public void deleteIMeet(MyIMeetVO vo) {
+		mapper.deleteIMeet(vo);
+		
 	}
 }

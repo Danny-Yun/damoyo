@@ -17,8 +17,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.damoyo.domain.ICateNumDTO;
 import com.damoyo.domain.ICateVO;
 import com.damoyo.domain.ITotalDTO;
+import com.damoyo.domain.MeetVO;
+import com.damoyo.domain.MyIMeetDTO;
 import com.damoyo.domain.MyInterestDTO;
 import com.damoyo.domain.MyInterestVO;
+import com.damoyo.domain.MyJoinMeetDTO;
 import com.damoyo.domain.UserVO;
 import com.damoyo.service.UserService;
 
@@ -300,4 +303,29 @@ public class UserController {
 		}
 	}
 	
+	// 내 모임 조회
+	@GetMapping("/myMeet")
+	public String myMeet(MeetVO vo, Model model, HttpSession session) {
+		String u_id = (String) session.getAttribute("u_id");
+		// 세션이 비었을 땐 로그인 페이지로
+		if(u_id == null) {
+			return "/user/login";
+		}
+		List<MyJoinMeetDTO> myMeetList = userService.showMyMeet(u_id);
+		model.addAttribute("list", myMeetList);
+		return "/user/mymeet";
+	}
+	
+	// 내 관심모임 조회
+	@GetMapping("/interest/meet")
+	public String myInterestMeet(MeetVO vo, Model model, HttpSession session) {
+		String u_id = (String) session.getAttribute("u_id");
+		// 세션이 비었을 땐 로그인 페이지로
+		if(u_id == null) {
+			return "/user/login";
+		}
+		List<MyIMeetDTO> interestMeetList = userService.showInterestMeet(u_id);
+		model.addAttribute("list", interestMeetList);
+		return "/user/interest_meet";
+	}
 }

@@ -27,8 +27,8 @@
 	<hr>
 	
 	<a href="/user/myinterest"><button>내 관심사</button></a><br>
-	<a href="#"><button>내 모임</button></a><br>
-	<a href="#"><button>내 관심 모임</button></a><br>
+	<a href="/user/myMeet"><button>내 모임</button></a><br>
+	<a href="/user/interest/meet"><button>내 관심 모임</button></a><br>
 	<a href="/user/password"><button>비밀번호 변경</button></a><br>
 	<a href="/user/leave"><button>회원 탈퇴</button></a><br>
 	
