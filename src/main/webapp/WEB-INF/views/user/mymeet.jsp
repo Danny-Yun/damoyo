@@ -37,6 +37,11 @@
 	crossorigin="anonymous">
 <body>
 	<h3>가입한 모임</h3>
+	<br>
+	<a href="/main/"><button>DAMOYO LIST</button></a>
+	<a href="/user/myMeet"><button>내 모임</button></a>
+	<a href="/user/mypage"><button>My Page</button></a><br>
+	
 	<br><br/>
 	
 	<div class="meetDiv">
@@ -52,8 +57,5 @@
 			</div>
 		</c:forEach>
 	</div>
-	
-	<p><button type="button" class="btn btn-warning"
-			onclick="location.href='/user/mypage'">마이페이지</button></p>
 </body>
 </html>

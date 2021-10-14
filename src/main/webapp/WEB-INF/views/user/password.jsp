@@ -12,7 +12,9 @@
 	
 	<form action="/user/password" method="post">
 		<input type="password" name="u_pw" required /><br><br/>
-		<input type="submit" value="확인" />
+		
+		<p><button type="button" onclick="history.back()">이전</button>
+		<input type="submit" value="확인" /></p>
 	</form>
 	
 	<script>
