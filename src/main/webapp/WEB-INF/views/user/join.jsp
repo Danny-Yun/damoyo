@@ -134,7 +134,7 @@
 				$("#check_pw").css("color","red");
 				return;
 			} else {
-				$("#check_pw").html("");
+				$("#check_pw").html("");  // 검사 통과시 경고문 삭제
 			}
 			$("#pw").attr("value", "OK");
 		}
