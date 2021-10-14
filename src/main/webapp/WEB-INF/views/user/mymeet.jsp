@@ -36,7 +36,7 @@
 	rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" 
 	crossorigin="anonymous">
 <body>
-	<h3>내 모임</h3>
+	<h3>가입한 모임</h3>
 	<br><br/>
 	
 	<div class="meetDiv">
