@@ -13,6 +13,7 @@
 	${userInfo }<br>
 	
 	<a href="/main/"><button>DAMOYO LIST</button></a>
+	<a href="/user/myMeet"><button>내 모임</button></a>
 	<a href="/user/mypage"><button>My Page</button></a><br>
 	<form action="/main/" method="get">
 		<select name="searchType">

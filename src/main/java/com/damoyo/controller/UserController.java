@@ -87,6 +87,7 @@ public class UserController {
 		
 		// 방금 가입한 사용자의 아이디를 세션에 저장
 		session.setAttribute("u_id", vo.getU_id());
+		session.setAttribute("userInfo", vo);
 
 		log.info("join 로직 접속 - " + vo);
 		userService.userJoin(vo);
