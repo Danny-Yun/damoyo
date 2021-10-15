@@ -63,6 +63,4 @@ public interface PhotoMapper {
 	// 사진 페이징
 	public List<PhotoVO> getListPaging(PhotoSearchCriteria cri);
 	
-	// 사진 전체갯수
-	public int gettotalPhoto(PhotoSearchCriteria cri);
 }

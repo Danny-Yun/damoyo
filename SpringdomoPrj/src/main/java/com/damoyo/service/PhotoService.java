@@ -1,16 +1,13 @@
 package com.damoyo.service;
 
-import java.io.IOException;
+
 import java.util.List;
 
+import com.damoyo.domain.PhotoCriteria;
 import com.damoyo.domain.PhotoSearchCriteria;
 
-import org.springframework.web.multipart.MultipartFile;
-
-import com.damoyo.domain.PhotoCriteria;
 import com.damoyo.domain.PhotoVO;
 import com.damoyo.domain.PhotocategoryVO;
-import com.damoyo.domain.PhotocommentsVO;
 import com.damoyo.domain.PhotolikeVO;
 
 
@@ -36,7 +33,6 @@ public interface PhotoService {
 	
 	// 사진 페이징
 	public List<PhotoVO> getListPaging(PhotoSearchCriteria cri);
-	// 사진 갯수
-	public int gettotalPhoto(PhotoSearchCriteria cri);
+	
 	
 }

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.damoyo.domain.PhotoVO;
 import com.damoyo.domain.PhotocategoryVO;
 import com.damoyo.domain.PhotolikeVO;
+import com.damoyo.domain.PhotoCriteria;
 import com.damoyo.domain.PhotoSearchCriteria;
 
 import lombok.AllArgsConstructor;
@@ -68,14 +69,8 @@ public class PhotoServiceImpl implements PhotoService{
 
 	@Override
 	public List<PhotoVO> getListPaging(PhotoSearchCriteria cri) {
-		List<PhotoVO> photoss = mapper.getListPaging(cri);
-		return photoss;
-	}
-	@Override
-	public int gettotalPhoto(PhotoSearchCriteria cri) {
-		return mapper.gettotalPhoto(cri);
+		List<PhotoVO> photos = mapper.getListPaging(cri);
+		return photos;
 	}
 
-
-	
 }

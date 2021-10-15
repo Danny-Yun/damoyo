@@ -32,7 +32,7 @@ public class PhotoServiceTests {
 	
 	//@Test
 		public void testGetList() {
-			service.getlist();
+			service.getlist("");
 		}
 		
 	//@Test

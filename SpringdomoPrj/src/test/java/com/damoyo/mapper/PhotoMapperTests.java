@@ -29,7 +29,7 @@ public class PhotoMapperTests {
 	//@Test
 		public void testGetList() {
 			// mapper 내부의 getList 메서드를 호출하려면?
-			log.info(mapper.get(1L));
+			log.info(mapper.getList(""));
 		}
 	@Test
 		public void testInsert() {

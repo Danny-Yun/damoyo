@@ -10,23 +10,25 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1 class="text text-primary">게시물 목록</h1>
+
+	<h1 class="text text-primary">사진 목록</h1>
 
 	<table class="table table-hover">
 		<tr>
 			<th>사진번호</th>
-			<th>사진</th>
 			<th>사진제목</th>
-			<th>날짜</th>
+			<th>사진날짜</th>
+			<th>아이디</th>
 		</tr>
 		<c:forEach var="photo" items="${list }">
 			<tr>
 				<td>${photo.p_num }</td>
-				<td>${photo.p_image1 }</td>
-				<td>${photo.p_cate_name }</td>
-				<td>${photo.p_date }</td>
+				<td>>${photo.p_cate_name}<span class="badge rounded-pill bg-info text-dark">  [${board.replycount}]</span></a></td>
+				<td>${photo.p_view }</td>
+				<td>${photo.u_id }</td>
 			</tr>
 		</c:forEach>
+		
 	</table>
 	
 	${btnMaker}<br/>
@@ -41,10 +43,9 @@
 	  	btnMaker의 prev가 true일때만 뒤로가기 버튼 출력-->
 	  	<c:if test="${btnMaker.prev}">
 	    	<li class="page-item">
-	    		<a class="page-link"
-	    			href="/board/list?pageNum=${btnMaker.startPage - 1}&searchType=${btnMaker.cri.searchType}&keyword=${btnMaker.cri.keyword}">
-	    			Previous
-	    		</a>
+	    		 <a class="page-link" href="#" aria-label="Previous">
+        		<span aria-hidden="true">&laquo;</span>
+      </a>
 	    	</li>
 	    </c:if>
 	    
@@ -70,25 +71,31 @@
 	    <c:if test="${btnMaker.next}">
 		    <li class="page-item">
 		    	<a class="page-link" 
-		    	href="/board/list?pageNum=${btnMaker.endPage + 1}&searchType=${btnMaker.cri.searchType}&keyword=${btnMaker.cri.keyword}">Next</a>
+		    	href="#" aria-label="Next">
+		    	<span aria-hidden="true">Next</a>
 		    </li>
 		</c:if>
 	    
 	  </ul>
 	</nav>
 	
-	<a href="/photo/create"><button>사진 넣기</button></a>
+	<a href="/photo/register"><button>사진등록</button></a>
 	
-	
+
+	<!-- 모달 코드는 작성이 안 되어있는게 아니고
+	작성은 해뒀지만 css의 display옵션을 none으로 평상시에 두고
+	특정한 요건을 만족했을때만 display를 허용하도록 설계되어있습니다. 
+	그래서 아래와 같이 모달 예시코드를 붙여넣어도
+	일반 화면에서는 보이지 않습니다.-->
 	<div class="modal" id="myModal" tabindex="-1">
 	  <div class="modal-dialog">
 	    <div class="modal-content">
 	      <div class="modal-header">
-	        <h5 class="modal-title">사진 업로드 완료</h5>
+	        <h5 class="modal-title">글 작성 완료</h5>
 	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 	      </div>
 	      <div class="modal-body">
-	        <p>${p_num }번 사진이 등록되었습니다.</p>
+	        <p>${bno }번 글 작성을 완료했습니다.</p>
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
@@ -108,17 +115,19 @@
 		// 아무것도 들어오지 않고
 		// remove 로직의 결과로 넘어왔을때만 데이터가 전달됨
 		var result = "${success}";
-		var p_num = "${p_num}";
+		var bno = "${bno}";
 		// 모달 사용을 위한 변수 선언
 		// 모달 공식문서의 자바스크립트 관련 실행 코드를 복사합니다.
 		var myModal = new bootstrap.Modal(document.getElementById('myModal'), focus);
 		
 		if(result === "success"){
-			alert(bno + "번 사진이 삭제되었습니다.");
-		} else if(result === "create"){
+			alert(bno + "번글이 삭제되었습니다.");
+		} else if(result === "register"){
 			// 공식문서 하단의 modal.show()를 응용합니다.
 			myModal.show();
 		}
 	</script>
+	
+	
 </body>
 </html>
