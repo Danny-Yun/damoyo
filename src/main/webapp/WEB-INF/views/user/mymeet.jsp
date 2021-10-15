@@ -27,6 +27,13 @@
 		flex-direction: column;
 		align-items: center;
 	}
+	.star {
+		cursor:pointer;
+		color: #DADA00;
+	}
+	.star:hover{
+		color: #DADA00;
+	}
 </style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -46,7 +53,12 @@
 	
 	<div class="meetDiv">
 		<c:forEach var="list" items="${list}" >
-			<div class="star">${list.my_join_star}</div>
+			<c:if test="${list.my_join_star == 0}">
+				<a class="star" onclick="addStar(${list.m_num})"><i class="far fa-star"></i></a>
+			</c:if>
+			<c:if test="${list.my_join_star == 1}">
+				<a class="star" onclick="deleteStar(${list.m_num})"><i class="fas fa-star"></i></a>
+			</c:if>
 			<div class="meet" onclick="location.href='/meet/info?num=${list.m_num }'">
 				<span>${list.m_profile}이미지</span>
 				<div class="meet__column">
@@ -57,5 +69,29 @@
 			</div>
 		</c:forEach>
 	</div>
+	
+	<form action="/user/addStar" method="post" id="addStar">
+		<input type="hidden" name="m_num" value="">
+		<input type="hidden" name="u_id" value="${u_id }">
+	</form>
+	<form action="/user/deleteStar" method="post" id="deleteStar">
+		<input type="hidden" name="m_num" value="">
+		<input type="hidden" name="u_id" value="${u_id }">
+	</form>
+	
+	<script>
+		function addStar(data) {
+			let addStar = document.getElementById("addStar");
+			addStar.childNodes[1].setAttribute("value", data);
+			addStar.submit();
+		}
+		function deleteStar(data) {
+			let deleteStar = document.getElementById("deleteStar");
+			deleteStar.childNodes[1].setAttribute("value", data);
+			deleteStar.submit();
+		}
+	</script>
+	<!-- font-awesome code kit -->
+	<script src="https://kit.fontawesome.com/6478f529f2.js" crossorigin="anonymous"></script>
 </body>
 </html>

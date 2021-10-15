@@ -88,6 +88,7 @@
 			if(u_id === "") {
 				$("#check_id").html("필수 정보입니다.");
 				$("#check_id").css("color","red");
+				$("#id").attr("value", "N");
 				return;
 			}
 			
@@ -96,6 +97,7 @@
 			if(!idRegExp.test(u_id)) {
 				$("#check_id").html("5~20자의 영문 소문자, 숫자와 특수기호만 사용 가능합니다.");
 				$("#check_id").css("color","red");
+				$("#id").attr("value", "N");
 				return;
 			}
 			
@@ -113,6 +115,7 @@
 					} else {
 						$("#check_id").html("이미 사용중이거나 탈퇴한 아이디입니다.");
 						$("#check_id").css("color","red");
+						$("#id").attr("value", "N");
 					} 
 				}
 			})
@@ -126,12 +129,14 @@
 			if(u_pw === "") {
 				$("#check_pw").html("필수 정보입니다.");
 				$("#check_pw").css("color","red");
+				$("#pw").attr("value", "N");
 				return;
 			}
 			
 			if(!pwRegExp.test(u_pw)) {
 				$("#check_pw").html("8~16자의 영문 대 소문자, 숫자와 특수문자를 사용하세요.");
 				$("#check_pw").css("color","red");
+				$("#pw").attr("value", "N");
 				return;
 			} else {
 				$("#check_pw").html("");  // 검사 통과시 경고문 삭제
@@ -151,6 +156,7 @@
 		        else{
 		            document.getElementById('check_repw').innerHTML='비밀번호가 일치하지 않습니다.';
 		            document.getElementById('check_repw').style.color='red';
+		            $("#repw").attr("value", "N");
 		        }
 		    }
 		}

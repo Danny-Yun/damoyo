@@ -118,4 +118,18 @@
    			i.u_id=#{u_id} 
 	</select>
 	
+	<!-- 즐겨찾는 모임 추가 -->
+	<update id="addStar">
+		UPDATE my_join_meet
+			SET my_join_star = 1
+				WHERE u_id = #{u_id} AND m_num = #{m_num}
+	</update>
+	
+	<!-- 즐겨찾는 모임 삭제 -->
+	<update id="deleteStar">
+		UPDATE my_join_meet
+			SET my_join_star = 0
+				WHERE u_id = #{u_id} AND m_num = #{m_num}
+	</update>
+	
 </mapper>

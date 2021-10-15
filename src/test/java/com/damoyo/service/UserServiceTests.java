@@ -12,6 +12,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.damoyo.domain.ICateNumDTO;
 import com.damoyo.domain.MyInterestVO;
+import com.damoyo.domain.MyJoinMeetVO;
 import com.damoyo.domain.UserVO;
 
 import lombok.extern.log4j.Log4j;
@@ -146,5 +147,21 @@ public class UserServiceTests {
 	public void testShowInterestMeet() {
 		String u_id = "danny";
 		userService.showInterestMeet(u_id);
+	}
+	
+	//@Test 
+	public void testAddStar() {
+		MyJoinMeetVO vo = new MyJoinMeetVO();
+		vo.setU_id("danny");
+		vo.setM_num(4L);
+		userService.addStar(vo);
+	}
+	
+	//@Test 
+	public void testDeleteStar() {
+		MyJoinMeetVO vo = new MyJoinMeetVO();
+		vo.setU_id("danny");
+		vo.setM_num(4L);
+		userService.deleteStar(vo);
 	}
 }
