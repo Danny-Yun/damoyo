@@ -62,4 +62,10 @@ public class LiketoProc implements PhotolikeMapper{
 		    return count;
 	}
 
+	@Override
+	public void update(Long p_like_num) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

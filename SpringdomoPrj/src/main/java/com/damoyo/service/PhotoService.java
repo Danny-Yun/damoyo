@@ -34,7 +34,5 @@ public interface PhotoService {
 	// 사진 페이징
 	public List<PhotoVO> getListPaging(PhotoSearchCriteria cri);
 	
-	// 사진 전체 개수
-	public int gettotal(PhotoSearchCriteria cri);
 	
 }

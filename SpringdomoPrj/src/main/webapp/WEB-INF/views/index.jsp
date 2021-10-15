@@ -145,11 +145,58 @@ function generateUserName(){
 	//수정창 모달로 만들기 
 	function modifyComments(event){ 
 		const mBtn = event.target; 
-		const modal = document.createElement('div'); 
+		
+		// 모달창 만들기
+		const modal = document.createElement('div')
+		const modalOverlay = document.createElement('div'); 
+		const modalContent = document.createElement('div'); 
+		const cancleBtn = document.createElement('button'); 
+		const okBtn = document.createElement('button'); 
+		const input = document.createElement('input'); 
+		const span = document.createElement('span'); 
+		
+		modal.className = "modal hidden"; 
+		modalOverlay.className ="modal__overlay";
+		modalContent.className ="modal__content"; 
+		okBtn.id = "ok"; 
+		okBtn.innerHTML="수정"; 
+		cancleBtn.id = "cancle"; 
+		cancleBtn.innerHTML = "취소";
+		input.id = "modifyVal"; 
+		input.placeholder = "변경할 내용을 입력하세요"; 
+		span.id ="inBtn"; 
+		
+		span.appendChild(okBtn); 
+		span.appendChild(cancleBtn); 
+		modalContent.appendChild(input); 
+		modalContent.appendChild(span); 
+		modal.appendChild(modalOverlay); 
+		modal.appendChild(modalContent); 
+		rootDiv.appendChild(modal); 
+		
+		modal.classList.remove("hidden"); 
+		
+		cancleBtn.addEventListener("click",function(){ 
+			modal.classList.add("hidden"); 
+			}); 
+		
+		okBtn.addEventListener("click",function(event){ 
+			console.dir(mBtn.parentNode.parentNode.children[1]); 
+			
+			for(var i=0; i<idOrVoteCountList.length; i++){ 
+				if(idOrVoteCountList[i]["commentId"].toString() === mBtn.parentNode.id){ 
+					idOrVoteCountList[i]["commentValue"] = input.value; 
+					//수정버튼누르면 변경. 
+					mBtn.parentNode.parentNode.children[1].innerHTML = input.value; 
+					modal.classList.add("hidden");
+					} 
+				}
+			});
 		} 
 	
 	//댓글보여주기 
 	function showComment(comment){ 
+		inputValue.id = newId;
 		const userName = document.createElement('div');
 		const inputValue = document.createElement('span'); 
 		const showTime = document.createElement('div'); 
@@ -207,7 +254,8 @@ function generateUserName(){
 		let IdAccordingToVoteCount ={ 
 				"commentId" : newId, 
 				"voteUpCount" : 0, 
-				"voteDownCount" : 0 
+				"voteDownCount" : 0,
+				"commentValue" : comment
 				} 
 		
 		idOrVoteCountList.push(IdAccordingToVoteCount); 

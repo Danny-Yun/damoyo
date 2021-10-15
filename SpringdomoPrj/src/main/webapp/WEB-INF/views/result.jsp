@@ -3,6 +3,40 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <!DOCTYPE html>
 <html>
+<style>
+.btn-like {
+  color: transparent;
+  text-shadow: 0 0 5px rgba(255,255,255,.7), 0 0 0 #000;
+}
+.btn-like:hover {
+  background-color: white;
+  text-shadow: 0 0 0 #ea1;
+}
+.btn-like.done {
+  color: inherit;
+  text-shadow: 0;
+}
+.btn-like.done:hover {
+  color: transparent;
+  text-shadow: 0 0 0 #777;
+}
+.btn-like-cancle {
+  color: transparent;
+  text-shadow: 0 0 5px rgba(255,255,255,.7), 0 0 0 #000;
+}
+.btn-like-cancle:hover {
+  background-color: white;
+  text-shadow: 0 0 0 #ea1;
+}
+.btn-like-cancle.done {
+  color: inherit;
+  text-shadow: 0;
+}
+.btn-like-cancle.done:hover {
+  color: transparent;
+  text-shadow: 0 0 0 #777;
+}
+</style>
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <meta charset="UTF-8">
@@ -21,7 +55,7 @@
 	         <br><br><br>
 	  </c:forEach>         
 	</div><p> 
-	
+
 	<a href='${pageContext.request.contextPath }/form'> 다시 업로드 하기 </a> </p>
 	
 	<div class="w3-border w3-padding">댓글</div>
@@ -39,7 +73,38 @@
 					</form>
 				</c:if>
 			</div> 
+  <button class="btn-like">👍</button>
+  <button class="btn-like-cancle">👎🏻</button>
+<script>
+$(".btn-like").click(function() {
+	$(this).toggleClass("done");
+})
+$(".btn-like-cancle").click(function() {
+	$(this).toggleClass("done");
+})
+</script>
+
+<!-- 라이브리 시티 설치 코드 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC81NDQ3My8zMDk0NA==">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+		
+		       if (typeof LivereTower === 'function') { return; }
+		
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+		
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>라이브리 댓글 작성을 위해 JavaScript를 활성화 해주세요</noscript>
+		</div>
+		<!-- 시티 설치 코드 끝 -->
+
 	<script>		
+	var reply_btn = 0;
 			 $("#reply_btn").click(function(){
 	    	if($("#reply_content").val().trim() === ""){
 	    		alert("댓글을 입력하세요.");

@@ -18,7 +18,7 @@
 	<input type='file' name='uploadFile' multiple>
 	<input type="submit" value="등록">
 	<button type="button" class="kboard-button-action kboard-button-like" onclick="kboard_document_like(this)" data-uid="<?php echo $content->uid?>" title="<?php echo __('Like', 'kboard')?>"><img src="<?php echo $skin_path?>/images/하트" alt=""> <span class="kboard-document-like-count"><?php echo intval($content->like)?></span></button>
-	<a href="javascript:void(0);" class="like-icon" id="likeBtn" data-chuserid="claeotls" data-prgid="62543630"><i></i><img src="image/하트.jpg">0</a>
+	
 	</form>
 	<a href="/main"><button>메인 페이지로</button></a>
 

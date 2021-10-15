@@ -73,17 +73,4 @@ public class PhotoServiceImpl implements PhotoService{
 		return photos;
 	}
 
-	@Override
-	public int gettotal(PhotoSearchCriteria cri) {
-		// TODO Auto-generated method stub
-		return mapper.gettotalPhoto(1L);
-	}
-
-
-
-	
-	
-
-
-	
 }
