@@ -8,6 +8,7 @@ import com.damoyo.domain.IDetailVO;
 import com.damoyo.domain.MyIMeetDTO;
 import com.damoyo.domain.MyInterestVO;
 import com.damoyo.domain.MyJoinMeetDTO;
+import com.damoyo.domain.MyJoinMeetVO;
 import com.damoyo.domain.UserVO;
 
 public interface UserService {
@@ -59,4 +60,10 @@ public interface UserService {
 	
 	// 내 관심 모임 조회
 	public List<MyIMeetDTO> showInterestMeet(String u_id);
+	
+	// 즐겨찾는 모임 추가
+	public void addStar(MyJoinMeetVO vo);
+	
+	// 즐겨찾는 모임 삭제 
+	public void deleteStar(MyJoinMeetVO vo);
 }

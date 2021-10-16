@@ -17,11 +17,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.damoyo.domain.ICateNumDTO;
 import com.damoyo.domain.ICateVO;
 import com.damoyo.domain.ITotalDTO;
-import com.damoyo.domain.MeetVO;
 import com.damoyo.domain.MyIMeetDTO;
 import com.damoyo.domain.MyInterestDTO;
 import com.damoyo.domain.MyInterestVO;
 import com.damoyo.domain.MyJoinMeetDTO;
+import com.damoyo.domain.MyJoinMeetVO;
 import com.damoyo.domain.UserVO;
 import com.damoyo.service.UserService;
 
@@ -306,7 +306,7 @@ public class UserController {
 	
 	// 내 모임 조회
 	@GetMapping("/myMeet")
-	public String myMeet(MeetVO vo, Model model, HttpSession session) {
+	public String myMeet(Model model, HttpSession session) {
 		String u_id = (String) session.getAttribute("u_id");
 		// 세션이 비었을 땐 로그인 페이지로
 		if(u_id == null) {
@@ -314,12 +314,13 @@ public class UserController {
 		}
 		List<MyJoinMeetDTO> myMeetList = userService.showMyMeet(u_id);
 		model.addAttribute("list", myMeetList);
+		model.addAttribute("u_id", u_id);
 		return "/user/mymeet";
 	}
 	
 	// 내 관심모임 조회
 	@GetMapping("/interest/meet")
-	public String myInterestMeet(MeetVO vo, Model model, HttpSession session) {
+	public String myInterestMeet(Model model, HttpSession session) {
 		String u_id = (String) session.getAttribute("u_id");
 		// 세션이 비었을 땐 로그인 페이지로
 		if(u_id == null) {
@@ -329,4 +330,19 @@ public class UserController {
 		model.addAttribute("list", interestMeetList);
 		return "/user/interest_meet";
 	}
+	
+	// 즐겨찾는 모임 추가
+	@PostMapping("/user/addStar")
+	public String addStar(MyJoinMeetVO vo, RedirectAttributes rttr) {
+		userService.addStar(vo);
+		return "redirect:/user/myMeet";
+	}
+	
+	// 즐겨찾는 모임 삭제 
+	@PostMapping("/user/deleteStar")
+	public String deleteStar(MyJoinMeetVO vo, RedirectAttributes rttr) {
+		userService.deleteStar(vo);
+		return "redirect:/user/myMeet";
+	}
+	
 }

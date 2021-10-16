@@ -8,9 +8,7 @@ import org.springframework.stereotype.Service;
 import com.damoyo.domain.ICateNumDTO;
 import com.damoyo.domain.ICateVO;
 import com.damoyo.domain.IDetailVO;
-import com.damoyo.domain.MeetVO;
 import com.damoyo.domain.MyIMeetDTO;
-import com.damoyo.domain.MyIMeetVO;
 import com.damoyo.domain.MyInterestVO;
 import com.damoyo.domain.MyJoinMeetDTO;
 import com.damoyo.domain.MyJoinMeetVO;
@@ -134,4 +132,15 @@ public class UserServiceImpl implements UserService{
 		return interestMeetList;
 	}
 
+	// 즐겨찾는 모임 추가
+	@Override
+	public void addStar(MyJoinMeetVO vo) {
+		userMapper.addStar(vo);
+	}
+
+	// 즐겨찾는 모임 삭제
+	@Override
+	public void deleteStar(MyJoinMeetVO vo) {
+		userMapper.deleteStar(vo);
+	}
 }
