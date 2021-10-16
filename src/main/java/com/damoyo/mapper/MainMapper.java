@@ -44,6 +44,9 @@ public interface MainMapper {
 	// 모임 가입
 	public void joinMeet(MeetMemberVO vo);
 	
+	// 모임에 가입한 인원수 변경
+	public void updateJoinPeopleCnt(@Param("vo")MeetMemberVO vo, @Param("amount")int amount);
+	
 	// 모임 탈퇴
 	public void withdrawMeet(MeetMemberVO vo);
 	
