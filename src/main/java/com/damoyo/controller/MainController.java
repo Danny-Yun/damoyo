@@ -49,6 +49,7 @@ public class MainController {
 		log.info(total);
 		List<InterestVO> interestList = service.get();
 		List<MeetVO> meetList = service.getListMeet(cri);
+		log.info(meetList);
 		MainPageDTO meetPages = new MainPageDTO(total, cri);
 		
 		

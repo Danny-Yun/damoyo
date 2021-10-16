@@ -20,7 +20,7 @@ public class MainServiceTests {
 	@Autowired
 	private MainService service;
 
-	@Test
+//	@Test
 	// 생성된 모임 리스트 조회
 	public void testGetListMeet() {
 		MainSearchCriteria cri = new MainSearchCriteria();
@@ -115,4 +115,15 @@ public class MainServiceTests {
 		vo.setU_id("thffk");
 		service.withdrawMeet(vo);
 	}
+	
+	@Test
+	public void testGetMeetList() {
+		log.info("테스트_모임리스트 가져오기");
+		MainSearchCriteria cri = new MainSearchCriteria();
+		log.info("cri : " + cri);
+		for (int i = 0; i < cri.getAmount(); i++) {
+			log.info(i);
+		}
+	}
+	
 }
