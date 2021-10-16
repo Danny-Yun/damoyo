@@ -98,6 +98,12 @@
 		VALUES(meet_member_list_seq.nextval, #{m_num}, #{u_id}, #{member_list_position})
 	</insert>
 	
+	<!-- 모임에 가입한 인원수 변경 -->
+	<update id="updateJoinPeopleCnt">
+		UPDATE meet SET m_join_people_cnt = m_join_people_cnt + #{amount} WHERE m_num=#{vo.m_num}
+	</update>
+	
+	
 	<!-- 모임 멤버 조회 -->
 	<select id="getMeetMemberList" resultType="com.damoyo.domain.MeetMemberVO">
 		<include refid="getMemberList"/>

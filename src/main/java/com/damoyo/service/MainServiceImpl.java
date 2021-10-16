@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.damoyo.domain.InterestVO;
 import com.damoyo.domain.MainSearchCriteria;
@@ -85,9 +86,11 @@ public class MainServiceImpl implements MainService {
 		return memberList;
 	}
 	
+	@Transactional
 	@Override
 	public void joinMeet(MeetMemberVO vo) {
 		mapper.joinMeet(vo);
+		mapper.updateJoinPeopleCnt(vo, 1);
 	}
 	
 	@Override
@@ -95,9 +98,11 @@ public class MainServiceImpl implements MainService {
 		return mapper.checkMeetJoin(vo);
 	}
 	
+	@Transactional
 	@Override
 	public void withdrawMeet(MeetMemberVO vo) {
 		mapper.withdrawMeet(vo);
+		mapper.updateJoinPeopleCnt(vo, -1);
 	}
 	
 	@Override

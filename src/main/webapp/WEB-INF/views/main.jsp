@@ -49,7 +49,7 @@
 				<td>${m.m_name }</td>
 			</tr>
 			<tr>
-				<td>${m.m_people_cnt }</td>
+				<td>${m.m_join_people_cnt  }</td>
 			</tr>
 		</c:forEach>
 	</table>

@@ -14,4 +14,5 @@ public class MeetVO {
     private int i_cate_num;
     private String i_cate_name;
     private String u_id;
+    private int m_join_people_cnt;
 }
