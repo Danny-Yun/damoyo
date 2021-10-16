@@ -101,7 +101,7 @@
 	<!-- 내 모임 조회 -->
 	<select id="getMyMeet" resultType="com.damoyo.domain.MyJoinMeetDTO">
 		SELECT 
-			m.m_profile, m.m_area, m.m_name, m.m_people_cnt, j.my_join_star, m.m_num
+			m.m_profile, m.m_area, m.m_name, m.m_join_people_cnt, j.my_join_star, m.m_num
 		FROM 
 			my_join_meet j JOIN meet m ON j.m_num = m.m_num 
    		WHERE 
