@@ -18,7 +18,9 @@
 		<h4>새 비밀번호 확인</h4>
 		<input type="password" name="re_pw" id="re_pw"
 			 minlength="8" onchange="check_pw()" required />&nbsp;<span id="check"></span><br><br/>
-		<input type="submit" value="확인" />
+			 
+		<p><button type="button" onclick="history.back()">이전</button>
+		<input type="submit" value="확인" /></p>
 	</form>
 	
 	<script>

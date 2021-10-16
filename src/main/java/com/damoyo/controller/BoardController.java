@@ -24,7 +24,6 @@ import com.damoyo.domain.UserVO;
 import com.damoyo.service.BoardService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.util.JSONPObject;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -39,7 +38,13 @@ public class BoardController {
 	private BoardService service;
 	
 	@GetMapping("/list")
-	public void list(Model model, HttpSession session, BoardSearchCriteria cri) {
+	public String list(Model model, HttpSession session, BoardSearchCriteria cri) {
+		
+		String u_id = (String) session.getAttribute("u_id");
+		// 세션이 비었을 땐 로그인 페이지로
+		if(u_id == null) {
+			return "/user/login";
+		}
 		// user, meet 정보
 		UserVO userInfo = (UserVO) session.getAttribute("userInfo");
 		MeetVO meetInfo = (MeetVO) session.getAttribute("meetInfo");
@@ -61,10 +66,17 @@ public class BoardController {
 		model.addAttribute("category", category);
 		model.addAttribute("list", boardList);
 		model.addAttribute("boardPages", boardPages);
+		return "/board/list";
 	}
 	
 	@GetMapping("/detail")
-	public void detail(Model model, Long b_num, HttpSession session) throws JsonProcessingException {
+	public String detail(Model model, Long b_num, HttpSession session) throws JsonProcessingException {
+		
+		String u_id = (String) session.getAttribute("u_id");
+		// 세션이 비었을 땐 로그인 페이지로
+		if(u_id == null) {
+			return "/user/login";
+		}
 		UserVO userInfo = (UserVO) session.getAttribute("userInfo");
 		MeetVO meetInfo = (MeetVO) session.getAttribute("meetInfo");
 		BoardVO boardInfo = service.getBoard(b_num);
@@ -88,6 +100,7 @@ public class BoardController {
 		model.addAttribute("user", user);
 		
 		model.addAttribute("infos", infos);
+		return "/board/detail";
 	}
 	
 	@PostMapping("/delete")
@@ -103,7 +116,13 @@ public class BoardController {
 	}
 	
 	@GetMapping("/write")
-	public void write(HttpSession session, Model model) {
+	public String write(HttpSession session, Model model) {
+		String u_id = (String) session.getAttribute("u_id");
+		// 세션이 비었을 땐 로그인 페이지로
+		if(u_id == null) {
+			return "/user/login";
+		}
+		
 		UserVO userInfo = (UserVO) session.getAttribute("userInfo");
 		MeetVO meetInfo = (MeetVO) session.getAttribute("meetInfo");
 		List<BoardCateVO> category = service.getBoardCate();
@@ -113,6 +132,7 @@ public class BoardController {
 		infos.put("category", category);
 		
 		model.addAttribute("infos", infos);
+		return "/board/write";
 	}
 	
 	@PostMapping("/register")

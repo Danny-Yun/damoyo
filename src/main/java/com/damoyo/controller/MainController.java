@@ -17,6 +17,7 @@ import com.damoyo.domain.MainPageDTO;
 import com.damoyo.domain.MainSearchCriteria;
 import com.damoyo.domain.MeetMemberVO;
 import com.damoyo.domain.MeetVO;
+import com.damoyo.domain.MyJoinMeetVO;
 import com.damoyo.domain.UserVO;
 import com.damoyo.service.MainService;
 
@@ -33,7 +34,12 @@ public class MainController {
 	private MainService service;
 	
 	@GetMapping("/")
-	public void list(Model model, HttpSession session, MainSearchCriteria cri) {
+	public String list(Model model, HttpSession session, MainSearchCriteria cri) {
+		String u_id = (String) session.getAttribute("u_id");
+		// 세션이 비었을 땐 로그인 페이지로
+		if(u_id == null) {
+			return "/user/login";
+		}
 		// 유저 정보
 		UserVO userInfo = (UserVO)session.getAttribute("userInfo");
 		log.info(userInfo);
@@ -57,13 +63,20 @@ public class MainController {
 		model.addAttribute("meetList", meetList);
 		model.addAttribute("userInfo", userInfo);
 		model.addAttribute("meetPages", meetPages);
+		return "/main";
 	}
 	
 	@GetMapping("/register")
-	public void register(Model model) {
+	public String register(Model model, HttpSession session) {
+		String u_id = (String) session.getAttribute("u_id");
+		// 세션이 비었을 땐 로그인 페이지로
+		if(u_id == null) {
+			return "/user/login";
+		}
 		// 관심사 카테고리
 		List<InterestVO> vo = service.get();
 		model.addAttribute("category", vo);
+		return "/main/register";
 	}
 	@PostMapping("/register")
 	public String register(RedirectAttributes rttr, MeetVO vo) {
@@ -74,7 +87,12 @@ public class MainController {
 		member.setM_num(vo.getM_num());
 		member.setU_id(vo.getU_id());
 		member.setMember_list_position("모임장");
-		service.joinMeet(member);		
+		service.joinMeet(member);
+		// 내가 가입한 모임에도 추가
+		MyJoinMeetVO myMeet = new MyJoinMeetVO();
+		myMeet.setU_id(vo.getU_id());
+		myMeet.setM_num(vo.getM_num());
+		service.saveMyJoinMeet(myMeet);
 		return "redirect:/main/";
 	}
 	

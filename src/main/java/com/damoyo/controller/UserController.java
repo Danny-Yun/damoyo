@@ -17,8 +17,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.damoyo.domain.ICateNumDTO;
 import com.damoyo.domain.ICateVO;
 import com.damoyo.domain.ITotalDTO;
+import com.damoyo.domain.MyIMeetDTO;
 import com.damoyo.domain.MyInterestDTO;
 import com.damoyo.domain.MyInterestVO;
+import com.damoyo.domain.MyJoinMeetDTO;
+import com.damoyo.domain.MyJoinMeetVO;
 import com.damoyo.domain.UserVO;
 import com.damoyo.service.UserService;
 
@@ -34,6 +37,45 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
+	// 로그인 폼
+	@GetMapping("/login")
+	public void loginForm() {
+	}
+	
+	// 로그인
+	@PostMapping("/login")
+	public String login(UserVO vo ,RedirectAttributes rttr, HttpSession session) {
+		log.info("사용자가 입력한 로그인 정보 - " + vo);
+		UserVO user = userService.userLogin(vo);
+		log.info("유저 정보 - " + user);
+		
+		if(user == null) {
+			rttr.addFlashAttribute("result","fail");
+			return "redirect:/user/login";
+		}
+		
+		if(user.getU_id().equals(vo.getU_id()) 
+				&& user.getU_pw().equals(vo.getU_pw()) ) {
+			session.setAttribute("u_id", user.getU_id());
+			session.setAttribute("u_pw", user.getU_pw());
+			session.setAttribute("userInfo", user);
+			rttr.addFlashAttribute("id_session", session.getAttribute("u_id"));
+			rttr.addFlashAttribute("pw_session", session.getAttribute("u_pw"));
+			rttr.addFlashAttribute("result","loginOK");
+			return "redirect:/main/";
+		} else {
+			rttr.addFlashAttribute("result","fail");
+			return "redirect:/user/login";
+		}
+	}
+	
+	// 로그아웃
+	@PostMapping("/logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "/user/login";
+	}
+		
 	// 회원가입 폼
 	@GetMapping("/join")
 	public void joinForm() {
@@ -45,6 +87,7 @@ public class UserController {
 		
 		// 방금 가입한 사용자의 아이디를 세션에 저장
 		session.setAttribute("u_id", vo.getU_id());
+		session.setAttribute("userInfo", vo);
 
 		log.info("join 로직 접속 - " + vo);
 		userService.userJoin(vo);
@@ -130,45 +173,6 @@ public class UserController {
 		UserVO profile = userService.showProfile(u_id);
 		model.addAttribute("profile", profile);
 		return "/user/mypage";
-	}
-	
-	// 로그인 폼
-	@GetMapping("/login")
-	public void loginForm() {
-	}
-	
-	// 로그인
-	@PostMapping("/login")
-	public String login(UserVO vo ,RedirectAttributes rttr, HttpSession session) {
-		log.info("사용자가 입력한 로그인 정보 - " + vo);
-		UserVO user = userService.userLogin(vo);
-		log.info("유저 정보 - " + user);
-		
-		if(user == null) {
-			rttr.addFlashAttribute("result","fail");
-			return "redirect:/user/login";
-		}
-		
-		if(user.getU_id().equals(vo.getU_id()) 
-				&& user.getU_pw().equals(vo.getU_pw()) ) {
-			session.setAttribute("u_id", user.getU_id());
-			session.setAttribute("u_pw", user.getU_pw());
-			session.setAttribute("userInfo", user);
-			rttr.addFlashAttribute("id_session", session.getAttribute("u_id"));
-			rttr.addFlashAttribute("pw_session", session.getAttribute("u_pw"));
-			rttr.addFlashAttribute("result","loginOK");
-			return "redirect:/main/";
-		} else {
-			rttr.addFlashAttribute("result","fail");
-			return "redirect:/user/login";
-		}
-	}
-	
-	// 로그아웃
-	@PostMapping("/logout")
-	public String logout(HttpSession session) {
-		session.invalidate();
-		return "/user/login";
 	}
 	
 	// 내 정보 수정
@@ -298,6 +302,47 @@ public class UserController {
 			rttr.addFlashAttribute("result", "fail");
 			return "redirect:/user/leave";
 		}
+	}
+	
+	// 내 모임 조회
+	@GetMapping("/myMeet")
+	public String myMeet(Model model, HttpSession session) {
+		String u_id = (String) session.getAttribute("u_id");
+		// 세션이 비었을 땐 로그인 페이지로
+		if(u_id == null) {
+			return "/user/login";
+		}
+		List<MyJoinMeetDTO> myMeetList = userService.showMyMeet(u_id);
+		model.addAttribute("list", myMeetList);
+		model.addAttribute("u_id", u_id);
+		return "/user/mymeet";
+	}
+	
+	// 내 관심모임 조회
+	@GetMapping("/interest/meet")
+	public String myInterestMeet(Model model, HttpSession session) {
+		String u_id = (String) session.getAttribute("u_id");
+		// 세션이 비었을 땐 로그인 페이지로
+		if(u_id == null) {
+			return "/user/login";
+		}
+		List<MyIMeetDTO> interestMeetList = userService.showInterestMeet(u_id);
+		model.addAttribute("list", interestMeetList);
+		return "/user/interest_meet";
+	}
+	
+	// 즐겨찾는 모임 추가
+	@PostMapping("/user/addStar")
+	public String addStar(MyJoinMeetVO vo, RedirectAttributes rttr) {
+		userService.addStar(vo);
+		return "redirect:/user/myMeet";
+	}
+	
+	// 즐겨찾는 모임 삭제 
+	@PostMapping("/user/deleteStar")
+	public String deleteStar(MyJoinMeetVO vo, RedirectAttributes rttr) {
+		userService.deleteStar(vo);
+		return "redirect:/user/myMeet";
 	}
 	
 }

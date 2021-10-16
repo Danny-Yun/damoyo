@@ -98,4 +98,38 @@
 		SELECT COUNT(*) FROM my_favorit_interest WHERE u_id=#{u_id}
 	</select>
 	
+	<!-- 내 모임 조회 -->
+	<select id="getMyMeet" resultType="com.damoyo.domain.MyJoinMeetDTO">
+		SELECT 
+			m.m_profile, m.m_area, m.m_name, m.m_people_cnt, j.my_join_star, m.m_num
+		FROM 
+			my_join_meet j JOIN meet m ON j.m_num = m.m_num 
+   		WHERE 
+   			j.u_id=#{u_id} ORDER BY j.my_join_star DESC
+	</select>
+	
+	<!-- 내 관심 모임 조회 -->
+	<select id="getInterestMeet" resultType="com.damoyo.domain.MyIMeetDTO">
+		SELECT 
+			m.m_area, m.m_name, m.m_num
+		FROM 
+			my_interest_meet i JOIN meet m ON i.m_num = m.m_num 
+   		WHERE 
+   			i.u_id=#{u_id} 
+	</select>
+	
+	<!-- 즐겨찾는 모임 추가 -->
+	<update id="addStar">
+		UPDATE my_join_meet
+			SET my_join_star = 1
+				WHERE u_id = #{u_id} AND m_num = #{m_num}
+	</update>
+	
+	<!-- 즐겨찾는 모임 삭제 -->
+	<update id="deleteStar">
+		UPDATE my_join_meet
+			SET my_join_star = 0
+				WHERE u_id = #{u_id} AND m_num = #{m_num}
+	</update>
+	
 </mapper>

@@ -115,3 +115,5 @@ INSERT INTO user_info(u_birth, u_area, u_intro,u_sex, u_profile, u_name, u_id, u
 INSERT INTO user_info(u_birth, u_area, u_intro,u_sex, u_profile, u_name, u_id, u_pw) VALUES(TO_DATE('1993-01-19 00:00:00','YYYY-MM-DD HH24:MI:SS'),'은평구', '안녕하세요', 0, null, '문별', 'ansquf', '1111');
 INSERT INTO user_info(u_birth, u_area, u_intro,u_sex, u_profile, u_name, u_id, u_pw) VALUES(TO_DATE('1993-01-19 00:00:00','YYYY-MM-DD HH24:MI:SS'),'은평구', '안녕하세요', 0, null, '휘인', 'gnldls', '1111');
 INSERT INTO user_info(u_birth, u_area, u_intro,u_sex, u_profile, u_name, u_id, u_pw) VALUES(TO_DATE('1993-01-19 00:00:00','YYYY-MM-DD HH24:MI:SS'),'은평구', '안녕하세요', 0, null, '화사', 'ghktk', '1111');
+
+COMMIT;

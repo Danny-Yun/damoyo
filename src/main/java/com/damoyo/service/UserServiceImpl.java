@@ -8,7 +8,10 @@ import org.springframework.stereotype.Service;
 import com.damoyo.domain.ICateNumDTO;
 import com.damoyo.domain.ICateVO;
 import com.damoyo.domain.IDetailVO;
+import com.damoyo.domain.MyIMeetDTO;
 import com.damoyo.domain.MyInterestVO;
+import com.damoyo.domain.MyJoinMeetDTO;
+import com.damoyo.domain.MyJoinMeetVO;
 import com.damoyo.domain.UserVO;
 import com.damoyo.mapper.UserMapper;
 
@@ -26,7 +29,6 @@ public class UserServiceImpl implements UserService{
 	// 로그인
 	@Override
 	public UserVO userLogin(UserVO vo) {
-		log.info("사용자 로그인 서비스 실행 - " + vo);
 		UserVO user = userMapper.login(vo);
 		return user;
 	}
@@ -34,14 +36,12 @@ public class UserServiceImpl implements UserService{
 	// 회원가입
 	@Override
 	public void userJoin(UserVO vo) {
-		log.info("사용자 회원가입 서비스 실행 - " + vo);
 		userMapper.join(vo);
 	}
 	
 	// 아이디 중복확인
 	@Override
 	public int showIdCount(String u_id) {
-		log.info("회원가입시 아이디 중복확인 서비스 실행 - " + u_id);
 		int result = userMapper.getIdCount(u_id);
 		return result;
 	}
@@ -49,7 +49,6 @@ public class UserServiceImpl implements UserService{
 	// 관심사 카테고리 조회
 	@Override
 	public List<ICateVO> showInterestCate() {
-		log.info("회원가입 후 관심사 조회 서비스 실행");
 		List<ICateVO> iCateList = userMapper.getInterestCate();
 		return iCateList;
 	}
@@ -57,7 +56,6 @@ public class UserServiceImpl implements UserService{
 	// 상세 관심사 조회
 	@Override
 	public List<IDetailVO> showInterestDetail(int i_cate_num) {
-		log.info("상세 관심사 조회 서비스 실행 - " + i_cate_num);
 		List<IDetailVO> iDetailList = userMapper.getInterestDetail(i_cate_num);
 		return iDetailList;
 	}
@@ -72,14 +70,12 @@ public class UserServiceImpl implements UserService{
 	// 유저가 선택한 (상세)관심사 저장
 	@Override
 	public void saveUserInterest(MyInterestVO vo) {
-		log.info("관심사 저장 서비스 실행 - " + vo);
 		userMapper.saveUserInterest(vo);
 	}
 
 	// 사용자 프로필 정보 조회
 	@Override
 	public UserVO showProfile(String u_id) {
-		log.info("마이페이지 프로필 조회 서비스 실행 - " + u_id);
 		UserVO profile = userMapper.getProfile(u_id);
 		return profile;
 	}
@@ -87,14 +83,12 @@ public class UserServiceImpl implements UserService{
 	// 사용자 프로필 정보 수정
 	@Override
 	public void modifyProfile(UserVO vo) {
-		log.info("사용자 프로필 수정 서비스 실행 - " + vo);
 		userMapper.modifyProfile(vo);
 	}
 
 	// 마이페이지에서 내 관심사 조회
 	@Override
 	public List<MyInterestVO> showUserInterest(String u_id) {
-		log.info("마이페이지 관심사 조회 서비스 실행 - " + u_id);
 		List<MyInterestVO> myInterest = userMapper.getUserInterest(u_id);
 		return myInterest;
 	}
@@ -102,31 +96,51 @@ public class UserServiceImpl implements UserService{
 	// 내 관심사 삭제
 	@Override
 	public void deleteInterest(int f_interest_num) {
-		log.info("관심사 삭제 서비스 실행 - " + f_interest_num);
 		userMapper.deleteInterest(f_interest_num);
 	}
 
 	// 비밀번호 변경
 	@Override
 	public void modifyPassword(UserVO vo) {
-		log.info("비밀번호 변경 서비스 실행 - " + vo);
 		userMapper.updatePassword(vo);
 	}
 
 	// 회원 탈퇴
 	@Override
 	public void removeAccount(String u_id) {
-		log.info("회원 탈퇴 서비스 실행 - " + u_id);
 		userMapper.deleteAccount(u_id);
 	}
 
 	// 관심사 최대 개수를 제한하기 위해 유저의 관심사 개수 조회 
 	@Override
 	public int showDetailCount(String u_id) {
-		log.info("사용자의 관심사 갯수 조회 서비스 실행 - " + u_id);
 		int i_num = userMapper.getDetailCount(u_id);
 		return i_num;
 	}
 
-	
+	// 내 모임 조회
+	@Override
+	public List<MyJoinMeetDTO> showMyMeet(String u_id) {
+		List<MyJoinMeetDTO> myMeetList = userMapper.getMyMeet(u_id);
+		return myMeetList;
+	}
+
+	// 내 관심 모임 조회
+	@Override
+	public List<MyIMeetDTO> showInterestMeet(String u_id) {
+		List<MyIMeetDTO> interestMeetList = userMapper.getInterestMeet(u_id);
+		return interestMeetList;
+	}
+
+	// 즐겨찾는 모임 추가
+	@Override
+	public void addStar(MyJoinMeetVO vo) {
+		userMapper.addStar(vo);
+	}
+
+	// 즐겨찾는 모임 삭제
+	@Override
+	public void deleteStar(MyJoinMeetVO vo) {
+		userMapper.deleteStar(vo);
+	}
 }

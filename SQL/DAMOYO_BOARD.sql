@@ -3,6 +3,7 @@
 
 SELECT * FROM board_category;
 
+
 INSERT INTO board_category(b_cate_num, b_cate_name)
 VALUES(BOARD_CATEGORY_SEQ.nextval, '자유게시판');
 INSERT INTO board_category(b_cate_num, b_cate_name)

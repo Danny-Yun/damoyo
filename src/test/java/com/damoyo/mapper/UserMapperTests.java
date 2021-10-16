@@ -10,6 +10,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.damoyo.domain.ICateNumDTO;
 import com.damoyo.domain.MyInterestVO;
+import com.damoyo.domain.MyJoinMeetVO;
 import com.damoyo.domain.UserVO;
 
 import lombok.extern.log4j.Log4j;
@@ -123,5 +124,33 @@ public class UserMapperTests {
 	public void testDeleteAccount() {
 		String u_id = "riudiu";
 		userMapper.deleteAccount(u_id);
+	}
+	
+	//@Test 
+	public void testGetMyMeet() {
+		String u_id = "riudiu";
+		userMapper.getMyMeet(u_id);
+	}
+	
+	//@Test 
+	public void testGetInterestMeet() {
+		String u_id = "riudiu";
+		userMapper.getInterestMeet(u_id);
+	}
+	
+	//@Test 
+	public void testAddStar() {
+		MyJoinMeetVO vo = new MyJoinMeetVO();
+		vo.setU_id("riudiu");
+		vo.setM_num(1L);
+		userMapper.addStar(vo);
+	}
+	
+	//@Test 
+	public void testDeleteStar() {
+		MyJoinMeetVO vo = new MyJoinMeetVO();
+		vo.setU_id("riudiu");
+		vo.setM_num(1L);
+		userMapper.deleteStar(vo);
 	}
 }
