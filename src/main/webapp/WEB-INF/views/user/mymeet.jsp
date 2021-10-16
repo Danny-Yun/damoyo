@@ -30,6 +30,7 @@
 	.star {
 		cursor:pointer;
 		color: #DADA00;
+		width: 1%;
 	}
 	.star:hover{
 		color: #DADA00;
@@ -65,7 +66,7 @@
 					<h6>${list.m_area}</h6>
 					<h5>${list.m_name}</h5>
 				</div>
-				<span>${list.m_people_cnt}명</span>
+				<span>${list.m_join_people_cnt}명</span>
 			</div>
 		</c:forEach>
 	</div>
