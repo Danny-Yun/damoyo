@@ -22,7 +22,7 @@
 	<br>
 	<script type="text/javascript"></script>
 	<table border="1">
-		<tr><td colspan="2">${infos.meet.m_profile }</td></tr>
+		<tr><td colspan="2"><img style="width: 80%" src="/main/display2?m_num=${infos.meet.m_num }"></td></tr>
 		<tr>
 			<td>${infos.meet.i_cate_name }</td>
 			<td>${infos.meet.m_name }</td>

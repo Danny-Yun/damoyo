@@ -9,7 +9,7 @@
 </head>
 <body>
 	<h1>생성페이지</h1>
-	<form action="/main/register" method="post">
+	<form action="/main/register" method="post" enctype="multipart/form-data">
 		모임 이름 : <input type="text" name="m_name"><br>
 		모임 인원 : 
 			<select name="m_people_cnt">
@@ -19,7 +19,7 @@
 			</select>
 			<br>
 		모임 지역 : <input type="text" name="m_area"><br>
-		모임 사진 : <input type="text" name="m_profile"><br>
+		모임 사진 : <input type="file" name="profile" multiple><br>
 		모임 종류 : 
 			<select name="i_cate_num">
 				<option selected>부서를 선택하세요.</option>

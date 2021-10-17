@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,6 +10,13 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<!-- MeetList Script  -->
+	<script>
+	$(()=>{
+		
+	});
+	</script>
+
 	<h1>main 페이지</h1>
 	${userInfo }<br>
 	
@@ -39,8 +47,10 @@
 	<table border="1">
 		<c:forEach var="m" items="${meetList }">
 			<tr>
-				<td rowspan="3">
-					<a href="/meet/info?num=${m.m_num }">"${m.m_profile }이미지${m.m_num }"</a>
+				<td id="meetProfile" rowspan="3">
+					<a href="/meet/info?num=${m.m_num }">
+						<img src="/main/display?m_num=${m.m_num }">
+					</a>
 				</td>
 				<td>${m.m_area }</td>
 				<td rowspan="3">${m.i_cate_name }</td>
@@ -64,6 +74,8 @@
 			<a  class="page-link" href="/main/?pageNum=${meetPages.endPage + 1 }&searchType=${meetPages.cri.searchType}&keyword=${meetPages.cri.keyword}">next</a>
 		</c:if>
 	</ul>
+	
+
 	
 </body>
 </html>
