@@ -77,8 +77,8 @@
 			SELECT meet_seq.nextval FROM DUAL
 		</selectKey>
 		INSERT INTO 
-		meet(m_num, m_name, m_content, m_people_cnt, m_area, m_profile, i_cate_num, u_id)
-		VALUES(#{m_num}, #{m_name}, #{m_content}, #{m_people_cnt}, #{m_area}, #{m_profile}, #{i_cate_num}, #{u_id})
+		meet(m_num, m_name, m_content, m_people_cnt, m_area, m_profile, i_cate_num, u_id, m_profilepath, m_uuid)
+		VALUES(#{m_num}, #{m_name}, #{m_content}, #{m_people_cnt}, #{m_area}, #{m_profile}, #{i_cate_num}, #{u_id}, #{m_profilepath}, #{m_uuid})
 	</insert>
 	
 	<!-- 모임 삭제 -->

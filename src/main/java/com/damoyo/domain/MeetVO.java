@@ -15,4 +15,7 @@ public class MeetVO {
     private String i_cate_name;
     private String u_id;
     private int m_join_people_cnt;
+    private String m_profilepath;
+    private String m_uuid;
+//    private boolean m_image;
 }
