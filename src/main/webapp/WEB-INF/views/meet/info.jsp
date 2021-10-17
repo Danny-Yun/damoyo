@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
 	<h1>모임방</h1>
@@ -15,14 +16,14 @@
 	모임정보 : ${infos.meet}<br>
 	가입여부 : ${infos.checkJoin eq null ? '정보 없음':'정보 있음' } <br>
 	<a href="/meet/info?num=${infos.meet.m_num }"><button>정보</button></a>
-	<a href="${infos.checkJoin eq null ? '#':'/meet/board/list'}"><button>게시판</button></a>
-	<a href="#"><button>갤러리</button></a>
-	<a href="#"><button>채팅</button></a>
+	<a href="${infos.checkJoin eq null ? '#':'/meet/board/list'}" class="meetinfo-navbar__checkJoin"><button>게시판</button></a>
+	<a href="#" class="meetinfo-navbar__checkJoin"><button>갤러리</button></a>
+	<a href="#" class="meetinfo-navbar__checkJoin"><button>채팅</button></a>
 	<a href="/main/"><button>메인화면</button></a>
 	<br>
 	<script type="text/javascript"></script>
 	<table border="1">
-		<tr><td colspan="2"><img style="width: 80%" src="/main/display2?m_num=${infos.meet.m_num }"></td></tr>
+		<tr><td colspan="2"><img style="height: 300px" src="/main/display2?m_num=${infos.meet.m_num }"></td></tr>
 		<tr>
 			<td>${infos.meet.i_cate_name }</td>
 			<td>${infos.meet.m_name }</td>
@@ -129,5 +130,15 @@
 		</div>
 	</form>
 	</div>
+	
+	<script>
+		let checkJoin = $(".meetinfo-navbar__checkJoin").attr('href');
+		console.log(checkJoin);
+		$(".meetinfo-navbar__checkJoin").on("click", function (){
+			if(checkJoin == "#") {
+				alert("가입 후에 열람할 수 있습니다.");
+			}
+		});
+	</script>
 </body>
 </html>

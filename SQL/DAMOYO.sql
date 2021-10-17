@@ -304,9 +304,9 @@ CREATE TABLE meet_plan(
     m_plan_num NUMBER PRIMARY KEY NOT NULL,
     m_plan_name VARCHAR2(50) NOT NULL,
     m_plan_people_cnt NUMBER(3) NOT NULL,
-    m_plan_startdate DATE,
+    m_plan_startdate VARCHAR2(50) NOT NULL,
     m_plan_money NUMBER DEFAULT 0,
-    m_plan_area VARCHAR2(50) NOT NULL,
+    m_plan_area DATE,
     m_num NUMBER NOT NULL,
     CONSTRAINT ml_m_num_fk FOREIGN KEY (m_num) REFERENCES meet(m_num)
 );
