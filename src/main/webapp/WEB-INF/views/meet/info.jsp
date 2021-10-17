@@ -63,10 +63,13 @@
 	</button>
 	<br>
 	<table>
-		<tr><td>${infos.plan[0].m_plan_name }[${infos.plan[0].m_plan_people_cnt }명]</td></tr>
-		<tr><td>${infos.plan[0].m_plan_startdate }</td></tr>
-		<tr><td>${infos.plan[0].m_plan_area }</td></tr>
-		<tr><td>&#8361; ${infos.plan[0].m_plan_money }원</td></tr>
+		<c:forEach var="p" items="${infos.plan }">
+			<tr><td>${p.m_plan_name }[${p.m_plan_people_cnt }명]</td></tr>
+			<tr><td>${p.m_plan_startdate }</td></tr>
+			<tr><td>${p.m_plan_area }</td></tr>
+			<tr><td>&#8361; ${p.m_plan_money }원</td></tr>
+			<br>
+		</c:forEach>
 	</table>
 	
 	<h2>모임 멤버</h2>
