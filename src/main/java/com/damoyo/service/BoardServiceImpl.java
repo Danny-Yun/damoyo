@@ -91,11 +91,13 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void clickLike(BoardLikeVO vo) {
 		mapper.clickLike(vo);
+		mapper.updatelike(vo.getB_num());
 	}
 	
 	@Override
 	public void clickLikeCancel(BoardLikeVO vo) {
 		mapper.clickLikeCancel(vo);
+		mapper.updatelike(vo.getB_num());
 	}
 
 }

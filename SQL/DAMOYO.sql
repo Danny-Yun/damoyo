@@ -55,6 +55,9 @@ CREATE TABLE meet (
     i_cate_num NUMBER(3) NOT NULL,
     u_id varchar2(100) NOT NULL,
     m_join_people_cnt NUMBER DEFAULT 1,
+    m_profilePath VARCHAR2(200) DEFAULT NULL,
+    m_uuid VARCHAR2(100) DEFAULT NULL,
+    m_image CHAR(1) DEFAULT 'I',
     CONSTRAINT meet_i_cate_fk FOREIGN KEY (i_cate_num) REFERENCES interest_category(i_cate_num),
     CONSTRAINT meet_u_id_fk FOREIGN KEY (u_id) REFERENCES user_info(u_id)
 );

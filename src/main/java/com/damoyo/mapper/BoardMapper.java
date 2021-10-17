@@ -43,7 +43,7 @@ public interface BoardMapper {
 	// 댓글 갯수
 	public int replyCnt(Long b_num);
 	
-	// 게시판 좋아요 수
+	// 게시판 좋아요 수(board_like테이블)
 	public int likeCnt(Long b_num);
 	
 	// 게시판 좋아요 본인 확인
@@ -51,6 +51,9 @@ public interface BoardMapper {
 	
 	// 게시판 좋아요 클릭
 	public void clickLike(BoardLikeVO vo);
+	
+	// 게시판 좋아요 수 board테이블 업데이트
+	public void updatelike(Long b_num);
 	
 	// 게시판 좋아요 취소
 	public void clickLikeCancel(BoardLikeVO vo);

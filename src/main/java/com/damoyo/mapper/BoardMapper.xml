@@ -86,6 +86,10 @@
 		SELECT COUNT(*) FROM board_like WHERE b_num=#{b_num}
 	</select>
 	
+	<update id="updatelike">
+		UPDATE board SET b_like= (SELECT COUNT(*) FROM board_like WHERE board_like.b_num=#{b_num})
+	</update>
+	
 	<select id="checkLike" resultType="com.damoyo.domain.BoardLikeVO">
 		SELECT * FROM board_like WHERE b_num=#{b_num} AND u_id=#{u_id}
 	</select>
