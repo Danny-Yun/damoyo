@@ -54,7 +54,7 @@ CREATE TABLE meet (
     m_profile VARCHAR2(1000),
     i_cate_num NUMBER(3) NOT NULL,
     u_id varchar2(100) NOT NULL,
-    m_join_people_cnt NUMBER DEFAULT 1,
+    m_join_people_cnt NUMBER DEFAULT 0,
     m_profilePath VARCHAR2(200) DEFAULT NULL,
     m_uuid VARCHAR2(100) DEFAULT NULL,
     m_image CHAR(1) DEFAULT 'I',
