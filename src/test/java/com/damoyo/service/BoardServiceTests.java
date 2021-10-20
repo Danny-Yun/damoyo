@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.damoyo.domain.BoardCateVO;
+import com.damoyo.domain.BoardLikeVO;
 import com.damoyo.domain.BoardVO;
 
 import lombok.extern.log4j.Log4j;
@@ -21,12 +23,12 @@ public class BoardServiceTests {
 	//@Test
 	public void getBoardTest() {
 		
-		service.getBoard(5L);
+//		service.getBoard(5L);
 	}
 	
 	//@Test
 	public void getBoardsTest() {
-		service.getBoards();
+//		service.getBoards(13L);
 	}
 	
 	//@Test
@@ -53,8 +55,26 @@ public class BoardServiceTests {
 		service.update(vo);
 	}
 	
-	@Test
+//	@Test
 	public void deleteTest() {
-		service.delete(5L);
+		service.delete(6L);
+	}
+	
+//	@Test
+	public void insertCate() {
+		String[] arr = {"전체보기", "자유게시판", "관심사 공유", "정모후기", "가입인사", "공지사항"};
+		for (int i = 0; i < arr.length-1; i++) {
+			BoardCateVO vo = new BoardCateVO();
+			vo.setM_num(16L);
+			vo.setB_cate_name(arr[i]);
+			log.info(vo);
+			service.insertCate(vo);
+		}
+	}
+	
+	@Test
+	public void testcheckLike() {
+		log.info("테스트");
+		log.info(service.checkLike(2312L, "wls"));
 	}
 }

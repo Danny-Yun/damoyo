@@ -2,12 +2,17 @@ package com.damoyo.service;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.damoyo.domain.InterestVO;
+import com.damoyo.domain.MainSearchCriteria;
 import com.damoyo.domain.MeetMemberVO;
 import com.damoyo.domain.MeetVO;
+import com.damoyo.domain.MyIMeetVO;
+import com.damoyo.domain.MyJoinMeetVO;
 import com.damoyo.domain.UserVO;
 import com.damoyo.mapper.MainMapper;
 
@@ -38,9 +43,9 @@ public class MainServiceImpl implements MainService {
 	}
 
 	@Override
-	public List<MeetVO> getListMeet() {
+	public List<MeetVO> getListMeet(MainSearchCriteria cri) {
 		log.info("생성된 모임 리스트 조회");
-		List<MeetVO> listMeet = mapper.getListMeet();
+		List<MeetVO> listMeet = mapper.getListMeet(cri);
 		return listMeet;
 	}
 
@@ -81,9 +86,11 @@ public class MainServiceImpl implements MainService {
 		return memberList;
 	}
 	
+	@Transactional
 	@Override
 	public void joinMeet(MeetMemberVO vo) {
 		mapper.joinMeet(vo);
+		mapper.updateJoinPeopleCnt(vo, 1);
 	}
 	
 	@Override
@@ -91,8 +98,41 @@ public class MainServiceImpl implements MainService {
 		return mapper.checkMeetJoin(vo);
 	}
 	
+	@Transactional
 	@Override
 	public void withdrawMeet(MeetMemberVO vo) {
 		mapper.withdrawMeet(vo);
+		mapper.updateJoinPeopleCnt(vo, -1);
+	}
+	
+	@Override
+	public int getTotalMeet(@Param("cri")MainSearchCriteria cri) {
+		return mapper.getTotalMeet(cri);
+	}
+
+	@Override
+	public void saveMyJoinMeet(MyJoinMeetVO vo) {
+		mapper.saveMyJoinMeet(vo);
+	}
+
+	@Override
+	public void removeMyJoinMeet(MyJoinMeetVO vo) {
+		mapper.removeMyJoinMeet(vo);
+	}
+
+	@Override
+	public MyIMeetVO checkAddIMeet(MyIMeetVO vo) {
+		return mapper.checkAddIMeet(vo);
+	}
+
+	@Override
+	public void addIMeet(MyIMeetVO vo) {
+		mapper.addIMeet(vo);
+	}
+
+	@Override
+	public void deleteIMeet(MyIMeetVO vo) {
+		mapper.deleteIMeet(vo);
+		
 	}
 }

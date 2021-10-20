@@ -2,9 +2,14 @@ package com.damoyo.service;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.damoyo.domain.InterestVO;
+import com.damoyo.domain.MainSearchCriteria;
 import com.damoyo.domain.MeetMemberVO;
 import com.damoyo.domain.MeetVO;
+import com.damoyo.domain.MyIMeetVO;
+import com.damoyo.domain.MyJoinMeetVO;
 import com.damoyo.domain.UserVO;
 
 public interface MainService {
@@ -15,7 +20,7 @@ public interface MainService {
 	public List<InterestVO> get();
 	
 	// 생성된 모임 리스트 가져오기
-	public List<MeetVO> getListMeet();
+	public List<MeetVO> getListMeet(MainSearchCriteria cri);
 	
 	// 모임 생성
 	public void registerMeet(MeetVO vo);
@@ -43,4 +48,22 @@ public interface MainService {
 	
 	// 모임 탈퇴
 	public void withdrawMeet(MeetMemberVO vo);
+	
+	// 모임 총 개수
+	public int getTotalMeet(@Param("cri")MainSearchCriteria cri);
+	
+	// 모임 가입시 내가 가입한 모임에 저장
+	public void saveMyJoinMeet(MyJoinMeetVO vo);
+	
+	// 모임 탈퇴시 내가 가입한 모임에서 삭제
+	public void removeMyJoinMeet(MyJoinMeetVO vo);
+	
+	// 관심 모임 추가 여부
+	public MyIMeetVO checkAddIMeet(MyIMeetVO vo);
+	
+	// 내 관심모임에 추가
+	public void addIMeet(MyIMeetVO vo);
+	
+	// 내 관심모임에서 삭제
+	public void deleteIMeet(MyIMeetVO vo);
 }

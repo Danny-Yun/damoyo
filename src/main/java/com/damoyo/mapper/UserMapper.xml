@@ -17,6 +17,11 @@
 				'간략한 자기소개를 작성해주세요', null)
 	</insert>
 	
+	<!-- 아이디 중복확인 -->
+	<select id="getIdCount" resultType="int">
+		SELECT COUNT(*) FROM user_info WHERE u_id=#{u_id}
+	</select>
+	
 	<!-- 관심사 카테고리 조회 -->
 	<select id="getInterestCate" resultType="com.damoyo.domain.ICateVO">
 		SELECT * FROM interest_category ORDER BY i_cate_num ASC
@@ -49,5 +54,82 @@
 			#{i_detail_name}
 			)
 	</insert>
+	
+	<!-- 사용자 프로필 정보 조회 -->
+	<select id="getProfile" resultType="com.damoyo.domain.UserVO">
+		SELECT * FROM user_info WHERE u_id = #{u_id}
+	</select>
+	
+	<!-- 사용자 프로필 정보 수정 -->
+	<update id="modifyProfile">
+		UPDATE user_info 
+			SET 
+		u_profile = #{u_profile}, u_name = #{u_name}, u_sex = #{u_sex}, 
+		u_birth = #{u_birth}, u_area = #{u_area}, u_intro = #{u_intro} 
+			WHERE 
+		u_id = #{u_id}
+	</update>
+	
+	<!-- 마이페이지에서 내 관심사 조회 -->
+	<select id="getUserInterest" resultType="com.damoyo.domain.MyInterestVO">
+		SELECT * FROM my_favorit_interest WHERE u_id = #{u_id}
+	</select>
+	
+	<!-- 내 관심사 삭제 -->
+	<delete id="deleteInterest">
+		DELETE FROM my_favorit_interest 
+			WHERE f_interest_num = #{f_interest_num}
+	</delete>
+	
+	<!-- 비밀번호 변경 -->
+	<update id="updatePassword">
+		UPDATE user_info
+			SET u_pw = #{u_pw}
+				WHERE u_id = #{u_id}
+	</update>
+	
+	<!-- 회원 탈퇴 -->
+	<delete id="deleteAccount">
+		DELETE FROM user_info WHERE u_id = #{u_id}
+	</delete>
+	
+	<!-- 유저의 관심사 개수 조회 --> 
+	<select id="getDetailCount" resultType="int">
+		SELECT COUNT(*) FROM my_favorit_interest WHERE u_id=#{u_id}
+	</select>
+	
+	<!-- 내 모임 조회 -->
+	<select id="getMyMeet" resultType="com.damoyo.domain.MyJoinMeetDTO">
+		SELECT 
+			m.m_profile, m.m_area, m.m_name, m.m_join_people_cnt, j.my_join_star, m.m_num
+		FROM 
+			my_join_meet j JOIN meet m ON j.m_num = m.m_num 
+   		WHERE 
+   			j.u_id=#{u_id} ORDER BY j.my_join_star DESC
+	</select>
+	
+	<!-- 내 관심 모임 조회 -->
+	<select id="getInterestMeet" resultType="com.damoyo.domain.MyIMeetDTO">
+		SELECT 
+			m.m_area, m.m_name, m.m_num
+		FROM 
+			my_interest_meet i JOIN meet m ON i.m_num = m.m_num 
+   		WHERE 
+   			i.u_id=#{u_id} 
+	</select>
+	
+	<!-- 즐겨찾는 모임 추가 -->
+	<update id="addStar">
+		UPDATE my_join_meet
+			SET my_join_star = 1
+				WHERE u_id = #{u_id} AND m_num = #{m_num}
+	</update>
+	
+	<!-- 즐겨찾는 모임 삭제 -->
+	<update id="deleteStar">
+		UPDATE my_join_meet
+			SET my_join_star = 0
+				WHERE u_id = #{u_id} AND m_num = #{m_num}
+	</update>
 	
 </mapper>

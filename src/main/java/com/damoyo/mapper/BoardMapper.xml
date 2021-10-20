@@ -5,29 +5,102 @@
 
 
 <mapper namespace="com.damoyo.mapper.BoardMapper">
+	<sql id="search">
+		<if test="cri.searchType == null">
+			SELECT * FROM board WHERE m_num=#{m_num} ORDER BY b_num DESC
+		</if>
+		<if test="cri.searchType != null">
+			<if test="cri.searchType == ''.toString()">
+				SELECT * FROM board WHERE m_num=#{m_num} ORDER BY b_num DESC
+			</if>
+			<if test="cri.searchType != ''.toString()">
+				SELECT * FROM board WHERE m_num=#{m_num} AND b_cate_name=#{cri.searchType} AND
+				(b_title LIKE '%'||#{cri.keyword}||'%' OR b_content LIKE '%'||#{cri.keyword}||'%')
+			</if>
+		</if>
+	</sql>
+	<sql id="searchTotal">
+		<if test="cri.searchType != null">
+			<if test="cri.searchType == ''.toString()">
+				AND (b_title LIKE '%'||#{cri.keyword}||'%' OR b_content LIKE '%'||#{cri.keyword}||'%')
+			</if>
+			<if test="cri.searchType != ''.toString()">
+				AND b_cate_name=#{cri.searchType} 
+				AND (b_title LIKE '%'||#{cri.keyword}||'%' OR b_content LIKE '%'||#{cri.keyword}||'%')
+			</if>
+		</if>
+	</sql>
 	
 	<select id="getBoards" resultType="com.damoyo.domain.BoardVO">
-		SELECT * FROM board ORDER BY b_num DESC
+		<![CDATA[
+			SELECT tbl.b_num, tbl.b_cate_name, tbl.b_title, tbl.b_content, tbl.b_date, tbl.b_like, tbl.b_image1, tbl.b_image2, tbl.b_image3, tbl.b_view, tbl.m_num, tbl.u_id
+			FROM(SELECT ROWNUM rn, board.* FROM(]]>
+		<include refid="search"/>
+		<![CDATA[
+			)board
+			WHERE ROWNUM <= (#{cri.pageNum} * #{cri.amount}))tbl
+			WHERE rn > (#{cri.pageNum} -1) * #{cri.amount}
+		]]>			
 	</select>
 	
 	<select id="getBoard" resultType="com.damoyo.domain.BoardVO">
-		SELECT * FROM board WHERE b_num = #{b_num}
+		SELECT * FROM board WHERE b_num=#{b_num}
 	</select>
 	
+	<insert id="insertCate">
+		INSERT INTO board_category(b_cate_num, b_cate_name, m_num)
+		VALUES(BOARD_CATEGORY_SEQ.nextval, #{b_cate_name}, #{m_num})
+	</insert>
+	
 	<select id="getBoardCate" resultType="com.damoyo.domain.BoardCateVO">
-		SELECT * FROM board_category WHERE m_num=1 
+		SELECT * FROM board_category
 	</select>
 
 	<insert id="insert">
-		INSERT INTO board (b_num, b_cate_name, b_title, b_content, u_id) VALUES ( BOARD_SEQ.nextval, #{b_cate_name}, #{b_title}, #{b_content}, #{u_id})
+		INSERT INTO board (b_num, b_cate_name, b_title, b_content, u_id, b_image1, b_image2, b_image3, m_num) 
+		VALUES (BOARD_SEQ.nextval, #{b_cate_name}, #{b_title}, #{b_content}, #{u_id}, #{b_image1}, #{b_image2}, #{b_image3}, #{m_num})
 	</insert>
 	
 	<delete id="delete">
-		DELETE FROM board WHERE b_num = #{b_num}
+		DELETE board WHERE b_num = #{b_num}
 	</delete>
 	
 	<update id="update">
 		UPDATE board SET b_title = #{b_title}, b_content = #{b_content} WHERE b_num = #{b_num}
 	</update>
+	
+	<select id="getTotalBoard" resultType="int">
+		SELECT COUNT(*) FROM board WHERE m_num=#{m_num}		
+		<include refid="searchTotal"/>
+	</select>
+	
+	<update id="upView">
+		UPDATE board SET b_view = b_view +1 WHERE b_num=#{b_num}
+	</update>
+	
+	<select id="replyCnt" resultType="int">
+		SELECT COUNT(*) FROM board_comments WHERE b_num=#{b_num}
+	</select>
+	
+	<select id="likeCnt" resultType="int">
+		SELECT COUNT(*) FROM board_like WHERE b_num=#{b_num}
+	</select>
+	
+	<update id="updatelike">
+		UPDATE board SET b_like= (SELECT COUNT(*) FROM board_like WHERE board_like.b_num=#{b_num})
+	</update>
+	
+	<select id="checkLike" resultType="com.damoyo.domain.BoardLikeVO">
+		SELECT * FROM board_like WHERE b_num=#{b_num} AND u_id=#{u_id}
+	</select>
+	
+	<insert id="clickLike">
+		INSERT INTO board_like(b_like_num, m_num, b_num, u_id) 
+		VALUES(BOARD_LIKE_SEQ.nextval, #{m_num}, #{b_num}, #{u_id})
+	</insert>
+	
+	<delete id="clickLikeCancel">
+		DELETE FROM board_like WHERE b_num=#{b_num} AND u_id=#{u_id}
+	</delete>
 	
 </mapper>

@@ -11,8 +11,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.damoyo.domain.ICateNumDTO;
-import com.damoyo.domain.MyInterestDTO;
 import com.damoyo.domain.MyInterestVO;
+import com.damoyo.domain.MyJoinMeetVO;
 import com.damoyo.domain.UserVO;
 
 import lombok.extern.log4j.Log4j;
@@ -46,6 +46,14 @@ public class UserServiceTests {
 	}
 	
 	//@Test
+		public void testGetIdCount() {
+			String u_id = "asdasdddd";
+//			String u_id = "danny";
+			
+			userService.showIdCount(u_id);
+		}
+	
+	//@Test
 	public void testShowInterestCate() {
 		userService.showInterestCate();
 	}
@@ -76,5 +84,84 @@ public class UserServiceTests {
 		UserVO vo = new UserVO();
 		vo.setU_id("danny");
 		userService.userLogin(vo);
+	}
+	
+	//@Test 
+	public void testShowProfile() {
+		String u_id = "danny";
+		userService.showProfile(u_id);
+	}
+	
+	//@Test
+	public void testModifyProfile() {
+		UserVO vo = new UserVO();
+		vo.setU_profile("null");
+		vo.setU_name("윤지우");
+		vo.setU_sex(0);
+		vo.setU_birth(Date.valueOf("2001-05-10"));
+		vo.setU_area("청담동");
+		vo.setU_intro("코로나 빨리 끝났으면..");
+		vo.setU_id("danny");
+		userService.modifyProfile(vo);
+	}
+	
+	//@Test
+	public void testshowUserInterest() {
+		String u_id = "danny";
+		userService.showUserInterest(u_id);
+	}
+	
+	//@Test
+	public void testDeleteInterest() {
+		int f_interest_num = 4;
+		userService.deleteInterest(f_interest_num);
+	}
+	
+	//@Test
+	public void testModifyPassword() {
+		UserVO vo = new UserVO();
+		vo.setU_id("danny");
+		vo.setU_pw("danny123");
+		userService.modifyPassword(vo);
+	}
+	
+	//@Test 
+	public void testShowDetailCount() {
+		String u_id = "danny";
+		userService.showDetailCount(u_id);
+	}
+	
+	//@Test
+	public void testRemoveAccount() {
+		String u_id = "danny";
+		userService.removeAccount(u_id);
+	}
+	
+	//@Test 
+	public void testShowMyMeet() {
+		String u_id = "danny";
+		userService.showMyMeet(u_id);
+	}
+	
+	//@Test 
+	public void testShowInterestMeet() {
+		String u_id = "danny";
+		userService.showInterestMeet(u_id);
+	}
+	
+	//@Test 
+	public void testAddStar() {
+		MyJoinMeetVO vo = new MyJoinMeetVO();
+		vo.setU_id("danny");
+		vo.setM_num(4L);
+		userService.addStar(vo);
+	}
+	
+	//@Test 
+	public void testDeleteStar() {
+		MyJoinMeetVO vo = new MyJoinMeetVO();
+		vo.setU_id("danny");
+		vo.setM_num(4L);
+		userService.deleteStar(vo);
 	}
 }

@@ -2,9 +2,31 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.damoyo.mapper.MainMapper">
+	<sql id="search">
+		<if test="cri.searchType != null">
+			<if test="cri.searchType == ''.toString()">
+				(m.m_name LIKE '%'||#{cri.keyword}||'%' OR m.m_content LIKE '%'||#{cri.keyword}||'%') 
+			</if>
+			<if test="cri.searchType != ''.toString()">
+				(m.i_cate_num=#{cri.searchType} AND m.m_name LIKE '%'||#{cri.keyword}||'%' OR
+				m.i_cate_num=#{cri.searchType} AND m.m_content LIKE '%'||#{cri.keyword}||'%') 
+			</if>
+		</if>
+	</sql>
+	<sql id="searchTotal">
+		<if test="cri.searchType != null">
+			<if test="cri.searchType == ''.toString()">
+				WHERE (m_name LIKE '%'||#{cri.keyword}||'%' OR m_content LIKE '%'||#{cri.keyword}||'%')
+			</if>
+			<if test="cri.searchType != ''.toString()">
+				WHERE i_cate_num=#{cri.searchType} 
+				AND (m_name LIKE '%'||#{cri.keyword}||'%' OR m_content LIKE '%'||#{cri.keyword}||'%')
+			</if>
+		</if>	
+	</sql>
 	
 	<sql id="getMemberList">
-		SELECT user_info.u_profile,user_info.u_name,user_info.u_intro, meet_member_list.* 
+		SELECT user_info.u_profile, user_info.u_name, user_info.u_intro, meet_member_list.* 
 		FROM meet_member_list INNER JOIN user_info 
 		ON meet_member_list.u_id=user_info.u_id WHERE m_num=#{m_num} ORDER BY member_list_position, u_name
 	</sql>
@@ -21,7 +43,25 @@
 	
 	<!-- 모임 리스트 가져오기 -->
 	<select id="getListMeet" resultType="com.damoyo.domain.MeetVO">
-		SELECT * FROM meet ORDER BY m_num DESC 
+		<![CDATA[
+			SELECT tbl.* 
+			FROM (SELECT /*+ INDEX_DESC(board_tbl pk_board)*/
+			ROWNUM rn, meet.* FROM (
+			SELECT m.*, i.i_cate_name 
+			FROM meet m LEFT OUTER JOIN interest_category i
+			ON m.i_cate_num=i.i_cate_num
+			WHERE 
+			]]>
+			
+		<include refid="search"/>
+		
+		<![CDATA[
+			ORDER BY m_num DESC)meet
+			WHERE ROWNUM <= #{cri.pageNum} * #{cri.amount})tbl
+			WHERE rn > ((#{cri.pageNum} -1) * #{cri.amount})
+		]]>	
+	
+		<!-- SELECT * FROM meet ORDER BY m_num DESC --> 
 	</select>
 	
 	<!-- 모임 디테일 가져오기 -->
@@ -37,8 +77,8 @@
 			SELECT meet_seq.nextval FROM DUAL
 		</selectKey>
 		INSERT INTO 
-		meet(m_num, m_name, m_content, m_people_cnt, m_area, m_profile, i_cate_num, u_id)
-		VALUES(#{m_num}, #{m_name}, #{m_content}, #{m_people_cnt}, #{m_area}, #{m_profile}, #{i_cate_num}, #{u_id})
+		meet(m_num, m_name, m_content, m_people_cnt, m_area, m_profile, i_cate_num, u_id, m_profilepath, m_uuid)
+		VALUES(#{m_num}, #{m_name}, #{m_content}, #{m_people_cnt}, #{m_area}, #{m_profile}, #{i_cate_num}, #{u_id}, #{m_profilepath}, #{m_uuid})
 	</insert>
 	
 	<!-- 모임 삭제 -->
@@ -57,6 +97,12 @@
 		INSERT INTO meet_member_list(member_list_num, m_num, u_id, member_list_position)
 		VALUES(meet_member_list_seq.nextval, #{m_num}, #{u_id}, #{member_list_position})
 	</insert>
+	
+	<!-- 모임에 가입한 인원수 변경 -->
+	<update id="updateJoinPeopleCnt">
+		UPDATE meet SET m_join_people_cnt = m_join_people_cnt + #{amount} WHERE m_num=#{vo.m_num}
+	</update>
+	
 	
 	<!-- 모임 멤버 조회 -->
 	<select id="getMeetMemberList" resultType="com.damoyo.domain.MeetMemberVO">
@@ -80,5 +126,43 @@
 		DELETE meet_member_list WHERE (m_num=#{m_num} AND u_id=#{u_id})
 	</delete>
 	
+	<!-- 모임 총 개수 -->
+	<select id="getTotalMeet" resultType="int">
+		SELECT COUNT(*) FROM meet
+		<include refid="searchTotal"/>
+	</select>
 	
+	<!-- 모임 가입시 내가 가입한 모임에 저장 -->
+	<insert id="saveMyJoinMeet">
+		INSERT INTO my_join_meet
+			(my_join_num, u_id, m_num)
+		VALUES
+			(MY_JOIN_MEET_SEQ.nextval, #{u_id}, #{m_num}) 
+	</insert>
+	
+	<!-- 모임 탈퇴시 내가 가입한 모임에서 삭제 -->
+	<delete id="removeMyJoinMeet">
+		DELETE FROM my_join_meet 
+			WHERE u_id=#{u_id} AND m_num=#{m_num}
+	</delete>
+	
+	<!-- 관심모임 추가 여부 -->
+	<select id="checkAddIMeet" resultType="com.damoyo.domain.MyIMeetVO">
+		SELECT * FROM my_interest_meet 
+			WHERE u_id=#{u_id} AND m_num=#{m_num}
+	</select>
+	
+	<!-- 내 관심모임에 추가 -->
+	<insert id="addIMeet">
+		INSERT INTO my_interest_meet
+			(my_interest_num, u_id, m_num)
+		VALUES
+			(MY_INTEREST_MEET_SEQ.nextval, #{u_id}, #{m_num}) 
+	</insert>
+	
+	<!-- 내 관심모임에서 삭제 -->
+	<delete id="deleteIMeet">
+		DELETE FROM my_interest_meet
+			WHERE u_id=#{u_id} AND m_num=#{m_num}
+	</delete>
 </mapper>
