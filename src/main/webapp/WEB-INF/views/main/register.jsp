@@ -22,7 +22,6 @@
 		모임 사진 : <input type="file" name="profile" multiple><br>
 		모임 종류 : 
 			<select name="i_cate_num">
-				<option selected>부서를 선택하세요.</option>
 					<c:forEach var="cate" items="${category }">
 					    <option value=${cate.i_cate_num }>${cate.i_cate_name}</option>
 					</c:forEach>

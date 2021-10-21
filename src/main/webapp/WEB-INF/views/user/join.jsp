@@ -95,7 +95,7 @@
 			//아이디 유효성 검사
 			let idRegExp = /^[a-z0-9]{5,20}$/;  
 			if(!idRegExp.test(u_id)) {
-				$("#check_id").html("5~20자의 영문 소문자, 숫자와 특수기호만 사용 가능합니다.");
+				$("#check_id").html("5~20자의 영문 소문자, 숫자만 사용 가능합니다.");
 				$("#check_id").css("color","red");
 				$("#id").attr("value", "N");
 				return;

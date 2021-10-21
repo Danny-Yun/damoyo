@@ -54,7 +54,7 @@ CREATE TABLE meet (
     m_profile VARCHAR2(1000),
     i_cate_num NUMBER(3) NOT NULL,
     u_id varchar2(100) NOT NULL,
-    m_join_people_cnt NUMBER DEFAULT 1,
+    m_join_people_cnt NUMBER DEFAULT 0,
     m_profilePath VARCHAR2(200) DEFAULT NULL,
     m_uuid VARCHAR2(100) DEFAULT NULL,
     m_image CHAR(1) DEFAULT 'I',
@@ -304,9 +304,9 @@ CREATE TABLE meet_plan(
     m_plan_num NUMBER PRIMARY KEY NOT NULL,
     m_plan_name VARCHAR2(50) NOT NULL,
     m_plan_people_cnt NUMBER(3) NOT NULL,
-    m_plan_startdate DATE,
+    m_plan_startdate VARCHAR2(50) NOT NULL,
     m_plan_money NUMBER DEFAULT 0,
-    m_plan_area VARCHAR2(50) NOT NULL,
+    m_plan_area DATE,
     m_num NUMBER NOT NULL,
     CONSTRAINT ml_m_num_fk FOREIGN KEY (m_num) REFERENCES meet(m_num)
 );

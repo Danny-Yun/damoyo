@@ -61,7 +61,7 @@
 				<a class="star" onclick="deleteStar(${list.m_num})"><i class="fas fa-star"></i></a>
 			</c:if>
 			<div class="meet" onclick="location.href='/meet/info?num=${list.m_num }'">
-				<span>${list.m_profile}이미지</span>
+				<img src="/main/display?m_num=${list.m_num }">
 				<div class="meet__column">
 					<h6>${list.m_area}</h6>
 					<h5>${list.m_name}</h5>
