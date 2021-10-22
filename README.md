@@ -27,3 +27,11 @@
 + SourceTree
 
 <br>
+
+## :pushpin: ERD 설계 
+
+![ERD](https://user-images.githubusercontent.com/86466976/138418433-322dce61-da73-4213-b242-512817f6a239.jpg)
+
++ 크게 모임(meet), 유저(user_info), 관심사(interest), 게시판(board), 사진갤러리(photo) 5개로 분류할 수 있으며, 총 17개의 테이블 사용하였습니다. 
+
+<br>
