@@ -10,7 +10,7 @@
 
 <br>
 
-## 2) 사용 기술 및 개발 환경
+## :pushpin: 사용 기술 및 개발 환경
 
 + Java 8
 + JavaScript ES6
