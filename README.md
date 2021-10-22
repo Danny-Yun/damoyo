@@ -24,7 +24,6 @@
 + HikariCP
 + Json
 + Eclipse 2020-09
-+ SourceTree
 
 <br>
 
