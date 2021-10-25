@@ -1,0 +1,32 @@
+@charset "UTF-8";
+
+@import "reset.css";
+@import "variables.css";
+
+/* components */
+@import "components/main.css";
+@import "components/main-nav.css";
+
+/* screens */
+
+
+/* google font */
+@import url('https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR&display=swap');
+
+body {
+ /* font-family: 'Jua', sans-serif; */
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+#wrap {
+	width: 60%;
+	margin: 0 auto;
+}
+
+/* media query */
+@media screen and (max-width: 1190px) {
+	#wrap {
+		width: 100%;
+		margin: 0 auto;
+	}
+}

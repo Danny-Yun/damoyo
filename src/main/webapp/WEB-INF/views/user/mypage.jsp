@@ -29,6 +29,7 @@
 	
 	<a href="/user/myinterest"><button>내 관심사 편집</button></a><br>
 	<a href="/user/interest/meet"><button>내 관심 모임</button></a><br>
+	<!-- <i class="far fa-heart"></i> -->
 	<a href="/user/password"><button>비밀번호 변경</button></a><br>
 	<a href="/user/leave"><button>회원 탈퇴</button></a><br>
 	
