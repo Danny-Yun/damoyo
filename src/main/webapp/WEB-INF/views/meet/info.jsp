@@ -5,21 +5,90 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>모임 정보 - DA!MOYO</title>
+<!-- BootStrap -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+<!-- jQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<!-- Styles -->
+<link rel="stylesheet" href="/resources/css/styles.css">
+<!-- font-awesome code kit -->
+<script src="https://kit.fontawesome.com/6478f529f2.js" crossorigin="anonymous"></script>
 </head>
 <body>
-	<h1>모임방</h1>
-	유저정보 : ${infos.user }<br>
-	모임정보 : ${infos.meet}<br>
-	가입여부 : ${infos.checkJoin eq null ? '정보 없음':'정보 있음' } <br>
-	<a href="/meet/info?num=${infos.meet.m_num }"><button>정보</button></a>
-	<a href="${infos.checkJoin eq null ? '#':'/meet/board/list'}" class="meetinfo-navbar__checkJoin"><button>게시판</button></a>
-	<a href="#" class="meetinfo-navbar__checkJoin"><button>갤러리</button></a>
-	<a href="#" class="meetinfo-navbar__checkJoin"><button>채팅</button></a>
-	<a href="/main/"><button>메인화면</button></a>
+  <div id="wrapper">
+  
+  	<!-- Start header -->
+  	<header class="main-header">
+  		<div class="main-header__column">
+  			<a href="/main/">
+  			<img class="main-header__logo" src="/resources/img/logo.jpg" /></a>
+  		</div>
+		<div class="main-header__column">
+			<span class="main-header__username">${userInfo.u_name }님, 환영합니다.</span>
+			<span class="main-header__logout">
+				<form action="/user/logout" method="post">
+					<input type="submit" class="main-header__logout" value="로그아웃" />
+				</form>
+			</span>
+		</div>
+  	</header>
+	<!-- END header -->
+	
+	<!-- Start meet-detail -->
+	<div class="meet-detail">
+		<div class="meet-detail__name">${infos.meet.m_name }</div>
+	</div>
+	<!-- END meet-detail -->
+	
+  	<!-- Start nav -->
+  	<nav class="main-nav">
+	  	<ul class="main-nav__list">
+			<li class="main-nav__btn">
+				<a class="main-nav__link" href="/meet/info?num=${infos.meet.m_num }"
+						style="color: black">
+					<i class="fab fa-fort-awesome fa-lg"></i>
+					<span>모임방</span>
+				</a>
+			</li>  	
+			<li class="main-nav__btn">
+				<a class="main-nav__link-checkJoin" href="${infos.checkJoin eq null ? '#':'/meet/board/list'}">
+					<div class="main-nav__link">
+						<i class="fas fa-feather-alt fa-lg"></i>
+						<span>게시판</span>
+					</div>
+				</a>
+			</li>  	
+			<li class="main-nav__btn">
+				<a class="main-nav__link-checkJoin" href="${infos.checkJoin eq null ? '#':'#'}">
+					<div class="main-nav__link">
+						<i class="far fa-images fa-lg"></i>
+						<span>갤러리</span>
+					</div>
+				</a>
+			</li>  				
+			<li class="main-nav__btn">
+				<a class="main-nav__link-checkJoin" href="${infos.checkJoin eq null ? '#':'#'}">
+					<div class="main-nav__link">
+						<i class="fas fa-comments fa-lg"></i>
+						<span>채팅</span>
+					</div>
+				</a>
+			</li>  		
+			<li class="main-nav__btn">
+				<a class="main-nav__link" href="/main/">
+					<i class="far fa-compass fa-lg"></i>
+					<span>모임 찾기</span>
+				</a>
+			</li>  			
+	  	</ul>
+  	</nav>
+  	<!-- END nav -->
+  	
+  	<!-- Start main -->
+	<main>
+
 	<br>
 	<script type="text/javascript"></script>
 	<table border="1">
@@ -131,10 +200,23 @@
 	</form>
 	</div>
 	
+	</main>
+	<!-- END main -->
+	
+	<!-- Start footer -->
+	<footer class="main-footer">
+		<div class="main-footer__info">
+			Made by Riudiu, Wakebro &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; 
+			Contact by GitHub : github.com/Riudiu
+		</div>
+		<div class="main-footer__copyright">Copyright 2021. DAMOYO. All rights reserved. </div>
+	</footer>
+	<!-- END footer -->
+  </div>	
 	<script>
-		let checkJoin = $(".meetinfo-navbar__checkJoin").attr('href');
+		let checkJoin = $(".main-nav__link-checkJoin").attr('href');
 		console.log(checkJoin);
-		$(".meetinfo-navbar__checkJoin").on("click", function (){
+		$(".main-nav__link-checkJoin").on("click", function (){
 			if(checkJoin == "#") {
 				alert("가입 후에 열람할 수 있습니다.");
 			}

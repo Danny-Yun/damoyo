@@ -17,8 +17,8 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	transition: color .3s ease-in-out;
 }
-
 .main-nav__link i {
 	margin-bottom: 10px;
 }

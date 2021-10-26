@@ -4,19 +4,72 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style>
-	body {
-		padding:20px 20px;
-	}
-</style>
 <meta charset="UTF-8">
-<title>DAMOYO - 내 관심사</title>
-<!-- 부트스트랩 -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" 
-	rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" 
-	crossorigin="anonymous">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>내 관심사 - DA!MOYO</title>
+<!-- BootStrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+<!-- jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<!-- Styles -->
+<link rel="stylesheet" href="/resources/css/styles.css">
+<!-- font-awesome code kit -->
+<script src="https://kit.fontawesome.com/6478f529f2.js" crossorigin="anonymous"></script>
 </head>
 <body>
+  <div id="wrapper">
+  
+  	<!-- Start header -->
+  	<header class="main-header">
+  		<div class="main-header__column">
+  			<a href="/main/">
+  			<img class="main-header__logo" src="/resources/img/logo.jpg" /></a>
+  		</div>
+		<div class="main-header__column">
+			<span class="main-header__username">${userInfo.u_name }님, 환영합니다.</span>
+			<span class="main-header__logout">
+				<form action="/user/logout" method="post">
+					<input type="submit" class="main-header__logout" value="로그아웃" />
+				</form>
+			</span>
+		</div>
+  	</header>
+	<!-- END header -->
+	
+  	<!-- Start nav -->
+  	<nav class="main-nav">
+	  	<ul class="main-nav__list">
+			<li class="main-nav__btn">
+				<a class="main-nav__link" href="/main/">
+					<i class="far fa-compass fa-lg"></i>
+					<span>모임 찾기</span>
+				</a>
+			</li>  	
+			<li class="main-nav__btn">
+				<a class="main-nav__link" href="/user/myMeet">
+					<i class="far fa-map fa-lg"></i>
+					<span>내 모임</span>
+				</a>
+			</li>  	
+			<li class="main-nav__btn">
+				<a class="main-nav__link" href="/user/mypage">
+					<i class="fas fa-shoe-prints fa-lg"></i>
+					<span>마이페이지</span>
+				</a>
+			</li>  				
+	  	</ul>
+  	</nav>
+  	<!-- END nav -->
+  	
+  	<!-- Start screen-header -->
+	<div class="screen-header">
+		<h1 class="screen-header__title">내 관심사</h1>
+	</div>		
+	<!-- END screen-header -->
+	
+  	<!-- Start main -->
+	<main>
+
 	<div class="d-grid gap-2">
 		<a href="/user/interest"><button type="button" class="btn btn-primary">관심사 추가하기</button></a>
 	</div>
@@ -38,8 +91,20 @@
 	<p>현재 개수 : ${i_num }</p>
 	
 	<p><button type="button" class="btn btn-warning"
-			onclick="location.href='/user/mypage'">마이페이지</button></p>
+			onclick="location.href='/user/mypage'">마이페이지로 돌아가기</button></p>
+	</main>
+	<!-- END main -->
 	
+	<!-- Start footer -->
+	<footer class="main-footer">
+		<div class="main-footer__info">
+			Made by Riudiu, Wakebro &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; 
+			Contact by GitHub : github.com/Riudiu
+		</div>
+		<div class="main-footer__copyright">Copyright 2021. DAMOYO. All rights reserved. </div>
+	</footer>
+	<!-- END footer -->
+  </div>	
 	<script>
 		function removeInterest(data) {
 			let remove = document.getElementById("remove");

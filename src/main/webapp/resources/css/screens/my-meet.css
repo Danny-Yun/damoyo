@@ -1,0 +1,31 @@
+@charset "UTF-8";
+
+.meetDiv {
+	display:flex;
+	flex-direction: column;
+	justify-content: center;
+	text-align: left;
+}
+.meet {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width:70%;
+	border-bottom: 1px solid mistyrose;
+	margin-bottom: 20px;
+	cursor:pointer;
+}
+.meet__column {
+	display:flex;
+	flex-direction: column;
+	align-items: center;
+}
+.star {
+	cursor:pointer;
+	color: #DADA00;
+	width: 1%;
+	text-align: left;
+}
+.star:hover{
+	color: #DADA00;
+}

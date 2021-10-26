@@ -17,7 +17,7 @@
 <script src="https://kit.fontawesome.com/6478f529f2.js" crossorigin="anonymous"></script>
 </head>
 <body>
-  <div id="wrap">
+  <div id="wrapper">
   
   	<!-- Start header -->
   	<header class="main-header">
@@ -40,7 +40,8 @@
   	<nav class="main-nav">
 	  	<ul class="main-nav__list">
 			<li class="main-nav__btn">
-				<a class="main-nav__link" href="/main/">
+				<a class="main-nav__link" href="/main/"
+						style="color: black">
 					<i class="far fa-compass fa-lg"></i>
 					<span>모임 찾기</span>
 				</a>
@@ -63,12 +64,7 @@
   	
   	<!-- Start main -->
 	<main>
-		<h1>main 페이지</h1>
-		${userInfo }<br>
 		
-		<a href="/main/"><button>DAMOYO LIST</button></a>
-		<a href="/user/myMeet"><button>내 모임</button></a>
-		<a href="/user/mypage"><button>My Page</button></a><br>
 		<form action="/main/" method="get">
 			<select name="searchType">
 	 			<option selected="${meetPages.cri.searchType eq null ? 'selected' : ''}" value="">
@@ -87,9 +83,6 @@
 		<br>
 		</form>
 		<a href="/main/register"><button>생성</button></a>
-		<form action="/user/logout" method="post">
-			<input type="submit" value="로그아웃" />
-		</form>
 		<table border="1">
 			<c:forEach var="m" items="${meetList }">
 				<tr>
