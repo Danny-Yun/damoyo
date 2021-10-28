@@ -1,0 +1,61 @@
+@charset "UTF-8";
+
+#join-body {
+	background-color: #f2f4f7;
+}
+
+/* join-header */
+.join-header {
+	margin-top: 50px;
+	text-align: center;
+}
+.join-header__logo {
+	font-family: var(--logo-font);
+	font-size: 55px;
+	color: var(--main-color);
+}
+/* END join-header */
+
+/* join-form */
+.join-form {
+	margin: 30px 0px 55px;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+.join-form__column {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 50%;
+	margin-bottom: 15px;
+}
+.join-form__column span:first-child {
+	text-align: left;
+	margin-bottom: 10px;
+	font-weight: bold;
+}
+.join-form__column span[id="check_id"],
+.join-form__column span[id="check_pw"],
+.join-form__column span[id="check_repw"] {
+	text-align: left;
+	font-size: 14px;
+	margin-bottom: 9px;
+}
+.join-form input {
+	font-size: 16px;
+    border: none;
+    padding: 10px 10px; 
+}
+.join-form input[type="submit"] {
+	padding: 20px 10px; 
+	background-color: var(--main-color);
+	color:white;
+	width: 50%;
+	margin-top: 30px;
+}
+
+
+/* END join-form */

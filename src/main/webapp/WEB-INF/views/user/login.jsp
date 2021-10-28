@@ -31,12 +31,12 @@
 			<div class="login-form__input">
 				<i class="far fa-user"></i>
 				<input class="login-form__input-id" type="text" name="u_id" 
-					placeholder="아이디" required />
+					placeholder="아이디" maxlength="20" required />
 			</div>
 			<div class="login-form__input">
 				<i class="fas fa-key"></i>
 				<input class="login-form__input-pw" type="password" name="u_pw" 
-					placeholder="비밀번호" required />
+					placeholder="비밀번호" maxlength="20"required />
 			</div>
 			<div class="login-form__btn">
 				<input type="submit" value="로그인" />

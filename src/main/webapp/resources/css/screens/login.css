@@ -15,7 +15,7 @@
 /* login-form */
 .login-form-outer {
 	position: relative;
-	height: 650px;
+	height: 750px;
 }
 .login-form {
 	margin-top: 60px;
@@ -26,7 +26,8 @@
 	position: absolute;
 	left: 23%
 }
-.login-form input, button {
+.login-form input, 
+.login-form__btn button {
     font-size: 16px;
     border: none;
 }
