@@ -10,6 +10,7 @@
 @import "components/meet-detail.css";
 
 /* screens */
+@import "screens/login.css";
 @import "screens/my-meet.css";
 @import "screens/interest-meet.css";
 
@@ -18,9 +19,7 @@
 
 
 html, body {
- /* font-family: 'Jua', sans-serif; */
-	font-family: 'Noto Sans KR', sans-serif;
-	height: 150vh;
+	font-family: var(--main-font);
 }
 
 #wrapper {

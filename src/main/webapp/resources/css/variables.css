@@ -2,4 +2,7 @@
 
 :root {
 	--main-color : #ae93ff;
+	--main-font : 'Noto Sans KR', sans-serif;
+	--logo-font : 'Jua', sans-serif; 
+	--border-color__gray: rgba(192, 171, 171, 0.7);
 }

@@ -4,20 +4,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style>
-	fieldset {
-		border: 3px solid black;
-		padding:20px;
-		width:500px;
-	}
-	p {
-		padding-left:20px;
-	}
-</style>
 <meta charset="UTF-8">
-<title>DAMOYO - 회원가입</title>
-<!-- 제이쿼리 -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>회원가입 - DA!MOYO</title>
+<!-- BootStrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+<!-- jQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<!-- Styles -->
+<link rel="stylesheet" href="/resources/css/styles.css">
+<!-- font-awesome code kit -->
+<script src="https://kit.fontawesome.com/6478f529f2.js" crossorigin="anonymous"></script>
 </head>
 <body>
 	<h3>회원가입</h3>

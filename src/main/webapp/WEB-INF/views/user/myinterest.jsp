@@ -75,7 +75,7 @@
 	</div>
 	<br><br/>
 	
-	<b>선택한 상세관심사</b>
+	<b>선택한 상세관심사</b> (현재 개수 : ${i_num })
 	<br><br/>
 	<c:forEach var="myInterest" items="${myInterest}" >
 		<div class="btn-group" role="group">
@@ -87,8 +87,6 @@
 	<form style='display:inline' action="/user/myinterest/remove" method="post" id="remove">
 		<input type="hidden" value="" name="f_interest_num" />
 	</form> 
-	
-	<p>현재 개수 : ${i_num }</p>
 	
 	<p><button type="button" class="btn btn-warning"
 			onclick="location.href='/user/mypage'">마이페이지로 돌아가기</button></p>

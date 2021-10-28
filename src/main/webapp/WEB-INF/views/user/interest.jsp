@@ -4,25 +4,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style>
-	p {
-		padding:20px 20px;
-	}
-</style>
 <meta charset="UTF-8">
-<title>DAMOYO - 관심사 카테고리</title>
-<!-- 부트스트랩 -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" 
-	rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" 
-	crossorigin="anonymous">
-<script>
-	let id = "${joinUserId}";
-	let result = "${success}";
-	console.log(id);
-	console.log(result);
-</script>
-<!-- 제이쿼리 -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>관심사 카테고리 - DA!MOYO</title>
+<!-- BootStrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+<!-- jQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<!-- Styles -->
+<link rel="stylesheet" href="/resources/css/styles.css">
+<!-- font-awesome code kit -->
+<script src="https://kit.fontawesome.com/6478f529f2.js" crossorigin="anonymous"></script>
 </head>
 <body>
 	<h3>관심사 선택</h3><br>
@@ -36,7 +28,9 @@
 			  </label>
 	  		</c:forEach>
 	  		<input type="hidden" name="u_id" value="${joinUserId}" />
-	  		<p><input class="btn btn-outline-primary" type="submit" value="다음" /><p>
+	  		<p><button type="button" class="btn btn-warning"
+			onclick="location.href='/user/myinterest'">내 관심사 조회</button>
+			<input class="btn btn-outline-primary" type="submit" value="다음" /><p>
   		</form>
 	</div>
 	
@@ -48,6 +42,11 @@
 				alert("최대 7개의 관심사만 선택할 수 있습니다.");
 			} 
 		});
+		
+		const warn = "${warn}";
+		if(warn === "warn") {
+			alert("최소 1개 이상 선택해주세요.");
+		} 
 	</script>
 </body>
 </html>

@@ -122,8 +122,12 @@ public class UserController {
 
 	// 상세 관심사 조회
 	@PostMapping("/interest")
-	public String getInterestDetail(ICateNumDTO dto, Model model, HttpSession session) {
+	public String getInterestDetail(ICateNumDTO dto, Model model, RedirectAttributes rttr, HttpSession session) {
 		log.info("사용자가 선택한 관심사 카테고리 번호 - " + dto);
+		if(dto.getI_cate_num() == null) {
+			rttr.addFlashAttribute("warn","warn");
+			return "redirect:/user/interest";
+		}
 		List<ICateVO> iCateNameList = userService.showICateName(dto);
 		// 상세 관심사 조회를 도와주는 DTO
 		List<ITotalDTO> iTotalList = new ArrayList<ITotalDTO>();
@@ -144,6 +148,11 @@ public class UserController {
 	@PostMapping("/interest/detail")
 	public String saveInterestDetail(MyInterestDTO dto, RedirectAttributes rttr) {
 		log.info("사용자가 선택한 상세 관심사 및 유저아이디 - " + dto);
+		if(dto.getI_detail_name() == null) {
+			rttr.addFlashAttribute("warn","warn");
+			return "redirect:/user/interest";
+		}
+		
 		// 만약 사용자가 이미 선택한 관심사의 개수와 새로 추가한 관심사의 개수를 합친 값이 
 		// 우리가 정한 최대 개수인 30개를 초과하면 저장하지 않고 돌려보낸다. 
 		int i_num = userService.showDetailCount(dto.getU_id());

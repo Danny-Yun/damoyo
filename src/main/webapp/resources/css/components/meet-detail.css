@@ -6,6 +6,6 @@
 	text-align: center;
 }
 .meet-detail__name {
-	font-family: 'Jua', sans-serif;
+	font-family: var(--logo-font);
 	font-size: 30px;
 }

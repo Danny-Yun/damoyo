@@ -64,7 +64,6 @@
   	
   	<!-- Start main -->
 	<main>
-		
 		<form action="/main/" method="get">
 			<select name="searchType">
 	 			<option selected="${meetPages.cri.searchType eq null ? 'selected' : ''}" value="">
