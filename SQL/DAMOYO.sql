@@ -35,7 +35,6 @@ CREATE TABLE my_favorit_interest (
     u_id varchar2(100) NOT NULL,
     i_detail_name VARCHAR2(100) NOT NULL,
     CONSTRAINT mfi_u_id_fk FOREIGN KEY (u_id) REFERENCES user_info(u_id),
-    CONSTRAINT mfi_i_cate_fk FOREIGN KEY (i_cate_num) REFERENCES interest_category(i_cate_num),
     CONSTRAINT mfi_i_detail_fk FOREIGN KEY (i_detail_name) REFERENCES interest_detail(i_detail_name)
 );
 -- FK 삭제
@@ -132,13 +131,8 @@ CREATE SEQUENCE  "MYTEST"."BOARD_CATEGORY_SEQ"  MINVALUE 0 MAXVALUE 999999999999
 CREATE TABLE board_category(
     b_cate_num NUMBER(3) PRIMARY KEY NOT NULL,
     b_cate_name VARCHAR2(40) NOT NULL,
-    CONSTRAINT bc_m_mum_fk FOREIGN KEY (m_num) REFERENCES meet(m_num),
     CONSTRAINT uni_b_cate_name UNIQUE (b_cate_name)
 );
--- FK 삭제
-ALTER TABLE board_category DROP CONSTRAINT bc_m_mum_fk;
--- FK 재설정__CASCADE설정
-ALTER TABLE board_category ADD CONSTRAINT bc_m_mum_fk FOREIGN KEY (m_num) REFERENCES meet(m_num) ON DELETE CASCADE;
 
 
 -- 모임 내 게시판
