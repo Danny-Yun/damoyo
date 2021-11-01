@@ -8,7 +8,6 @@
     align-items: center;
 }
 .interest-header__title {
-	font-family: var(--main-font);
 	font-size: 25px;
 }	
 

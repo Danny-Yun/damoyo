@@ -21,28 +21,37 @@
   
 	<!-- Start header -->
 	<header class="interest-header">
-		<h1 class="interest-header__title">상세 관심사 선택</h1>
+		<div class="interest-header__column">
+			<button type="button" class="btn btn-outline-danger"
+				onclick="history.back()">이전</button>
+		</div>
+		<div class="interest-header__column">
+			<h1 class="interest-header__title">상세 관심사 선택</h1>
+		</div>
+		<div class="interest-header__column">
+			<div class="interest-form__btn">
+				<button class="btn btn-outline-primary" onclick="save()">저장</button>
+			</div>
+		</div>
 	</header>
 	<!-- END header -->
+	<div class="detail-list-group">
+		<form action="/user/interest/detail" method="post" id="detailCheck">
+			<c:forEach var="list1" items="${list }">
+			  <h3 class="interest-detail__cate-name">${list1.i_cate_name }</h3>
+		 	  <c:forEach var="list2" items="${list1.detailList }">
+			 	 <div class="form-check form-check-inline">
+				 	<input type="checkbox" class="btn-check" name="i_detail_name" 
+				 	  		value="${list2.i_detail_name }" id="${list2.i_detail_num}">
+					<label class="btn btn-outline-warning" for="${list2.i_detail_num }">${list2.i_detail_name }</label><br>
+			     </div>
+			  </c:forEach>
+			</c:forEach>	
+			<input type="hidden" name="u_id" value="${sessionId}" />
+		</form>
+	</div>
 	
-	<form action="/user/interest/detail" method="post" id="detailCheck">
-		<c:forEach var="list1" items="${list }">
-		  <h3>${list1.i_cate_name }</h3>
-	 	  <c:forEach var="list2" items="${list1.detailList }">
-		 	 <div class="form-check form-check-inline">
-			 	<input type="checkbox" class="btn-check" name="i_detail_name" 
-			 	  		value="${list2.i_detail_name }" id="${list2.i_detail_num}">
-				<label class="btn btn-outline-primary" for="${list2.i_detail_num }">${list2.i_detail_name }</label><br>
-		     </div>
-		  </c:forEach>
-		</c:forEach>	
-	  
-		<input type="hidden" name="u_id" value="${sessionId}" />
-		<p><button type="button" class="btn btn-outline-danger"
-			onclick="history.back()">이전</button>
-		<input class="btn btn-outline-primary" type="submit" value="저장" /><p>	  
-	</form>
-		<!-- Start footer -->
+	<!-- Start footer -->
 	<footer class="login-footer">
 		<div class="login-footer__info">
 			Made by Riudiu, Wakebro &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; 
@@ -53,6 +62,11 @@
 	<!-- END footer -->
   </div>			
 	<script>
+		function save() {
+			let save = document.getElementById("detailCheck");
+			save.submit();
+		}
+	
 		$("#detailCheck input[type='checkbox']").on("click", function() {
 			let count = $("#detailCheck input:checked[type='checkbox']").length;
 			if(count > 30) {
