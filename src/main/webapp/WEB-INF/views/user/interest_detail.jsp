@@ -17,7 +17,13 @@
 <script src="https://kit.fontawesome.com/6478f529f2.js" crossorigin="anonymous"></script>
 </head>
 <body>
-	<h3>상세 관심사 선택</h3><br>
+  <div id="wrapper">
+  
+	<!-- Start header -->
+	<header class="interest-header">
+		<h1 class="interest-header__title">상세 관심사 선택</h1>
+	</header>
+	<!-- END header -->
 	
 	<form action="/user/interest/detail" method="post" id="detailCheck">
 		<c:forEach var="list1" items="${list }">
@@ -36,7 +42,16 @@
 			onclick="history.back()">이전</button>
 		<input class="btn btn-outline-primary" type="submit" value="저장" /><p>	  
 	</form>
-	
+		<!-- Start footer -->
+	<footer class="login-footer">
+		<div class="login-footer__info">
+			Made by Riudiu, Wakebro &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; 
+			Contact by GitHub : github.com/Riudiu
+		</div>
+		<div class="login-footer__copyright">Copyright 2021. DAMOYO. All rights reserved. </div>
+	</footer>
+	<!-- END footer -->
+  </div>			
 	<script>
 		$("#detailCheck input[type='checkbox']").on("click", function() {
 			let count = $("#detailCheck input:checked[type='checkbox']").length;

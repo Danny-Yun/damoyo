@@ -17,24 +17,53 @@
 <script src="https://kit.fontawesome.com/6478f529f2.js" crossorigin="anonymous"></script>
 </head>
 <body>
-	<h3>관심사 선택</h3><br>
+  <div id="wrapper">
+  
+	<!-- Start header -->
+	<header class="interest-header">
+		<div class="interest-header__column">
+		</div>
+		<div class="interest-header__column">
+			<h1 class="interest-header__title">관심사 선택</h1>
+		</div>
+		<div class="interest-header__column">
+			<div class="interest-form__btn">
+				<button class="btn btn-outline-primary" onclick="next()">다음</button>
+			</div>
+		</div>
+	</header>
+	<!-- END header -->
 	
+	<!-- Start interest-form -->
 	<div class="list-group">
-		<form action="/user/interest" method="post">
+		<form action="/user/interest" method="post" id="interest-form">
 			<c:forEach var="list" items="${list }">	
 			  <label class="list-group-item">
 			    <input class="form-check-input me-1" type="checkbox" name="i_cate_num" value="${list.i_cate_num }">
-			    ${list.i_cate_name }
+			    <div class="interest-form__name">${list.i_cate_name }</div>
 			  </label>
 	  		</c:forEach>
 	  		<input type="hidden" name="u_id" value="${joinUserId}" />
-	  		<p><button type="button" class="btn btn-warning"
-			onclick="location.href='/user/myinterest'">내 관심사 조회</button>
-			<input class="btn btn-outline-primary" type="submit" value="다음" /><p>
   		</form>
 	</div>
+	<!-- END interest-form -->
 	
+	<!-- Start footer -->
+	<footer class="login-footer">
+		<div class="login-footer__info">
+			Made by Riudiu, Wakebro &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; 
+			Contact by GitHub : github.com/Riudiu
+		</div>
+		<div class="login-footer__copyright">Copyright 2021. DAMOYO. All rights reserved. </div>
+	</footer>
+	<!-- END footer -->
+  </div>		
 	<script>
+		function next() {
+			let next = document.getElementById("interest-form");
+			next.submit();
+		}
+	
 		$("input[type='checkbox']").on("click", function() {
 			let count = $("input:checked[type='checkbox']").length;
 			if(count > 7) {
