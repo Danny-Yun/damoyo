@@ -64,8 +64,10 @@
   	
   	<!-- Start main -->
 	<main>
-		<form action="/main/" method="get">
-			<select name="searchType">
+		<!-- Start search-form -->
+		<form class="search-form" action="/main/" method="get" id="search">
+		  <div class="search-form__column">
+			<select class="search-form__type" name="searchType">
 	 			<option selected="${meetPages.cri.searchType eq null ? 'selected' : ''}" value="">
 					전체보기
 				</option>
@@ -76,31 +78,55 @@
 					</option>
 				</c:forEach>
 			</select>
-			<input type="text" name="keyword" placeholder="검색어" value="${meetPages.cri.keyword }">
-			<input type="submit">
-		<br>
-		<br>
+		  </div>
+		  <div class="search-form__column">
+			<input class="search-form__text" type="text" name="keyword" 
+				placeholder="검색어" value="${meetPages.cri.keyword }">
+		  </div>
+		  <div class="search-form__column">
+		  	<div class="search-form__column-inner">
+			  <input class="search-form__btn" type="submit" value="">
+			  <i class="fas fa-search fa-2x" onclick="search()"></i>
+		  	</div>
+		  </div>
 		</form>
-		<a href="/main/register"><button>생성</button></a>
-		<table border="1">
+		<!-- END search-form -->
+		
+		<!-- Start meet-plus -->
+		<div class="meet-plus-outter">
+			<a class="meet-plus" href="/main/register">
+				<i class="fas fa-plus fa-lg"></i>
+				<span>개설</span>
+			</a>
+		</div>
+		<!-- END meet-plus -->
+		
+		<!-- Start meet-list -->
+		<div class="meet-list">
 			<c:forEach var="m" items="${meetList }">
-				<tr>
-					<td id="meetProfile" rowspan="3">
-						<a href="/meet/info?num=${m.m_num }">
-							<img src="/main/display?m_num=${m.m_num }">
-						</a>
-					</td>
-					<td>${m.m_area }</td>
-					<td rowspan="3">${m.i_cate_name }</td>
-				</tr>
-				<tr>
-					<td>${m.m_name }</td>
-				</tr>
-				<tr>
-					<td>${m.m_join_people_cnt  }명</td>
-				</tr>
+			  <a class="meet-list-single" href="/meet/info?num=${m.m_num }">
+				<div class="meet-list__column">
+					<img class="meet-list__img" src="/main/display?m_num=${m.m_num }">
+					<div class="meet-list__text">
+					  <div class="meet-list__text-area">
+					      <i class="fas fa-map-marker-alt fa-lg"></i>
+						  <span>${m.m_area }</span>
+					  </div>
+					  <div class="meet-list__text-name">  
+						<span>${m.m_name }</span>
+					  </div>	
+					  <div class="meet-list__text-people">
+					  	<i class="fas fa-users"></i>
+						<span>${m.m_join_people_cnt  }명</span>
+					  </div>
+					</div>
+				</div>
+				<div class="meet-list__column">
+					<span>${m.i_cate_name }</span>
+				</div>
+			  </a>
 			</c:forEach>
-		</table>
+		</div>
 		<ul class="pagination">
 			<c:if test="${meetPages.prev }">
 				<a class="page-link" href="/main/?pageNum=${meetPages.startPage - 1 }&searchType=${meetPages.cri.searchType}&keyword=${meetPages.cri.keyword}">prev</a>
@@ -109,9 +135,10 @@
 				<li class="page-item ${meetPages.cri.pageNum eq page ? 'active' : '' }"><a  class="page-link" href="/main/?pageNum=${page }&searchType=${meetPages.cri.searchType}&keyword=${meetPages.cri.keyword}">${page }</a></li>
 			</c:forEach>
 			<c:if test="${meetPages.next }">
-				<a  class="page-link" href="/main/?pageNum=${meetPages.endPage + 1 }&searchType=${meetPages.cri.searchType}&keyword=${meetPages.cri.keyword}">next</a>
+				<a class="page-link" href="/main/?pageNum=${meetPages.endPage + 1 }&searchType=${meetPages.cri.searchType}&keyword=${meetPages.cri.keyword}">next</a>
 			</c:if>
 		</ul>
+		<!-- END meet-list -->
 	</main>
 	<!-- END main -->
 	
@@ -125,5 +152,11 @@
 	</footer>
 	<!-- END footer -->
   </div>
+    <script>
+	    function search() {
+			let search = document.getElementById("search");
+			search.submit();
+		}
+    </script>
 </body>
 </html>

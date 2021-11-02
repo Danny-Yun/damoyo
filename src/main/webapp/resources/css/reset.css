@@ -60,3 +60,6 @@ a {
 a:hover {
 	color: inherit;
 }
+select, input {
+	border: none;
+}

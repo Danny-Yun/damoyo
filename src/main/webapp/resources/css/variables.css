@@ -5,4 +5,5 @@
 	--main-font : 'Noto Sans KR', sans-serif;
 	--logo-font : 'Jua', sans-serif; 
 	--border-color__gray: rgba(192, 171, 171, 0.7);
+	--hover-bg-color : background-color: rgba(0, 0, 0, 0.02);
 }
