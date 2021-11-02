@@ -64,22 +64,63 @@
 
   	<!-- Start main -->
 	<main>
+		<div class="user-info">
+			<div class="user-info__column">
+				<img class="user-info__profile" src="#" />
+				<div class="user-info__text">
+					<div class="user-info__text-top">
+						<h3 class="user-info__name">${profile.u_name}</h3>
+						<h5 class="user-info__birth">${profile.u_birth}</h5>
+					</div>
+					<div class="user-info__text-bottom">
+						<i class="fas fa-map-marker-alt"></i>
+						<h4 class="user-info__area">${profile.u_area}</h4>
+					</div>
+				</div>
+			</div>
+			<div class="user-info__column">
+				<a class="user-info__modify" href="/user/modify">내 정보 수정</a>
+			</div>
+		</div>
 	
-	${profile.u_profile}
-	${profile.u_name}
-	${profile.u_area}
-	${profile.u_birth}
-	
-	<a href="/user/modify"><button>내 정보 수정</button></a><br>
-	
-	<hr>
-	
-	<a href="/user/myinterest"><button>내 관심사 편집</button></a><br>
-	<a href="/user/interest/meet"><button>내 관심 모임</button></a><br>
-	<!-- <i class="far fa-heart"></i> -->
-	<a href="/user/password"><button>비밀번호 변경</button></a><br>
-	<a href="/user/leave"><button>회원 탈퇴</button></a><br>
-	
+		<div class="my-page">
+			<a href="/user/myinterest">
+				<div class="my-page__column">
+					<div class="my-page__text">
+						<i style="color:lime" class="far fa-check-circle"></i>
+						<span>내 관심사 편집</span>
+					</div>
+					<i class="fas fa-angle-right fa-lg"></i>
+				</div>
+			</a>
+			<a href="/user/interest/meet">
+				<div class="my-page__column">
+					<div class="my-page__text">
+						<i style="color:coral" class="fas fa-thumbtack"></i>
+						<span>내 관심 모임</span>
+					</div>
+					<i class="fas fa-angle-right fa-lg"></i>
+				</div>
+			</a>
+			<a href="/user/password">
+				<div class="my-page__column">
+					<div class="my-page__text">
+						<i class="fas fa-lock"></i>
+						<span>비밀번호 변경</span>
+					</div>
+					<i class="fas fa-angle-right fa-lg"></i>
+				</div>
+			</a>
+			<a href="/user/leave">
+				<div class="my-page__column">
+					<div class="my-page__text">
+						<i style="color:red" class="fas fa-sign-out-alt"></i>
+						<span>회원 탈퇴</span>
+					</div>
+					<i class="fas fa-angle-right fa-lg"></i>
+				</div>
+			</a>
+		</div>
 	</main>
 	<!-- END main -->
 

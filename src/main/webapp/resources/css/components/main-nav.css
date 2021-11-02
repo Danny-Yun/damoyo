@@ -22,3 +22,6 @@
 .main-nav__link i {
 	margin-bottom: 10px;
 }
+.main-nav__link:hover {
+	color: #00498c;
+}
