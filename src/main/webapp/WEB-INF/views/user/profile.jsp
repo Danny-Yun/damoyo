@@ -69,10 +69,10 @@
 	
   	<!-- Start main -->
 	<main>	
-	
-	<form action="/user/modify" method="post">
+	<img src="/user/display?u_id=${profile.u_id }"><br>
+	<form action="/user/modify" method="post" enctype="multipart/form-data">
 		<div>
-			<input type="text" name="u_profile" value="${profile.u_profile}" />
+			<input type="file" name="profile" multiple />
 			<input type="text" name="u_id" value="${profile.u_id}" readonly />
 		</div>
 

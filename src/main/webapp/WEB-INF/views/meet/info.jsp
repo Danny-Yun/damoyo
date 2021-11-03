@@ -17,17 +17,6 @@
 <script src="https://kit.fontawesome.com/6478f529f2.js" crossorigin="anonymous"></script>
 </head>
 <body>
-<<<<<<< HEAD
-	<h1>모임방</h1>
-	<%-- 유저정보 : ${infos.user }<br>
-	모임정보 : ${infos.meet}<br>
-	가입여부 : ${infos.checkJoin eq null ? '정보 없음':'정보 있음' } <br> --%>
-	<a href="/meet/info?num=${infos.meet.m_num }"><button>정보</button></a>
-	<a href="${infos.checkJoin eq null ? '#':'/meet/board/list'}" class="meetinfo-navbar__checkJoin"><button>게시판</button></a>
-	<a href="#" class="meetinfo-navbar__checkJoin"><button>갤러리</button></a>
-	<a href="#" class="meetinfo-navbar__checkJoin"><button>채팅</button></a>
-	<a href="/main/"><button>메인화면</button></a>
-=======
   <div id="wrapper">
   
   	<!-- Start header -->
@@ -100,7 +89,6 @@
   	<!-- Start main -->
 	<main>
 
->>>>>>> 0055382d573b9c1b18695810db4f2748f4ac4592
 	<br>
 	<script type="text/javascript"></script>
 	<table border="1">
@@ -159,7 +147,7 @@
 	<table border="1">
 		<c:forEach var="member" items="${infos.memberList }">
 			<tr>
-				<td rowspan="2">${member.u_profile }</td>
+				<td rowspan="2"><img src="/user/display?u_id=${member.u_id }"></td>
 				<td>${member.u_name }</td>
 				<td rowspan="2">${member.member_list_position }</td>
 			</tr>

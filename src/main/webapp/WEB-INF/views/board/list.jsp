@@ -16,7 +16,6 @@
 <!-- font-awesome code kit -->
 <script src="https://kit.fontawesome.com/6478f529f2.js" crossorigin="anonymous"></script>
 <style>
-
 	.box_left {
 		margin-left:350px;
 		float:left;
@@ -82,17 +81,6 @@
 </style>
 </head>
 <body>
-<<<<<<< HEAD
-	<h1>모임방_게시판</h1>
-	<%-- 유저정보 : ${infos.user }<br>
-	모임정보 : ${infos.meet }<br> --%>
-	<a href="/meet/info?num=${meetInfo.m_num }"><button>정보</button></a>
-	<a href="/meet/board/list"><button>게시판</button></a>
-	<a href="#"><button>갤러리</button></a>
-	<a href="#"><button>채팅</button></a>
-	<a href="/main/"><button>메인화면</button></a>
-	<br>
-=======
   <div id="wrapper">
   
   	<!-- Start header -->
@@ -159,7 +147,6 @@
   	<!-- Start main -->
 	<main>
 	<br><br/>
->>>>>>> 0055382d573b9c1b18695810db4f2748f4ac4592
 	
 	<form action="/board/list">
 		<select name="searchType">
@@ -204,15 +191,10 @@
 			<div class="right_side">
 		</div>
 	</c:forEach>
-	<hr>
 	<div>
 		<form action="/board/write" method="get">
 			<input type="submit" value="글쓰기">
 		</form>
-<<<<<<< HEAD
-		<%-- ${boardPages } --%>
-=======
->>>>>>> 0055382d573b9c1b18695810db4f2748f4ac4592
 	</div>
 	<ul class="pagination">
 		<c:if test="${boardPages.prev }">
