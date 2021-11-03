@@ -69,7 +69,7 @@
 	
   	<!-- Start main -->
 	<main>	
-	<img src="/user/display?u_id=${profile.u_id }"><br>
+	<img src="/user/display2?u_id=${profile.u_id }"><br>
 	<form action="/user/modify" method="post" enctype="multipart/form-data">
 		<div>
 			<input type="file" name="profile" multiple />
