@@ -61,40 +61,57 @@
 	  	</ul>
   	</nav>
   	<!-- END nav -->
+  	
+  	<!-- Start screen-header -->
+	<div class="screen-header">
+		<h1 class="screen-header__title">가입한 모임</h1>
+	</div>
+	<!-- END screen-header -->
 
   	<!-- Start main -->
 	<main>
-	
-	<br><br/>
-	
-	<div class="meetDiv">
-		<c:forEach var="list" items="${list}" >
-			<c:if test="${list.my_join_star == 0}">
-				<a class="star" onclick="addStar(${list.m_num})"><i class="far fa-star"></i></a>
-			</c:if>
-			<c:if test="${list.my_join_star == 1}">
-				<a class="star" onclick="deleteStar(${list.m_num})"><i class="fas fa-star"></i></a>
-			</c:if>
-			<div class="meet" onclick="location.href='/meet/info?num=${list.m_num }'">
-				<img src="/main/display?m_num=${list.m_num }">
-				<div class="meet__column">
-					<h6>${list.m_area}</h6>
-					<h5>${list.m_name}</h5>
+		<!-- Start my-meet-list -->
+		<div class="my-meet-list">
+			<c:forEach var="list" items="${list}" >
+			  <div class="my-meet-list__single">
+				<div class="my-meet-list__star">
+					<c:if test="${list.my_join_star == 0}">
+						<a class="my-meet-list__star-link" onclick="addStar(${list.m_num})"><i class="far fa-star fa-lg"></i></a>
+					</c:if>
+					<c:if test="${list.my_join_star == 1}">
+						<a class="my-meet-list__star-link" onclick="deleteStar(${list.m_num})"><i class="fas fa-star fa-lg"></i></a>
+					</c:if>
 				</div>
-				<span>${list.m_join_people_cnt}명</span>
-			</div>
-		</c:forEach>
-	</div>
+				<div class="my-meet-list__info" onclick="location.href='/meet/info?num=${list.m_num }'">
+					<div class="my-meet-list__column">
+						<img class="my-meet-list__img" src="/main/display?m_num=${list.m_num }">
+						<div class="my-meet-list__text">
+							<div class="my-meet-list__area">
+							 	<i class="fas fa-map-marker-alt fa-lg"></i>
+								<span>${list.m_area}</span>
+							</div>
+							<div class="my-meet-list__name">
+								<span>${list.m_name}</span>
+							</div>
+						</div>
+					</div>
+					<div class="my-meet-list__column">
+						<span class="my-meet-list__people">${list.m_join_people_cnt}명</span>
+					</div>
+				</div>
+			  </div>
+			</c:forEach>
+		</div>
+		<!-- END my-meet-list -->
 	
-	<form action="/user/addStar" method="post" id="addStar">
-		<input type="hidden" name="m_num" value="">
-		<input type="hidden" name="u_id" value="${u_id }">
-	</form>
-	<form action="/user/deleteStar" method="post" id="deleteStar">
-		<input type="hidden" name="m_num" value="">
-		<input type="hidden" name="u_id" value="${u_id }">
-	</form>
-	
+		<form action="/user/addStar" method="post" id="addStar">
+			<input type="hidden" name="m_num" value="">
+			<input type="hidden" name="u_id" value="${u_id }">
+		</form>
+		<form action="/user/deleteStar" method="post" id="deleteStar">
+			<input type="hidden" name="m_num" value="">
+			<input type="hidden" name="u_id" value="${u_id }">
+		</form>
 	</main>
 	<!-- END main -->
 

@@ -81,7 +81,7 @@
 		  </div>
 		  <div class="search-form__column">
 			<input class="search-form__text" type="text" name="keyword" 
-				placeholder="검색어" value="${meetPages.cri.keyword }">
+				placeholder="키워드를 입력하세요." value="${meetPages.cri.keyword }">
 		  </div>
 		  <div class="search-form__column">
 		  	<div class="search-form__column-inner">
