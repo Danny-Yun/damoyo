@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+.interest-detail__cate-name {
+	font-size: 25px;
+	margin: 25px 15px;	
+	color: var(--main-color);
+	font-family: var(--logo-font);
+}
+
+.detail-list-group {
+	height: 100%; 
+	min-height: 85vh; 
+}

@@ -1,0 +1,126 @@
+@charset "UTF-8";
+
+/* search-form */
+.search-form {
+	margin: 60px 10px;
+	display: flex;
+	justify-content: center;
+    align-items: center;
+}
+.search-form__column:first-child,
+.search-form__column:last-child {
+    width: 25%;
+}
+.search-form__column:first-child {
+	margin-right: auto;
+}
+.search-form__column:nth-child(2) {
+	width: 50%;
+	text-align: center;
+}
+.search-form__column-inner {
+	position: relative;
+}
+.search-form__column-inner i {
+	position: absolute;
+	top: 13px;
+	left: 16px;
+	color: white;	
+	cursor: pointer;	
+}
+
+.search-form__type,
+.search-form__text,
+.search-form__btn {
+	border: 2px solid var(--main-color);
+}
+.search-form__type {
+	padding: 10px 5px;
+}
+.search-form__text {
+	padding: 15px 10px;
+	width: 100%;
+}
+.search-form__btn {
+	padding: 19px 30px;
+	background-color: var(--main-color);
+}
+/* END search-form */
+
+/* meet-plus */
+.meet-plus-outter {
+	display: flex;
+	justify-content: flex-end;
+}
+.meet-plus {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 15px 20px;
+	background-color: #1e90ff;
+	border-radius: 50px;
+	color: white;
+	position: fixed;
+	bottom: 50px;	
+}
+.meet-plus i {
+	margin-bottom: 7px;
+}
+/* END meet-plus */
+
+/* meet-list */
+.meet-list span {
+	font-size: 18px;
+}
+.meet-list-single {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 10px;
+	padding: 20px 10px; 
+}
+.meet-list-single:hover {
+	background-color: var(--hover-bg-color);
+}
+.meet-list__column:first-child {
+	display: flex;
+	align-items: center;
+}
+.meet-list__column:last-child {
+	color: #8d192b;
+}
+.meet-list__img {
+    height: 110px;
+	width: 135px;
+    border-radius: 12px;
+}
+.meet-list__text {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	margin-left: 20px;
+	height: 100px;
+}
+.meet-list__text i {
+	margin-right: 10px;
+}
+.meet-list__text-area,
+.meet-list__text-people {
+	display: flex;
+	align-items: center;
+}
+.meet-list__text-area {
+	color: #83dcb7;
+}
+.meet-list__text-name span {
+	font-size: 23px;
+	font-weight: bold;
+}
+
+.pagination {
+	margin: 40px 10px;
+	text-align: center;
+	width: 50%;
+	justify-content: center;
+}
+/* END meet-list */

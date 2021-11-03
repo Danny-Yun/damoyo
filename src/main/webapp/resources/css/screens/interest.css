@@ -1,0 +1,41 @@
+@charset "UTF-8";
+
+/* interest-header */
+.interest-header {
+	margin: 40px 10px;
+	display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.interest-header__title {
+	font-size: 25px;
+}	
+
+.interest-header__column {
+    width: 33%;
+}
+.interest-header__column:first-child {
+	margin-right: auto;
+}
+.interest-header__column:nth-child(2) {
+	text-align: center;
+}
+.interest-header__column:last-child {
+	margin-left: auto;
+	display: flex;
+    justify-content: flex-end;
+}
+/* END interest-header */
+
+.list-group {
+	margin-bottom: 40px;
+}
+.list-group-item {
+	height: 50px;
+	display: flex;
+	align-items: center;
+	
+}
+.interest-form__name {
+	margin-left: 15px;
+}

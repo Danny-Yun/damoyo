@@ -1,0 +1,71 @@
+@charset "UTF-8";
+
+/* my-meet-list */
+.my-meet-list {
+	margin-bottom: 20px; 
+}
+.my-meet-list__single {
+	display: flex;
+	align-items: center;
+	margin-bottom: 10px;
+	padding: 20px 10px; 
+}
+.my-meet-list__single:hover {
+	cursor: pointer;
+	background-color: var(--hover-bg-color);
+}
+.my-meet-list__info {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+}
+.my-meet-list__column:first-child {
+	display: flex;
+	align-items: center;
+}
+
+.my-meet-list span {
+	font-size: 18px;
+}
+.my-meet-list__img {
+ 	height: 90px;
+	width: 110px;
+    border-radius: 10px;
+} 
+.my-meet-list__text {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	margin-left: 20px;
+	height: 80px;
+}
+.my-meet-list__text i {
+	margin-right: 10px;
+}
+.my-meet-list__area {
+	display: flex;
+	align-items: center;
+	color: #83dcb7;
+	margin-bottom: 15px;
+}
+.my-meet-list__name span {
+	font-size: 20px;
+	font-weight: bold;
+}
+.my-meet-list__people {
+	font-weight: bold;
+	opacity: 0.7;
+}
+
+.my-meet-list__star {
+	padding: 20px 20px 20px 0px;
+}
+.my-meet-list__star_link {
+	color: var(--star-color);
+	cursor:pointer;
+}
+.my-meet-list__star_link:hover {
+	color: var(--star-color);
+}
+/* END my-meet-list */  

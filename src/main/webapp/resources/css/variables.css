@@ -1,0 +1,10 @@
+@charset "UTF-8";
+
+:root {
+	--main-color : #ae93ff;
+	--main-font : 'Noto Sans KR', sans-serif;
+	--logo-font : 'Jua', sans-serif; 
+	--border-color__gray: rgba(192, 171, 171, 0.7);
+	--hover-bg-color : rgba(0, 0, 0, 0.02);
+	--star-color : #DADA00;
+}

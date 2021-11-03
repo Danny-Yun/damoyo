@@ -4,83 +4,88 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style>
-	fieldset {
-		border: 3px solid black;
-		padding:20px;
-		width:500px;
-	}
-	p {
-		padding-left:20px;
-	}
-</style>
 <meta charset="UTF-8">
-<title>DAMOYO - 회원가입</title>
-<!-- 제이쿼리 -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>회원가입 - DA!MOYO</title>
+<!-- BootStrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+<!-- jQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<!-- Styles -->
+<link rel="stylesheet" href="/resources/css/styles.css">
+<!-- font-awesome code kit -->
+<script src="https://kit.fontawesome.com/6478f529f2.js" crossorigin="anonymous"></script>
 </head>
-<body>
-	<h3>회원가입</h3>
+<body id="join-body">
+  <div id="wrapper">
+  
+  	<!-- Start header -->
+	<header class="join-header">
+		<h1 class="join-header__logo">DA!MOYO</h1>
+	</header>
+	<!-- END header -->
 	
-	<form action="/user/join" method="post" id="joinForm">
-		<fieldset>
-			<legend>아이디로 가입하기</legend>
+	<!-- Start join-form -->
+	<form class="join-form" action="/user/join" method="post" id="joinForm">
+		<div class="join-form__column">
+			<span>아이디</span>
+			<input type="text" name="u_id" id="u_id" placeholder="ID"  
+				onchange="fn_idCheck()" maxlength="20" required/><br>
+			<span id="check_id"></span>
+			<button type="button" id="id" value="N"></button>
+		</div>
+		<div class="join-form__column">
+			<span>비밀번호</span>
+			<input type="password" name="u_pw" id="u_pw" maxlength="20"
+				onchange="check_pw()" placeholder="8자 이상 입력하세요" required /><br/>
+			<span id="check_pw"></span>
+			<button type="button" id="pw" value="N"></button>
+		</div>
+		<div class="join-form__column">
+			<span>새 비밀번호 확인</span>
+			<input type="password" name="re_pw" id="re_pw" maxlength="20"
+		 		 onchange="check_repw()" required /><br/>
+	 		<span id="check_repw"></span>
+			<button type="button" id="repw" value="N"></button>
+		</div>
+		<div class="join-form__column">
+			<span>이름</span>
+			<input type="text" name="u_name" placeholder="NAME" required />
+		</div>
+		<div class="join-form__column">
+			<span>성별</span>
+			<div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+			  <input type="radio" class="btn-check" name="u_sex" id="0" value="0" autocomplete="off" checked>
+			  <label class="btn btn-outline-primary" for="0">남성</label>
 			
-			<div>
-				아이디 <br>
-				<input type="text" name="u_id" id="u_id" placeholder="ID"  
-					onchange="fn_idCheck()" required/><br>
-				<span id="check_id"></span>
-				<button type="button" id="id" value="N"></button>
+			  <input type="radio" class="btn-check" name="u_sex" id="1" value="1" autocomplete="off">
+			  <label class="btn btn-outline-primary" for="1">여성</label>
 			</div>
-
-			<div>
-				비밀번호 <br> 
-				<input type="password" name="u_pw" id="u_pw"  
-					onchange="check_pw()" placeholder="8자 이상 입력하세요" required /><br/>
-				<span id="check_pw"></span>
-				<button type="button" id="pw" value="N"></button>
-			</div>
-			
-			<div>
-				새 비밀번호 확인 <br>
-				<input type="password" name="re_pw" id="re_pw"
-			 		 onchange="check_repw()" required /><br/>
-		 		<span id="check_repw"></span>
-				<button type="button" id="repw" value="N"></button>
-			</div>
-			
-			<div>
-				이름 <br> 
-				<input type="text" name="u_name" placeholder="NAME" required />
-			</div>
-
-			<div>
-				성별 <br> 
-				<div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-				  <input type="radio" class="btn-check" name="u_sex" id="0" value="0" autocomplete="off" checked>
-				  <label class="btn btn-outline-primary" for="0">남성</label>
-				
-				  <input type="radio" class="btn-check" name="u_sex" id="1" value="1" autocomplete="off">
-				  <label class="btn btn-outline-primary" for="1">여성</label>
-				</div>
-			</div>
-			
-			<div>
-				생일 <br> 
-				<input type="date" name="u_birth" required />
-			</div>
-			
-			<div>
-				지역 <br> 
-				<input type="text" name="u_area" placeholder="AREA" required />
-			</div>
-		</fieldset>
-		<p><input type="submit" id="submit" value="가입하기" /><p>
+		</div>
+		<div class="join-form__column">
+			<span>생일</span>
+			<input type="date" name="u_birth" required />
+		</div>
+		<div class="join-form__column">
+			<span>지역</span>
+			<input type="text" name="u_area" placeholder="AREA" required />
+		</div>
+   		<input type="submit" id="submit" value="가입하기" />
 	</form>
+	<!-- END join-form -->
+	
+	<!-- Start footer -->
+	<footer class="login-footer">
+		<div class="login-footer__info">
+			Made by Riudiu, Wakebro &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; 
+			Contact by GitHub : github.com/Riudiu
+		</div>
+		<div class="login-footer__copyright">Copyright 2021. DAMOYO. All rights reserved. </div>
+	</footer>
+	<!-- END footer -->
+  </div>	
 	
 	<script>
-		
 		// 아이디 중복검사
 		function fn_idCheck() {
 
@@ -149,7 +154,7 @@
 			
 			if(document.getElementById('u_pw').value!='' && document.getElementById('re_pw').value!=''){
 		        if(document.getElementById('u_pw').value === document.getElementById('re_pw').value ){
-		            document.getElementById('check_repw').innerHTML='OK';
+		            document.getElementById('check_repw').innerHTML='훌륭합니다.';
 		            document.getElementById('check_repw').style.color='blue';
 		            $("#repw").attr("value", "OK");
 		        }

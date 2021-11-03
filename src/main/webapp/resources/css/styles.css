@@ -1,0 +1,48 @@
+@charset "UTF-8";
+
+@import "reset.css";
+@import "variables.css";
+
+/* components */
+@import "components/main-layout.css";
+@import "components/main-nav.css";
+@import "components/screen-header.css";
+@import "components/meet-detail.css";
+
+/* screens */
+@import "screens/login.css";
+@import "screens/join.css";
+@import "screens/interest.css";
+@import "screens/interest-detail.css";
+@import "screens/main.css";
+@import "screens/my-meet.css";
+@import "screens/my-page.css";
+@import "screens/interest-meet.css";
+
+/* google font */
+@import url('https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR&display=swap');
+
+
+html, body {
+	font-family: var(--main-font);
+}
+
+#wrapper {
+	width: 60%;
+	margin: 0 auto;
+	height: 100%; 
+}
+
+main {
+	padding: 0px 20px;
+	height: 100%; 
+	min-height: 63vh; 
+}
+
+/* media query */
+@media screen and (max-width: 1190px) {
+	#wrapper {
+		width: 100%;
+		margin: 0 auto;
+	}
+}
