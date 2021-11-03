@@ -23,10 +23,10 @@
 </head>
 <body>
 	<h1>${infos.meet.m_name }의 게시판</h1>
-	유저 정보 : ${infos.user}<br>
+	<%-- 유저 정보 : ${infos.user}<br>
 	${infos.user.u_id}<br>
 	모임 정보 : ${infos.meet}<br>
-	게시판 정보 : ${infos.board }<br>
+	게시판 정보 : ${infos.board }<br> --%>
 	<a href="/board/list">게시판 목록</a>
 	<form action="/board/delete" method="post">
 		<input type="hidden" name="b_num" value="${infos.board.b_num}"/>

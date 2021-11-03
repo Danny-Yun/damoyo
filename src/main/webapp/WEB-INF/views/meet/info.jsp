@@ -12,9 +12,9 @@
 </head>
 <body>
 	<h1>모임방</h1>
-	유저정보 : ${infos.user }<br>
+	<%-- 유저정보 : ${infos.user }<br>
 	모임정보 : ${infos.meet}<br>
-	가입여부 : ${infos.checkJoin eq null ? '정보 없음':'정보 있음' } <br>
+	가입여부 : ${infos.checkJoin eq null ? '정보 없음':'정보 있음' } <br> --%>
 	<a href="/meet/info?num=${infos.meet.m_num }"><button>정보</button></a>
 	<a href="${infos.checkJoin eq null ? '#':'/meet/board/list'}" class="meetinfo-navbar__checkJoin"><button>게시판</button></a>
 	<a href="#" class="meetinfo-navbar__checkJoin"><button>갤러리</button></a>

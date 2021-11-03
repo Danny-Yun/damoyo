@@ -75,8 +75,8 @@
 </head>
 <body>
 	<h1>모임방_게시판</h1>
-	유저정보 : ${infos.user }<br>
-	모임정보 : ${infos.meet }<br>
+	<%-- 유저정보 : ${infos.user }<br>
+	모임정보 : ${infos.meet }<br> --%>
 	<a href="/meet/info?num=${meetInfo.m_num }"><button>정보</button></a>
 	<a href="/meet/board/list"><button>게시판</button></a>
 	<a href="#"><button>갤러리</button></a>
@@ -127,11 +127,12 @@
 			<div class="right_side">
 		</div>
 	</c:forEach>
+	<hr>
 	<div>
 		<form action="/board/write" method="get">
 			<input type="submit" value="글쓰기">
 		</form>
-		${boardPages }
+		<%-- ${boardPages } --%>
 	</div>
 	<ul class="pagination">
 		<c:if test="${boardPages.prev }">
