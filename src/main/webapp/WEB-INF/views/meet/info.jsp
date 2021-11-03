@@ -147,7 +147,7 @@
 	<table border="1">
 		<c:forEach var="member" items="${infos.memberList }">
 			<tr>
-				<td rowspan="2">${member.u_profile }</td>
+				<td rowspan="2"><img src="/user/display?u_id=${member.u_id }"></td>
 				<td>${member.u_name }</td>
 				<td rowspan="2">${member.member_list_position }</td>
 			</tr>

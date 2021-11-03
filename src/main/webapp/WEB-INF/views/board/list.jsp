@@ -16,7 +16,6 @@
 <!-- font-awesome code kit -->
 <script src="https://kit.fontawesome.com/6478f529f2.js" crossorigin="anonymous"></script>
 <style>
-
 	.box_left {
 		margin-left:350px;
 		float:left;
