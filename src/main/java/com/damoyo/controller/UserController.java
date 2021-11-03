@@ -1,17 +1,29 @@
 package com.damoyo.controller;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.nio.file.Files;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.damoyo.domain.ICateNumDTO;
@@ -27,6 +39,7 @@ import com.damoyo.service.UserService;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
+import net.coobird.thumbnailator.Thumbnailator;
 
 @Controller
 @Log4j
@@ -36,6 +49,22 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
+	private boolean checkImageType(File file) {
+		try {
+			String contentType = Files.probeContentType(file.toPath());
+			return contentType.startsWith("image");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	private String getFolder() {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = new Date();
+		String str = sdf.format(date);
+		return str.replace("-", File.separator);
+	}
 
 	// 로그인 폼
 	@GetMapping("/login")
@@ -200,12 +229,132 @@ public class UserController {
 	
 	// 내 정보 수정 후 저장
 	@PostMapping("/modify")
-	public String updateProfile(UserVO vo, RedirectAttributes rttr) {
+	public String updateProfile(UserVO vo, RedirectAttributes rttr, @Param("u_profile")MultipartFile profile) {
 		log.info("유저가 수정한 내용 - " + vo);
+		log.info("프로필 : " + profile);
+		if(profile.getSize() != 0) {
+			String uploadFolder = "C:\\upload_data\\temp\\user_profile";
+			String uploadFolderPath = getFolder();
+			File uploadPath = new File(uploadFolder, uploadFolderPath);
+			vo.setU_profilepath(uploadFolderPath);
+			
+			if(uploadPath.exists() == false)
+				uploadPath.mkdirs();
+			
+			String fileName = profile.getOriginalFilename();
+			vo.setU_profile(fileName);
+			
+			UUID uuid = UUID.randomUUID();
+			vo.setU_uuid(uuid.toString());
+			
+			fileName = uuid + "_" + fileName;
+			
+			try {
+				File saveFile = new File(uploadPath, fileName);
+				profile.transferTo(saveFile);
+				
+				if(checkImageType(saveFile)) {
+					FileOutputStream thumbnail = new FileOutputStream(new File(uploadPath, "s_" + fileName));
+					Thumbnailator.createThumbnail(profile.getInputStream(), thumbnail, 50, 50);
+					thumbnail.close();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		}
+		
 		userService.modifyProfile(vo);
 		return "redirect:/user/mypage";
 	}
+	// 프로필 보이기_썸네일
+	@GetMapping("/display")
+	@ResponseBody
+	public ResponseEntity<byte[]> getFile(String u_id){
+		UserVO profile = userService.showProfile(u_id);
+		String uploadPath = profile.getU_profilepath();
+		String uuid = profile.getU_uuid();
+		String fileName = profile.getU_profile();
+		
+		File file = null;
+		
+		ResponseEntity<byte[]> result = null;
+		
+		if(uploadPath == null) {
+			try {
+				file = new File("c:\\upload_data\\temp\\user_profile\\s_noimg.jpg");
+				HttpHeaders header = new HttpHeaders();
+				header.add("Content-type", Files.probeContentType(file.toPath()));
+				result = new ResponseEntity<byte[]>(FileCopyUtils.copyToByteArray(file),
+													header,
+													HttpStatus.OK);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return result;
+		}
+
+		try {
+			file = new File("c:\\upload_data\\temp\\user_profile\\" + uploadPath + "/s_" + uuid + "_" + fileName);
+			HttpHeaders header = new HttpHeaders();
+			
+			header.add("Content-Type", Files.probeContentType(file.toPath()));
+			
+			result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file),
+										header,
+										HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 	
+	// 프로필 보이기_크게
+	@GetMapping("/display2")
+	@ResponseBody
+	public ResponseEntity<byte[]> getFile2(String u_id){
+		UserVO profile = userService.showProfile(u_id);
+		String uploadPath = profile.getU_profilepath();
+		String uuid = profile.getU_uuid();
+		String fileName = profile.getU_profile();
+		log.info("프로필 : " + profile);
+		log.info("파일 이름 : " + fileName);
+		log.info("uuid : " + uuid);
+		log.info("파일 경로 : " + uploadPath);
+		
+		File file = null;
+		
+		ResponseEntity<byte[]> result = null;
+		
+		if(uploadPath == null) {
+			try {
+				file = new File("c:\\upload_data\\temp\\user_profile\\noimg.jpg");
+				HttpHeaders header = new HttpHeaders();
+				header.add("Content-type", Files.probeContentType(file.toPath()));
+				result = new ResponseEntity<byte[]>(FileCopyUtils.copyToByteArray(file),
+													header,
+													HttpStatus.OK);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return result;
+		}
+
+		try {
+			file = new File("c:\\upload_data\\temp\\user_profile\\" + uploadPath + "\\" + uuid + "_" + fileName);
+			HttpHeaders header = new HttpHeaders();
+			
+			header.add("Content-Type", Files.probeContentType(file.toPath()));
+			
+			result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file),
+										header,
+										HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+		
 	// 마이페이지에서 내 관심사 조회
 	@GetMapping("/myinterest")
 	public String myInterest(Model model, HttpSession session) {

@@ -65,7 +65,8 @@
 		UPDATE user_info 
 			SET 
 		u_profile = #{u_profile}, u_name = #{u_name}, u_sex = #{u_sex}, 
-		u_birth = #{u_birth}, u_area = #{u_area}, u_intro = #{u_intro} 
+		u_birth = #{u_birth}, u_area = #{u_area}, u_intro = #{u_intro},
+		u_profilepath = #{u_profilepath}, u_uuid = #{u_uuid} 
 			WHERE 
 		u_id = #{u_id}
 	</update>

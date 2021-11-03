@@ -80,23 +80,23 @@ public class MainController {
 		if(u_id == null) {
 			return "/user/login";
 		}
-		// 유저 정보
+		// 로그인 한 유저 정보 저장
 		UserVO userInfo = (UserVO)session.getAttribute("userInfo");
-		log.info(userInfo);
+		// DB에 저장된 카테고리 정보 저장
+		List<InterestVO> interestList = service.get();
 		
-		// 카테고리 및 모임 리스트 조회
+		// 카테고리와 검색 키워드 내용으로 모임 조회 준비
 		if(cri.getKeyword()==null)
 			cri.setKeyword("");
 		if(cri.getSearchType() == null)
 			cri.setSearchType("");
 		int total = service.getTotalMeet(cri);
-//		log.info("컨트롤러");
-//		log.info(cri.getSearchType());
-//		log.info(total);
-		List<InterestVO> interestList = service.get();
+		// 모임 리스트 조회
 		List<MeetVO> meetList = service.getListMeet(cri);
+		// 모임 리스트 페이지네이션
 		MainPageDTO meetPages = new MainPageDTO(total, cri);
 		
+		// 조회 후 저장한 내용을 View에서 출력하기 위한 준비
 		model.addAttribute("interest", interestList);
 		model.addAttribute("meetList", meetList);
 		model.addAttribute("userInfo", userInfo);
@@ -158,9 +158,9 @@ public class MainController {
 				e.printStackTrace();
 			}
 		}
-		
+		// 모임 생성
 		service.registerMeet(vo);
-		// 모임 개설자 모임 회원 리스트 등록
+		// 모임 생성자를 생성한 모임의 모임장으로 MEET_MEMBERLIST 테이블에 등록
 		MeetMemberVO member = new MeetMemberVO();
 		member.setM_num(vo.getM_num());
 		member.setU_id(vo.getU_id());

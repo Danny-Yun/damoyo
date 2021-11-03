@@ -15,4 +15,6 @@ public class UserVO {
 	private String u_area;
 	private String u_intro;
 	private String u_profile;
+	private String u_profilepath;
+    private String u_uuid;
 }
