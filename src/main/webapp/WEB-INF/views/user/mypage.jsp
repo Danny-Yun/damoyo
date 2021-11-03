@@ -66,7 +66,7 @@
 	<main>
 		<div class="user-info">
 			<div class="user-info__column">
-				<img class="user-info__profile" src="#" />
+				<img class="user-info__profile" src="/user/display?u_id=${profile.u_id }" />
 				<div class="user-info__text">
 					<div class="user-info__text-top">
 						<h3 class="user-info__name">${profile.u_name}</h3>

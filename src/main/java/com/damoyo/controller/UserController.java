@@ -263,6 +263,7 @@ public class UserController {
 			}
 			
 		}
+		
 		userService.modifyProfile(vo);
 		return "redirect:/user/mypage";
 	}
@@ -316,6 +317,10 @@ public class UserController {
 		String uploadPath = profile.getU_profilepath();
 		String uuid = profile.getU_uuid();
 		String fileName = profile.getU_profile();
+		log.info("프로필 : " + profile);
+		log.info("파일 이름 : " + fileName);
+		log.info("uuid : " + uuid);
+		log.info("파일 경로 : " + uploadPath);
 		
 		File file = null;
 		
@@ -336,7 +341,7 @@ public class UserController {
 		}
 
 		try {
-			file = new File("c:\\upload_data\\temp\\user_profile\\" + uploadPath + uuid + "_" + fileName);
+			file = new File("c:\\upload_data\\temp\\user_profile\\" + uploadPath + "\\" + uuid + "_" + fileName);
 			HttpHeaders header = new HttpHeaders();
 			
 			header.add("Content-Type", Files.probeContentType(file.toPath()));
