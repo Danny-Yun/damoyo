@@ -1,0 +1,45 @@
+@charset "UTF-8";
+
+.profile-outer {
+	height: 100%;
+	text-align: center;
+}
+.profile-pic {
+	width: 150px;
+	height: 150px;
+	border-radius: 50%;
+	margin-bottom: 5px;
+}
+.profile-form {
+	display: flex;
+	flex-direction: column;
+}
+.profile-form__column input {
+	padding: 5px 7px;
+	border: 2px solid var(--main-color);
+	border-radius: 7px;
+	width: 20%;
+	margin-bottom: 20px;
+}
+.profile-form__column:first-child input {
+	width: 35%;
+	margin-bottom: 40px;
+	border-color: black;
+}
+.profile-form__column:nth-child(3) {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.profile-form__column:nth-child(3) input {
+	width: 26%
+}
+.profile-form__textarea {
+	margin-bottom: 20px;
+}
+.profile-form__name {
+	margin-right: 15px;
+}	
+.profile-form__sex {
+	width: 14%;
+}
