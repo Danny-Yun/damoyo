@@ -18,6 +18,8 @@
 @import "screens/my-meet.css";
 @import "screens/my-page.css";
 @import "screens/interest-meet.css";
+@import "screens/password.css";
+@import "screens/change-password.css";
 
 /* google font */
 @import url('https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR&display=swap');

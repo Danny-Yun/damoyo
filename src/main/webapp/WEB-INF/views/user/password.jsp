@@ -69,16 +69,18 @@
   	
   	<!-- Start main -->
 	<main>
-	
-	<h3>기존 비밀번호를 입력하세요.</h3>
-	
-	<form action="/user/password" method="post">
-		<input type="password" name="u_pw" required /><br><br/>
-		
-		<p><button type="button" onclick="history.back()">이전</button>
-		<input type="submit" value="확인" /></p>
-	</form>
-	
+		<div class="password-box-outer">
+		  <div class="password-box">
+			<form action="/user/password" method="post" id="password-form">
+				<h3 class="password-form__info">기존 비밀번호를 입력하세요.</h3>
+				<input class="password-form__pw" type="password" name="u_pw" required />
+				<div class="password-form__btn">
+					<button type="button" class="btn btn-outline-danger" onclick="history.back()">취소</button>
+					<button type="button" class="btn btn-outline-primary" onclick="confirm()">확인</button>
+				</div>
+			</form>
+		  </div>
+	  	</div>
 	</main>
 	<!-- END main -->
 	
@@ -94,6 +96,11 @@
   </div>	
 	
 	<script>
+		function confirm() {
+			let confirm = document.getElementById("password-form");
+			confirm.submit();
+		}
+	
 		let result = "${result}";
 		console.log(result);
 		if(result === "fail") {
