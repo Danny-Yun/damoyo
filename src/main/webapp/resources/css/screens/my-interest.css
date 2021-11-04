@@ -1,0 +1,29 @@
+@charset "UTF-8";
+
+.my-interest__add button,
+.my-interest__btn button {
+	width: 45%;
+}
+.my-interest__add,
+.my-interest__btn {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.my-interest__selected-info {
+	font-size: 20px;
+	padding: 10px 25px 30px; 
+}
+.my-interest__selected-info span:first-child {
+	font-weight: bold;
+}
+.my-interest__selected-info span:last-child {
+	opacity: 0.8;
+}
+.my-interest__selected {
+	margin-bottom: 55px;
+}
+
+.btn-group {
+	margin-bottom: 20px;
+}

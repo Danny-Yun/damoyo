@@ -69,19 +69,21 @@
   	
   	<!-- Start main -->
 	<main>
-
-	<h3 style="color:red">
-		한 번 탈퇴하면 복구할 수 없습니다.<br>
-		탈퇴를 원하시면 비밀번호를 입력하여 주세요.
-	</h3>
-	
-	<form action="/user/leave" method="post">
-		<input type="password" name="u_pw" required /><br><br/>
-		
-		<p><button type="button" onclick="history.back()">이전</button>
-		<input type="submit" value="확인" /></p>
-	</form>
-
+		<div class="password-box-outer">
+		  <div class="password-box">
+			<form action="/user/leave" method="post" id="leave-form">
+				<h3 class="leave-form__info">
+					<span>한 번 탈퇴하면 복구할 수 없습니다.</span>
+					<span>탈퇴를 원하시면 비밀번호를 입력하여 주세요.</span>
+				</h3>
+				<input class="password-form__pw" type="password" name="u_pw" required />
+				<div class="password-form__btn">
+					<button type="button" class="btn btn-outline-danger" onclick="history.back()">취소</button>
+					<button type="button" class="btn btn-outline-primary" onclick="confirm()">확인</button>
+				</div>
+			</form>
+		  </div>
+	  	</div>
 	</main>
 	<!-- END main -->
 	
@@ -96,6 +98,11 @@
 	<!-- END footer -->
   </div>	
 	<script>
+		function confirm() {
+			let confirm = document.getElementById("leave-form");
+			confirm.submit();
+		}
+		
 		let result = "${result}";
 		console.log(result);
 		if(result === "fail") {
