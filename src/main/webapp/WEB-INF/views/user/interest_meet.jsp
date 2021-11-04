@@ -68,17 +68,22 @@
 	<!-- END screen-header -->
   	
   	<!-- Start main -->
-	<main>
-		
-	<c:forEach var="list" items="${list}">
-		<div class="meetDiv" onclick="location.href='/meet/info?num=${list.m_num }'">
-			<span>[${list.m_area}]</span>
-			<h5>${list.m_name}</h5>
+	<main class="interest-meet">
+		<!-- Start interest-meet-list -->
+		<div class="interest-meet-list">
+		  <c:forEach var="list" items="${list}">
+			<div class="interest-meet__single" onclick="location.href='/meet/info?num=${list.m_num }'">
+				<span class="interest-meet__area">[${list.m_area}]</span>
+				<h5 class="interest-meet__name">${list.m_name}</h5>
+			</div>
+		  </c:forEach>
 		</div>
-	</c:forEach>
-	
-	<p><button type="button" class="btn btn-outline-danger"
-			onclick="history.back()">이전</button></p>
+		<!-- END interest-meet-list -->
+		
+		<div class="interest-meet-btn">
+	    	<button type="button" class="btn btn-outline-danger"
+				onclick="history.back()">이전</button>
+		</div>
 	</main>
 	<!-- END main -->
 	

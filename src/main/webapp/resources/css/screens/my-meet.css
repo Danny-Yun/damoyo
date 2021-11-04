@@ -46,7 +46,7 @@
 .my-meet-list__area {
 	display: flex;
 	align-items: center;
-	color: #83dcb7;
+	color: var(--area-color);
 	margin-bottom: 15px;
 }
 .my-meet-list__name span {
@@ -61,11 +61,11 @@
 .my-meet-list__star {
 	padding: 20px 20px 20px 0px;
 }
-.my-meet-list__star_link {
+.my-meet-list__star-link {
 	color: var(--star-color);
 	cursor:pointer;
 }
-.my-meet-list__star_link:hover {
+.my-meet-list__star-link:hover {
 	color: var(--star-color);
 }
 /* END my-meet-list */  

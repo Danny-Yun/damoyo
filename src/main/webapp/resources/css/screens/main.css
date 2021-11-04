@@ -110,7 +110,7 @@
 	align-items: center;
 }
 .meet-list__text-area {
-	color: #83dcb7;
+	color: var(--area-color);
 }
 .meet-list__text-name span {
 	font-size: 23px;

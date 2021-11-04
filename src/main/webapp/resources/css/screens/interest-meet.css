@@ -1,14 +1,28 @@
 @charset "UTF-8";
 
-.meetDiv {
-		display: flex;
-		justify-content: flex-start;
-		align-items: center;
-		width:70%;
-		border-bottom: 1px solid mistyrose;
-		margin-bottom: 20px;
-		cursor:pointer;
+.interest-meet-list {
+	margin-bottom: 40px;
 }
-.meetDiv span {
-	margin-right: 20px;
+.interest-meet__single {
+	display: flex;
+	justify-content: center;
+	padding: 20px 20px;
+    font-size: 20px;
+    cursor: pointer;
+}
+.interest-meet__single:hover {
+	background-color: var(--hover-bg-color);
+}
+
+.interest-meet__area {
+    color: var(--area-color);
+    margin-right: 50px;
+}
+
+.interest-meet-btn {
+	text-align: center;
+}
+.interest-meet button {
+	margin-bottom: 25px;
+	width: 50%;
 }
