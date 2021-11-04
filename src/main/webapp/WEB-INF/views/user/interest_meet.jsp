@@ -68,7 +68,7 @@
 	<!-- END screen-header -->
   	
   	<!-- Start main -->
-	<main class="interest-meet">
+	<main>
 		<!-- Start interest-meet-list -->
 		<div class="interest-meet-list">
 		  <c:forEach var="list" items="${list}">
