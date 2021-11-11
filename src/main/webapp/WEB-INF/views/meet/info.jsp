@@ -69,12 +69,22 @@
 				</a>
 			</li>  				
 			<li class="main-nav__btn">
-				<a class="main-nav__link-checkJoin" href="${infos.checkJoin eq null ? '#':'#'}">
-					<div class="main-nav__link">
-						<i class="fas fa-comments fa-lg"></i>
-						<span>채팅</span>
-					</div>
-				</a>
+				<c:if test="${infos.checkJoin eq null }">
+					<a class="main-nav__link-checkJoin" href="#'}">
+						<div class="main-nav__link">
+							<i class="far fa-images fa-lg"></i>
+							<span>채팅</span>
+						</div>
+					</a>
+				</c:if>
+				<c:if test="${infos.checkJoin ne null }">
+					<a class="main-nav__link-checkJoin" href="/chatting?room_id=${infos.meet.m_num }">
+						<div class="main-nav__link">
+							<i class="fas fa-comments fa-lg"></i>
+							<span>채팅</span>
+						</div>
+					</a>
+				</c:if>
 			</li>  		
 			<li class="main-nav__btn">
 				<a class="main-nav__link" href="/main/">
