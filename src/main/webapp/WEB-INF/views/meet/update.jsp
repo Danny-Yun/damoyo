@@ -88,35 +88,52 @@
   	
   	<!-- Start main -->
 	<main>
-
-	<form action="/meet/update/process" method="post">
-		<input type="hidden" name="m_num" value="${meetInfo.m_num }">
-		모임 이름 : <input type="text" name="m_name" value="${meetInfo.m_name }"><br>
-		모임 인원 : 
-			<select name="m_people_cnt">
-				<c:forEach var="num" begin="1" end="200">
-					<option value="${num }">${num }
-				</c:forEach>
-			</select>
-			<br>
-		모임 지역 : <input type="text" name="m_area" value="${meetInfo.m_area }"><br>
-		모임 사진 : <input type="text" name="m_profile" value="${meetInfo.m_profile }" readonly><br>
-		모임 종류 : 
-			<select name="i_cate_num">
-				<option selected>부서를 선택하세요.</option>
+		<form class="meet-update-form" action="/meet/update/process" method="post">
+			<input type="hidden" name="m_num" value="${meetInfo.m_num }">
+			<div class="register-form__column">
+				<span>모임 이름</span>
+				<input type="text" name="m_name" value="${meetInfo.m_name }"/>
+			</div>
+			<div class="register-form__column">
+				<span>모임 인원</span>
+				<select name="m_people_cnt">
+					<c:forEach var="num" begin="1" end="200">
+						<option value="${num }">${num }
+					</c:forEach>
+				</select>
+			</div>
+			<div class="register-form__column">
+				<span>모임 지역 </span>
+				<input type="text" name="m_area" value="${meetInfo.m_area }" />
+			</div>
+			<div class="register-form__column">
+				<span>모임 사진</span>
+				<input type="file" name="m_profile" value="${meetInfo.m_profile }" readonly>
+			</div>
+			<div class="register-form__column">
+				<span>모임 종류</span>
+				<select name="i_cate_num">
+					<option selected>부서를 선택하세요.</option>
 					<c:forEach var="cate" items="${category }">
 					    <option value=${cate.i_cate_num }
 					    <c:out value="${cate.i_cate_num eq meetInfo.i_cate_num ? 'selected' : '' }"/>>${cate.i_cate_name}</option>
 					</c:forEach>
-			</select>
-		<br>
-		모임 방장 : <input type="text" name="u_id" value="${userInfo.u_id }" readonly="readonly"><br>
-		모임 내용 :<br>
-		<textarea name="m_content">${meetInfo.m_content }</textarea><br>
-		<button type="button" onclick="history.back()">이전</button>
-		<input type="submit" value="수정">
-	</form>
-	
+				</select>
+			</div>
+			<div class="register-form__column">
+				<span>모임 방장</span>
+				<input type="text" name="u_id" value="${userInfo.u_id }" readonly="readonly" />
+			</div>
+			<div class="register-form__column">
+				<span>모임 내용</span>
+				<textarea rows="7px" name="m_content">${meetInfo.m_content }</textarea>
+			</div>
+			<div class="register-form__btn">
+				<button type="button" class="btn btn-outline-danger"
+					onclick="history.back()">이전</button>
+				<input class="btn btn-outline-primary" type="submit" value="수정" />	
+			</div>
+		</form>
 	</main>
 	<!-- END main -->
 	
