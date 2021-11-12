@@ -23,6 +23,7 @@
 @import "screens/change-password.css";
 @import "screens/leave.css";
 @import "screens/profile.css";
+@import "screens/register.css";
 
 /* google font */
 @import url('https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR&display=swap');
