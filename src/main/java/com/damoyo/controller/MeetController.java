@@ -134,6 +134,7 @@ public class MeetController {
 	@PostMapping("/update/process")
 	// 모임 수정
 	public String updateMeet(MeetVO vo, @Param("m_profile")MultipartFile profile) {
+		log.info("수정작업");
 		// 모임 프로필 수정 안할 경우
 		if(profile.isEmpty()) {
 			service.updateMeet2(vo);

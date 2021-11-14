@@ -88,7 +88,7 @@
   	
   	<!-- Start main -->
 	<main>
-		<form class="meet-update-form" action="/meet/update/process" method="post" enctype="multipart/form-data>
+		<form class="meet-update-form" action="/meet/update/process" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="m_num" value="${meetInfo.m_num }">
 			<div class="register-form__column">
 				<span>모임 이름</span>
