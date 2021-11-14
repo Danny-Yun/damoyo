@@ -124,7 +124,7 @@
 			</li>  
 			<li class="main-nav__btn">
 				<c:if test="${infos.checkJoin eq null }">
-					<a class="main-nav__link-checkJoin" href="#'}">
+					<a class="main-nav__link-checkJoin" href="#">
 						<div class="main-nav__link">
 							<i class="fas fa-comments fa-lg"></i>
 							<span>채팅</span>
@@ -153,8 +153,6 @@
   	<!-- Start main -->
 	<main>
 	<br><br/>
-	
-	${infos.meet }	
 	
 	<form action="/board/list">
 		<select name="searchType">
