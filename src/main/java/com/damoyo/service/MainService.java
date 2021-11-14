@@ -22,8 +22,11 @@ public interface MainService {
 	// 생성된 모임 리스트 가져오기
 	public List<MeetVO> getListMeet(MainSearchCriteria cri);
 	
-	// 모임 생성
+	// 모임 생성_프로필 null이 아닌 경우
 	public void registerMeet(MeetVO vo);
+	
+	// 모임 생성_프로필 null인 경우
+	public void registerMeet2(MeetVO vo);
 	
 	// 모임 디테일 가져오기
 	public MeetVO getDetailMeet(Long m_num);
@@ -33,6 +36,9 @@ public interface MainService {
 	
 	// 모임 수정
 	public void updateMeet(MeetVO vo);
+	
+	// 모임 수정_프로필 안 바꿀 경우
+	public void updateMeet2(MeetVO vo);
 	
 	// 모입 생성 시 방장 모임 가입
 	//public void adminJoinMeet(MeetMemberVO vo);

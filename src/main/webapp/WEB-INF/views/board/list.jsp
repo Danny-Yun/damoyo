@@ -172,6 +172,7 @@
 				<div class="u_id">${list.u_id}</div> <div class="b_date">${list.b_date}</div><br><br>
 				<div class="titlecontent">
 					<strong>${list.b_title}</strong><br>
+					<div>${list.b_cate_name}</div>
 					<script>
 						var b_content = "${list.b_content}";
 						if(b_content.length > 10) {
@@ -184,8 +185,8 @@
 				</div>
 				<div class="b_image1"></div><br>
 				<hr>
-				<div class="b_like">좋아요 ${list.b_like}</div> <div class="b_cate_name">${list.b_cate_name}</div>
-					<hr>
+				<div class="b_like">좋아요 ${list.b_like}</div> 
+				<hr>
 			</div>
 		</div>
 			<div class="right_side">

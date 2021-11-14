@@ -30,14 +30,6 @@
 </style>
 </head>
 <body>
-<<<<<<< HEAD
-	<h1>${infos.meet.m_name }의 게시판</h1>
-	<%-- 유저 정보 : ${infos.user}<br>
-	${infos.user.u_id}<br>
-	모임 정보 : ${infos.meet}<br>
-	게시판 정보 : ${infos.board }<br> --%>
-	<a href="/board/list">게시판 목록</a>
-=======
   <div id="wrapper">
   
   	<!-- Start header -->
@@ -113,14 +105,14 @@
 	<a href="/board/list">게시판 목록으로</a>
 	<br><br/>
 	
->>>>>>> 0055382d573b9c1b18695810db4f2748f4ac4592
+
 	<form action="/board/delete" method="post">
 		<input type="hidden" name="b_num" value="${infos.board.b_num}"/>
 		<input type="${infos.user.u_id == infos.board.u_id ? 'submit' : 'hidden' }" value="삭제"/>
 	</form>
 	<table border="1">
 		<tr>
-			<td rowspan="2">${infos.user.u_profile }이미지</td>
+			<td rowspan="2"><img src="/user/display?u_id=${infos.user.u_id }"></td>
 			<td>${infos.board.u_id}</td>
 			<td rowspan="2">${infos.board.b_cate_name }
 		</tr>

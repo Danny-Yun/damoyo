@@ -168,14 +168,21 @@
 	</table>
 	
 	<br>
-	<form action="/meet/update" method="post">
-		<input type="hidden" name="num" value="${infos.meet.m_num }">
-		<input type="submit" value="수정">
-	</form>
-	<form action="/meet/remove" method="post">
-		<input type="hidden" name="num" value="${infos.meet.m_num }">
-		<input type="submit" value="삭제">
-	</form>
+	<!-- 모임장일 경우 모임의 수정/삭제 버튼 확인  -->
+	<c:forEach var="member" items="${infos.memberList }">
+		<c:if test="${member.u_id eq infos.user.u_id}">
+			<c:if test="${member.member_list_position eq '모임장' }">
+				<form action="/meet/update" method="post">
+					<input type="hidden" name="num" value="${infos.meet.m_num }">
+					<input type="submit" value="수정">
+				</form>
+				<form action="/meet/remove" method="post">
+					<input type="hidden" name="num" value="${infos.meet.m_num }">
+					<input type="submit" value="삭제">
+				</form>
+			</c:if>
+		</c:if>
+	</c:forEach>
 
 <!-- 정모 생성 -->
 <!-- Button trigger modal -->

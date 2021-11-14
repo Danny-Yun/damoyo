@@ -6,12 +6,14 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.damoyo.domain.InterestVO;
@@ -96,8 +98,14 @@ public class MeetController {
 	
 	@PostMapping("/update/process")
 	// 모임 수정
-	public String updateMeet(MeetVO vo) {
+	public String updateMeet(MeetVO vo, @Param("m_profile")MultipartFile profile) {
 		log.info("업데이트 : " + vo);
+		if(profile.isEmpty()) {
+			log.info("null값 입니다.");
+			log.info("null일 경우 vo값 : " + vo);
+			service.updateMeet2(vo);
+			return "redirect:/meet/info?num=" + vo.getM_num();
+		}
 		service.updateMeet(vo);
 		return "redirect:/meet/info?num=" + vo.getM_num();
 	}
@@ -105,6 +113,7 @@ public class MeetController {
 	@PostMapping("/update")
 	// 모임 수정
 	public void updateMeet(Long num, Model model) {
+		log.info("모임 수정 프로세스");
 		MeetVO meetInfo = service.getDetailMeet(num);
 		List<InterestVO> interestList = service.get();
 		model.addAttribute("category",interestList);

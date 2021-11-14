@@ -104,11 +104,11 @@
 				</c:forEach>
 			</select>
 		<br>
-		모임 내용 :<br>
+		글 내용 :<br>
 		<textarea name="b_content"></textarea><br>
-		모임 사진 : <input type="text" name="b_image1"><br>
-		모임 사진 : <input type="text" name="b_image2"><br>
-		모임 사진 : <input type="text" name="b_image3"><br>
+		게시판 사진 : <input type="text" name="b_image1"><br>
+		게시판 사진 : <input type="text" name="b_image2"><br>
+		게시판 사진 : <input type="text" name="b_image3"><br>
 		<input type="submit" value="생성">
 	</form>
 	<button type="button" onclick="history.back()">이전</button><br>
