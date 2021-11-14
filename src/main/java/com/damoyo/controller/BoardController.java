@@ -19,9 +19,11 @@ import com.damoyo.domain.BoardLikeVO;
 import com.damoyo.domain.BoardPageDTO;
 import com.damoyo.domain.BoardSearchCriteria;
 import com.damoyo.domain.BoardVO;
+import com.damoyo.domain.MeetMemberVO;
 import com.damoyo.domain.MeetVO;
 import com.damoyo.domain.UserVO;
 import com.damoyo.service.BoardService;
+import com.damoyo.service.MainService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -36,6 +38,8 @@ public class BoardController {
 	
 	@Autowired
 	private BoardService service;
+	@Autowired
+	private MainService mService;
 	
 	@GetMapping("/list")
 	public String list(Model model, HttpSession session, BoardSearchCriteria cri) {
@@ -48,9 +52,15 @@ public class BoardController {
 		// user, meet 정보
 		UserVO userInfo = (UserVO) session.getAttribute("userInfo");
 		MeetVO meetInfo = (MeetVO) session.getAttribute("meetInfo");
+		// 내 가입 여부
+		MeetMemberVO checkMeetJoin = new MeetMemberVO();
+		checkMeetJoin.setM_num(meetInfo.getM_num());
+		checkMeetJoin.setU_id(userInfo.getU_id());
+		checkMeetJoin = mService.checkMeetJoin(checkMeetJoin);
 		Map<String, Object> infos = new HashMap<String, Object>();
 		infos.put("user", userInfo);
 		infos.put("meet", meetInfo);
+		infos.put("checkJoin", checkMeetJoin);
 		
 		// 게시판 카테고리
 		List<BoardCateVO> category = service.getBoardCate();
@@ -63,6 +73,7 @@ public class BoardController {
 		BoardPageDTO boardPages = new BoardPageDTO(total, cri);
 		
 		model.addAttribute("infos", infos);
+		
 		model.addAttribute("category", category);
 		model.addAttribute("list", boardList);
 		model.addAttribute("boardPages", boardPages);
