@@ -120,7 +120,28 @@ public class MainController {
 	@PostMapping("/register")
 	public String register(RedirectAttributes rttr, MeetVO vo, @Param("m_profile")MultipartFile profile) {
 		// 모임 생성
-		log.info(profile);
+		log.info("프로필 : " + profile.isEmpty());
+		
+		// 프로필 null일 경우
+		if(profile.isEmpty()) {
+			log.info("null값 입니다.");
+			log.info("null일 경우 vo값 : " + vo);
+			vo.setM_profile(null);
+			service.registerMeet2(vo);
+			// 모임 생성자를 생성한 모임의 모임장으로 MEET_MEMBERLIST 테이블에 등록
+			MeetMemberVO member = new MeetMemberVO();
+			member.setM_num(vo.getM_num());
+			member.setU_id(vo.getU_id());
+			member.setMember_list_position("모임장");
+			service.joinMeet(member);
+			// 내가 가입한 모임에도 추가
+			MyJoinMeetVO myMeet = new MyJoinMeetVO();
+			myMeet.setU_id(vo.getU_id());
+			myMeet.setM_num(vo.getM_num());
+			service.saveMyJoinMeet(myMeet);
+			return "redirect:/main/";
+		}
+		
 		if(profile.getSize() != 0) {
 			log.info("모임 생성 사진 이름 : " + profile.getOriginalFilename());
 			log.info("모임 생성 사진 크기 : " + profile.getSize());

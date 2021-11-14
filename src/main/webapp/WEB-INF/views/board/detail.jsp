@@ -111,7 +111,7 @@
 	</form>
 	<table border="1">
 		<tr>
-			<td rowspan="2">${infos.user.u_profile }이미지</td>
+			<td rowspan="2"><img src="/user/display?u_id=${infos.user.u_id }"></td>
 			<td>${infos.board.u_id}</td>
 			<td rowspan="2">${infos.board.b_cate_name }
 		</tr>

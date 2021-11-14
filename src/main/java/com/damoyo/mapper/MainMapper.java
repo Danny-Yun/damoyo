@@ -26,14 +26,20 @@ public interface MainMapper {
 	// 모임 1개 디테일 출력
 	public MeetVO getDetailMeet(Long m_num);
 	
-	// 모임 생성 및 모임 가입
+	// 모임 생성 및 모임 가입_프로필 null값이 아닌 경우
 	public void insertMeet(MeetVO vo);
+	
+	// 모임 생성 및 모임 가입_프로필 null값인 경우
+	public void insertMeet2(MeetVO vo);
 	
 	// 모임 삭제
 	public void removeMeet(Long m_num);
 	
 	// 모임 수정
 	public void updateMeet(MeetVO vo);
+
+	// 모임 수정_프로필 안 바꿀 경우
+	public void updateMeet2(MeetVO vo);
 	
 	// 모임 회원 리스트
 	public List<MeetMemberVO> getMeetMemberList(Long m_num);

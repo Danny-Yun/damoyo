@@ -88,7 +88,7 @@
   	
   	<!-- Start main -->
 	<main>
-		<form class="meet-update-form" action="/meet/update/process" method="post">
+		<form class="meet-update-form" action="/meet/update/process" method="post" enctype="multipart/form-data>
 			<input type="hidden" name="m_num" value="${meetInfo.m_num }">
 			<div class="register-form__column">
 				<span>모임 이름</span>
@@ -108,12 +108,11 @@
 			</div>
 			<div class="register-form__column">
 				<span>모임 사진</span>
-				<input type="file" name="m_profile" value="${meetInfo.m_profile }" readonly>
+				<input type="file" name="profile" value="">${meetInfo.m_profile }
 			</div>
 			<div class="register-form__column">
 				<span>모임 종류</span>
 				<select name="i_cate_num">
-					<option selected>부서를 선택하세요.</option>
 					<c:forEach var="cate" items="${category }">
 					    <option value=${cate.i_cate_num }
 					    <c:out value="${cate.i_cate_num eq meetInfo.i_cate_num ? 'selected' : '' }"/>>${cate.i_cate_name}</option>

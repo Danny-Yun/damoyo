@@ -71,7 +71,7 @@
     	ON meet.i_cate_num=interest_category.i_cate_num WHERE m_num=#{m_num}
 	</select>
 	
-	<!-- 모임 생성 -->	
+	<!-- 모임 생성 프로필이 null값이 아닌 경우-->	
 	<insert id="insertMeet">
 		<selectKey keyProperty="m_num" order="BEFORE" resultType="long">
 			SELECT meet_seq.nextval FROM DUAL
@@ -79,6 +79,16 @@
 		INSERT INTO 
 		meet(m_num, m_name, m_content, m_people_cnt, m_area, m_profile, i_cate_num, u_id, m_profilepath, m_uuid)
 		VALUES(#{m_num}, #{m_name}, #{m_content}, #{m_people_cnt}, #{m_area}, #{m_profile}, #{i_cate_num}, #{u_id}, #{m_profilepath}, #{m_uuid})
+	</insert>
+
+	<!-- 모임 생성 프로필이 null값인 경우 -->	
+	<insert id="insertMeet2">
+		<selectKey keyProperty="m_num" order="BEFORE" resultType="long">
+			SELECT meet_seq.nextval FROM DUAL
+		</selectKey>
+		INSERT INTO 
+		meet(m_num, m_name, m_content, m_people_cnt, m_area, i_cate_num, u_id)
+		VALUES(#{m_num}, #{m_name}, #{m_content}, #{m_people_cnt}, #{m_area}, #{i_cate_num}, #{u_id})
 	</insert>
 	
 	<!-- 모임 삭제 -->
@@ -90,6 +100,11 @@
 	<update id="updateMeet">
 		UPDATE meet SET m_name=#{m_name}, m_content=#{m_content}, m_people_cnt=#{m_people_cnt}, m_area=#{m_area}, i_cate_num=#{i_cate_num}, m_profile=#{m_profile}
 		WHERE m_num=#{m_num}
+	</update>
+	
+	<!-- 모임 수정_프로필 안바꿀 경우 -->
+	<update id="updateMeet2">
+		UPDATE meet SET m_name=#{m_name}, m_content=#{m_content}, m_people_cnt=#{m_people_cnt}, m_area=#{m_area}, i_cate_num=#{i_cate_num} WHERE m_num=#{m_num}
 	</update>
 	
 	<!-- 모임 가입  -->

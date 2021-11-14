@@ -56,6 +56,11 @@ public class MainServiceImpl implements MainService {
 	}
 	
 	@Override
+	public void registerMeet2(MeetVO vo) {
+		mapper.insertMeet2(vo);
+	}
+	
+	@Override
 	public MeetVO getDetailMeet(Long m_num) {
 		log.info("모임 디테일");
 		MeetVO meet = mapper.getDetailMeet(m_num);
@@ -72,6 +77,12 @@ public class MainServiceImpl implements MainService {
 	public void updateMeet(MeetVO vo) {
 		log.info("모임 수정");
 		mapper.updateMeet(vo);
+	}
+	
+	// 프로필 안 바꿀 경우
+	@Override
+	public void updateMeet2(MeetVO vo) {
+		mapper.updateMeet2(vo);
 	}
 	
 	/*
