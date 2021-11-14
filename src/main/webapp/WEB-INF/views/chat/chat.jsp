@@ -127,7 +127,7 @@
 				</li>  	
 				<li class="main-nav__btn">
 					<c:if test="${infos.checkJoin eq null }">
-						<a class="main-nav__link-checkJoin" href="#'}" style="color: black">
+						<a class="main-nav__link-checkJoin" href="#" style="color: black">
 							<div class="main-nav__link">
 								<i class="fas fa-comments fa-lg"></i>
 								<span>채팅</span>
