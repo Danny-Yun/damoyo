@@ -1,8 +1,15 @@
 package com.damoyo.controller;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.net.URLDecoder;
+import java.nio.file.Files;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
@@ -28,6 +35,7 @@ import com.damoyo.service.PlanService;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
+import net.coobird.thumbnailator.Thumbnailator;
 
 @Controller
 @RequestMapping("/meet/*")
@@ -39,6 +47,33 @@ public class MeetController {
 	private MainService service;
 	@Autowired
 	private PlanService pService;
+	
+	private boolean checkImageType(File file) {
+		try {
+			log.info("해당 파일 Path 객체화 : " + file.toPath());
+			String contentType = Files.probeContentType(file.toPath());
+			log.info("해당 파일 MIME 타입 : " + contentType);
+			log.info("--------------------------------------------------");
+			
+			// startsWith - 문자열이 'image'로 시작하는지 판별 
+			return contentType.startsWith("image");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	private String getFolder() {
+		// 날짜 포맷
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		// 오늘 날짜 객체 생성
+		Date date = new Date();
+		// 설정한 날짜 포맷에 날짜 객체를 넣은 후 String으로 저장
+		String str = sdf.format(date);
+		// 문자열로 저장한 날짜 포맷의 '-'을 OS 규격에 맞추어 재조정 후 리턴
+		return str.replace("-", File.separator);
+	}
+	
 	
 	// 모임 상세 정보
 	@GetMapping("/info")
@@ -99,16 +134,71 @@ public class MeetController {
 	@PostMapping("/update/process")
 	// 모임 수정
 	public String updateMeet(MeetVO vo, @Param("m_profile")MultipartFile profile) {
-		log.info("업데이트 : " + vo);
+		log.info("수정작업");
+		// 모임 프로필 수정 안할 경우
 		if(profile.isEmpty()) {
-			log.info("null값 입니다.");
-			log.info("null일 경우 vo값 : " + vo);
 			service.updateMeet2(vo);
 			return "redirect:/meet/info?num=" + vo.getM_num();
-		}
-		service.updateMeet(vo);
+		} 
+		// 모임 프로필 수정 할 경우
+		else {
+			
+			// before 프로필 이미지 삭제 로직
+			File file = null;
+			String fileBeforeName = "C:\\upload_data\\temp\\meet_profile\\";
+			MeetVO beforeVo = service.getDetailMeet(vo.getM_num());
+			
+			// 프로필 이미지 삭제
+			fileBeforeName += beforeVo.getM_profilepath() + "\\" + beforeVo.getM_uuid() + "_" + beforeVo.getM_profile();
+			file = new File(fileBeforeName);
+			file.delete();
+			// 프로필 썸네일 이미지 삭제
+			fileBeforeName = "C:\\upload_data\\temp\\meet_profile\\";
+			fileBeforeName += beforeVo.getM_profilepath() + "\\s_" + beforeVo.getM_uuid() + "_" + beforeVo.getM_profile();
+			file = new File(fileBeforeName);
+			file.delete();
+			
+			
+			// 프로필 이미지(+썸네일) 새로 생성 및 DB 저장 
+			String uploadFolder = "C:\\upload_data\\temp\\meet_profile";
+			String uploadFolderPath = getFolder();
+			File uploadPath = new File(uploadFolder, uploadFolderPath);
+			vo.setM_profilepath(uploadFolderPath);
+			
+			log.info("파일 저장 위치 : " + uploadPath);
+			
+			if(uploadPath.exists() == false)
+				uploadPath.mkdirs();
+			
+			String fileName = profile.getOriginalFilename();
+			vo.setM_profile(fileName);
+			log.info("lastIndexof : " + fileName.lastIndexOf("\\"));
+//			fileName = fileName.substring(fileName.lastIndexOf("\\" + 1));
+			
+			UUID uuid = UUID.randomUUID();
+			vo.setM_uuid(uuid.toString());
+			
+			fileName = uuid + "_" + fileName;
+			
+			log.info("최종 VO값 : " + vo);
+			service.updateMeet(vo);
+			
+			try {
+				File saveFile = new File(uploadPath, fileName);
+				profile.transferTo(saveFile);
+				
+				if(checkImageType(saveFile)) {
+					FileOutputStream thumbnail = new FileOutputStream(new File(uploadPath, "s_" + fileName));
+					Thumbnailator.createThumbnail(profile.getInputStream(), thumbnail, 100, 100);
+					thumbnail.close();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}		
 		return "redirect:/meet/info?num=" + vo.getM_num();
 	}
+	
 	
 	@PostMapping("/update")
 	// 모임 수정
