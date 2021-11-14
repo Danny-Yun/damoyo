@@ -69,22 +69,29 @@
 	
   	<!-- Start main -->
 	<main>
-		
-	<form action="/user/password/change" method="post" id="change">
-		<h4>새 비밀번호</h4>
-		<input type="password" name="u_pw" id="u_pw" 
-			minlength="8" onchange="check_pw()" required />
-			<span id="check_pw"></span>
-			<button type="button" id="pw" value="N"></button><br><br/>
-			
-		<h4>새 비밀번호 확인</h4>
-		<input type="password" name="re_pw" id="re_pw"
-			 minlength="8" onchange="check_repw()" required />&nbsp;<span id="check"></span><br><br/>
-			 
-		<p><button type="button" onclick="history.back()">이전</button>
-		<input type="submit" value="확인" /></p>
-	</form>
-	
+		<div class="password-box-outer">
+		  <div class="change-password-box">
+			<form class="change-password-form" action="/user/password/change" method="post" id="change">
+				<div class="change-password-form__pw">
+					<h4 class="change-password-form__pw-text">새 비밀번호</h4>
+					<input type="password" name="u_pw" id="u_pw" 
+						minlength="8" onchange="check_pw()" required />
+					<span id="check_pw"></span>
+					<button type="button" id="pw" value="N"></button>
+				</div>
+				<div class="change-password-form__repw">
+					<h4 class="change-password-form__repw-text">새 비밀번호 확인</h4>
+					<input type="password" name="re_pw" id="re_pw"
+						 minlength="8" onchange="check_repw()" required />
+					<span id="check"></span>
+				</div>	 
+				<div class="password-form__btn">
+					<button type="button" class="btn btn-outline-danger" onclick="history.back()">이전</button>
+					<button type="button" class="btn btn-outline-primary" onclick="confirm()">확인</button>
+				</div>
+			</form>
+		  </div>
+	  	</div>
 	</main>
 	<!-- END main -->
 	
@@ -152,6 +159,11 @@
 				$("change").submit();
 			}
 		});
+		
+		function confirm() {
+			let confirm = document.getElementById("change");
+			confirm.submit();
+		}
 	</script>
 </body>
 </html>

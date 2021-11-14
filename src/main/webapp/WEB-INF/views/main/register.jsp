@@ -69,33 +69,49 @@
 	
   	<!-- Start main -->
 	<main>
-
-	<form action="/main/register" method="post" enctype="multipart/form-data">
-		모임 이름 : <input type="text" name="m_name"><br>
-		모임 인원 : 
-			<select name="m_people_cnt">
-				<c:forEach var="num" begin="1" end="200">
-					<option value="${num }">${num }
-				</c:forEach>
-			</select>
-			<br>
-		모임 지역 : <input type="text" name="m_area"><br>
-		모임 사진 : <input type="file" name="profile" multiple><br>
-		모임 종류 : 
-			<select name="i_cate_num">
+		<form class="register-form" action="/main/register" method="post" enctype="multipart/form-data">
+			<div class="register-form__column">
+				<span>모임 이름</span>
+				<input type="text" name="m_name" placeholder="NAME" required />
+			</div>
+			<div class="register-form__column">
+				<span>모임 인원</span>
+				<select name="m_people_cnt">
+					<c:forEach var="num" begin="1" end="200">
+						<option value="${num }">${num }
+					</c:forEach>
+				</select>
+			</div>
+			<div class="register-form__column">
+				<span>모임 지역 </span>
+				<input type="text" name="m_area" placeholder="AREA" required />
+			</div>
+			<div class="register-form__column">
+				<span>모임 사진</span>
+				<input type="file" name="profile" multiple>
+			</div>
+			<div class="register-form__column">
+				<span>모임 종류</span>
+				<select name="i_cate_num">
 					<c:forEach var="cate" items="${category }">
 					    <option value=${cate.i_cate_num }>${cate.i_cate_name}</option>
 					</c:forEach>
-			</select>
-		<br>
-		모임 방장 : <input type="text" name="u_id" value="${userInfo.u_id }" readonly="readonly"><br>
-		모임 내용 :<br>
-		<textarea name="m_content"></textarea><br>
-		<input type="submit" value="생성">
-	</form>
-	<p><button type="button" class="btn btn-outline-danger"
-			onclick="history.back()">이전</button>
-	
+				</select>
+			</div>
+			<div class="register-form__column">
+				<span>모임 방장</span>
+				<input type="text" name="u_id" value="${userInfo.u_id }" readonly="readonly" />
+			</div>
+			<div class="register-form__column">
+				<span>모임 내용</span>
+				<textarea rows="7px" name="m_content"></textarea>
+			</div>
+			<div class="register-form__btn">
+				<button type="button" class="btn btn-outline-danger"
+					onclick="history.back()">이전</button>
+				<input class="btn btn-outline-primary" type="submit" value="생성" />	
+			</div>
+		</form>
 	</main>
 	<!-- END main -->
 

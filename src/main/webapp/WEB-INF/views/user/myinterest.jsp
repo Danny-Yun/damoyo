@@ -69,27 +69,32 @@
 	
   	<!-- Start main -->
 	<main>
-
-	<div class="d-grid gap-2">
-		<a href="/user/interest"><button type="button" class="btn btn-primary">관심사 추가하기</button></a>
-	</div>
-	<br><br/>
+		<h3 class="my-interest__selected-info">
+			<span>선택한 상세관심사</span> 
+			<span>(현재 개수 : ${i_num })</span>
+		</h3>
+		
+		<div class="my-interest__selected">
+			<c:forEach var="myInterest" items="${myInterest}" >
+				<div class="btn-group" role="group">
+					<button type="button" class="btn btn-light" value="${myInterest.f_interest_num }">${myInterest.i_detail_name }</button>
+					<button type="button" class="btn-close" onclick="removeInterest(${myInterest.f_interest_num })" ></button>
+				</div>&nbsp;&nbsp;
+			</c:forEach>
+		</div>
 	
-	<b>선택한 상세관심사</b> (현재 개수 : ${i_num })
-	<br><br/>
-	<c:forEach var="myInterest" items="${myInterest}" >
-		<div class="btn-group" role="group">
-			<button type="button" class="btn btn-light" value="${myInterest.f_interest_num }">${myInterest.i_detail_name }</button>
-			<button type="button" class="btn-close" onclick="removeInterest(${myInterest.f_interest_num })" ></button>
-		</div>&nbsp;&nbsp;
-	</c:forEach>
-
-	<form style='display:inline' action="/user/myinterest/remove" method="post" id="remove">
-		<input type="hidden" value="" name="f_interest_num" />
-	</form> 
-	
-	<p><button type="button" class="btn btn-warning"
-			onclick="location.href='/user/mypage'">마이페이지로 돌아가기</button></p>
+		<form style='display:inline' action="/user/myinterest/remove" method="post" id="remove">
+			<input type="hidden" value="" name="f_interest_num" />
+		</form> 
+		
+		<div class="my-interest__add">
+			<button type="button" class="btn btn-primary"
+				onclick="location.href='/user/interest'">관심사 추가하기</button>
+		</div>
+		<div class="my-interest__btn">
+			<button type="button" class="btn btn-warning"
+				onclick="location.href='/user/mypage'">마이페이지로 돌아가기</button>
+		</div>
 	</main>
 	<!-- END main -->
 	

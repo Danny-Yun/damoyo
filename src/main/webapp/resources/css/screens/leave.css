@@ -1,0 +1,20 @@
+@charset "UTF-8";
+
+#leave-form {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	height: 100%;
+}
+
+.leave-form__info {
+    font-size: 19px;
+    margin-bottom: 15px;
+    color: red;
+}
+
+.leave-form__info span:first-child {
+	margin-bottom: 7px;
+    display: block;
+}

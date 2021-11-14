@@ -8,11 +8,13 @@ CREATE TABLE user_info (
     u_birth date NOT NULL,
     u_area varchar2(50) NOT NULL,
     u_intro varchar2(1000),
-    u_profile varchar2(1000)
+    u_profile varchar2(1000),
+    u_profilepath varchar2(200) null,
+    u_uuid varchar2(100) null
 );
 
 -- 유저 관심사 카테고리
-CREATE SEQUENCE  "MYTEST"."INTEREST_CATEGORY_SEQ"  MINVALUE 0 MAXVALUE 99 INCREMENT BY 1 START WITH 0 NOCACHE  NOORDER  NOCYCLE  NOKEEP  NOSCALE  GLOBAL ;
+CREATE SEQUENCE  "MYTEST"."INTEREST_CATEGORY_SEQ"  MINVALUE 1 MAXVALUE 99 INCREMENT BY 1 START WITH 1 NOCACHE  NOORDER  NOCYCLE  NOKEEP  NOSCALE  GLOBAL ;
 CREATE TABLE interest_category (
     i_cate_num NUMBER(3) PRIMARY KEY NOT NULL,
     i_cate_name VARCHAR2(100) NOT NULL

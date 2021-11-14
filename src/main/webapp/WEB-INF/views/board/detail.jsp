@@ -105,7 +105,6 @@
 	<a href="/board/list">게시판 목록으로</a>
 	<br><br/>
 	
-
 	<form action="/board/delete" method="post">
 		<input type="hidden" name="b_num" value="${infos.board.b_num}"/>
 		<input type="${infos.user.u_id == infos.board.u_id ? 'submit' : 'hidden' }" value="삭제"/>
