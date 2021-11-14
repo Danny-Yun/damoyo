@@ -138,9 +138,17 @@
 		</form>
 	</c:if>
 	<h2>모임 정모</h2>
-	<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-	  정모 생성
-	</button>
+	
+	<!-- 모임장일 경우 정모 생성 버튼 확인  -->
+	<c:forEach var="member" items="${infos.memberList }">
+		<c:if test="${member.u_id eq infos.user.u_id}">
+			<c:if test="${member.member_list_position eq '모임장' }">
+				<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+				  정모 생성
+				</button>
+			</c:if>
+		</c:if>
+	</c:forEach>
 	<br>
 	<table>
 		<c:forEach var="p" items="${infos.plan }">
