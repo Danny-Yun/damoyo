@@ -121,19 +121,25 @@
 					<i class="fas fa-feather-alt fa-lg"></i>
 					<span>게시판</span>
 				</a>
-			</li>  	
+			</li>  
 			<li class="main-nav__btn">
-				<a class="main-nav__link" href="#">
-					<i class="far fa-images fa-lg"></i>
-					<span>갤러리</span>
-				</a>
+				<c:if test="${infos.checkJoin eq null }">
+					<a class="main-nav__link-checkJoin" href="#'}">
+						<div class="main-nav__link">
+							<i class="fas fa-comments fa-lg"></i>
+							<span>채팅</span>
+						</div>
+					</a>
+				</c:if>
+				<c:if test="${infos.checkJoin ne null }">
+					<a class="main-nav__link-checkJoin" href="/chatting?room_id=${infos.meet.m_num }">
+						<div class="main-nav__link">
+							<i class="fas fa-comments fa-lg"></i>
+							<span>채팅</span>
+						</div>
+					</a>
+				</c:if>
 			</li>  				
-			<li class="main-nav__btn">
-				<a class="main-nav__link" href="#">
-					<i class="fas fa-comments fa-lg"></i>
-					<span>채팅</span>
-				</a>
-			</li>  		
 			<li class="main-nav__btn">
 				<a class="main-nav__link" href="/main/">
 					<i class="far fa-compass fa-lg"></i>
@@ -147,6 +153,8 @@
   	<!-- Start main -->
 	<main>
 	<br><br/>
+	
+	${infos.meet }	
 	
 	<form action="/board/list">
 		<select name="searchType">
@@ -183,7 +191,6 @@
 					</script>
 					<br>
 				</div>
-				<div class="b_image1"></div><br>
 				<hr>
 				<div class="b_like">좋아요 ${list.b_like}</div> 
 				<hr>

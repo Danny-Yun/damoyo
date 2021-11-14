@@ -59,17 +59,23 @@
 				</a>
 			</li>  	
 			<li class="main-nav__btn">
-				<a class="main-nav__link" href="#">
-					<i class="far fa-images fa-lg"></i>
-					<span>갤러리</span>
-				</a>
-			</li>  				
-			<li class="main-nav__btn">
-				<a class="main-nav__link" href="#">
-					<i class="fas fa-comments fa-lg"></i>
-					<span>채팅</span>
-				</a>
-			</li>  		
+				<c:if test="${infos.checkJoin eq null }">
+					<a class="main-nav__link-checkJoin" href="#'}">
+						<div class="main-nav__link">
+							<i class="fas fa-comments fa-lg"></i>
+							<span>채팅</span>
+						</div>
+					</a>
+				</c:if>
+				<c:if test="${infos.checkJoin ne null }">
+					<a class="main-nav__link-checkJoin" href="/chatting?room_id=${infos.meet.m_num }">
+						<div class="main-nav__link">
+							<i class="fas fa-comments fa-lg"></i>
+							<span>채팅</span>
+						</div>
+					</a>
+				</c:if>
+			</li>  		  		
 			<li class="main-nav__btn">
 				<a class="main-nav__link" href="/main/">
 					<i class="far fa-compass fa-lg"></i>
@@ -106,9 +112,9 @@
 		<br>
 		글 내용 :<br>
 		<textarea name="b_content"></textarea><br>
-		게시판 사진 : <input type="text" name="b_image1"><br>
-		게시판 사진 : <input type="text" name="b_image2"><br>
-		게시판 사진 : <input type="text" name="b_image3"><br>
+	 	<input type="hidden" name="b_image1"><br>
+		<input type="hidden" name="b_image2"><br>
+		<input type="hidden" name="b_image3"><br>
 		<input type="submit" value="생성">
 	</form>
 	<button type="button" onclick="history.back()">이전</button><br>
