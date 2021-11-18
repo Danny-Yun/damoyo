@@ -1,0 +1,75 @@
+@charset "UTF-8";
+
+.board-detail__info {
+	font-size: 18px;
+}
+
+.board-detail__buttons {
+	display: flex;
+	justify-content: flex-end;
+}
+.board-detail__buttons button {
+	margin-right: 5px;
+}
+.board-detail__img {
+	width: 50px;
+	height: 50px;
+	border-radius: 25px; 
+}
+.board-detail__column:first-child {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 25px;	
+}
+.board-detail__column:last-child {
+	padding: 0px 20px;	
+	display: flex;
+	flex-direction: column;
+} 
+.board-detail__column-left {
+	display: flex;
+	align-items: center;
+}
+.board-detail__column-text {
+	display: flex;
+	flex-direction: column;
+	margin-left: 10px;
+}
+.board-detail__id {
+	display:flex;
+	margin-bottom: 7px;
+	justify-content: flex-start;
+	font-weight: bold;
+	font-size: 20px;
+}
+.board-detail__date {
+	opacity: 0.5;
+}
+.board-detail__cate {
+	font-size: 19px;
+	color: #1E90FF;
+}
+.board-detail__title {
+	margin: 9px 0px 19px;
+	font-size: 23px;
+	font-weight: bold;
+}
+.board-detail__content {
+	margin-bottom: 20px;
+	font-size: 19px;
+}
+
+.board-detail__like {
+	padding: 10px 20px;
+}
+.board-detail__like-btn {
+	border: none;
+	padding: 10px 40px;
+	background-color: lightgray;
+	border-radius: 10px;
+}
+.board-detail__like-btn i {
+	margin-right: 5px;
+}
+

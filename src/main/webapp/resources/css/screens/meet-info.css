@@ -1,1 +1,114 @@
 @charset "UTF-8";
+
+/* meet-info */
+.meet-info-outer {
+	text-align: center;
+}
+.meet-info__photo {
+	padding: 20px;
+}
+.meet-info__title {
+	margin-bottom: 25px;
+	padding: 20px 0px;
+}
+.meet-info__name {
+	margin-right: 100px;
+	font-weight: bolder;
+	font-size: 25px;
+}
+.meet-info__cate {
+	font-size: 21px;
+	color: #0096c6;
+	padding: 5px 10px;
+	border: 1px solid #0096c6;
+	border-radius: 10px;
+}
+.meet-info-header {
+	border: 2px solid var(--main-color);
+	border-radius: 20px;
+	padding: 30px 0px;
+	margin: 0px 100px 50px;
+}
+.meet-info__content {
+	margin-bottom: 40px;
+	font-size: 18px;
+}
+.meet-info__buttons {
+	display: flex;	
+	justify-content: center;
+}
+.check-interest {
+	margin-left: 20px;
+}
+/* END meet-info */
+
+/* meet-info-bottom */
+.meet-info-bottom {
+	display:flex;
+	justify-content: center;
+	margin-bottom: 40px;
+}
+.meet-meeting {
+	margin-right: 100px;
+}
+.meet-meeting__button i {
+	margin-right: 4px;
+}
+.meet-meeting__title,
+.meet-member__title {
+	margin-bottom: 20px;
+	font-size: 17px;
+	font-weight: bold;
+}
+
+/* meet-member */
+.meet-member {
+	width: 500px;
+	padding: 20px;
+	border: 2px solid var(--main-color);
+}
+.meet-member__info {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 15px;
+}
+.meet-member__img {
+	width: 50px;
+	height: 50px;
+	border-radius: 25px;
+}
+.meet-member__column:first-child {
+	display: flex;
+	align-items: center;
+}
+.meet-member__text {
+	display: flex;
+	flex-direction: column;
+	margin-left: 10px;
+}
+.meet-member__name {
+	display:flex;
+	margin-bottom: 7px;
+	justify-content: flex-start;
+	font-weight: bold;
+}
+.meet-member__position {
+	color: #008d62;
+}
+/* END meet-member */
+
+.meet-maker__btn {
+	display: flex;
+	justify-content: center;
+}
+.meet-maker__btn input[type="submit"] {
+	margin-left: 10px;
+}
+/* END meet-info-bottom */
+
+.modal-body input {
+	border: 2px solid #6499E1;
+	border-radius: 10px;
+	padding: 5px 7px; 
+}

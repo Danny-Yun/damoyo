@@ -25,6 +25,9 @@
 @import "screens/profile.css";
 @import "screens/register.css";
 @import "screens/meet-info.css";
+@import "screens/chat.css";
+@import "screens/board-list.css";
+@import "screens/board-detail.css";
 
 /* google font */
 @import url('https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR&display=swap');

@@ -114,7 +114,7 @@
 			</div>
 			<div class="register-form__column">
 				<span>모임 사진</span>
-				<input type="file" name="profile" value="">${meetInfo.m_profile }
+				<input type="file" name="profile" value="">
 			</div>
 			<div class="register-form__column">
 				<span>모임 종류</span>

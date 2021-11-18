@@ -94,32 +94,41 @@
   	
   	<!-- Start main -->
 	<main>
-
- 	<form action="/board/register" method="post">
-		제목 : <input type="text" name="b_title"><br>
-		작성자 : <input type="text" name="u_id" value=${infos.user.u_id } readonly><br>
-		<input type="hidden" name="m_num" value=${infos.meet.m_num }>
-		카테고리:
-			<select name="b_cate_name">
-				<c:forEach var="cate" items="${infos.category}">
-					<option value=${cate.b_cate_name } 
-						<c:out value="${cate.b_cate_name eq '자유게시판' ? 'selected' : ''}"/>
-						<c:out value="${cate.b_cate_name eq '전체보기' ? 'hidden' : ''}"/>>
-				    	${cate.b_cate_name}
-				    </option>
-				</c:forEach>
-			</select>
-		<br>
-		글 내용 :<br>
-		<textarea name="b_content"></textarea><br>
-	 	<input type="hidden" name="b_image1"><br>
-		<input type="hidden" name="b_image2"><br>
-		<input type="hidden" name="b_image3"><br>
-		<input type="submit" value="생성">
-	</form>
-	<button type="button" onclick="history.back()">이전</button><br>
-	<a href="/main/"><button>메인화면</button></a>
- 	
+	 	<form class="register-form" action="/board/register" method="post">
+	 		<div class="register-form__column">
+	 			<span>제목</span>
+	 			<input type="text" name="b_title">
+	 		</div>
+	 		<div class="register-form__column">
+	 			<span>작성자</span>
+	 			<input type="text" name="u_id" value=${infos.user.u_id } readonly>
+	 		</div>
+	 		<div class="register-form__column">
+	 			<span>카테고리</span>
+	 			<select name="b_cate_name">
+					<c:forEach var="cate" items="${infos.category}">
+						<option value=${cate.b_cate_name } 
+							<c:out value="${cate.b_cate_name eq '자유게시판' ? 'selected' : ''}"/>
+							<c:out value="${cate.b_cate_name eq '전체보기' ? 'hidden' : ''}"/>>
+					    	${cate.b_cate_name}
+					    </option>
+					</c:forEach>
+				</select>
+	 		</div>
+	 		<div class="register-form__column">
+	 			<span>글 내용</span>
+	 			<textarea rows="7px" name="b_content"></textarea>
+	 		</div>
+	 		<div class="register-form__btn">
+	 			<button type="button" class="btn btn-outline-danger" 
+	 				onclick="history.back()">이전</button>
+				<input class="btn btn-outline-primary" type="submit" value="생성" />
+	 		</div>
+			<input type="hidden" name="m_num" value=${infos.meet.m_num }>
+		 	<input type="hidden" name="b_image1">
+			<input type="hidden" name="b_image2">
+			<input type="hidden" name="b_image3">
+		</form>
 	</main>
 	<!-- END main -->
 	

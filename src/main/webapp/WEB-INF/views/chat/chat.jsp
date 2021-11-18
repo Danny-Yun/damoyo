@@ -111,8 +111,7 @@
 	  	<nav class="main-nav">
 		  	<ul class="main-nav__list">
 				<li class="main-nav__btn">
-					<a class="main-nav__link" href="/meet/info?num=${infos.meet.m_num }"
-							style="color: black">
+					<a class="main-nav__link" href="/meet/info?num=${infos.meet.m_num }">
 						<i class="fab fa-fort-awesome fa-lg"></i>
 						<span>모임방</span>
 					</a>
@@ -153,14 +152,27 @@
 	  	</nav>
 	  	<!-- END nav -->
 	  	
-	  	
-	    <div style="width: 800px; height: 700px; padding: 10px; border: solid 1px #e1e3e9;">
+	  	<!-- Start main -->
+		<main>
+		  <div class="chat-screen">
 	        <div id="divChatData"></div>
-	    </div>
-	    <div style="width: 100%; height: 10%; padding: 10px;">
-	        <input type="text" id="message" size="110" onkeypress="if(event.keyCode==13){webSocket.sendChat();}" />
-	        <input type="button" id="btnSend" value="전송" onclick="webSocket.sendChat()"/>
-	    </div>
+		    <div class="chat-text">
+		        <input type="text" id="message" size="110" onkeypress="if(event.keyCode==13){webSocket.sendChat();}" />
+		        <input class="btn btn-warning" type="button" id="btnSend" value="전송" onclick="webSocket.sendChat()"/>
+		    </div>
+	      </div>
+	    </main>
+	    <!-- END main -->
+	    
+	    <!-- Start footer -->
+		<footer class="main-footer">
+			<div class="main-footer__info">
+				Made by Riudiu, Wakebro &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; 
+				Contact by GitHub : github.com/Riudiu
+			</div>
+			<div class="main-footer__copyright">Copyright 2021. DAMOYO. All rights reserved. </div>
+		</footer>
+		<!-- END footer -->
 	</div>
 </body>
 </html>

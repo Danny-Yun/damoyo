@@ -15,70 +15,6 @@
 <link rel="stylesheet" href="/resources/css/styles.css">
 <!-- font-awesome code kit -->
 <script src="https://kit.fontawesome.com/6478f529f2.js" crossorigin="anonymous"></script>
-<style>
-	.box_left {
-		margin-left:350px;
-		float:left;
-	}
-	
-	.box {
-		padding-top:20px;
-		padding-bottom:20px;
-		width:500px;
-		display:block;
-		float:right;
-		/*border:1px solid black;*/
-	}
-	
-	.left_side{
-		clear:both;
-		float:left;
-	}
-	
-	.right_side {
-		float:right;
-	}
-	
-	.u_id {
-		clear:both;
-		width:50px;
-		float:left;
-	}
-	
-	.b_date {
-		/*padding-left:300px;*/
-		width:100px;
-		float:right;
-	}
-	
-	hr {
-		clear:both;
-	}
-	
-	.titlecontent {
-		width:200px;
-		heigth:50px;
-		float:left;
-	}
-	
-	.b_image1 {
-		width:150px;
-		height:70px;
-		border:1px solid black;
-		float:right;
-	}
-	
-	.b_like {
-		clear:both;
-		width:100px;
-		float:left;
-	}
-	
-	.b_cate_name {
-		width:50px;
-		float:right;
-	}
-</style>
 </head>
 <body>
   <div id="wrapper">
@@ -152,68 +88,84 @@
   	
   	<!-- Start main -->
 	<main>
-	<br><br/>
-	
-	<form action="/board/list">
-		<select name="searchType">
-			<option selected="${boardPages.cri.searchType eq null ? 'selected' : ''}" value="">
-					전체보기
-			</option>
-			<c:forEach var="c" items="${category }">
-				<option value="${c.b_cate_name}"
-					<c:out value="${boardPages.cri.searchType eq c.b_cate_name ? 'selected' : ''}"  />>
-					 ${c.b_cate_name }
+		<!-- Start board-search-form -->
+		<form class="board-search-form" action="/board/list">
+		  <div class="board-search-form__column">
+			<select name="searchType">
+				<option selected="${boardPages.cri.searchType eq null ? 'selected' : ''}" value="">
+						전체보기
 				</option>
-			</c:forEach>	
-		</select>
-		<input type="text" name="keyword" placeholder="검색어" value="${boardPages.cri.keyword }">
-		<input type="submit" value="검색">
-	</form>
-	<br>
-	<hr>
-	<c:forEach var="list" items="${list}">
-		<div class="left_side">
-			<div class="box_left"/></div>
-			<div class="box" onclick="location.href='/board/detail?b_num=${list.b_num}';" style="cursor:pointer;">
-				<div class="u_id">${list.u_id}</div> <div class="b_date">${list.b_date}</div><br><br>
-				<div class="titlecontent">
-					<strong>${list.b_title}</strong><br>
-					<div>${list.b_cate_name}</div>
-					<script>
-						var b_content = "${list.b_content}";
-						if(b_content.length > 10) {
-							document.write(b_content.substring(0, 11) + "...");
-						} else {
-							document.write(b_content);
-						}
-					</script>
-					<br>
-				</div>
-				<hr>
-				<div class="b_like">좋아요 ${list.b_like}</div> 
-				<hr>
-			</div>
-		</div>
-			<div class="right_side">
-		</div>
-	</c:forEach>
-	<div>
-		<form action="/board/write" method="get">
-			<input type="submit" value="글쓰기">
+				<c:forEach var="c" items="${category }">
+					<option value="${c.b_cate_name}"
+						<c:out value="${boardPages.cri.searchType eq c.b_cate_name ? 'selected' : ''}"  />>
+						 ${c.b_cate_name }
+					</option>
+				</c:forEach>	
+			</select>
+		  </div>
+		  <div class="board-search-form__column">
+			<input class="board-search-form__text" type="text" name="keyword" 
+				placeholder="검색어" value="${boardPages.cri.keyword }">
+		  </div>
+		  <div class="board-search-form__column">
+			<input class="btn btn-outline-success" type="submit" value="검색">
+		  </div>
 		</form>
-	</div>
-	<ul class="pagination">
-		<c:if test="${boardPages.prev }">
-			<a class="page-link" href="/board/list?pageNum=${boardPages.startPage - 1 }&searchType=${boardPages.cri.searchType}&keyword=${boardPages.cri.keyword}">Prev</a>
-		</c:if>
-		<c:forEach var="page" begin="${boardPages.startPage }" end="${boardPages.endPage }">
-			<li class="page-item ${boardPages.cri.pageNum eq page ? 'active' : '' }"><a class="page-link" href="/board/list?pageNum=${page }&searchType=${boardPages.cri.searchType}&keyword=${boardPages.cri.keyword}">${page}</a></li>
-		</c:forEach>
-		<c:if test="${boardPages.next }">
-			<a class="page-link" href="/board/list?pageNum=${boardPages.endPage + 1 }&searchType=${boardPages.cri.searchType}&keyword=${boardPages.cri.keyword}">Next</a>
-		</c:if>
-	</ul>
-	
+		<!-- END board-search-form -->
+	    <hr>
+	    <div class="meet-plus-outter">
+			<a class="meet-plus" href="/board/write">
+				<i class="fas fa-plus fa-lg"></i>
+				<span>작성</span>
+			</a>
+		</div>
+	    <!-- Start board-list -->
+	    <div class="board-list">
+			<c:forEach var="list" items="${list}">
+				<div class="board-list-single" onclick="location.href='/board/detail?b_num=${list.b_num}'">
+					<div class="board-list__column">
+						<span class="board-list__id">${list.u_id}</span> 
+						<span class="board-list__date">${list.b_date}</span>
+					</div>
+					<div class="board-list__column">
+					  <div class="board-list__info">
+						<span class="board-list__title">${list.b_title}</span>
+						<script>
+							var b_content = "${list.b_content}";
+							if(b_content.length > 10) {
+								document.write(b_content.substring(0, 11) + "...");
+							} else {
+								document.write(b_content);
+							}
+						</script>
+					  </div>
+					  <div class="board-list__cate">
+						<span>${list.b_cate_name}</span>
+					  </div>
+					</div>
+					<hr class="end-line"> 
+					<div class="board-list__column">
+						<i class="far fa-thumbs-up"></i>
+						<div class="board-list__like">
+							<span>좋아요</span>
+							<span>${list.b_like}</span>
+						</div>
+					</div>
+				</div>
+			</c:forEach>
+		</div>
+		<ul class="pagination">
+			<c:if test="${boardPages.prev }">
+				<a class="page-link" href="/board/list?pageNum=${boardPages.startPage - 1 }&searchType=${boardPages.cri.searchType}&keyword=${boardPages.cri.keyword}">Prev</a>
+			</c:if>
+			<c:forEach var="page" begin="${boardPages.startPage }" end="${boardPages.endPage }">
+				<li class="page-item ${boardPages.cri.pageNum eq page ? 'active' : '' }"><a class="page-link" href="/board/list?pageNum=${page }&searchType=${boardPages.cri.searchType}&keyword=${boardPages.cri.keyword}">${page}</a></li>
+			</c:forEach>
+			<c:if test="${boardPages.next }">
+				<a class="page-link" href="/board/list?pageNum=${boardPages.endPage + 1 }&searchType=${boardPages.cri.searchType}&keyword=${boardPages.cri.keyword}">Next</a>
+			</c:if>
+		</ul>
+		<!-- END board-list -->
 	</main>
 	<!-- END main -->
 	

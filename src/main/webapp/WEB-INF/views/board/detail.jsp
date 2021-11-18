@@ -15,19 +15,6 @@
 <link rel="stylesheet" href="/resources/css/styles.css">
 <!-- font-awesome code kit -->
 <script src="https://kit.fontawesome.com/6478f529f2.js" crossorigin="anonymous"></script>
-<style>
-	#modiDiv {
-		width:	300px;
-		height: 100px;
-		background-color: green;
-		position:	absolute;
-		top:	50%;
-		left:	50%;
-		margin-top: -50px;
-		margin-right: -150px;
-		z-index: 1;
-	}
-</style>
 </head>
 <body>
   <div id="wrapper">
@@ -101,58 +88,62 @@
   	
   	<!-- Start screen-header -->
   	<div class="screen-header">
-		<h1 class="screen-header__title">${infos.board.b_cate_name }</h1>
+		<h1 class="screen-header__title">게시글</h1>
 	</div>
 	<!-- END screen-header -->
   	
   	<!-- Start main -->
 	<main>
-
-	<a href="/board/list">게시판 목록으로</a>
-	<br><br/>
+		<div class="board-detail__buttons">
+			<button type="button" class="btn btn-outline-secondary" 
+				onclick="location.href='/board/list'">게시판 목록으로</button>
+			<form action="/board/delete" method="post">
+				<input type="hidden" name="b_num" value="${infos.board.b_num}"/>
+				<input class="btn btn-outline-danger" type="${infos.user.u_id == infos.board.u_id ? 'submit' : 'hidden' }" value="삭제"/>
+			</form>
+		</div>
+		<div class="board-detail__info">
+			<div class="board-detail__column">
+				<div class="board-detail__column-left">
+					<img class="board-detail__img" src="/user/display?u_id=${infos.user.u_id }">
+					<div class="board-detail__column-text">
+						<span class="board-detail__id">${infos.board.u_id}</span>
+						<span class="board-detail__date">${infos.board.b_date}</span>
+					</div>
+				</div>
+				<span class="board-detail__cate">${infos.board.b_cate_name }</span>
+			</div>
+			<div class="board-detail__column">
+			    <span class="board-detail__title">${infos.board.b_title }</span>
+				<span class="board-detail__content">${infos.board.b_content }</span>
+			</div>
+		</div>
+		<div class="board-detail__like">
+			<c:choose>
+				<c:when test="${infos.likeInfo eq null }">
+					<button class="board-detail__like-btn" id="likeBtn"><i class="far fa-thumbs-up"></i>좋아요</button>
+				</c:when>
+				<c:otherwise>
+					<button class="board-detail__like-btn" id="likeCancelBtn"><i class="far fa-thumbs-up"></i>좋아요 취소</button>
+				</c:otherwise>
+			</c:choose>
+		</div>		 	
+		<div class="board-detail__text">
+			<span>조회 : ${infos.board.b_view }</span>
+			<span>추천 : ${infos.likeCnt }</span>		
+		</div>
 	
-	<form action="/board/delete" method="post">
-		<input type="hidden" name="b_num" value="${infos.board.b_num}"/>
-		<input type="${infos.user.u_id == infos.board.u_id ? 'submit' : 'hidden' }" value="삭제"/>
-	</form>
-	<table border="1">
-		<tr>
-			<td rowspan="2"><img src="/user/display?u_id=${infos.user.u_id }"></td>
-			<td>${infos.board.u_id}</td>
-			<td rowspan="2">${infos.board.b_cate_name }
-		</tr>
-		<tr>
-			<td>${infos.board.b_date}</td>
-		</tr>
-		<%-- <tr><td>${infos.board.b_date}</td></tr> --%>
-		<tr>
-			<td>조회 : ${infos.board.b_view }</td><td>추천 : ${infos.likeCnt }</td>
-		</tr>
-		<tr><td colspan="3">${infos.board.b_title }</td></tr>
-		<tr><td colspan="3">${infos.board.b_content }</td></tr>
-		<tr><td colspan="3">${infos.board.b_image1 }</td></tr>
-		<tr><td colspan="3">${infos.board.b_image2 }</td></tr>
-		<tr><td colspan="3">${infos.board.b_image3 }</td></tr>
-	</table>
-	<c:choose>
-		<c:when test="${infos.likeInfo eq null }">
-			<button id="likeBtn">좋아요</button>
-		</c:when>
-		<c:otherwise>
-			<button id="likeCancelBtn">좋아요 취소</button>
-		</c:otherwise>
-	</c:choose>
-	<form style='display:inline' action="/board/like" method="post" id="likeForm">
-		<input type="hidden" value="" name="m_num" />
-		<input type="hidden" value="" name="b_num" />
-		<input type="hidden" value="" name="u_id" />
-	</form> 
-	<form style='display:inline' action="/board/likeCancel" method="post" id="likeCancelForm">
-		<input type="hidden" value="" name="m_num" />
-		<input type="hidden" value="" name="b_num" />
-		<input type="hidden" value="" name="u_id" />
-	</form> 
-	<hr>
+		<form style='display:inline' action="/board/like" method="post" id="likeForm">
+			<input type="hidden" value="" name="m_num" />
+			<input type="hidden" value="" name="b_num" />
+			<input type="hidden" value="" name="u_id" />
+		</form> 
+		<form style='display:inline' action="/board/likeCancel" method="post" id="likeCancelForm">
+			<input type="hidden" value="" name="m_num" />
+			<input type="hidden" value="" name="b_num" />
+			<input type="hidden" value="" name="u_id" />
+		</form> 
+		<hr>
 	<h2>댓글창</h2>
 	<input type="text" id="b_comment_content" placeholder="댓글을 달아주세요">
 	<button  id="replyAddBtn">등록</button>
