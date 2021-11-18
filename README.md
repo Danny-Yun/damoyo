@@ -2,6 +2,8 @@
 
 > 자기계발 및 취미, 관심사 등을 공유할 수 있는 모임 기반 플랫폼 서비스
 
+PPT : https://docs.google.com/presentation/d/143LuWc2uxJhblTUNMheN8FCG6YmtcwyZ98Svo6rzn0k/edit?usp=sharing
+
 <br>
 
 ## :pushpin: 제작 기간 & 참여 인원
